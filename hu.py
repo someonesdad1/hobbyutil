@@ -53,6 +53,10 @@ nl = "\n"
 py3_char = "3"
 test_char = "T"
 
+# Under cygwin, the root directory's actual location is needed
+on_windows = True
+cygwin = "c:/cygwin" if on_windows else ""
+
 # Keep track of softlinks created
 softlinks = set()
 
@@ -68,6 +72,8 @@ tw.width = int(os.environ.get("COLUMNS", 80)) - 5
 tw.replace_whitespace = True
 tw.fix_sentence_endings = True
 tw.initial_indent = tw.subsequent_indent = " "*4
+
+output_directories = set()
 
 # YAML data
 yamlfile = "projects"   # Where YAML data are saved (never written)
@@ -505,20 +511,22 @@ def GetFileHash(file):
     return h.hexdigest()
 
 def FilesAreDifferent(src, dest, d):
-    # Compare hashes to determine if files are different
+    '''Compare hashes to determine if files are different.  Return 0 if the
+    hashes are the same, 1 if they are different, and 2 if the dest file
+    doesn't exist.
+    '''
     try:
         src_hash = GetFileHash(src)
     except IOError:
-        Error("Can't read file '%s':\n  " % src)
+        Error("Can't read source file '%s':\n  " % src)
         msg += str(e)
         Error(msg)
     try:
         dest_hash = GetFileHash(dest)
     except IOError as e:
-        msg = "Can't read file '%s':\n  " % dest
-        msg += str(e)
-        Error(msg)
-    return True if src_hash != dest_hash else False
+        # Can't read destination file
+        return 2
+    return 1 if src_hash != dest_hash else 0
 
 def CopyFile(src, dest, d):
     '''Only copy the files if the destination file is missing or the
@@ -651,44 +659,43 @@ def ParseCommandLine(d):
         Usage(d)
     return args
 
-if 0:
-    def MakeSoftlinks(d):
-        Message("Making softlinks", c.lblue)
-        for src, dest in softlinks:
-            if not os.path.isfile(src):
-                Error("'%s' is missing in MakeSoftlinks()" % src)
-            if os.path.islink(dest):
-                os.remove(dest)
-            elif os.path.isfile(dest):
-                Error("'%s' exists in MakeSoftlinks()" % dest)
+def MakeSoftlinks(d):
+    Message("Making softlinks", c.lblue)
+    for src, dest in softlinks:
+        if not os.path.isfile(src):
+            Error("'%s' is missing in MakeSoftlinks()" % src)
+        if os.path.islink(dest):
+            os.remove(dest)
+        elif os.path.isfile(dest):
+            Error("'%s' exists in MakeSoftlinks()" % dest)
+        try:
+            abs_src_dir = os.path.abspath(src)
+            dest_dir, dest_file = os.path.split(dest)
+            if not dest_dir:
+                Error("ln -s '%s' '%s' on empty dir" % (src, dest))
+            curdir = os.getcwd()
             try:
-                abs_src_dir = os.path.abspath(src)
-                dest_dir, dest_file = os.path.split(dest)
-                if not dest_dir:
-                    Error("ln -s '%s' '%s' on empty dir" % (src, dest))
-                curdir = os.getcwd()
-                try:
-                    # Remove any existing link or file
-                    os.remove(dest)
-                except OSError:
-                    pass
-                # Change to the destination diretory so we can get a
-                # relative path to the file we want to point to.
-                if dest_dir:
-                    os.chdir(dest_dir)
-                # Get the source directory relative to current directory
-                relsrc = os.path.relpath(abs_src_dir)
-                # Make the link
-                os.symlink(relsrc, dest_file)
-                if dest_dir:
-                    os.chdir(curdir)
-                c.fg(c.lblue)
-                print("  ln -s '%s' <-- '%s'" % (src, dest))
-                c.normal()
-            except Exception as e:
-                msg = ["Couldn't make softlink '%s' --> '%s'" % (src, dest)]
-                msg += ["  %s" % e]
-                Error('\n'.join(msg))
+                # Remove any existing link or file
+                os.remove(dest)
+            except OSError:
+                pass
+            # Change to the destination directory so we can get a
+            # relative path to the file we want to point to.
+            if dest_dir:
+                os.chdir(dest_dir)
+            # Get the source directory relative to current directory
+            relsrc = os.path.relpath(abs_src_dir)
+            # Make the link
+            os.symlink(relsrc, dest_file)
+            if dest_dir:
+                os.chdir(curdir)
+            c.fg(c.lblue)
+            print("  ln -s '%s' <-- '%s'" % (src, dest))
+            c.normal()
+        except Exception as e:
+            msg = ["Couldn't make softlink '%s' --> '%s'" % (src, dest)]
+            msg += ["  %s" % e]
+            Error('\n'.join(msg))
 
 def Message(s, fg, bg=c.black):
     c.fg(fg, bg)
@@ -714,157 +721,6 @@ def Make(args, d):
         CheckSoftlinks(d)
         OO_PictureFiles(d)
     print("\n%d projects" % count)
-
-def PrintProjectDescription(category, project, item, d):
-    '''Print the Google wiki form of a table as:
-        || category/project || description ||
-    '''
-    if item["ignore"]:
-        return
-    s, t = item["descr"].strip(), ""
-    if item["tests"]:
-        t += test_char
-    if item["python3"]:
-        t += py3_char
-    print("|| %s/%s %s || %s ||" % (category, project, t, s))
-
-if 0:
-    def Web(args, d):
-        '''Output the main project web page to stdout.
-        '''
-        # Make a new dictionary using categories as the first
-        # keys and project name as the second.
-        info = {}
-        for proj in data:
-            category = data[proj]["category"]
-            if category not in info:
-                info[category] = {}
-            else:
-                info[category][proj] = data[proj]
-        print(Header)
-        categories = list(info.keys())
-        categories.sort()
-        for category in categories:
-            projects = list(info[category].keys())
-            projects.sort()
-            for project in projects:
-                item = info[category][project]
-                PrintProjectDescription(category, project, item, d)
-        print(Trailer)
-
-    def EraseFiles(project, info, d):
-        '''Erase this project's destination files.
-        project is project's name like 'elec/bnc'.
-        info is d["data"][project].
-        '''
-        d["top_level_dirs"].add(os.path.split(project)[0])
-        if d["-F"]:
-            # Force removal of directory and all files, even those that
-            # were not copied by this script.
-            shutil.rmtree(project, ignore_errors=True)
-            return
-        subdirs = set()  # Keep track of subdirectories
-        for src, dest in info["files"]:
-            destfile = os.path.join(project, dest)
-            try:
-                subdirs.add(os.path.split(destfile)[0])
-                if os.path.isfile(destfile):
-                    os.remove(destfile)
-                    if not d["-q"]:
-                        print("Removed %s" % destfile)
-            except Exception:
-                c.fg(c.lred)
-                print("Couldn't remove '%s'" % destfile)
-                c.normal()
-        # Remove subdirectories
-        for subdir in subdirs:
-            try:
-                os.rmdir(subdir)
-                if not d["-q"]:
-                    print("Removed directory %s" % subdir)
-            except Exception:
-                if os.path.isdir(subdir):
-                    print("Couldn't remove directory %s" % subdir)
-        # All files erased, now remove project directory.  An exception
-        # means the directory probably isn't empty.
-        try:
-            os.rmdir(project)
-            if not d["-q"]:
-                print("Removed directory %s" % project)
-        except Exception:
-            if os.path.isdir(project):
-                print("Couldn't remove directory %s" % project)
-
-    def CheckSoftlinks(d):
-        Message("Checking softlinks", c.yellow)
-        for src, dest in softlinks:
-            src_hash = GetFileHash(src)
-            dest_hash = GetFileHash(dest)
-            if src_hash != dest_hash:
-                print("Bad softlink:  '%s' to '%s'" % (dest, src))
-
-    def Duplicates(args, d):
-        '''Find the files that are duplicates in the packages and print
-        them out.
-        '''
-        raise Exception("Not impl")
-
-    def Outlaw(args, d):
-        '''Show files in repository that are not part of defined data.
-        '''
-        ignore = set((
-            ".vi",   
-            ".z",   
-            "0readme",   
-            "0readme.html",   
-            "a",   
-            "history.rst",   
-            "hu.py",   
-            "makefile",   
-            "mk.clean",   
-            "tags",   
-            "z",   
-        ))
-        # Get a list of files that are in the directory; use the 'find'
-        # command.
-        p = subprocess.PIPE
-        s = subprocess.Popen(('/usr/bin/find', ".", "-type", "f"), 
-                             stdout=p, stderr=p)
-        on_disk_files = set()
-        for name in s.stdout.readlines():
-            if name.startswith("./"):
-                name = name[2:]
-            name = name.rstrip()
-            if (name.startswith(".hg") or 
-                name.startswith("doc/") or 
-                name in ignore):
-                continue
-            if name.endswith(".swp"):
-                continue
-            on_disk_files.add(name)
-        # Find project files that are not in the set of found files
-        projects = list(data.keys())
-        projects.sort()
-        for project in projects:
-            info = data[project]
-            for src, dest in info["files"]:
-                f = os.path.join(project, dest)
-                on_disk_files.discard(f)
-        if on_disk_files:
-            print("Outlaw files:")
-            for f in on_disk_files:
-                print("  ", f)
-        else:
-            print("No outlaw files found")
-
-    def Ignored(args, d):
-        '''Show ignored projects with their ignore string.
-        '''
-        print("Ignored projects:")
-        for project in data.keys():
-            s = data[project]["ignore"]
-            if s is not None:
-                print("  %-20s  %s" % (project, s))
 
 def List(args, d):
     '''Construct a list of the project name followed by the
@@ -894,14 +750,11 @@ def List(args, d):
     print("\n%d projects" % count)
     print("%d ignored projects" % ignored_count)
 
-def UpdateData(d):
+def ReadProjectData(d):
     '''Get data and update it to ensure all records are present.  The
-    strategy is to use YAML for the input data, but only parse it when
-    it has changed.  This is done by using a secondary data file in
-    pickle format.  The pickled file is used if its timestamp is later
-    than the YAML file; otherwise, the YAML file is used.
+    input data is in YAML format.
     '''
-    global data, softlinks
+    global data, softlinks, output_directories
     # Load information from disk
     tool, filename, mode = yaml, yamlfile, "r"
     # This reads the YAML syntax into a dictionary
@@ -911,6 +764,7 @@ def UpdateData(d):
         item = data[proj]
         if "category" not in item:
             Error("'category' record not in %s" % proj)
+        output_directories.add(item["category"])
         if "descr" not in item:
             Error("'descr' record not in %s" % proj)
         if "files" not in item:
@@ -944,13 +798,38 @@ def UpdateData(d):
         if "todo" not in item:
             item["todo"] = None
 
+def Clean(s):
+    '''Remove a trailing * from a string.
+    '''
+    if s.endswith("*"):
+        return s[:-1]
+    return s
+
 def Scan(d):
+    '''Identify missing and out of date files.
+    '''
     for project in data:
-        print(project, ' '.join(data[project].keys()))
-    s = data["xyz"]
-    print()
-    from pprint import pprint as pp
-    pp(s["files"])
+        p = data[project]
+        if p["ignore"]:
+            continue
+        printed_project_name = False
+        for SRC, DEST in p["files"]:
+            src = os.path.join(cygwin + p["srcdir"], SRC)
+            dest = os.path.join(p["category"], DEST)
+            retval = FilesAreDifferent(src, dest, d)
+            if not retval:
+                continue
+            elif retval == 1:  # File is out of date
+                if not printed_project_name:
+                    print(project)
+                    printed_project_name = True
+                print("   ", dest, "is out of date")
+            elif retval == 2:  # Destination file is missing
+                if not printed_project_name:
+                    print(project)
+                    printed_project_name = True
+                print("   ", dest, "is missing")
+                
 
 def Update(d):
     pass
@@ -964,10 +843,18 @@ def Inactive(d):
 def Markdown(d):
     pass
 
+def MakeDirectories(d):
+    '''If any directory in output_directories is not present, construct it.
+    '''
+    for dir in output_directories:
+        if not os.path.isdir(dir):
+            os.mkdir(dir)
+
 if __name__ == "__main__": 
     d = {} # Options dictionary
     args = ParseCommandLine(d)
-    UpdateData(d)
+    ReadProjectData(d)
+    MakeDirectories(d)
     cmd = args[0] 
     if cmd == "scan":
         Scan(d)
@@ -979,27 +866,5 @@ if __name__ == "__main__":
         Inactive(d)
     elif cmd == "md":
         Markdown(d)
-    #elif cmd == "docs":
-    #    Docs(args, d)
-    #elif cmd == "dump":
-    #    Dump(d)
-    #elif cmd == "dup":
-    #    Duplicates(args, d)
-    #elif cmd == "ignored":
-    #    Ignored(args, d)
-    #elif cmd == "list":
-    #    List(args, d)
-    #elif cmd == "outlaw":
-    #    Outlaw(args, d)
-    #elif cmd == "show":
-    #    d["show"] = True
-    #    Make(args, d)
-    #elif cmd == "stats":
-    #    Stats(args, d)
-    #elif cmd == "make":
-    #    d["show"] = False
-    #    Make(args, d)
-    #elif cmd == "web":
-    #    Web(args, d)
     else:
         Error("'%s' is an unrecognized command" % cmd)
