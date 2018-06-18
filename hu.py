@@ -69,10 +69,8 @@ tw.replace_whitespace = True
 tw.fix_sentence_endings = True
 tw.initial_indent = tw.subsequent_indent = " "*4
 
-# Pickling vs. use of YAML
-need_to_pickle = False
+# YAML data
 yamlfile = "projects"   # Where YAML data are saved (never written)
-picklefile = yamlfile + ".pickle"  # Pickled data for speed
 
 # data will be the repository for project information.  It is keyed on
 # the project's name.
@@ -615,18 +613,23 @@ def CopyFiles(project, info, d):
 def Usage(d, status=1):
     name = sys.argv[0]
     s = '''
-Usage:  {name} [options] command
-  Utility to build, erase, etc. the hobbyutil repository.
+Usage:  {name} [options] command [args]
+  Utility to build the hobbyutil repository's contents.
 
 Commands:
     scan        Identify missing and out of date files.
-    update      Update the missing and out of date files.
+    update      Update the missing and out of date files for indicated
+                projects (you can use 'all', but be careful and ensure that
+                all need to be updated).
     active      List the projects that are active.
     inactive    List the projects that are inactive with needed fix.
-    md          Construct the project listing markdown file with its links.
+    md          Construct the project listing markdown file.
 
 Options:
     -s      Short list (no descriptions)
+    -z      Do not package in zip file.  This populates each directory with
+            the individual source files so that they can be tested as a
+            stand-along package (this will identify missing dependencies).
 '''[1:-1]
     print(s.format(**locals()))
     exit(status)
@@ -898,19 +901,10 @@ def UpdateData(d):
     pickle format.  The pickled file is used if its timestamp is later
     than the YAML file; otherwise, the YAML file is used.
     '''
-    global data, softlinks, need_to_pickle
+    global data, softlinks
     # Load information from disk
     tool, filename, mode = yaml, yamlfile, "r"
-    if 0:  # Don't bother with pickling
-        if os.path.isfile(picklefile):
-            stp, sty = os.stat(picklefile), os.stat(yamlfile)
-            if stp.st_mtime >= sty.st_mtime:
-                tool, filename = pickle, picklefile
-                mode += "b"
-            else:
-                need_to_pickle = True
-        else:
-            need_to_pickle = True
+    # This reads the YAML syntax into a dictionary
     data = tool.load(open(filename, mode))
     # Check each project's entries
     for proj in data:
@@ -950,18 +944,13 @@ def UpdateData(d):
         if "todo" not in item:
             item["todo"] = None
 
-if 0:
-    def Pickle(d):
-        '''Save the key data structure to a pickled data file.  This is
-        done for performance, as loading pickled data is about 500 times
-        faster than YAML information.
-        '''
-        pickle.dump(data, open(picklefile, "wb"))
-
 def Scan(d):
     for project in data:
         print(project, ' '.join(data[project].keys()))
-        print()
+    s = data["xyz"]
+    print()
+    from pprint import pprint as pp
+    pp(s["files"])
 
 def Update(d):
     pass
@@ -1014,4 +1003,3 @@ if __name__ == "__main__":
     #    Web(args, d)
     else:
         Error("'%s' is an unrecognized command" % cmd)
-    #Pickle(d)

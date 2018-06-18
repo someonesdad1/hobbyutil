@@ -1,3 +1,21 @@
+# This file defines the projects and the location of the source files.  The
+# fields are in YAML format and each entry is turned into a dictionary with
+# the key being the item with the colon in the first column.  The fields
+# are:
+#
+#   category    Subdirectory name for the project
+#   descr       Description of the project
+#   files       Source files making up the project
+#   ignore      If contains text, then the reason this project is ignored
+#   srcdir      Where to find source files
+#   python2     Boolean or empty; whether script works in python 2
+#   python3     Boolean or empty; whether script works in python 3
+#   tests       Boolean or empty; if True, then test script(s) included
+#   pdfonly     Boolean or empty; if True, only include the PDF
+#
+# A * after an Open Office file means it doesn't need to be included in the
+# distribution, but only when the package is constructed.
+
 ag:
     category: math
     descr: Contains formulas relating to analytic geometry in the plane
@@ -11,6 +29,7 @@ ag:
     ]
     ignore: Yes, until updated
     srcdir: /math/AnalyticGeometry
+    pdfonly: True
 
 antif:
     category: eng
@@ -34,6 +53,7 @@ antif:
     ]
     ignore: Yes, until updated
     srcdir: /science/antifreeze
+    pdfonly: True
 
 app:
     category: util
@@ -107,6 +127,7 @@ bcmt:
     ]
     ignore: 'Yes'
     srcdir: /math/BusinessCardMathTables
+    pdfonly: True
 
 bd:
     category: util
@@ -157,6 +178,7 @@ bnc:
     ]
     ignore: PDF is large
     srcdir: /elec/components
+    pdfonly: True
 
 bode:
     category: elec
@@ -180,6 +202,7 @@ bucket:
         bucket.pdf
     ]
     srcdir: /pylib/pgm
+    pdfonly: True
 
 c300:
     category: math
@@ -195,6 +218,7 @@ c300:
     ]
     ignore: 'Yes'
     srcdir: /math/one_page_calculator
+    pdfonly: True
 
 cart:
     category: shop
@@ -209,6 +233,7 @@ cart:
     ]
     ignore: 'Yes (update to show axle modifications)'
     srcdir: /shop/projects/CartPlatform
+    pdfonly: True
 
 chain:
     category: shop
@@ -258,6 +283,7 @@ cheat:
     ]
     ignore: 'Yes'
     srcdir: /shop/cheat_sheets
+    pdfonly: True
 
 chemname:
     category: science
@@ -270,6 +296,7 @@ chemname:
     srcdir: /help/science
     todo:  Convert over to the spreadsheet version in
         /p/doc/spreadsheets/chemical_names.ods.
+    pdfonly: True
 
 circ3:
     category: shop
@@ -314,6 +341,7 @@ clamps:
     - [pictures/small/toolmaker_clamp1.png, pictures/toolmaker_clamp1.png]
     ignore: Reduce picture sizes by 2
     srcdir: /shop/projects
+    pdfonly: True
 
 cnt:
     category: util
@@ -366,9 +394,11 @@ cove:
         up on.
     files: [
         cove.odt,
-        cove.pdf
+        cove.pdf,
+        cove.py
     ]
     srcdir: /pylib/pgm
+    pdfonly: True
 
 cs:
     category: elec
@@ -383,6 +413,7 @@ cs:
         pictures/shunt_current_source.jpg
     ]
     srcdir: /elec/projects
+    pdfonly: True
 
 csnippets:
     category: prog
@@ -433,6 +464,7 @@ dbm:
     ]
     ignore: 'Yes'
     srcdir: /elec/spreadsheets
+    pdfonly: True
 
 dedent:
     category: util
@@ -459,6 +491,7 @@ demag:
     ]
     ignore: 'Yes'
     srcdir: /elec/projects
+    pdfonly: True
 
 density:
     category: shop
@@ -513,6 +546,7 @@ dino:
     ]
     ignore: 'Yes'
     srcdir: /math/Dinosaur_Arithmetic
+    pdfonly: True
 
 ditchpump:
     category: shop
@@ -531,6 +565,7 @@ ditchpump:
     - [pictures/small/pump_rear_5Aug2012.png, pictures/pump_rear_5Aug2012.png]
     ignore: Reduce picture size by 3
     srcdir: /doc/home/sprinklers
+    pdfonly: True
 
 diurnal:
     category: science
@@ -558,6 +593,7 @@ diurnal:
     ]
     ignore: Yes -- keep legacy PDF because it's big
     srcdir: /science/diurnal_optics
+    pdfonly: True
 
 dmath:
     category: math
@@ -583,6 +619,7 @@ donor:
         pictures/organ_donation_2.png
     ]
     srcdir: /doc
+    pdfonly: True
 
 drtri:
     category: shop
@@ -594,6 +631,7 @@ drtri:
     - pictures/drafting_triangle_tip.png
     ignore: 'Yes'
     srcdir: /shop/projects
+    pdfonly: True
 
 drules:
     category: shop
@@ -604,6 +642,7 @@ drules:
     files: [drules.pdf]
     ignore: 'Yes'
     srcdir: /shop/drafting_rules
+    pdfonly: True
 
 ds:
     category: util
@@ -674,6 +713,7 @@ ef:
     ]
     ignore: 'Yes'
     srcdir: /math/elementary_functions
+    pdfonly: True
 
 elements:
     category: science
@@ -707,6 +747,7 @@ elements:
     - [/pylib/fpformat.py, fpformat.py]
     ignore: Yes -- PDF is large
     srcdir: /science/elements
+    pdfonly: True
 
 esr:
     category: elec
@@ -719,6 +760,7 @@ esr:
         pictures/ESR_estimate_pulse.png
     ]
     srcdir: /elec/Articles
+    pdfonly: True
 
 ext:
     category: util
@@ -822,6 +864,7 @@ fpen:
     ]
     ignore: Yes -- keep old PDF because it's big
     srcdir: /doc/pens
+    pdfonly: True
 
 frac:
     category: math
@@ -855,6 +898,7 @@ frustum:
         pictures/layout_an_arc_with_dividers.png
     ]
     srcdir: /shop/IntroToMetalShop/techniques
+    pdfonly: True
 
 fseq:
     category: math
@@ -910,6 +954,7 @@ glendag:
     ]
     ignore: 'yes'
     srcdir: /shop/projects/GlendaGuard
+    pdfonly: True
 
 goto:
     category: util
@@ -1061,6 +1106,7 @@ hose:
         pictures/constrictor_knot_on_hose_fitting.png
     ]
     srcdir: /shop/projects
+    pdfonly: True
 
 hppn:
     category: elec
@@ -1228,6 +1274,7 @@ lvise:
     ]
     ignore: 'Yes'
     srcdir: /shop/projects
+    pdfonly: True
 
 manufy:
     category: prog
@@ -1249,6 +1296,7 @@ markup:
         pictures/multiplier.png
     ]
     srcdir: /doc
+    pdfonly: True
 
 mass:
     category: shop
@@ -1353,6 +1401,7 @@ nozzle:
     ]
     ignore: 'yes'
     srcdir: /shop/projects/hose_nozzle
+    pdfonly: True
 
 oct:
     category: elec
@@ -1364,7 +1413,6 @@ oct:
         1930's.
     files:
     - 0readme
-    - Octopus.pdf
     - Octopus.odt
     - Octopus.pdf
     - pictures/octopus_non_sine.png
@@ -1386,6 +1434,7 @@ oct:
     - [pictures/small/octopus_res_diode_composite.png, pictures/octopus_res_diode_composite.png]
     ignore: PDF is large
     srcdir: /elec/projects/octopus
+    pdfonly: True
 
 odict:
     category: prog
@@ -1412,6 +1461,7 @@ oo_math:
     ]
     ignore: Change to just include cheatsheet
     srcdir: /doc
+    pdfonly: True
 
 oopy:
     category: prog
@@ -1466,6 +1516,7 @@ papersz:
     ]
     ignore: 'Yes'
     srcdir: /pylib/pgm
+    pdfonly: True
 
 parts:
     category: elec
@@ -1538,6 +1589,7 @@ posts:
     ]
     ignore: 'yes'
     srcdir: /shop/projects/PullingFencePosts
+    pdfonly: True
 
 pqs:
     category: eng
@@ -1746,6 +1798,7 @@ sawbuck:
     ]
     ignore: 'Yes'
     srcdir: /shop/projects
+    pdfonly: True
 
 scale:
     category: math
@@ -1802,10 +1855,11 @@ shave:
     category: misc
     descr: Some thoughts on shaving your beard.
     files: [
-        shaving.odt,
+        shaving.odt*,
         shaving.pdf
     ]
     srcdir: /doc
+    pdfonly: True
 
 shorttbl:
     category: math
@@ -1815,13 +1869,14 @@ shorttbl:
         original is an Open Office spreadsheet -- email me if you'd
         like a copy of it.
     files: [
-        ShortTables.ods,
-        ShortTables.odt,
+        ShortTables.ods*,
+        ShortTables.odt*,
         ShortTables.pdf,
         ShortTables_doc.pdf
     ]
     ignore: Little apparent interest; obsolete
     srcdir: /math/tables
+    pdfonly: True
 
 shuffle:
     category: prog
@@ -1843,7 +1898,7 @@ sig:
         types in a container that can be iterated over.
     files: [
         sig.py,
-        sig.odt,
+        sig.odt*,
         sig.pdf
     ]
     python3: true
@@ -1857,7 +1912,7 @@ sinesticks:
         resolution as good or better than a Starrett machinist's vernier
         protractor that costs hundreds of dollars.
     files: [
-        sine_sticks.odt,
+        sine_sticks.odt*,
         sine_sticks.pdf
     ]
     ignore: Reduce picture size by 2
@@ -1872,13 +1927,14 @@ solar:
         think. This would be a good exercise for a parent and a child
         -- both will learn information you can't learn from a book.
     files: [
-        SolarSystemScaleModel.odt,
+        SolarSystemScaleModel.odt*,
         SolarSystemScaleModel.pdf,
         pictures/zoom_from_neptune.jpg,
         pictures/zoom_from_saturn.jpg
     ]
     ignore: 'yes'
     srcdir: /science/astronomy/diameters
+    pdfonly: True
 
 space:
     category: util
@@ -1894,7 +1950,7 @@ sphshell:
         looks at Henry Cavendish's elegant experiment in the 1700's
         showing that the exponent in Coulomb's Law is 2.
     files: [
-        SphericalShell.odt,
+        SphericalShell.odt*,
         SphericalShell.pdf
     ]
     srcdir: /science
@@ -1934,10 +1990,11 @@ square:
         much handier tool for carpentry layout than the carpenter's
         square and it's accurate enough for the usual purposes.
     files:
-    - [angles_and_carpenters_square.odt, square.odt]
+    - [angles_and_carpenters_square.odt, square.odt*]
     - [angles_and_carpenters_square.pdf, square.pdf]
     ignore: 'Yes'
     srcdir: /shop/cheat_sheets
+    pdfonly: True
 
 stack:
     category: prog
@@ -1999,7 +2056,7 @@ tri:
     descr: Python script to solve triangles.
     files: [
         tri.py,
-        tri.odt,
+        tri.odt*,
         tri.pdf
     ]
     softlinks:
@@ -2011,7 +2068,7 @@ trigd:
     descr: Gives some algebraic expressions for a few special values
         of trigonometric functions in degrees.
     files: [
-        TrigDegrees.odt,
+        TrigDegrees.odt*,
         TrigDegrees.pdf
     ]
     srcdir: /math/herman
@@ -2024,10 +2081,11 @@ triguc:
     files:
     - trig_functions.py
     - [images/trig_functions.pdf, trig_functions.pdf]
-    - TrigUnitCircle.odt
+    - TrigUnitCircle.odt*
     - TrigUnitCircle.pdf
     - images/trig_functions.jpg
     srcdir: /math/elementary_functions
+    pdfonly: True
 
 ts:
     category: prog
@@ -2056,7 +2114,7 @@ u:
         in a few minutes after seeing an example (see the PDF in the
         package for details).
     files: [
-        u.odt,
+        u.odt*,
         u.pdf,
         u.py
     ]
@@ -2085,7 +2143,7 @@ units:
         can also help you do back-of-the-envelope type calculations
         and avoid making dumb unit mistakes that invalidate everything.
     files: [
-        GNU_units.odt,
+        GNU_units.odt*,
         GNU_units.pdf
     ]
     srcdir: /doc
@@ -2137,12 +2195,13 @@ vs:
         variations and the variance of the voltmeter over that time
         period.
     files: [
-        PortableVoltageStandard.odt,
+        PortableVoltageStandard.odt*,
         PortableVoltageStandard.pdf,
         pictures/voltage_reference.png
     ]
     ignore: Need to make PDF
     srcdir: /elec/Articles
+    pdfonly: True
 
 wave:
     category: elec
@@ -2166,18 +2225,20 @@ wave:
     ]
     ignore: 'Yes'
     srcdir: /pylib/pgm
+    pdfonly: True
 
 weigh:
     category: shop
     descr: Demonstrates how I  weighed  our trailer with a lever. With
         a 12 foot long 4x4, I was able to measure 2500 pounds.
     files:
-    - [weighing_a_trailer.odt, weigh.odt]
+    - [weighing_a_trailer.odt, weigh.odt*]
     - [weighing_a_trailer.pdf, weigh.pdf]
     - weighing1.jpg
     - weighing4.jpg
     ignore: 'Yes'
     srcdir: /doc/trailer
+    pdfonly: True
 
 wordnum:
     category: prog
@@ -2212,7 +2273,7 @@ xmastom:
     descr: Using Christmas tree lights to keep tomato plants from freezing
         at night.
     files: [
-        XmasTomatoes.odt,
+        XmasTomatoes.odt*,
         XmasTomatoes.pdf
     ]
     ignore: 'Yes'
@@ -2229,7 +2290,7 @@ xor:
         pads and create files with fixed or random bytes.
     files: [
         xor.cpp,
-        xor.odt,
+        xor.odt*,
         xor.pdf,
         otp.py,
         mkfile.py,
@@ -2264,13 +2325,15 @@ xyz:
     - xyz.py
     - [../geom_prim.py, geom_prim.py]
     - [../test_modules/geom_prim_test.py, geom_prim_test.py]
-    - xyz.odt
+    - [../sig.py, sig.py]
+    - xyz.odt*
     - xyz.pdf
     - xyz.area
     - xyz.iss
     - xyz.shop
     - xyz.sphere
     - xyz.splice
+    python2: true
     python3: true
     softlinks:
     - [prog/sig/sig.py, math/xyz/sig.py]
@@ -2291,7 +2354,7 @@ yankee:
         of these screwdrivers apart so it can be cleaned.  Dimensional
         sketches are included of some parts that might need to be made.
     files: [
-        YankeeDriver.odt,
+        YankeeDriver.odt*,
         YankeeDriver.pdf,
         pictures/yankee_screwdriver_1.png,
         pictures/yankee_screwdriver_2.png,
@@ -2306,3 +2369,4 @@ yankee:
     ]
     ignore: Reduce picture size by 2
     srcdir: /shop/projects
+    pdfonly: True
