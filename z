@@ -1,0 +1,15 @@
+#!/bin/sh
+#clear
+z=.z
+if [ -r $z ] ; then
+    s=$(cat $z)
+else
+    s=a.py
+fi
+if [ ! -r $s ] ; then
+    echo "$s is missing"
+    exit
+fi
+ctags $s
+rm -f a.py.bak
+$PYTHON $s "$@" 
