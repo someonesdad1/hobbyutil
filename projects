@@ -807,7 +807,7 @@ fits:
     descr: Python script to calculate the required shaft or hole size
         given a basic dimension of a shaft or hole.
     files: [fits.py]
-    srcdir: /shop/software
+    srcdir: /pylib/pgm
 
 fpen:
     category: misc
@@ -1257,7 +1257,7 @@ lookup:
     - [/pylib/pgm/pictures/lookup_results.png, pictures/lookup_results.png]
     softlinks:
     - [util/color/color.py, util/lookup/color.py]
-    srcdir: /pylib/dict/types_of_words/WordNet/lookup
+    srcdir: /pylib/types_of_words/WordNet/lookup
 
 lvise:
     category: shop
@@ -1635,7 +1635,7 @@ python:
     files:
     - [/doc/Python.odt, Python.odt]
     - [/doc/Python.pdf, Python.pdf]
-    - [/math/AnalyticGeometry/pictures/ellipse_circumference.py, ellipse_circumference.py]
+    - [/pylib/other/ellipse_circumference.py, ellipse_circumference.py]
     - [pgm/resistor.py, resistor.py]
     softlinks:
     - [math/frange/frange.py, prog/python/frange.py]
@@ -1759,7 +1759,7 @@ root:
         method by Jack Crenshaw that uses inverse parabolic interpolation.
     files:
     - root.py
-    - [test_modules/root_test.py, root_test.py]
+    - [test/root_test.py, root_test.py]
     python3: true
     srcdir: /pylib
     tests: true
@@ -2324,7 +2324,7 @@ xyz:
     files:
     - xyz.py
     - [../geom_prim.py, geom_prim.py]
-    - [../test_modules/geom_prim_test.py, geom_prim_test.py]
+    - [../test/geom_prim_test.py, geom_prim_test.py]
     - [../sig.py, sig.py]
     - xyz.odt*
     - xyz.pdf

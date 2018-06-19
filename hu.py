@@ -515,6 +515,8 @@ def FilesAreDifferent(src, dest, d):
     hashes are the same, 1 if they are different, and 2 if the dest file
     doesn't exist.
     '''
+    src = RemoveAsterisk(src)
+    dest = RemoveAsterisk(dest)
     try:
         src_hash = GetFileHash(src)
     except IOError:
@@ -532,6 +534,8 @@ def CopyFile(src, dest, d):
     '''Only copy the files if the destination file is missing or the
     source and destination are different.
     '''
+    src = RemoveAsterisk(src)
+    dest = RemoveAsterisk(dest)
     if src == dest:
         raise Exception("Bug:  source and destination equal")
     if os.path.isfile(dest):
@@ -798,7 +802,7 @@ def ReadProjectData(d):
         if "todo" not in item:
             item["todo"] = None
 
-def Clean(s):
+def RemoveAsterisk(s):
     '''Remove a trailing * from a string.
     '''
     if s.endswith("*"):
