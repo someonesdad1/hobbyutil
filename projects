@@ -617,7 +617,7 @@ ds:
         that have the string '3400' in the file name. I choose the
         number of the file I want to open and it's launched.  If there's
         only one match, the file is opened in less than a second.  This
-        is *much* faster than using a file system explorer to find
+        is much faster than using a file system explorer to find
         a file.  I also describe how I launch various project I'm working
         on in my cygwin environment on Windows (a UNIX-like working
         environment).
@@ -647,31 +647,29 @@ ef:
     descr: Graphs of a variety of elementary math functions, useful
         for a quick picture of how they behave or to grab one or two
         significant figures of the value.
-    files: [
-        ElementaryFunctions.odt,
-        ElementaryFunctions.pdf,
-        images/elem.png,
-        images/trig_deg.png,
-        images/trig_rad.png,
-        images/invtrig_deg.png,
-        images/invtrig_rad.png,
-        images/versed_deg.png,
-        images/versed_rad.png,
-        images/hyp1.png,
-        images/hyp2.png,
-        images/invhyp1.png,
-        images/invhyp2.png,
-        images/gud.png,
-        images/gamma1.png,
-        images/gamma2.png,
-        images/normal_cdf.png,
-        images/bessel.png,
-        images/elliptic1_deg.png,
-        images/elliptic1_rad.png,
-        images/elliptic2_deg.png,
-        images/elliptic2_rad.png
-    ]
-    ignore: 'Yes'
+    files:
+        - ElementaryFunctions.odt*
+        - ElementaryFunctions.pdf
+        - images/elem.png*
+        - images/trig_deg.png*
+        - images/trig_rad.png*
+        - images/invtrig_deg.png*
+        - images/invtrig_rad.png*
+        - images/versed_deg.png*
+        - images/versed_rad.png*
+        - images/hyp1.png*
+        - images/hyp2.png*
+        - images/invhyp1.png*
+        - images/invhyp2.png*
+        - images/gud.png*
+        - images/gamma1.png*
+        - images/gamma2.png*
+        - images/normal_cdf.png*
+        - images/bessel.png*
+        - images/elliptic1_deg.png*
+        - images/elliptic1_rad.png*
+        - images/elliptic2_deg.png*
+        - images/elliptic2_rad.png
     srcdir: /math/elementary_functions
 
 elements:
@@ -686,37 +684,36 @@ elements:
         the plots yourself, you can, as the tools are all open source
         or freely available, but be warned that there are numerous
         libraries that you'll need to get. I've wanted a document like
-        this for a long time, but I knew that most of the work would
+        this since the 1970's, but I knew that most of the work would
         be in manually typing in all the data from various places.
         I was right...  :^)
     files:
-    - 0readme
-    - elements.ods
-    - elements.pdf
-    - elements.py
-    - elements_doc.odt
-    - elements_doc.pdf
-    - periodic_table.py
-    - plot_page.py
-    - property_plots.py
-    - raw.py
-    - sorted_properties.py
-    - vapor_pressure.py
-    - pictures/elastic_constants.jpg
-    - [/pylib/fpformat.py, fpformat.py]
-    ignore: Yes -- PDF is large
+        - 0readme
+        - elements.ods*
+        - elements.pdf
+        - elements.py
+        - elements_doc.odt*
+        - elements_doc.pdf
+        - periodic_table.py
+        - plot_page.py
+        - property_plots.py
+        - raw.py
+        - sorted_properties.py
+        - vapor_pressure.py
+        - pictures/elastic_constants.jpg*
+        - [/pylib/fpformat.py, fpformat.py]
+    ignore: PDF is large
     srcdir: /science/elements
 
 esr:
     subdir: elec
     descr: Describes a technique of estimating a capacitor's ESR (equivalent
         series resistance) without having to buy a special meter.
-    files: [
-        MeasuringESR.odt,
-        MeasuringESR.pdf,
-        pictures/fluke83_freq_response.png,
-        pictures/ESR_estimate_pulse.png
-    ]
+    files:
+        - MeasuringESR.odt*
+        - MeasuringESR.pdf
+        - pictures/fluke83_freq_response.png*
+        - pictures/ESR_estimate_pulse.png
     srcdir: /elec/Articles
 
 ext:
@@ -742,10 +739,10 @@ fdiff:
         do these comparisons, but I still sometimes utilize this python
         code for checking things with scripts.
     files:
-    - ddiff.py
-    - ddiffcp.py
-    - [../pgm/dirset.py, dirset.py]
-    - ddiff.readme
+        - ddiff.py
+        - ddiffcp.py
+        - [../pgm/dirset.py, dirset.py]
+        - ddiff.readme
     srcdir: /pylib/other
 
 fit:
@@ -756,7 +753,7 @@ fit:
         after a sentence and it won't recognize common abbreviations
         with a trailing period as the end of a sentence.
     files: [fit.py]
-    ignore: 'Yes'
+    ignore: Limited interest
     srcdir: /pylib/pgm
 
 fits:
@@ -770,67 +767,67 @@ fpen:
     subdir: misc
     descr: Discusses the care and feeding of fountain pens as writing
         tools.
-    files: [
-        fountain_pen_primer.odt,
-        fountain_pen_primer.pdf,
-        pictures/fountain_pen_point.jpg,
-        pictures/pen_writing.jpg,
-        pictures/parker_slimline_pen.jpg,
-        pictures/hero616_disassembled.jpg,
-        pictures/converter.jpg,
-        pictures/shading.jpg,
-        pictures/artist_nibs_speedball.jpg,
-        pictures/artist_nibs_speedball_doodling.jpg,
-        pictures/vanishing_point.jpg,
-        pictures/pilot_varsity_disassembled.jpg,
-        pictures/pencil_vs_ink.jpg,
-        pictures/black_ink_water_test_26Nov2011.jpg,
-        pictures/waterproofness_test.jpg,
-        pictures/skrip_ink_bottle.jpg,
-        pictures/mont_blanc_shoe_bottle1.jpg,
-        pictures/small_ink_bottle.jpg,
-        pictures/small_ink_bottle1.jpg,
-        pictures/small_ink_bottle_holder.jpg,
-        mixing_inks.jpg,
-        color_wheel1.jpg,
-        color_wheel2.jpg,
-        pictures/toothpick_pen_flash.jpg,
-        pictures/feathering.jpg,
-        pictures/toothpick_pen_north_light.jpg,
-        pictures/international_cartridge.jpg,
-        pictures/international_cartridge_seal.jpg,
-        ink_costs_us.png,
-        pictures/paper_testing.jpg,
-        pictures/japanese_pen_holder.png,
-        pictures/pen_case.jpg,
-        pictures/pen_wrap_Elizabeth_Boling.jpg,
-        pictures/pen_holder.jpg,
-        pictures/storage.jpg, pictures/belt_holder.jpg,
-        pictures/blotter.jpg,
-        pictures/bench_block.jpg,
-        pictures/pen_disassembly_1.jpg,
-        pictures/pen_disassembly_2.jpg,
-        pictures/pen_disassembly_3.jpg,
-        pictures/pen_disassembly_4.jpg,
-        pictures/pen_dewaterer.jpg,
-        pictures/ink_syringe_kit.jpg,
-        pictures/parker_slimfold_shading.jpg,
-        pictures/micromike.jpg,
-        pictures/ohaus_balance.jpg,
-        pictures/ink_density_with_no_flash.jpg
-    ]
-    ignore: Yes -- keep old PDF because it's big
+    files:
+        - fountain_pen_primer.odt*
+        - fountain_pen_primer.pdf
+        - pictures/fountain_pen_point.jpg*
+        - pictures/pen_writing.jpg*
+        - pictures/parker_slimline_pen.jpg*
+        - pictures/hero616_disassembled.jpg*
+        - pictures/converter.jpg*
+        - pictures/shading.jpg*
+        - pictures/artist_nibs_speedball.jpg*
+        - pictures/artist_nibs_speedball_doodling.jpg*
+        - pictures/vanishing_point.jpg*
+        - pictures/pilot_varsity_disassembled.jpg*
+        - pictures/pencil_vs_ink.jpg*
+        - pictures/black_ink_water_test_26Nov2011.jpg*
+        - pictures/waterproofness_test.jpg*
+        - pictures/skrip_ink_bottle.jpg*
+        - pictures/mont_blanc_shoe_bottle1.jpg*
+        - pictures/small_ink_bottle.jpg*
+        - pictures/small_ink_bottle1.jpg*
+        - pictures/small_ink_bottle_holder.jpg*
+        - mixing_inks.jpg*
+        - color_wheel1.jpg*
+        - color_wheel2.jpg*
+        - pictures/toothpick_pen_flash.jpg*
+        - pictures/feathering.jpg*
+        - pictures/toothpick_pen_north_light.jpg*
+        - pictures/international_cartridge.jpg*
+        - pictures/international_cartridge_seal.jpg*
+        - ink_costs_us.png*
+        - pictures/paper_testing.jpg*
+        - pictures/japanese_pen_holder.png*
+        - pictures/pen_case.jpg*
+        - pictures/pen_wrap_Elizabeth_Boling.jpg*
+        - pictures/pen_holder.jpg*
+        - pictures/storage.jpg* pictures/belt_holder.jpg,
+        - pictures/blotter.jpg*
+        - pictures/bench_block.jpg*
+        - pictures/pen_disassembly_1.jpg*
+        - pictures/pen_disassembly_2.jpg*
+        - pictures/pen_disassembly_3.jpg*
+        - pictures/pen_disassembly_4.jpg*
+        - pictures/pen_dewaterer.jpg*
+        - pictures/ink_syringe_kit.jpg- *
+        - pictures/parker_slimfold_shading.jpg*
+        - pictures/micromike.jpg*
+        - pictures/ohaus_balance.jpg*
+        - pictures/ink_density_with_no_flash.jpg
+    ignore: PDF is big
     srcdir: /doc/pens
 
 frac:
     subdir: math
     descr: A python script that will calculate a rational approximation
-        to a  real number.  If you download the code.google.com/p/mpmath
-        library, you can calculate to arbitrary precision.  Update
-        - python 2.6 and later versions include the fractions module,
-        which makes it easy to do such calculations.
-    files: [frac.py]
-    ignore: 'Yes'
+        to a  real number.  If you download the mpmath library, you can
+        calculate to arbitrary precision.  Python 2.6 and later versions
+        include the fractions module, which makes it easy to do such
+        calculations.
+    files: 
+        - frac.py
+    ignore: Limited interest since Fractions module introduced
     srcdir: /pylib/pgm
 
 frange:
@@ -839,19 +836,18 @@ frange:
         range().  Doesn't suffer from the typical floating point problems
         seen in naive implementations.
     files:
-    - [../frange.py, frange.py]
+        - [../frange.py, frange.py]
+        - [../test/frange_test.py, frange_test.py]
     srcdir: /pylib/pgm
-    tests: true
 
 frustum:
     subdir: shop
     descr: Shows how to lay out the frustum of a cone with dividers
         in your shop.
-    files: [
-        LayingOutFrustumWithDividers.odt,
-        LayingOutFrustumWithDividers.pdf,
-        pictures/layout_an_arc_with_dividers.png
-    ]
+    files:
+        - LayingOutFrustumWithDividers.odt*
+        - LayingOutFrustumWithDividers.pdf
+        - pictures/layout_an_arc_with_dividers.png*
     srcdir: /shop/IntroToMetalShop/techniques
 
 fseq:
@@ -864,12 +860,12 @@ fseq:
         easy to add support for other distributions.  See seq.py
         for a simpler script that just provides arithmetic series.
     files:
-    - fseq.py
-    - fseq.odt
-    - fseq.pdf
-    - [../cmddecode.py, cmddecode.py]
-    - pictures/sampling_wor.png
-    ignore: 'Yes'
+        - fseq.py
+        - fseq.odt*
+        - fseq.pdf
+        - [../cmddecode.py, cmddecode.py]
+        - pictures/sampling_wor.png*
+    ignore: Limited interest
     srcdir: /pylib/pgm
 
 fset:
@@ -891,8 +887,8 @@ gblock:
         C++ code runs about an order of magnitude faster than the python
         code.
     files:
-    - gauge.cpp
-    - [/pylib/pgm/gb.py, gb.py]
+        - gauge.cpp
+        - [/pylib/pgm/gb.py, gb.py]
     srcdir: /shop/software/gauge_blocks
 
 glendag:
@@ -900,23 +896,22 @@ glendag:
     descr: Describes a simple concrete sprinkler guard that my wife
         designed and built. We've used them for over 20 years and they
         work well, are simple to make, and cheap.
-    files: [
-        GlendaGuard.odt,
-        GlendaGuard.pdf,
-        pictures/glenda_guard_2.jpg,
-        pictures/glenda_guard_1.jpg
-    ]
-    ignore: 'yes'
+    files: 
+        - GlendaGuard.odt*
+        - GlendaGuard.pdf
+        - pictures/glenda_guard_2.jpg*
+        - pictures/glenda_guard_1.jpg
+    ignore: Limited interest
     srcdir: /shop/projects/GlendaGuard
 
 goto:
     subdir: util
     descr: Contains a sh-type shell function and a python script that
-        let you navigate around to various directories. I've had a
-        number of UNIX users tell me they couldn't live without this
-        tool once they started using it.
+        let you navigate around to various directories from a shell command
+        line. I've had a number of UNIX users tell me they couldn't live
+        without this tool once they started using it.
     files:
-    - [_goto.py, goto.py]
+        - [_goto.py, goto.py]
     srcdir: /pylib/pgm
 
 gpaper:
@@ -925,16 +920,15 @@ gpaper:
         on ANSI  A paper.  The python script that made them is included,
         so you can hack things if you e.g. want to change to A4 paper
         or modify colors or line widths.
-    files: [
-        graph_paper.py,
-        5mm_A.pdf,
-        dots_2tenths_A.pdf,
-        drafting_A.pdf,
-        engineering_A.pdf,
-        letter_ruled_A.pdf,
-        quarter_inch_A.pdf
-    ]
-    ignore: Low number of downloads
+    files:
+        - graph_paper.py,
+        - 5mm_A.pdf,
+        - dots_2tenths_A.pdf,
+        - drafting_A.pdf,
+        - engineering_A.pdf,
+        - letter_ruled_A.pdf,
+        - quarter_inch_A.pdf
+    ignore: Little interest
     srcdir: /doc/graph_paper
 
 grid:
@@ -942,7 +936,7 @@ grid:
     descr: This python script will generate most any linear isotropic
         graph paper by creating a PostScript file.
     files: [eng_grid.py]
-    ignore: 'Yes'
+    ignore: Many similar things available on web
     srcdir: /pylib/pgm
 
 help:
@@ -954,66 +948,65 @@ help:
         the 1980's). Vim's ability to use  hyperlinks in its textual
         help files is used to advantage here.  I've used these files
         on both Windows and Linux boxes.
-    files: [
-        misc/makefile,
-        misc/mort,
-        prog/makefile,
-        prog/awk,
-        prog/bash,
-        prog/basic,
-        prog/c,
-        prog/constants,
-        prog/cpp,
-        prog/darcs,
-        prog/find,
-        prog/fld,
-        prog/flex,
-        prog/g,
-        prog/gdb,
-        prog/hg,
-        prog/hp3488,
-        prog/html,
-        prog/java,
-        prog/korn,
-        prog/make_,
-        prog/mpmath,
-        prog/pcl5,
-        prog/perl4,
-        prog/perl5,
-        prog/ps,
-        prog/python,
-        prog/sed,
-        prog/snippets,
-        prog/sql,
-        prog/stl,
-        prog/subversion,
-        prog/svn,
-        prog/sympy,
-        prog/utilities,
-        prog/vcs,
-        science/makefile,
-        science/astronomical,
-        science/biology,
-        science/chemistry,
-        science/electrical,
-        science/materials,
-        science/math,
-        science/mathematica,
-        science/matplotlib,
-        science/numpy,
-        science/physics,
-        science/scipy,
-        science/shop,
-        science/sizes,
-        science/units,
-        hld/index.hld,
-        h,
-        doctags.c,
-        mk,
-        readme.odt,
-        readme.pdf
-    ]
-    ignore: Yes -- very low interest
+    files:
+        - misc/makefile
+        - misc/mort
+        - prog/makefile
+        - prog/awk
+        - prog/bash
+        - prog/basic
+        - prog/c
+        - prog/constants
+        - prog/cpp
+        - prog/darcs
+        - prog/find
+        - prog/fld
+        - prog/flex
+        - prog/g
+        - prog/gdb
+        - prog/hg
+        - prog/hp3488
+        - prog/html
+        - prog/java
+        - prog/korn
+        - prog/make_
+        - prog/mpmath
+        - prog/pcl5
+        - prog/perl4
+        - prog/perl5
+        - prog/ps
+        - prog/python
+        - prog/sed
+        - prog/snippets
+        - prog/sql
+        - prog/stl
+        - prog/subversion
+        - prog/svn
+        - prog/sympy
+        - prog/utilities
+        - prog/vcs
+        - science/makefile
+        - science/astronomical
+        - science/biology
+        - science/chemistry
+        - science/electrical
+        - science/materials
+        - science/math
+        - science/mathematica
+        - science/matplotlib
+        - science/numpy
+        - science/physics
+        - science/scipy
+        - science/shop
+        - science/sizes
+        - science/units
+        - hld/index.hld
+        - h
+        - doctags.c
+        - mk
+        - readme.odt*
+        - readme.pdf
+    ignore: Low interest
     srcdir: /help
 
 hg:
@@ -1024,40 +1017,35 @@ hg:
         not in the repository, changed files, etc.  fhg.py will find
         all Mercurial repositories under a given directory and show
         those needing a check-in.
-    files: [
-        delta.py, 
-        fhg.py, 
-        hgs.py,
-        hg.readme
-    ]
-    softlinks:
-    - [util/color/color.py, prog/hg/color.py]
+    files:
+        - delta.py
+        - fhg.py
+        - hgs.py
+        - hg.readme
+        - [../color.py, color.py]
     srcdir: /pylib/pgm
 
 holes:
     subdir: shop
     descr: Contains a python script that will help you lay out holes
         that are equally-spaced around a circle.
-    files: [
-        holes.py,
-        holes.drills,
-        holes.odt,
-        holes.pdf,
-        pictures/drill_layout.png
-    ]
-    softlinks:
-    - [prog/sig/sig.py, shop/holes/sig.py]
+    files:
+        - holes.py
+        - holes.drills
+        - holes.odt*
+        - holes.pdf
+        - pictures/drill_layout.png
+        - [../sig.py, sig.py]
     srcdir: /pylib/pgm
 
 hose:
     subdir: shop
     descr: Here's an effective way to secure a hose to a hose fitting.
-        It's better than anything you can buy in a store.
-    files: [
-        HoseFitting.odt,
-        HoseFitting.pdf,
-        pictures/constrictor_knot_on_hose_fitting.png
-    ]
+        It's better than anything I've found in a store.
+    files:
+        - HoseFitting.odt*
+        - HoseFitting.pdf
+        - pictures/constrictor_knot_on_hose_fitting.png
     srcdir: /shop/projects
 
 hppn:
@@ -1069,12 +1057,11 @@ hppn:
         part. There are only about 2700 parts in this list, so it cannot
         be considered complete.  A python script can do the lookup
         tasks.
-    files: [
-        0readme, 
-        hp.py,
-        hp_parts
-    ]
-    ignore: 'Yes'
+    files:
+        - 0readme, 
+        - hp.py,
+        - hp_parts
+    ignore: Limited interest
     srcdir: /elec/hp
 
 iapws:
@@ -1082,13 +1069,12 @@ iapws:
     descr: This zipfile contains C++ and python code that implements
         the IAPWS95 equations for the thermodynamic properties of water.
         See http://www.iapws.org/relguide/IAPWS-95.htm IAPWS95
-    files: [
-        iapws95.cpp,
-        iapws95.h,
-        iapws95.py,
-        test.py
-    ]
-    ignore: 'Yes'
+    files:
+        - iapws95.cpp,
+        - iapws95.h,
+        - iapws95.py,
+        - test.py
+    ignore: Limited interest
     srcdir: /science/john_pye/py
 
 imp:
@@ -1102,7 +1088,7 @@ imp:
         frequency is 1 kHz, but you can change this with a command
         line option.
     files: [impedance.py]
-    ignore: 'Yes'
+    ignore: Limited interest
     srcdir: /pylib/pgm
 
 ind:
@@ -1114,14 +1100,13 @@ ind:
         so that you can see what it looks like without having Open
         Office -- this will help you decide if you want to download
         and install Open Office to be able to use the spreadsheet.
-    files: [
-        inductance.ods,
-        inductance.odt,
-        inductance.pdf,
-        inductance_spreadsheet.pdf,
-        pictures/screenshot.jpg
-    ]
-    ignore: 'Yes'
+    files:
+        - inductance.ods*
+        - inductance.odt*
+        - inductance.pdf
+        - inductance_spreadsheet.pdf
+        - pictures/screenshot.jpg
+    ignore: Limited interest
     srcdir: /elec/software/coil_inductance
 
 irr:
@@ -1131,23 +1116,22 @@ irr:
         spectroradiometer files, but it can easily be modified to work
         with other data files.
     files: [irr.py]
-    ignore: 'Yes'
+    ignore: Limited interest
     srcdir: /pylib/pgm
 
 lib:
     subdir: util
     descr: Python script command line tool to provide a facility for
         keeping snippets of code handy.  If you develop code at a command
-        line, you'll probably want to use this script to keep often-used
+        line, you may want to use this script to keep often-used
         chunks of code at hand.  A handy feature is that it will highlight
         the items in color to indicate the language each snippet is
         implemented in (only works on Windows, but would be easy to
         hack the color.py module to work on other systems).
-    files: [
-        lib.py, 
-        lib.dat
-    ]
-    ignore: 'Yes -- need to sanitize data file'
+    files:
+        - lib.py
+        - lib.dat
+    ignore: Need to sanitize data file
     srcdir: /pylib/pgm
 
 license:
@@ -1160,9 +1144,9 @@ license:
         first check that all the indicated source files have the trigger
         strings and that backup copies of the source files can first
         be made.
-    files: [license.py]
-    softlinks:
-    - [util/color/color.py, prog/license/color.py]
+    files:
+        - license.py
+        - color.py
     srcdir: /pylib
 
 lnk:
@@ -1174,21 +1158,21 @@ lnk:
         structure. If you have GNU find, the -samefile option can be
         used to do this too.
     files: [lnk.py]
-    ignore: 'Yes'
+    ignore: Limited interest
     srcdir: /pylib/pgm
 
 loo:
     subdir: util
     descr: Python script that will print out the image files in Open
-        Office documents.  Image files that are not at or below the
-        same directory as the document file will be marked '[not relative]'.  Missing
-        files will be marked '[missing]'.  It can also be used as a
-        module in other python programs.  Uses a heuristic rather than
-        any deep knowledge about OO files.  It is particularly useful
-        if you link image files into OO files (which I always do).
-    files: [loo.py]
-    softlinks:
-    - [util/color/color.py, util/loo/color.py]
+        Office documents.  Image files that are not at or below the same
+        directory as the document file will be marked '[not relative]'.
+        Missing files will be marked '[missing]'.  It can also be used as a
+        module in other python programs.  Uses a heuristic rather than any
+        deep knowledge about OO files.  It is particularly useful if you
+        link image files into OO files (which I always do).
+    files:
+        - loo.py
+        - color.py
     srcdir: /pylib
 
 lookup:
@@ -1199,16 +1183,15 @@ lookup:
         (e.g., adjectives, adverbs, nouns, and verbs).  See the words.pdf
         file for examples of use and what it can do for you.
     files:
-    - lookup.py
-    - mkwords.py
-    - simple.py
-    - wrap.py
-    - [/pylib/pgm/words.odt, words.odt]
-    - words.pdf
-    - makefile
-    - [/pylib/pgm/pictures/lookup_results.png, pictures/lookup_results.png]
-    softlinks:
-    - [util/color/color.py, util/lookup/color.py]
+        - lookup.py
+        - mkwords.py
+        - simple.py
+        - wrap.py
+        - [/pylib/pgm/words.odt*, words.odt*]
+        - words.pdf
+        - makefile
+        - [/pylib/pgm/pictures/lookup_results.png*, pictures/lookup_results.png*]
+        - [../../../color.py, color.py]
     srcdir: /pylib/types_of_words/WordNet/lookup
 
 lvise:
@@ -1217,14 +1200,13 @@ lvise:
         a milling machine.  I made mine from some 1 inch square aluminum
         bar stock and it has proven useful.  Scale it up or down as
         needed.
-    files: [
-        LittleVise.odt,
-        LittleVise.pdf,
-        pictures/LittleVise_1.png,
-        pictures/LittleVise_2.png,
-        pictures/Starrett_160_clamp.png
-    ]
-    ignore: 'Yes'
+    files:
+        - LittleVise.odt*
+        - LittleVise.pdf
+        - pictures/LittleVise_1.png*
+        - pictures/LittleVise_2.png*
+        - pictures/Starrett_160_clamp.png*
+    ignore: Limited interest
     srcdir: /shop/projects
 
 manufy:
@@ -1234,18 +1216,17 @@ manufy:
         you to quickly write manpages for C or C++ code. The script
         also has a -u option to unmanufy some text.
     files: [manufy.py]
-    ignore: 'Yes'
+    ignore: Limited interest
     srcdir: /pylib/pgm
 
 markup:
     subdir: misc
     descr: Derives the equations for markup and profit used in business.
-    files: [
-        Markup.odt,
-        Markup.pdf,
-        pictures/markup.png,
-        pictures/multiplier.png
-    ]
+    files:
+        - Markup.odt*
+        - Markup.pdf
+        - pictures/markup.png*
+        - pictures/multiplier.png*
     srcdir: /doc
 
 mass:
@@ -1255,23 +1236,21 @@ mass:
         objects.  This lets you e.g. evaluate the mass and volume of
         a prospective design and document it through the datafile describing
         it.
-    files: [
-        mass.bolt,
-        mass.bucket,
-        mass.cat,
-        mass.earth,
-        mass.fishtank,
-        mass.frame,
-        mass.house,
-        mass.odt,
-        mass.pdf,
-        mass.py,
-        mass.simple,
-        mass.test
-    ]
-    softlinks:
-    - [prog/sig/sig.py, shop/mass/sig.py]
-    - [science/u/u.py, shop/mass/u.py]
+    files:
+        - mass.bolt
+        - mass.bucket
+        - mass.cat
+        - mass.earth
+        - mass.fishtank
+        - mass.frame
+        - mass.house
+        - mass.odt*
+        - mass.pdf
+        - mass.py
+        - mass.simple
+        - mass.test
+        - [../sig.py, sig.py]
+        - [../u.py, u.py]
     srcdir: /pylib/pgm
 
 mixture:
@@ -1296,7 +1275,7 @@ mk:
         because you don't have to reach for the mouse, move to another
         window, run a command, then move back.
     files: [mk.py]
-    ignore: 'Yes'
+    ignore: Limited interest
     srcdir: /pylib/pgm
 
 mod:
@@ -1312,11 +1291,10 @@ mortgage:
     subdir: misc
     descr: Gives a table that lets you estimate your mortgage's monthly
         payment.  Doesn't include taxes or insurance though.
-    files: [
-        Mortgage.odt,
-        Mortgage.pdf
-    ]
-    ignore: Old; probably of little interest
+    files:
+        - Mortgage.odt*
+        - Mortgage.pdf
+    ignore: Limited interest
     srcdir: /math/mortgage
 
 mp:
@@ -1325,7 +1303,7 @@ mp:
         tool. You can also include arbitrary python code in your text
         files. Use mp.py -h to read the man page.
     files: [mp.py]
-    ignore: 'Yes'
+    ignore: Limited interest
     srcdir: /pylib/pgm
 
 novas:
@@ -1335,7 +1313,7 @@ novas:
         It contains routines that are nearly identical to those used
         for calculations of the Astronomical Almanac.
     files: [novas.py]
-    ignore: 'Yes'
+    ignore: Limited interest
     srcdir: /pylib
 
 nozzle:
@@ -1343,13 +1321,12 @@ nozzle:
     descr: Describes a nice hose nozzle you can make if you have a
         lathe. It will work better for cleaning things off than the
         typical store-bought nozzles.
-    files: [
-        nozzle.odt, 
-        nozzle.pdf, 
-        nozzle.jpg,
-        nozzle2.jpg
-    ]
-    ignore: 'yes'
+    files:
+        - nozzle.odt* 
+        - nozzle.pdf
+        - nozzle.jpg*
+        - nozzle2.jpg*
+    ignore: Limited interest
     srcdir: /shop/projects/hose_nozzle
 
 oct:
@@ -1361,26 +1338,26 @@ oct:
         troubleshooting tool.  People have been using them since the
         1930's.
     files:
-    - 0readme
-    - Octopus.odt
-    - Octopus.pdf
-    - pictures/octopus_non_sine.png
-    - [pictures/small/BNC_connectors.png, pictures/BNC_connectors.png]
-    - [pictures/small/octopus_100_nF.png, pictures/octopus_100_nF.png]
-    - [pictures/small/octopus_3.3V_zener_diode.png, pictures/octopus_3.3V_zener_diode.png]
-    - [pictures/small/octopus_3H_inductor.png, pictures/octopus_3H_inductor.png]
-    - [pictures/small/octopus_520_mH.png, pictures/octopus_520_mH.png]
-    - [pictures/small/octopus_E3615A_swept.png, pictures/octopus_E3615A_swept.png]
-    - [pictures/small/octopus_E_B_2N2222.png, pictures/octopus_E_B_2N2222.png]
-    - [pictures/small/octopus_E_B_2N2222_10volts.png, pictures/octopus_E_B_2N2222_10volts.png]
-    - [pictures/small/octopus_E_C_2N2222_10_volts.png, pictures/octopus_E_C_2N2222_10_volts.png]
-    - [pictures/small/octopus_blue_LED.png, pictures/octopus_blue_LED.png]
-    - [pictures/small/octopus_diode_cap_parallel.png, pictures/octopus_diode_cap_parallel.png]
-    - [pictures/small/octopus_diode_resistor.png, pictures/octopus_diode_resistor.png]
-    - [pictures/small/octopus_inductor_diode_composite.png, pictures/octopus_inductor_diode_composite.png]
-    - [pictures/small/octopus_res_cap_parallel.png, pictures/octopus_res_cap_parallel.png]
-    - [pictures/small/octopus_res_diode_components.png, pictures/octopus_res_diode_components.png]
-    - [pictures/small/octopus_res_diode_composite.png, pictures/octopus_res_diode_composite.png]
+        - 0readme
+        - Octopus.odt*
+        - Octopus.pdf
+        - pictures/octopus_non_sine.png*
+        - [pictures/small/BNC_connectors.png*, pictures/BNC_connectors.png*]
+        - [pictures/small/octopus_100_nF.png*, pictures/octopus_100_nF.png*]
+        - [pictures/small/octopus_3.3V_zener_diode.png*, pictures/octopus_3.3V_zener_diode.png*]
+        - [pictures/small/octopus_3H_inductor.png*, pictures/octopus_3H_inductor.png*]
+        - [pictures/small/octopus_520_mH.png*, pictures/octopus_520_mH.png*]
+        - [pictures/small/octopus_E3615A_swept.png*, pictures/octopus_E3615A_swept.png*]
+        - [pictures/small/octopus_E_B_2N2222.png*, pictures/octopus_E_B_2N2222.png*]
+        - [pictures/small/octopus_E_B_2N2222_10volts.png*, pictures/octopus_E_B_2N2222_10volts.png*]
+        - [pictures/small/octopus_E_C_2N2222_10_volts.png*, pictures/octopus_E_C_2N2222_10_volts.png*]
+        - [pictures/small/octopus_blue_LED.png*, pictures/octopus_blue_LED.png*]
+        - [pictures/small/octopus_diode_cap_parallel.png*, pictures/octopus_diode_cap_parallel.png*]
+        - [pictures/small/octopus_diode_resistor.png*, pictures/octopus_diode_resistor.png*]
+        - [pictures/small/octopus_inductor_diode_composite.png*, pictures/octopus_inductor_diode_composite.png*]
+        - [pictures/small/octopus_res_cap_parallel.png*, pictures/octopus_res_cap_parallel.png*]
+        - [pictures/small/octopus_res_diode_components.png*, pictures/octopus_res_diode_components.png*]
+        - [pictures/small/octopus_res_diode_composite.png*, pictures/octopus_res_diode_composite.png*]
     ignore: PDF is large
     srcdir: /elec/projects/octopus
 
@@ -1389,9 +1366,11 @@ odict:
     descr: A bare-bones ordered dictionary for python. You won't need
         this if you are on python 2.7 or later because there's a built-in
         ordered  dictionary.
-    files: [odict.py]
+    files:
+        - odict.py
+        - [test/odict_test.py, odict_test.py]
     srcdir: /pylib
-    tests: true
+    ignore: Limited interest
 
 oo_math:
     subdir: math
@@ -1400,12 +1379,11 @@ oo_math:
         abilities of Open Office. While not as powerful as TeX or LaTeX,
         it's adequate for my needs and provides a variety of other
         tools.  Also includes a cheatsheet that you can modify.
-    files: [
-        OO_math.odt,
-        OO_math.pdf,
-        math_cheatsheet.odt,
-        math_cheatsheet.pdf
-    ]
+    files:
+        - OO_math.odt*
+        - OO_math.pdf
+        - math_cheatsheet.odt*
+        - math_cheatsheet.pdf
     ignore: Change to just include cheatsheet
     srcdir: /doc
 
@@ -1413,10 +1391,9 @@ oopy:
     subdir: prog
     descr: A document explaining how to call python functions from
         Open Office Calc spreadsheets.
-    files: [
-        PythonFromCalc.odt,
-        PythonFromCalc.pdf
-    ]
+    files:
+        - PythonFromCalc.odt*
+        - PythonFromCalc.pdf
     srcdir: /doc
 
 out:
@@ -1427,14 +1404,13 @@ out:
         replace the print command/function, which causes a bit of friction
         between python 2 and 3 code.  This module has been tested with
         both python 2 and 3.
-    files: [
-        out.odt,
-        out.pdf,
-        out.py
-    ]
-    ignore: Yes (use print() in new code)
+    files:
+        - out.odt*
+        - out.pdf
+        - out.py
+        - [test/out_test.py, out_test.py]
+    ignore: Limited interest (use print() in python 3 code)
     srcdir: /pylib
-    tests: true
 
 paper:
     subdir: misc
@@ -1447,7 +1423,7 @@ paper:
         I should start a specialty paper business (the results convinced
         me I shouldn't).
     files: [paper.py]
-    ignore: 'Yes'
+    ignore: Limited interest
     srcdir: /pylib/pgm
 
 papersz:
@@ -1455,22 +1431,20 @@ papersz:
     descr: Shows a scale drawing of various ISO and US paper sizes.  The
         python script that generates it is included, but you'll need
         to download a graphics library to use it.
-    files: [
-        paper_sizes.py,
-        paper_sizes.pdf
-    ]
-    ignore: 'Yes'
+    files:
+        - paper_sizes.py
+        - paper_sizes.pdf
+    ignore: Limited interest
     srcdir: /pylib/pgm
 
 parts:
     subdir: elec
     descr: Describes one way of storing lots of little electronic parts
         and how to find them quickly.
-    files: [
-        PartsStorageMethods.odt,
-        PartsStorageMethods.pdf
-    ]
-    ignore: 'Yes'
+    files:
+        - PartsStorageMethods.odt*
+        - PartsStorageMethods.pdf
+    ignore: Limited interest
     srcdir: /elec/projects
 
 pcmplx:
@@ -1478,7 +1452,7 @@ pcmplx:
     descr: Python module that allows you to parse complex numbers when
         they are written in the ways humans like to write them.
     files: [parse_complex.py]
-    ignore: 'Yes'
+    ignore: Limited interest
     srcdir: /pylib
 
 pdf:
@@ -1489,7 +1463,7 @@ pdf:
         to another PDF file, rotating pages, watermarking. etc. You'll
         also need to download the pyPdf library to use this script.
     files: [pdf.py]
-    ignore: 'Yes'
+    ignore: Limited interest
     srcdir: /pylib
 
 pfind:
@@ -1505,7 +1479,7 @@ pflow:
     subdir: eng
     descr: Nomograph for pipe flow.
     files: [flow.pdf]
-    ignore: 'Yes'
+    ignore: Limited interest
     srcdir: /science/nomographs
 
 pipes:
@@ -1513,25 +1487,23 @@ pipes:
     descr: A document showing a derivation of a formula that can be
         used to make a template for cutting the end of a pipe so that
         it can be welded to another pipe.
-    files: [
-        pipes.odt, 
-        pipes.pdf
-    ]
+    files:
+        - pipes.odt*
+        - pipes.pdf
     srcdir: /math/AnalyticGeometry
 
 posts:
     subdir: shop
     descr: Using a class 2 lever can be a surprisingly effective way
         to pull fence posts out of the ground.
-    files: [
-        PullingFencePosts.odt,
-        PullingFencePosts.pdf,
-        pictures/fence_post_driver.png,
-        pictures/hi_lift_jack_and_plate.png,
-        pictures/chain_with_hooks.png,
-        pictures/chain_grab.png
-    ]
-    ignore: 'yes'
+    files:
+        - PullingFencePosts.odt*
+        - PullingFencePosts.pdf
+        - pictures/fence_post_driver.png*
+        - pictures/hi_lift_jack_and_plate.png*
+        - pictures/chain_with_hooks.png*
+        - pictures/chain_grab.png*
+    ignore: Limited interest
     srcdir: /shop/projects/PullingFencePosts
 
 pqs:
@@ -1542,14 +1514,12 @@ pqs:
         situation can result in significant producer's and consumer's
         risk.  It's easy to understand how this Monte Carlo simulation
         script works and believe its output.
-    files: [
-        ProcessSimulator.odt,
-        ProcessSimulator.pdf,
-        manufacture.py,
-        pqs.py
-    ]
-    softlinks:
-    - [prog/sig/sig.py, eng/pqs/sig.py]
+    files:
+        - ProcessSimulator.odt*
+        - ProcessSimulator.pdf
+        - manufacture.py
+        - pqs.py
+        - [/pylib/sig.py, sig.py]
     srcdir: /math/ProcessAnalyzer
 
 primes:
@@ -1563,10 +1533,10 @@ primes:
         file is a chunk of C++ code that is a faster implementation
         of the sieve.
     files:
-    - primes.py
-    - [pgm/int.py, int.py]
-    - primes.readme
-    - [/tools/primes_fast.cpp, primes_fast.cpp]
+        - primes.py
+        - [pgm/int.py, int.py]
+        - primes.readme
+        - [/tools/primes_fast.cpp, primes_fast.cpp]
     ignore: Test under python 3.  Move files to /math.
     srcdir: /pylib
 
@@ -1575,12 +1545,11 @@ python:
     descr: Contains a document that discusses why learning the python
         programming language might be a good thing for technical folks.
     files:
-    - [/doc/Python.odt, Python.odt]
-    - [/doc/Python.pdf, Python.pdf]
-    - [/pylib/other/ellipse_circumference.py, ellipse_circumference.py]
-    - [pgm/resistor.py, resistor.py]
-    softlinks:
-    - [math/frange/frange.py, prog/python/frange.py]
+        - [/doc/Python.odt*, Python.odt*]
+        - [/doc/Python.pdf, Python.pdf]
+        - [/pylib/other/ellipse_circumference.py, ellipse_circumference.py]
+        - [pgm/resistor.py, resistor.py]
+        - frange.py
     srcdir: /pylib
 
 qmd:
@@ -1590,11 +1559,10 @@ qmd:
         figures in the answer. The methods reduce the amount of work
         needed over the methods taught in grammar school. Also includes
         a short blurb on additions.
-    files: [
-        QuickMultDiv.odt, 
-        QuickMultDiv.pdf
-    ]
-    ignore: 'Yes'
+    files:
+        - QuickMultDiv.odt*
+        - QuickMultDiv.pdf
+    ignore: Limited interest
     srcdir: /math/Dinosaur_Arithmetic
 
 react:
@@ -1603,11 +1571,11 @@ react:
         file describing their use. Update 20 May 2013 - added similar
         charts for Ohm's Law.
     files:
-    - [out/reactance.pdf, reactance.pdf]
-    - [out/big_reactance.pdf, big_reactance.pdf]
-    - [../ohms_law_chart/OhmsLaw1.pdf, OhmsLaw1.pdf]
-    - [../ohms_law_chart/OhmsLaw2.pdf, OhmsLaw2.pdf]
-    ignore: 'Yes'
+        - [out/reactance.pdf, reactance.pdf]
+        - [out/big_reactance.pdf, big_reactance.pdf]
+        - [../ohms_law_chart/OhmsLaw1.pdf, OhmsLaw1.pdf]
+        - [../ohms_law_chart/OhmsLaw2.pdf, OhmsLaw2.pdf]
+    ignore: Limited interest
     srcdir: /elec/software/reactance_chart
 
 readability:
@@ -1615,12 +1583,11 @@ readability:
     descr: Will calculate various readability indexes for text files,
         such as the Gunning Fog Index, the Flesch-Kinkaid Grade Level,
         etc.
-    files: [
-        readability.py,
-        readability.readme,
-        words_syllables.py
-    ]
-    ignore: 'Yes'
+    files:
+        - readability.py
+        - readability.readme
+        - words_syllables.py
+    ignore: Limited interest
     srcdir: /pylib/pgm
 
 refcards:
@@ -1629,63 +1596,62 @@ refcards:
         6 inch cards. I find these handy to keep in my drafting materials
         box when I'm doing design work at a drafting board.
     files:
-    - [pdf/cards.pdf, reference_cards.pdf]
-    - decimal_equiv.ods
-    - densities_liquids.ods
-    - densities_metal.ods
-    - densities_miscellaneous.ods
-    - densities_plastics_woods.ods
-    - double_depths.ods
-    - drills1.ods
-    - grains_to_g.ods
-    - metric_taps_dies.ods
-    - metric_threads.ods
-    - mm_to_inch1.ods
-    - mm_to_inch2.ods
-    - mm_to_inch3.ods
-    - pipe_sizes.ods
-    - pipe_threads.ods
-    - pvc_pipe.ods
-    - screw_heads.ods
-    - screw_heads_metric.ods
-    - screw_threads.ods
-    - screws_wood_Torx.ods
-    - self_threading_screws.ods
-    - shcs.ods
-    - slope_to_angle_deg.ods
-    - slope_to_angle_rad.ods
-    - spring_pins.ods
-    - surface_speeds_SFPM.ods
-    - tap_drills.ods
-    - weight_bar_stock_kg.ods
-    - weight_bar_stock_lb.ods
-    - wrench_sizes.ods
-    - pictures/self_tapping_screws1.jpg
-    - pictures/self_tapping_screws2.jpg
+        - [pdf/cards.pdf, reference_cards.pdf]
+        - decimal_equiv.ods
+        - densities_liquids.ods
+        - densities_metal.ods
+        - densities_miscellaneous.ods
+        - densities_plastics_woods.ods
+        - double_depths.ods
+        - drills1.ods
+        - grains_to_g.ods
+        - metric_taps_dies.ods
+        - metric_threads.ods
+        - mm_to_inch1.ods
+        - mm_to_inch2.ods
+        - mm_to_inch3.ods
+        - pipe_sizes.ods
+        - pipe_threads.ods
+        - pvc_pipe.ods
+        - screw_heads.ods
+        - screw_heads_metric.ods
+        - screw_threads.ods
+        - screws_wood_Torx.ods
+        - self_threading_screws.ods
+        - shcs.ods
+        - slope_to_angle_deg.ods
+        - slope_to_angle_rad.ods
+        - spring_pins.ods
+        - surface_speeds_SFPM.ods
+        - tap_drills.ods
+        - weight_bar_stock_kg.ods
+        - weight_bar_stock_lb.ods
+        - wrench_sizes.ods
+        - pictures/self_tapping_screws1.jpg
+        - pictures/self_tapping_screws2.jpg
     srcdir: /shop/ReferenceCards
 
 res:
     subdir: elec
     descr: Contains two tools that help you deal with resistors.  The
-        *resistor.cpp* file is a C++ program that can calculate resistors
+        resistor.cpp file is a C++ program that can calculate resistors
         to use for a voltage divider for a desired ratio. It also has
         the ability to get a desired resistance using two on-hand resistors
         in either series or parallel.  You can enter the values of
         your stock resistors or use standard series such as E6, E12,
-        etc.  The *resistor.ods* file is an Open Office spreadsheet
+        etc.  The resistor.ods file is an Open Office spreadsheet
         that calculates the resistance of wires of circular and rectangular
         cross sections (handy for designing shunts).  The PDF files
         contain the documentation.
-    files: [
-        makefile,
-        resistor.cpp,
-        resistor.ods,
-        resistor.odt,
-        resistor.pdf,
-        resistor_s.pdf,
-        resistor.test
-    ]
-    ignore: 'Yes'
+    files:
+        - makefile,
+        - resistor.cpp,
+        - resistor.ods,
+        - resistor.odt,
+        - resistor.pdf,
+        - resistor_s.pdf,
+        - resistor.test
+    ignore: Limited interest
     srcdir: /elec/software/resistors
 
 rms:
@@ -1697,13 +1663,12 @@ rms:
 root:
     subdir: math
     descr: Pure-python root-finding methods such as bisection, Brent's
-        method, Ridder's method, Newton-Raphson, and a nice general-purpose
+        method, Ridder's method, Newton-Raphson, and a general-purpose
         method by Jack Crenshaw that uses inverse parabolic interpolation.
     files:
-    - root.py
-    - [test/root_test.py, root_test.py]
+        - root.py
+        - [test/root_test.py, root_test.py]
     srcdir: /pylib
-    tests: true
 
 rpath:
     subdir: math
@@ -1711,32 +1676,31 @@ rpath:
         it with a set of points and then you can interpolate to points
         on the path via a parameter.
     files:
-    - [../path.py, path.py]
-    srcdir: /pylib/pgm
-    tests: true
+        - path.py
+        - [test/path_test.py, path_test.py]
+    srcdir: /pylib
 
 ruler:
     subdir: util
     descr: For console windows; prints a variety of rulers to stdout.
         It's easy to modify to get different ruler types.
     files: [ruler.py]
-    ignore: 'Yes'
+    ignore: Limited interest
     srcdir: /pylib/pgm
 
 sawbuck:
     subdir: shop
     descr: Describes a simple and easy to make sawbuck that's made
-        from eight identical pieces of 2x4.  I made mine so that I
-        could cut it from two 8' 2x4s.  It should cost less than $10
-        and take less than an hour to make.  All you need to make it
-        are a hand saw, drill/bits, and a screwdriver.
-    files: [
-        SawBuck.odt,
-        SawBuck.pdf,
-        pictures/sawbuck_oblique_open.jpg,
-        pictures/sawbuck_side_folded.jpg
-    ]
-    ignore: 'Yes'
+        from eight identical pieces of 2x4.  I made mine so that I could
+        cut it from two 8 foot long  2x4s.  It should cost less than $10
+        and take less than an hour to make.  All you need to make it are a
+        hand saw, drill/bits, and a screwdriver.
+    files:
+        - SawBuck.odt*
+        - SawBuck.pdf
+        - pictures/sawbuck_oblique_open.jpg*
+        - pictures/sawbuck_side_folded.jpg*
+    ignore: Limited interest
     srcdir: /shop/projects
 
 scale:
@@ -1746,13 +1710,12 @@ scale:
         it in a binder, you may find it useful for simple technical
         calculations when an electronic calculator isn't handy. The
         other file explains how to use things.
-    files: [
-        scale.pdf,
-        OnePageCalculator.odt,
-        OnePageCalculator.pdf,
-        pictures/sfpm.png
-    ]
-    ignore: 'yes'
+    files:
+        - scale.pdf
+        - OnePageCalculator.odt*
+        - OnePageCalculator.pdf
+        - pictures/sfpm.png*
+    ignore: Limited interest
     srcdir: /math/one_page_calculator
 
 scramble:
@@ -1764,19 +1727,18 @@ scramble:
         a word are really important for reading comprehension. You
         can make up your own mind about the truth of this statement
         by using the script on a variety of text.
-    files: [
-        scramble.py, 
-        scramble.html
-    ]
-    ignore: 'Yes'
+    files:
+        - scramble.py
+        - scramble.html
+    ignore: Limited interest
     srcdir: /pylib/pgm
 
 seg:
     subdir: math
-    descr: Python script to calculate parameters of a circular segment.    Translated
-        from a program written by Marv Klotz.
+    descr: Python script to calculate parameters of a circular segment.
+        Translated from a program written by Marv Klotz.
     files: [seg.py]
-    ignore: 'Yes'
+    ignore: Limited interest
     srcdir: /pylib/pgm
 
 seq:
@@ -1785,18 +1747,16 @@ seq:
         to stdout.  Handles integers, floating point, and fractions.
         Also see fseq.py.
     files:
-    - [pgm/seq.py, seq.py]
-    softlinks:
-    - [math/frange/frange.py, prog/seq/frange.py]
+        - [pgm/seq.py, seq.py]
+        - frange.py
     srcdir: /pylib
 
 shave:
     subdir: misc
     descr: Some thoughts on shaving your beard.
-    files: [
-        shaving.odt*,
-        shaving.pdf
-    ]
+    files:
+        - shaving.odt*
+        - shaving.pdf
     srcdir: /doc
 
 shorttbl:
@@ -1806,12 +1766,11 @@ shorttbl:
         are intended for use when a calculator isn't available. The
         original is an Open Office spreadsheet -- email me if you'd
         like a copy of it.
-    files: [
-        ShortTables.ods*,
-        ShortTables.odt*,
-        ShortTables.pdf,
-        ShortTables_doc.pdf
-    ]
+    files:
+        - ShortTables.ods*
+        - ShortTables.odt*
+        - ShortTables.pdf
+        - ShortTables_doc.pdf
     ignore: Little apparent interest; obsolete
     srcdir: /math/tables
 
@@ -1822,7 +1781,7 @@ shuffle:
         or an external source of random bytes (i.e., a file) to do
         the shuffling.
     files: [shuffle.c]
-    ignore: 'Yes'
+    ignore: Limited interest
     srcdir: /tools/shuffle
 
 sig:
@@ -1833,13 +1792,12 @@ sig:
         fractions, mpmath numbers, numpy arrays, complex numbers, and
         numbers with uncertainty, including any mix of those number
         types in a container that can be iterated over.
-    files: [
-        sig.py,
-        sig.odt*,
-        sig.pdf
-    ]
+    files:
+        - sig.py
+        - sig.odt*
+        - sig.pdf
+        - [test/sig_test.py, sig_test.py]
     srcdir: /pylib
-    tests: true
 
 sinesticks:
     subdir: shop
@@ -1847,10 +1805,9 @@ sinesticks:
         angles in the shop.  Perhaps surprisingly, it can measure with
         resolution as good or better than a Starrett machinist's vernier
         protractor that costs hundreds of dollars.
-    files: [
-        sine_sticks.odt*,
-        sine_sticks.pdf
-    ]
+    files:
+        - sine_sticks.odt*
+        - sine_sticks.pdf
     ignore: Reduce picture size by 2
     srcdir: /shop/projects
 
@@ -1862,13 +1819,12 @@ solar:
         warned -- things will be smaller and farther apart than you
         think. This would be a good exercise for a parent and a child
         -- both will learn information you can't learn from a book.
-    files: [
-        SolarSystemScaleModel.odt*,
-        SolarSystemScaleModel.pdf,
-        pictures/zoom_from_neptune.jpg,
-        pictures/zoom_from_saturn.jpg
-    ]
-    ignore: 'yes'
+    files:
+        - SolarSystemScaleModel.odt*
+        - SolarSystemScaleModel.pdf
+        - pictures/zoom_from_neptune.jpg*
+        - pictures/zoom_from_saturn.jpg*
+    ignore: Limited interest
     srcdir: /science/astronomy/diameters
 
 space:
@@ -1884,10 +1840,9 @@ sphshell:
         spherical shell and why there is no force on a particle. Also
         looks at Henry Cavendish's elegant experiment in the 1700's
         showing that the exponent in Coulomb's Law is 2.
-    files: [
-        SphericalShell.odt*,
-        SphericalShell.pdf
-    ]
+    files:
+        - SphericalShell.odt*
+        - SphericalShell.pdf
     srcdir: /science
 
 spiral:
@@ -1897,10 +1852,10 @@ spiral:
         is a python module containing a function that calculates the
         exact length of an Archimedean spiral.
     files:
-    - [../archimedean.py, archimedean.py]
-    - spiral.py
-    ignore: Test under python 3.
-    srcdir: /pylib/pgm
+        - [pgm/spiral.py, spiral.py]
+        - archimedean.py
+        - [test/archimedean_test.py, archimedean_test.py]
+    srcdir: /pylib
 
 split_cat:
     subdir: util
@@ -1908,11 +1863,10 @@ split_cat:
         hashes of each chunk, and allow you to recombine the chunks
         later back into the original file. Useful for band-limited
         tools like email and floppy disks.
-    files: [
-        split.py,
-        cat.py
-    ]
-    ignore: 'Yes'
+    files:
+        - split.py,
+        - cat.py
+    ignore: Limited interest
     srcdir: /pylib/pgm
 
 square:
@@ -1924,20 +1878,20 @@ square:
         much handier tool for carpentry layout than the carpenter's
         square and it's accurate enough for the usual purposes.
     files:
-    - [angles_and_carpenters_square.odt, square.odt*]
-    - [angles_and_carpenters_square.pdf, square.pdf]
-    ignore: 'Yes'
+        - [angles_and_carpenters_square.odt*, square.odt*]
+        - [angles_and_carpenters_square.pdf, square.pdf]
+    ignore: Limited interest
     srcdir: /shop/cheat_sheets
 
 stack:
     subdir: prog
     descr: A python module that implements a basic stack.  You have
-        the option of making the stack homogeneous (i.e., it will only
+        the options of making the stack homogeneous (i.e., it will only
         allow storage of one type of item) or of fixed size.
-    files: [stack.py]
-    ignore: 'Yes'
+    files:
+        - stack.py
+        - [test/stack_test.py, stack_test.py]
     srcdir: /pylib
-    tests: true
 
 sumbytes:
     subdir: prog
@@ -1946,7 +1900,7 @@ sumbytes:
         from them. Outputs the number of bytes read, sum, sum of squares,
         mean, standard deviation, and minimum/maximum values.
     files: [sumbytes.cpp]
-    ignore: 'Yes'
+    ignore: Limited interest
     srcdir: /tools
 
 thd:
@@ -1955,8 +1909,8 @@ thd:
         the values based on the ASME B1.1-1989 standard document. If
         you machine threads on a lathe, you may find this program handy.
     files:
-    - thd.py
-    - [../asme.py, asme.py]
+        - thd.py
+        - [../asme.py, asme.py]
     srcdir: /pylib/pgm
 
 tlc:
@@ -1972,7 +1926,7 @@ tokens:
         all in lower case, one per line. You could then run the list
         of words through a spell checker.
     files: [html_tokens.py]
-    ignore: 'Yes'
+    ignore: Limited interest
     srcdir: /pylib/pgm
 
 tree:
@@ -1986,23 +1940,20 @@ tree:
 tri:
     subdir: math
     descr: Python script to solve triangles.
-    files: [
-        tri.py,
-        tri.odt*,
-        tri.pdf
-    ]
-    softlinks:
-    - [prog/sig/sig.py, math/tri/sig.py]
+    files:
+        - tri.py
+        - tri.odt*
+        - tri.pdf
+        - [../sig.py, sig.py]
     srcdir: /pylib/pgm
 
 trigd:
     subdir: math
     descr: Gives some algebraic expressions for a few special values
         of trigonometric functions in degrees.
-    files: [
-        TrigDegrees.odt*,
-        TrigDegrees.pdf
-    ]
+    files:
+        - TrigDegrees.odt*
+        - TrigDegrees.pdf
     srcdir: /math/herman
 
 triguc:
@@ -2011,11 +1962,11 @@ triguc:
         circle.  The python script used to generate the graphics is
         included, so you can tweak it to your tastes.
     files:
-    - trig_functions.py
-    - [images/trig_functions.pdf, trig_functions.pdf]
-    - TrigUnitCircle.odt*
-    - TrigUnitCircle.pdf
-    - images/trig_functions.jpg
+        - trig_functions.py
+        - [images/trig_functions.pdf, trig_functions.pdf]
+        - TrigUnitCircle.odt*
+        - TrigUnitCircle.pdf
+        - images/trig_functions.jpg*
     srcdir: /math/elementary_functions
 
 ts:
@@ -2023,15 +1974,14 @@ ts:
     descr: The ts.py script provides facilities for text substitution
         in text files.  It has only 3 basic commands (define a substitution,
         turn  the output on/off, and include a file) and the ability
-        to include   blocks of python code in the text file.  Though
-        it's relatively    simple to use, it can provide a fair bit
+        to include blocks of python code in the text file.  Though
+        it's relatively simple to use, it can provide a fair bit
         of power.
-    files: [
-        ts.py, 
-        ts.ts, 
-        makefile, 
-        ts.css
-    ]
+    files:
+        - ts.py,
+        - ts.ts 
+        - makefile,
+        - ts.css
     ignore: Not released yet
     srcdir: /pylib/pgm/ts
 
@@ -2044,18 +1994,17 @@ u:
         use -- an experienced scientist or engineer will be using it
         in a few minutes after seeing an example (see the PDF in the
         package for details).
-    files: [
-        u.odt*,
-        u.pdf,
-        u.py
-    ]
+    files:
+        - u.odt*
+        - u.pdf
+        - u.py
+        - [test/u_test.py, u_test.py]
     srcdir: /pylib
-    tests: true
 
 uni:
     subdir: util
-    descr: A handy python script to find Unicode characters.  Example
-        - find  the Unicode symbol for a steaming pile of poo.  Run
+    descr: A handy python script to find Unicode characters.  An example
+        is to find the Unicode symbol for a steaming pile of poo.  Run
         the script with the regular expression 'poo' as an argument.
         You'll see the symbol you want has a code point of U+1f4a9.
         Run the script with '1f4a9' on the command line and the PDF
@@ -2067,15 +2016,14 @@ uni:
 
 units:
     subdir: science
-    descr: A short blurb on the capabilities of the wonderful GNU units
+    descr: A short blurb on the capabilities of the useful GNU units
         program.  This is one of the most-used programs on my computer
         because I am constantly converting between various units. It
         can also help you do back-of-the-envelope type calculations
         and avoid making dumb unit mistakes that invalidate everything.
-    files: [
-        GNU_units.odt*,
-        GNU_units.pdf
-    ]
+    files:
+        - GNU_units.odt*
+        - GNU_units.pdf
     srcdir: /doc
 
 unx:
@@ -2110,9 +2058,10 @@ util:
     subdir: prog
     descr: Contains a number of miscellaneous python functions I've
         written and collected from the web.
-    files: [util.py]
+    files: 
+        - util.py
+        - [test/util_test.py, util_test.py]
     srcdir: /pylib
-    tests: true
 
 vs:
     subdir: elec
@@ -2123,12 +2072,10 @@ vs:
         deviation of the voltage output was 170 uV including room temperature
         variations and the variance of the voltmeter over that time
         period.
-    files: [
-        PortableVoltageStandard.odt*,
-        PortableVoltageStandard.pdf,
-        pictures/voltage_reference.png
-    ]
-    ignore: Need to make PDF
+    files:
+        - PortableVoltageStandard.odt*
+        - PortableVoltageStandard.pdf
+        - pictures/voltage_reference.png*
     srcdir: /elec/Articles
 
 wave:
@@ -2138,32 +2085,31 @@ wave:
         tasks. The design and semantics allow you to construct more
         complex composite waveforms.  It's also easy to add new waveform
         definitions.
-    files: [
-        waveform.py,
-        waveform.odt,
-        waveform.pdf,
-        pictures/waveform_sine.png,
-        pictures/waveform_gated.png,
-        pictures/waveform_clipping.png,
-        pictures/waveform_scr.png,
-        pictures/waveform_trapezoid.png,
-        pictures/waveform_staircase.png,
-        pictures/waveform_modulation.png,
-        pictures/waveform_mw.png
-    ]
-    ignore: 'Yes'
+    files:
+        - waveform.py
+        - waveform.odt*
+        - waveform.pdf
+        - pictures/waveform_sine.png*
+        - pictures/waveform_gated.png*
+        - pictures/waveform_clipping.png*
+        - pictures/waveform_scr.png*
+        - pictures/waveform_trapezoid.png*
+        - pictures/waveform_staircase.png*
+        - pictures/waveform_modulation.png*
+        - pictures/waveform_mw.png*
+    ignore: Limited interest
     srcdir: /pylib/pgm
 
 weigh:
     subdir: shop
-    descr: Demonstrates how I  weighed  our trailer with a lever. With
+    descr: Demonstrates how I weighed our trailer with a lever. With
         a 12 foot long 4x4, I was able to measure 2500 pounds.
     files:
-    - [weighing_a_trailer.odt, weigh.odt*]
-    - [weighing_a_trailer.pdf, weigh.pdf]
-    - weighing1.jpg
-    - weighing4.jpg
-    ignore: 'Yes'
+        - [weighing_a_trailer.odt*, weigh.odt*]
+        - [weighing_a_trailer.pdf, weigh.pdf]
+        - weighing1.jpg*
+        - weighing4.jpg*
+    ignore: Limited interest
     srcdir: /doc/trailer
 
 wordnum:
@@ -2174,9 +2120,10 @@ wordnum:
         and fractions.  Easy interface through an object's function
         call; wordnum(36) gives 'thirty six'; wordnum('thirty six')
         returns the integer 36.  Tested on python 2.7.6 and 3.4.0.
-    files: [wordnum.py]
+    files: 
+        - wordnum.py
+        - [test/wordnum_test.py, wordnum_test.py]
     srcdir: /pylib
-    tests: true
 
 wrap:
     subdir: prog
@@ -2186,22 +2133,20 @@ wrap:
         This makes it suitable for importing into word processing programs.
         wrap.py does the opposite and turns text files with long lines
         into text files with lines wrapped at a given number of columns.
-    files: [
-        wrap.py,
-        unwrap.py
-    ]
-    ignore: 'Yes'
+    files:
+        - wrap.py
+        - unwrap.py
+    ignore: Limited interest
     srcdir: /pylib/pgm
 
 xmastom:
     subdir: misc
     descr: Using Christmas tree lights to keep tomato plants from freezing
         at night.
-    files: [
-        XmasTomatoes.odt*,
-        XmasTomatoes.pdf
-    ]
-    ignore: 'Yes'
+    files:
+        - XmasTomatoes.odt*
+        - XmasTomatoes.pdf
+    ignore: Limited interest
     srcdir: /doc
 
 xor:
@@ -2213,16 +2158,15 @@ xor:
         for the key file. Read the xor.pdf file for further thoughts.
         Also includes two python utilities that can generate one-time
         pads and create files with fixed or random bytes.
-    files: [
-        xor.cpp,
-        xor.odt*,
-        xor.pdf,
-        otp.py,
-        mkfile.py,
-        md5.c,
-        md5.h
-    ]
-    ignore: 'Yes'
+    files:
+        - xor.cpp
+        - xor.odt*
+        - xor.pdf
+        - otp.py
+        - mkfile.py
+        - md5.c
+        - md5.h
+    ignore: Limited interest
     srcdir: /tools/xor
 
 xref:
@@ -2258,10 +2202,8 @@ xyz:
         - xyz.shop
         - xyz.sphere
         - xyz.splice
-    softlinks:
-    - [prog/sig/sig.py, math/xyz/sig.py]
+        - [../sig.py, sig.py]
     srcdir: /pylib/pgm
-    tests: true
 
 yankee:
     subdir: shop
@@ -2276,19 +2218,18 @@ yankee:
         inch square drive sockets.  It also shows you how to take one
         of these screwdrivers apart so it can be cleaned.  Dimensional
         sketches are included of some parts that might need to be made.
-    files: [
-        YankeeDriver.odt*,
-        YankeeDriver.pdf,
-        pictures/yankee_screwdriver_1.png,
-        pictures/yankee_screwdriver_2.png,
-        pictures/yankee_screwdriver_3.png,
-        pictures/yankee_screwdriver_4.png,
-        pictures/yankee_screwdriver_5.png,
-        pictures/yankee_screwdriver_6.png,
-        pictures/yankee_screwdriver_7.png,
-        pictures/yankee_screwdriver_8.png,
-        pictures/yankee_screwdriver_9.png,
-        pictures/yankee_screwdriver_dims.png
-    ]
+    files:
+        - YankeeDriver.odt**
+        - YankeeDriver.pdf
+        - pictures/yankee_screwdriver_1.png*
+        - pictures/yankee_screwdriver_2.png*
+        - pictures/yankee_screwdriver_3.png*
+        - pictures/yankee_screwdriver_4.png*
+        - pictures/yankee_screwdriver_5.png*
+        - pictures/yankee_screwdriver_6.png*
+        - pictures/yankee_screwdriver_7.png*
+        - pictures/yankee_screwdriver_8.png*
+        - pictures/yankee_screwdriver_9.png*
+        - pictures/yankee_screwdriver_dims.png*
     ignore: Reduce picture size by 2
     srcdir: /shop/projects

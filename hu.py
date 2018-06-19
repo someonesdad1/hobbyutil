@@ -51,6 +51,7 @@ Hash = hashlib.sha1
 nl = "\n"
 py3_char = "3"
 test_char = "T"
+email_address = "someonesdad1@gmail.com"
 
 # Under cygwin, the root directory's actual location is needed
 on_windows = True
@@ -81,8 +82,9 @@ output_directories = set()
 # YAML data
 yamlfile = "projects"   # Where YAML data are saved (never written)
 
-# data will be the repository for project information.  It is keyed on
-# the project's name.
+# data will be the repository for project information.  It is a dictionary
+# keyed on the project's name.
+
 '''
 
 This is the key data structure of the script; it's an ordered
@@ -99,7 +101,7 @@ Each value in the dictionary is another dictionary, such as:
 {
     "proj" : {
         "subdir" : "cat",             # 'elec', 'math', etc.
-        "ignore" : None,                # If not None, ignore
+        "ignore" : None,                # If not None, ignore this project
         "descr"  : description_string,  # Defaults to None
         "todo"   : todo_string,         # Defaults to None
         "srcdir" : srcdir,              # Source directory
@@ -108,26 +110,12 @@ Each value in the dictionary is another dictionary, such as:
             (filename2_src, filename2_dest),
             ...
         ],
-        "softlinks" : set((
-            (filename1_src, softlink1_name),
-            (filename2_src, softlink2_name),
-            ...
-        )),
-        "tests"  : False,               # True if have self tests
-        "python3" : False,              # True if runs on python 3
     },
     ... etc.
 }
 
 For the files, if there's only one filename, then the source and
 destination filenames are the same.
-
-For the softlinks, the filename1_src must be of the form
-cat/proj/filename, which is one of the existing (or soon to be
-existing) files in the project tree.
-
-Since the softlink's destination might not exist when the soft link is
-created, a final scan is made for orphans before exiting.
 '''
 data = None
 
@@ -238,267 +226,34 @@ def Dump(opt):
 # This section contains the data for the main project web page.
 
 Header = '''
-This project is a repository for things I've developed over the years
-for my various hobbies. 
 
-*Update 27 Aug 2014*:  The primary location for the files is now in
-the Mercurial repository under the *Source* link above.  The
-deprecated files under the *Download* link have been removed; the ones
-remaining are the larger files that haven't been changed in a while
-(they won't move to the repository until they're updated).
+This repository is for things I've developed over the years for my various
+hobbies.  Each project is a link which you can click on to get the file or
+files associated with the project.  For documents, the PDF form is
+typically the only file included.  If you would like the source document
+(usually constructed from an Open Office document), email me and I'll send
+you the source.
 
-There were around 150 different projects (clumps of files) on
-this site and I felt this was too many.  I've kept the popular stuff,
-but removed things that weren't downloaded very often.  Now there are
-roughly about half the number of projects.
+For python scripts, I have standardized on python 3.6 for running the
+scripts.  Many of these scripts have also been tested on python 2.7, but I
+am no longer making the effort to keep things running with python 2.7, as
+python 3 is mature and well-supported by the needed libraries.  Where
+self-tests are available, they will be python scripts that have the same
+name as the script with '_test' appended.
 
-To be able to get the files from the Source link, you'll need to have
-Mercurial installed on your system; Mercurial is a version control
-system.  If you're intimidated by needing to use some arcane piece of
-software, don't be -- it's quite easy: download/install Mercurial,
-then type a single command.  See the notes at the bottom of this page
-for more detail.
+The ./projects file in the repository is used to keep track of the things
+that are in this repository.  Note there are more things in this file than
+are packaged in the repository.  I do this to keep only the things that
+will likely be of interest (this knowledge came from when I used to store
+this stuff on Google Code and could see the download counts).  If there's
+something in the projects file you'd like to have, you can email me 
+at {email_address} for it.
 
-The repository is structured with the directory naming scheme shown in
-the table below.  Each project will include the source files used to
-construct it and possibly a `0readme` file which will explain the
-project's nature and use.  A python script will have its documentation
-inside the file.  A project is a collection of one or more files.
-
-Here are some other pages that also might be of interest:
-
-  * Python code to talk to a Radio Shack [http://code.google.com/p/rs22812/ multimeter]
-  * Python graphics [http://code.google.com/p/pygraphicsps/ library] that outputs Postscript 
-  * Python code for a console-based RPN [http://code.google.com/p/hcpy/ calculator]
-  * Lightweight library for typesafe numerical calculations in C++ using physical [http://code.google.com/p/unitscpp/ units]
-
-The projects in the table below have names of the form cat/name where
-cat is the subdir and name is a short name identifying the project.
-The categories are:
-
-|| elec || Electrical and electronics ||
-|| eng || General engineering/technical ||
-|| math || Mathematics ||
-|| misc || Miscellaneous ||
-|| prog || Programming ||
-|| science || Science ||
-|| shop || Shop-related ||
-|| util || Utilities ||
-
-The decorations after the names are:  {test_char} means a self test python
-module is included; {py3_char} means the python code will run under python 3.
-'''[1:].format(**globals())
+'''.strip().format(**globals())
 
 Trailer = '''
+'''.strip()
 
-==Legacy projects==
-
-A few non-deprecated projects remain in the Downloads area because
-they are relatively large files.  I won't include them in the
-repository until I find the need to change them.  I have deleted the
-deprecated files.  The projects are:
-
-fountain_pen_primer_12Dec2011.pdf
-    Discusses the care and feeding of fountain pens as writing tools.
-
-DinosaurArithmetic_25Sep2012.zip
-    This document discusses doing calculations without using an
-    electronic calculator. It also includes a spreadsheet that
-    gives the tables that were common in the math books years ago,
-    as people don't use this stuff much anymore. I'm not
-    advocating that we give up our calculators, but it's useful
-    for a technical person to know how to reason quantitatively
-    when a calculator isn't handy. This document looks at some of
-    the methods for doing this.
-
-diurnal_variations_26Jul2012.pdf 
-    Shows a plot of the light from the sky measured with a cheap
-    photodiode. Since inexpensive datalogging equipment can be
-    purchased that use e.g. the USB interface, this would be a
-    great experiment for school kids and parents to do together.
-    Because it's so simple to do, I predict you'll get hooked if
-    you try it.
-
-Octopus_10Jul2012.pdf 
-    If you own an oscilloscope and like to troubleshoot electrical
-    things, you'll probably want to build an Octopus tester. One can
-    be built from a 6.3 V RMS filament transformer and a single
-    resistor, so there's no significant parts costs.  It's a handy
-    troubleshooting tool.  People have been using them since the
-    1930's.
-
-BNC_connector_power_15Sep2011.pdf 
-    Gives some experimental data about using RF coax cables with
-    BNC connectors for DC and low-frequency power.
-
-elements_22Sep2011.zip 
-    Contains elements.pdf, a document that contains a periodic
-    table of the elements, a plot of the vapor pressures of the
-    elements, values of physical parameters sorted by value, and
-    various physical parameters of the elements plotted as a
-    function of atomic number. The raw data are contained in the
-    elements.ods Open Office spreadsheet; the zip archive includes
-    the python scripts used to generate the plots. If you'd like
-    to generate the plots yourself, you can, as the tools are all
-    open source or freely available, but be warned that there are
-    numerous libraries that you'll need to get. I've wanted a
-    document like this for a long time, but I knew that most of
-    the work would be in manually typing in all the data from
-    various places. I was right... :^)
-
-CartPlatform_10Aug2012.pdf 
-    Simple platform for a Harbor Freight garden cart.  I find it quite
-    useful as a dirt repository when digging up e.g. sprinklers in the
-    yard.
-
-C_snippets_Jan2011.zip 
-    This is a zip file of the C snippets code put together by Bob
-    Stout; it is the Jul 1997 edition, although I downloaded it 18 Jan
-    2011 from somewhere. Apparently Bob Stout died in 2008 and the
-    snippets domain wasn't picked up by anyone else (the snippets.org
-    now belongs to someone, but it isn't related to Stout's snippet
-    collection). I thought it would be useful to make sure there was
-    another cache of the Snippets collection.  While some of the code
-    is only of interest to archeologists investigating primitive DOS
-    cultures, there are numerous useful algorithms in there, so it's
-    worth your time to take a look, as there are 416 separate C files.
-    We all owe a debt of gratitude to Bob Stout for his dedication in
-    writing, collecting, and collating all this stuff.
-
-antifreeze_5Feb2012.pdf 
-    How to calculate how much antifreeze to add to an existing
-    partially-filled radiator to get a desired concentration.  It also
-    discusses the refractometer, a tool to measure antifreeze
-    concentrations and a lead-acid battery's sulfuric acid specific
-    gravity (which tells you the state of charge).
-
-AnalyticGeometry_5Sep2012.pdf 
-    Contains formulas relating to analytic geometry in the
-    plane and space, trigonometry, and mensuration. 
-
-drules_16Apr2012.pdf 
-    Contains some drafting rules that I've always wanted. These
-    are primarily 6 inch scales both in inch and mm divisions. You
-    can print them at full scale and glue them to a chunk of wood
-    to make some handy scales.
-
-Concise300_7Sep2012.pdf 
-    Discusses the Concise 300, a circular slide rule still in
-    production in Japan.  If you've never used a slide rule, you
-    may be surprised to find that they can be good tools to help
-    you with calculations accurate to roughly one percent.
-
-inductance_06Dec2010.zip 
-    Provides an Open Office spreadsheet that can calculate the
-    inductance of common electrical structures.  Includes a PDF
-    document describing the use and which gives references for the
-    formulas used.  There is also a PDF file of the spreadsheet so
-    that you can see what it looks like without having Open Office --
-    this will help you decide if you want to install Open Office to be
-    able to use the spreadsheet.
-
-sine_sticks_27Jun2011.pdf 
-    How to build a simple device from scrap that will measure
-    angles in the shop.  Perhaps surprisingly, it can measure with
-    resolution as good or better than a Starrett machinist's
-    vernier protractor that costs hundreds of dollars.
-
-help_system_12Aug2012.zip 
-    If you use the vim editor, you have a convenient tool for
-    accessing textual information. This package contains the tools I
-    use to build a help system I've used for the past couple of
-    decades (I started building this textual information in the
-    1980's). Vim's ability to use "hyperlinks" in its textual help
-    files is used to advantage here.  I've used these files on both
-    Windows and Linux boxes.
-
-SolarSystemScaleModel_16Sep2011.pdf 
-    This document describes a python script that prints out the
-    dimensions of a scaled solar system. You can use it to make a
-    scale solar system in your yard or on your street. Be warned
-    -- things will be smaller and farther apart than you think.
-    This would be a good exercise for a parent and a child -- both
-    will learn information you can't learn from a book.
-
-nozzle_6Oct2011.pdf 
-    Describes a nice hose nozzle you can make if you have a lathe.
-    It will work better for cleaning things off than the typical
-    store-bought nozzles.
-
-GlendaGuard_10Aug2011.pdf 
-    Describes a simple concrete sprinkler guard that my wife
-    designed and built. We've used them for over 20 years and they
-    work well, are simple to make, and cheap.
-
-PartsStorageMethods_21Nov2012.pdf 
-    Describes one way of storing lots of little electronic parts
-    and how to find them quickly.
-
-XmasTomatoes_24Nov2012.pdf 
-    Using Christmas tree lights to keep tomato plants from
-    freezing at night.
-
-PullingFencePosts_25Jul2012.pdf 
-    Using a class 2 lever can be a surprisingly effective way to
-    pull fence posts out of the ground.
-    
-scale_27Jan2011.zip 
-    The scale.pdf file contains two sheets of paper with slide
-    rule type scales on them. If you duplex print this and keep it
-    in a binder, you may find it useful for simple technical
-    calculations when an electronic calculator isn't handy. The
-    other file explains how to use things.
-
-==Getting the source code repository==
-
-To download the hobbyutil source code repository, you need Mercurial
-installed on your system.  Mercurial is a revision control tool.  It's
-easy to install and use.  To install, go to
-http://mercurial.selenic.com/ and download the appropriate package.
-Your installation goal is to be able to type *hg* at a console command
-prompt and have the Mercurial installation respond with its default
-help message, which will look something like
-
-{{{
-Mercurial Distributed SCM
-
-basic commands:
-
- add           add the specified files on the next commit
- annotate      show changeset information by line for each file
-    <middle lines deleted>
- summary       summarize working directory state
- update        update working directory (or switch revisions)
-
-use "hg help" for the full list of commands or "hg -v" for details
-}}}
-
-On Windows, this usually means running an installer package.  On
-UNIX-type systems, see the right-hand pane of Mercurial's download
-page for common system installations.  
-
-Once Mercurial is installed, *cd* to a directory where you'd like to
-clone the hobbyutil repository and execute the command
-
-{{{
-hg clone https://code.google.com/p/hobbyutil
-}}}
-
-It will take some time to copy the information.  When completed,
-you'll have a directory named *hobbyutil* that contains the source
-code for the project.  
-
-The names of the projects in the left-hand side of the table above
-correspond to the directory names in the repository.
-
-You can just use the content as-is or adapt it to your needs.  Note
-that the documentation files are supplied in both Open Office source
-code and associated PDF files.  Some of the packages use
-reStructuredText for documentation and an associated HTML file will be
-included.  See the [http://docutils.sourceforge.net/ docutils] project
-for tools that can turn the reStructuredText file(s) into other
-document forms.
-'''
 #----------------------------------------------------------------------
 
 def GetFileHash(file):

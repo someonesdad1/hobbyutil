@@ -1,0 +1,18 @@
+z
+.z
+.vi
+tags
+*.swp
+
+# Ignore any Open Office, Word, or bitmap files.  This is done to avoid populating
+# the repository with source stuff.  Users are alerted that they can request the
+# source files by email if they wish.
+*.odt
+*.odg
+*.ods
+*.doc
+*.docx
+*.png
+*.jpg
+*.tiff
+*.bmp
