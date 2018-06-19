@@ -1,19 +1,18 @@
 '''
 
-This script will copy files from various locations in my data
-directories to the hobbyutil repository.  The projects file is a yaml
-datafile that defines the "projects" and the files that make it up.
-This script is intended to run under python 3.6.
+This script is used to populate a repository with the files that I want to
+archive.  The relevant file information is in a text file that uses YAML
+syntax to describe the files, their source and destination names, and their
+containers.
 
-The primary behavior is to populate the repository with the project's PDF
-file or python file.  If more than one file is in the project, then a
-zipfile is created.
-
-To keep the repository a reasonable size, I've decided that only the PDF
-file is included by default.  There will occasionally be people who want
-the original source files; the command line option -z can be used to create
-a zipfile containing the source files that can be emailed to the interested
-person.
+The first task is to verify all the source files exist on the hard disk.
+Then the script will identify missing or out-of-date destination files.
+The destination files will typically be a single PDF document or e.g. a
+collection of scripts and a PDF.  The PDF files are typically made from an
+Open Office document along with optional bitmap files, but these are not
+copied to the repository for space reasons.  A user can ask to have the
+source files and the -z option can be used to put the source files into a
+zip file so they can be emailed to the user.
 
 '''
 
@@ -57,6 +56,10 @@ test_char = "T"
 on_windows = True
 cygwin = "c:/cygwin" if on_windows else ""
 
+# If a package is to be made with the -z option, this directory is where
+# the packages will reside (it's separate from the repository).
+package_dir = cygwin + "/home/Don/hobbyutil_packages"
+
 # Keep track of softlinks created
 softlinks = set()
 
@@ -86,7 +89,7 @@ This is the key data structure of the script; it's an ordered
 dictionary so that the entry order can be preserved.
 
 A key must be a string with at least one letter on either side of a
-'/' character:  cat/proj.  cat is the top-level category of the hu web
+'/' character:  cat/proj.  cat is the top-level subdir of the hu web
 page (e.g., elec, math, etc.) and proj is the package name.  The
 current implementation only uses the cat/proj form, but cat/proj/other
 and deeper structures can be used if desired.
@@ -95,7 +98,7 @@ Each value in the dictionary is another dictionary, such as:
 
 {
     "proj" : {
-        "category" : "cat",             # 'elec', 'math', etc.
+        "subdir" : "cat",             # 'elec', 'math', etc.
         "ignore" : None,                # If not None, ignore
         "descr"  : description_string,  # Defaults to None
         "todo"   : todo_string,         # Defaults to None
@@ -222,10 +225,10 @@ def Dump(opt):
                 c.normal()
             elif k == "ignore":
                 pass
-            elif k in ("category", "python3", "tests"):
+            elif k in ("subdir", "python3", "tests"):
                 print("  %s = %s" % (k, d[k]))
             else:
-                Error("Unhandled category %s" % k)
+                Error("Unhandled subdir %s" % k)
                 print("  %s = %s" % (k, d[k]))
         print()
     c.fg(c.white, c.black)
@@ -270,7 +273,7 @@ Here are some other pages that also might be of interest:
   * Lightweight library for typesafe numerical calculations in C++ using physical [http://code.google.com/p/unitscpp/ units]
 
 The projects in the table below have names of the form cat/name where
-cat is the category and name is a short name identifying the project.
+cat is the subdir and name is a short name identifying the project.
 The categories are:
 
 || elec || Electrical and electronics ||
@@ -606,7 +609,7 @@ def CopyFiles(project, info, d):
     of files is only done if necessary.
     '''
     perm = int("700", base=8)
-    cat = info["category"]
+    cat = info["subdir"]
     directory = cat + "/" + project
     if not os.path.isdir(directory):
         os.makedirs(directory, perm)
@@ -629,7 +632,6 @@ Usage:  {name} [options] command [args]
   Utility to build the hobbyutil repository's contents.
 
 Commands:
-    scan        Identify missing and out of date files.
     update      Update the missing and out of date files for indicated
                 projects (you can use 'all', but be careful and ensure that
                 all need to be updated).
@@ -639,9 +641,9 @@ Commands:
 
 Options:
     -s      Short list (no descriptions)
-    -z      Do not package in zip file.  This populates each directory with
-            the individual source files so that they can be tested as a
-            stand-along package (this will identify missing dependencies).
+    -z      Package the indicated projects in args into separate zip files.
+            These will be located in the directory indicated by the global 
+            variable package_dir.
 '''[1:-1]
     print(s.format(**locals()))
     exit(status)
@@ -766,9 +768,9 @@ def ReadProjectData(d):
     # Check each project's entries
     for proj in data:
         item = data[proj]
-        if "category" not in item:
-            Error("'category' record not in %s" % proj)
-        output_directories.add(item["category"])
+        if "subdir" not in item:
+            Error("'subdir' record not in %s" % proj)
+        output_directories.add(item["subdir"])
         if "descr" not in item:
             Error("'descr' record not in %s" % proj)
         if "files" not in item:
@@ -809,31 +811,23 @@ def RemoveAsterisk(s):
         return s[:-1]
     return s
 
-def Scan(d):
-    '''Identify missing and out of date files.
-    '''
+def FindMissingSourceFiles(d):
+    missing_file = False
     for project in data:
         p = data[project]
         if p["ignore"]:
             continue
         printed_project_name = False
         for SRC, DEST in p["files"]:
-            src = os.path.join(cygwin + p["srcdir"], SRC)
-            dest = os.path.join(p["category"], DEST)
-            retval = FilesAreDifferent(src, dest, d)
-            if not retval:
-                continue
-            elif retval == 1:  # File is out of date
+            src = os.path.join(cygwin + p["srcdir"], RemoveAsterisk(SRC))
+            if not os.path.exists(src):
+                missing_file = True
                 if not printed_project_name:
                     print(project)
                     printed_project_name = True
-                print("   ", dest, "is out of date")
-            elif retval == 2:  # Destination file is missing
-                if not printed_project_name:
-                    print(project)
-                    printed_project_name = True
-                print("   ", dest, "is missing")
-                
+                print("   ", src, "is missing")
+    if missing_file:
+        exit()
 
 def Update(d):
     pass
@@ -859,10 +853,9 @@ if __name__ == "__main__":
     args = ParseCommandLine(d)
     ReadProjectData(d)
     MakeDirectories(d)
+    FindMissingSourceFiles(d)
     cmd = args[0] 
-    if cmd == "scan":
-        Scan(d)
-    elif cmd == "update":
+    if cmd == "update":
         Update(d)
     elif cmd == "active":
         Active(d)
