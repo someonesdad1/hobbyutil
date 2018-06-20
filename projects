@@ -3,15 +3,15 @@
 # the key being the item with the colon in the first column.  I chose to
 # use YAML because it's a little more terse than using a python dictionary.
 #
-# The fields are:
+# The fields are (* means optional):
 #
 #   subdir      Subdirectory name for the project
 #   descr       Description of the project
 #   files       Source files making up the project
-#   ignore      If contains text, then the reason this project is ignored
+#   ignore    * If contains text, then the reason this project is ignored
 #   srcdir      Where to find source files
 #
-# A * after a file name means it doesn't need to be included in the
+# A * after a file name in files means it doesn't need to be included in the
 # distribution, but only when the package is constructed.  If there is only
 # one file not with a *, then it is the output; otherwise, a zipfile of the
 # files is constructed.
@@ -2202,7 +2202,6 @@ xyz:
         - xyz.shop
         - xyz.sphere
         - xyz.splice
-        - [../sig.py, sig.py]
     srcdir: /pylib/pgm
 
 yankee:

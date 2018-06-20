@@ -29,6 +29,7 @@ import sys
 import textwrap
 import traceback as TB
 import yaml
+import zipfile
 from textwrap import dedent
 from pdb import set_trace as xx
 
@@ -36,8 +37,17 @@ from pdb import set_trace as xx
 # Contact:  gmail.com@someonesdad1
 
 #
-# Licensed under the Open Software License version 3.0.
-# See http://opensource.org/licenses/OSL-3.0.
+# Licensed under the Apache License, Version 2.0 (the "License"); you
+# may not use this file except in compliance with the License.  You may
+# obtain a copy of the License at
+# 
+# http://www.apache.org/licenses/LICENSE-2.0
+# 
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+# implied.  See the License for the specific language governing
+# permissions and limitations under the License.
 #
 if 0:
     import debug
@@ -60,9 +70,6 @@ cygwin = "c:/cygwin" if on_windows else ""
 # If a package is to be made with the -z option, this directory is where
 # the packages will reside (it's separate from the repository).
 package_dir = cygwin + "/home/Don/hobbyutil_packages"
-
-# Keep track of softlinks created
-softlinks = set()
 
 # Open Office files found (need to be checked for linked pictures)
 oo_files = set()
@@ -119,6 +126,46 @@ destination filenames are the same.
 '''
 data = None
 
+class Project(object):
+    '''Contain the project's information and provide the requisite
+    packaging.  The object's attributes are:
+
+    name        Short name of project      
+    subdir      Which subdirectory will contain the file(s)
+    descr       Description of project
+    files       [src, dest] pairs of the project's files
+    srcdir      Where the source files reside
+    ignore      If not None, the reason this file isn't built 
+    '''
+    def __init__(self, name, project_data_dict):
+        self.name = name
+        self.data = project_data_dict
+        if "ignore" not in self.data:
+            self.data["ignore"] = None
+        self.validate_data()
+    def validate_data(self):
+        for key in "subdir descr files srcdir ignore".split():
+            if key not in self.data:
+                Error("{} data missing key {}".format(self.name, key))
+        # Make data attributes
+        self.subdir = self.data["subdir"]
+        self.descr = self.data["descr"]
+        self.files = self.data["files"]
+        self.srcdir = self.data["srcdir"]
+        self.ignore = self.data["ignore"]
+        if self.ignore:
+            return
+        # Make sure all source files exist and can be read
+        srcdir = self.data["srcdir"]
+        for SRC, DEST in self.files:
+            src = os.path.join(cygwin + srcdir, RemoveAsterisk(SRC))
+            if not os.path.isfile(src):
+                Error("'{}' doesn't exist".format(src))
+            try:
+                open(src, "rb").read()
+            except Exception:
+                Error("'{}' can't be read".format(src))
+
 def Error(msg, status=1):
     c.fg(c.lred)
     print(msg)
@@ -132,95 +179,6 @@ def Info(back=3):
     '''
     stack = TB.extract_stack()[-back:][0]
     return stack[:2]
-
-def Dump(opt):
-    '''Print a listing to stdout.
-    '''
-    Colors = { 
-        0 : {
-            "name"      : c.yellow,
-            "files"     : c.lmagenta,
-            "softlinks" : c.lblue,
-            "todo"      : c.lred,
-            "srcdir"    : c.lgreen,
-        },
-        1 : {
-            "name"      : c.gray,
-            "files"     : c.gray,
-            "softlinks" : c.gray,
-            "todo"      : c.gray,
-            "srcdir"    : c.gray,
-        },
-    }
-    projects = list(data.keys())
-    projects.sort()
-    for project in projects:
-        d = data[project]
-        if d["ignore"] is not None and not opt["-i"]:
-            continue
-        if d["ignore"] is not None:
-            C = Colors[1]
-            c.normal(c.gray, c.black)
-        else:
-            C = Colors[0]
-            c.normal(c.white, c.black)
-        c.fg(C["name"])
-        print(project, end="")
-        c.normal()
-        if d["ignore"] is not None:
-            print("  ignored:  %s" % d["ignore"])
-        else:
-            print()
-        keys = list(d.keys())
-        keys.sort()
-        for k in keys:
-            if k == "files":
-                c.fg(C["files"])
-                print("  Files:")
-                for f in d["files"]:
-                    c.fg(C["files"])
-                    if isinstance(f, (list, tuple)) and len(f) == 1:
-                        print("    %s -> %s" % (f, f))
-                    elif isinstance(f, str):
-                        print("    %s -> %s" % (f, f))
-                    else:
-                        print("    %s -> %s" % tuple(f))
-                c.normal()
-            elif k == "softlinks":
-                if not d[k]:
-                    continue
-                c.fg(C["softlinks"])
-                print("  Softlinks:")
-                for f in d["softlinks"]:
-                    c.fg(C["softlinks"])
-                    print("    %s -> %s" % tuple(f))
-                c.normal()
-            elif k == "descr":
-                print("  %s =" % k)
-                t = dedent(d[k])
-                print(tw.fill(t))
-                #for line in t.strip().split("\n"):
-                #    print("    %s" % line)
-            elif k == "todo":
-                c.fg(C["todo"])
-                if d[k] is not None:
-                    print("  %s = %s" % (k, d[k]))
-                c.normal()
-            elif k == "srcdir":
-                print("  srcdir = ", end="")
-                c.fg(C["srcdir"])
-                print(d[k])
-                c.normal()
-            elif k == "ignore":
-                pass
-            elif k in ("subdir", "python3", "tests"):
-                print("  %s = %s" % (k, d[k]))
-            else:
-                Error("Unhandled subdir %s" % k)
-                print("  %s = %s" % (k, d[k]))
-        print()
-    c.fg(c.white, c.black)
-    print("%d total packages" % len(data))
 
 #----------------------------------------------------------------------
 # This section contains the data for the main project web page.
@@ -387,28 +345,26 @@ Usage:  {name} [options] command [args]
   Utility to build the hobbyutil repository's contents.
 
 Commands:
-    update      Update the missing and out of date files for indicated
-                projects (you can use 'all', but be careful and ensure that
-                all need to be updated).
-    active      List the projects that are active.
-    inactive    List the projects that are inactive with needed fix.
-    md          Construct the project listing markdown file.
+    build       Copy the relevant files to their directories and construct
+                the zip files.  Also make the markdown file containing the
+                descriptions.  You can specify which projects in args or
+                use '.' to build everything.
+    list        List active and inactive projects.
 
 Options:
-    -s      Short list (no descriptions)
-    -z      Package the indicated projects in args into separate zip files.
-            These will be located in the directory indicated by the global 
-            variable package_dir.
+    -z      Package the indicated project(s) in args into separate zip
+            containers.  These will be located in the directory indicated 
+            by the global variable package_dir.
 '''[1:-1]
     print(s.format(**locals()))
     exit(status)
 
 def ParseCommandLine(d):
-    d["-s"]     = False     # If true, no descriptions for listings
+    d["-z"]     = False     # If True, zip indicated packages
     if len(sys.argv) < 2:
         Usage(d)
     try:
-        optlist, args = getopt.getopt(sys.argv[1:], "s")
+        optlist, args = getopt.getopt(sys.argv[1:], "z")
     except getopt.GetoptError as e:
         msg, option = e
         print(msg)
@@ -419,44 +375,6 @@ def ParseCommandLine(d):
     if not args:
         Usage(d)
     return args
-
-def MakeSoftlinks(d):
-    Message("Making softlinks", c.lblue)
-    for src, dest in softlinks:
-        if not os.path.isfile(src):
-            Error("'%s' is missing in MakeSoftlinks()" % src)
-        if os.path.islink(dest):
-            os.remove(dest)
-        elif os.path.isfile(dest):
-            Error("'%s' exists in MakeSoftlinks()" % dest)
-        try:
-            abs_src_dir = os.path.abspath(src)
-            dest_dir, dest_file = os.path.split(dest)
-            if not dest_dir:
-                Error("ln -s '%s' '%s' on empty dir" % (src, dest))
-            curdir = os.getcwd()
-            try:
-                # Remove any existing link or file
-                os.remove(dest)
-            except OSError:
-                pass
-            # Change to the destination directory so we can get a
-            # relative path to the file we want to point to.
-            if dest_dir:
-                os.chdir(dest_dir)
-            # Get the source directory relative to current directory
-            relsrc = os.path.relpath(abs_src_dir)
-            # Make the link
-            os.symlink(relsrc, dest_file)
-            if dest_dir:
-                os.chdir(curdir)
-            c.fg(c.lblue)
-            print("  ln -s '%s' <-- '%s'" % (src, dest))
-            c.normal()
-        except Exception as e:
-            msg = ["Couldn't make softlink '%s' --> '%s'" % (src, dest)]
-            msg += ["  %s" % e]
-            Error('\n'.join(msg))
 
 def Message(s, fg, bg=c.black):
     c.fg(fg, bg)
@@ -515,49 +433,30 @@ def ReadProjectData(d):
     '''Get data and update it to ensure all records are present.  The
     input data is in YAML format.
     '''
-    global data, softlinks, output_directories
+    global data, output_directories
     # Load information from disk
     tool, filename, mode = yaml, yamlfile, "r"
     # This reads the YAML syntax into a dictionary
     data = tool.load(open(filename, mode))
     # Check each project's entries
-    for proj in data:
-        item = data[proj]
-        if "subdir" not in item:
-            Error("'subdir' record not in %s" % proj)
-        output_directories.add(item["subdir"])
-        if "descr" not in item:
-            Error("'descr' record not in %s" % proj)
-        if "files" not in item:
-            Error("'files' record not in %s" % proj)
-        else:
-            # Change one file items to two (allowing the one file form
-            # is easier to read, takes less space, and indicates the
-            # file won't be renamed).
-            files = item["files"]
-            for i, f in enumerate(files):
-                if isinstance(f, str):
-                    files[i] = [f, f]
-                elif isinstance(f, list):
-                    assert len(f) == 2
-                else:
-                    Error("'%s' unexpected in project '%s'" % (f, proj))
-        if "ignore" not in item:
-            item["ignore"] = None
-        if "python3" not in item:
-            item["python3"] = False
-        if "softlinks" not in item:
-            item["softlinks"] = set()
-        else:
-            # Add to the softlinks list
-            for i in item["softlinks"]:
-                softlinks.add(tuple(i))
-        if "srcdir" not in item:
-            Error("'srcdir' record not in %s" % proj)
-        if "tests" not in item:
-            item["tests"] = False
-        if "todo" not in item:
-            item["todo"] = None
+    for project in data:
+        project_data = data[project]
+        if "files" not in project_data:
+            Error("'files' record not in {}".format(project))
+        # Change one file items to two (allowing the one file form
+        # is easier to read, takes less space, and indicates the
+        # file won't be renamed).
+        files = project_data["files"]
+        for i, f in enumerate(files):
+            if isinstance(f, str):
+                files[i] = [f, f]
+            elif isinstance(f, list):
+                assert len(f) == 2
+            else:
+                Error("'{}' unexpected in project '{}'" % (f, proj))
+        project_data["files"] = files
+        output_directories.add(project_data["subdir"])
+        data[project] = Project(project, project_data)
 
 def RemoveAsterisk(s):
     '''Remove a trailing * from a string.
@@ -566,36 +465,6 @@ def RemoveAsterisk(s):
         return s[:-1]
     return s
 
-def FindMissingSourceFiles(d):
-    missing_file = False
-    for project in data:
-        p = data[project]
-        if p["ignore"]:
-            continue
-        printed_project_name = False
-        for SRC, DEST in p["files"]:
-            src = os.path.join(cygwin + p["srcdir"], RemoveAsterisk(SRC))
-            if not os.path.exists(src):
-                missing_file = True
-                if not printed_project_name:
-                    print(project)
-                    printed_project_name = True
-                print("   ", src, "is missing")
-    if missing_file:
-        exit()
-
-def Update(d):
-    pass
-
-def Active(d):
-    pass
-
-def Inactive(d):
-    pass
-
-def Markdown(d):
-    pass
-
 def MakeDirectories(d):
     '''If any directory in output_directories is not present, construct it.
     '''
@@ -603,20 +472,58 @@ def MakeDirectories(d):
         if not os.path.isdir(dir):
             os.mkdir(dir)
 
+def BuildZips(args, d):
+    pass
+
+def BuildProject(project_object):
+    # Make a list of the files without an ending asterisk in name
+    file_list = []
+    for src, dest in project_object.files:
+        if not src.endswith("*"):
+            file_list.append((src, dest))
+    assert(file_list)
+    if len(file_list) == 1:
+        # Copy the single file.  Assumes we are in the root of the
+        # repository.
+        src = os.path.join(cygwin + project_object.srcdir, file_list[0][0])
+        dest = os.path.join(project_object.subdir, file_list[0][1])
+        shutil.copyfile(src, dest)
+    else:
+        # Construct a zipfile of these files
+        zname = project_object.name + ".zip"
+        zdest = os.path.join(project_object.subdir, zname)
+        zf = zipfile.ZipFile(zdest, "w")
+        for SRC, DEST in file_list:
+            src = os.path.join(cygwin + project_object.srcdir, SRC)
+            zf.write(src, DEST)
+        zf.close()
+
+def Build(args):
+    assert(args[0] == "build")
+    del args[0]
+    print("Building projects:")
+    if args[0] == ".":
+        args = data.keys()
+    for project in args:
+        project_object = data[project]
+        if project_object.ignore:
+            continue
+        print(project) 
+        BuildProject(project_object)
+    print()
+
+def List(d):
+    pass
+
 if __name__ == "__main__": 
     d = {} # Options dictionary
     args = ParseCommandLine(d)
     ReadProjectData(d)
     MakeDirectories(d)
-    FindMissingSourceFiles(d)
     cmd = args[0] 
-    if cmd == "update":
-        Update(d)
-    elif cmd == "active":
-        Active(d)
-    elif cmd == "inactive":
-        Inactive(d)
-    elif cmd == "md":
-        Markdown(d)
+    if cmd == "build":
+        BuildZips(args) if d["-z"] else Build(args)
+    elif cmd == "list":
+        List(d)
     else:
         Error("'%s' is an unrecognized command" % cmd)

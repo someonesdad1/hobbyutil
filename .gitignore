@@ -3,6 +3,7 @@ z
 .vi
 tags
 *.swp
+*.bak
 
 # Ignore any Open Office, Word, or bitmap files.  This is done to avoid populating
 # the repository with source stuff.  Users are alerted that they can request the
