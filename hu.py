@@ -18,6 +18,7 @@ zip file so they can be emailed to the user.
 
 from __future__ import print_function
 from collections import defaultdict
+from columnize import Columnize
 import color as c
 import getopt
 import hashlib
@@ -217,6 +218,9 @@ Commands:
     list        List active and inactive projects.
 
 Options:
+    -i      If the -z option is given, then zip up the indicated project
+            even if it is ignored.  This can be used to find missing
+            project files.
     -z      Package the indicated project(s) in args into separate zip
             containers.  These will be located in the directory indicated
             by the global variable package_dir.
@@ -225,18 +229,21 @@ Options:
     exit(status)
 
 def ParseCommandLine(d):
+    d["-i"]     = False     # If True, zip even if ignored
     d["-z"]     = False     # If True, zip indicated packages
     if len(sys.argv) < 2:
         Usage(d)
     try:
-        optlist, args = getopt.getopt(sys.argv[1:], "z")
+        optlist, args = getopt.getopt(sys.argv[1:], "iz")
     except getopt.GetoptError as e:
         msg, option = e
         print(msg)
         exit(1)
     for opt in optlist:
-        if opt[0] == "-s":
-            d["-s"] = True
+        if opt[0] == "-i":
+            d["-i"] = True
+        elif opt[0] == "-z":
+            d["-z"] = True
     if not args:
         Usage(d)
     return args
@@ -289,9 +296,6 @@ def MakeDirectories(d):
         if not os.path.isdir(dir):
             os.mkdir(dir)
 
-def BuildZips(args, d):
-    pass
-
 def BuildProject(project_object):
     # Make a list of the files without an ending asterisk in name
     file_list = []
@@ -318,13 +322,48 @@ def BuildProject(project_object):
     entry = (dest, project_object.descr)
     Project.projects[project_object.subdir].append(entry)
 
-def Build(args):
-    assert(args[0] == "build")
-    del args[0]
+def List(d):
+    '''List active and inactive projects.
+    '''
+    active, inactive = [], []
+    for project in data:
+        if data[project].ignore:
+            inactive.append(project)
+        else:
+            active.append(project)
+    w = 80
+    s = "{} Inactive projects".format(len(inactive))
+    print("{:^{}s}".format(s, w))
+    print("{:^{}s}".format("-"*len(s), w))
+    for i in Columnize(inactive):
+        print(i)
+    print()
+    s = "{} Active projects".format(len(active))
+    print("{:^{}s}".format(s, w))
+    print("{:^{}s}".format("-"*len(s), w))
+    for i in Columnize(active):
+        print(i)
+
+def BuildProjectZip(project_object):
+    # Make a list of all the files without an ending asterisk in name
+    files = []
+    for src, dest in project_object.files:
+        files.append((RemoveAsterisk(src), RemoveAsterisk(dest)))
+    assert(files)
+    # Construct a zipfile of these files
+    zname = project_object.name + ".zip"
+    dest = os.path.join(package_dir, zname)
+    zf = zipfile.ZipFile(dest, "w")
+    for SRC, DEST in files:
+        src = os.path.join(cygwin + project_object.srcdir, SRC)
+        zf.write(src, DEST)
+    zf.close()
+
+def Build(projects):
     print("Building projects:")
-    if args[0] == ".":
-        args = data.keys()
-    for project in args:
+    if projects[0] == ".":
+        projects = data.keys()
+    for project in projects:
         project_object = data[project]
         if project_object.ignore:
             continue
@@ -345,8 +384,19 @@ def Build(args):
             pl.write("{} | {}\n".format(link, descr))
     pl.close()
 
-def List(d):
-    pass
+def BuildZips(projects, d):
+    '''Construct zipfiles of the indicated projects.
+    '''
+    print("Building project zipfiles:")
+    if projects[0] == ".":
+        projects = data.keys()
+    for project in projects:
+        project_object = data[project]
+        if project_object.ignore and not d["-i"]:
+            print("{}'{}' is ignored".format(" "*20, project))
+            continue
+        print(project)
+        BuildProjectZip(project_object)
 
 if __name__ == "__main__":
     d = {} # Options dictionary
@@ -354,8 +404,11 @@ if __name__ == "__main__":
     ReadProjectData(d)
     MakeDirectories(d)
     cmd = args[0]
+    del args[0]
     if cmd == "build":
-        BuildZips(args) if d["-z"] else Build(args)
+        if not args:
+            Usage(d)
+        BuildZips(args, d) if d["-z"] else Build(args)
     elif cmd == "list":
         List(d)
     else:

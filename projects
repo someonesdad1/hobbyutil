@@ -23,8 +23,6 @@ ag:
         AnalyticGeometry.odt*, 
         AnalyticGeometry.pdf,
         pictures/trig_quadrants.png*,
-        pictures/segment_2.png*,
-        pictures/ellipse_circumference.png*,
         pictures/trig_functions.png*
     ]
     ignore: Needs updating
@@ -209,11 +207,10 @@ c300:
     files: [
         Concise300.odt*,
         Concise300.pdf,
-        pictures/concise_300_front.png*,
-        pictures/concise_300_back.png*
+        Concise/Concise_300.jpg*,
     ]
     ignore: Few people are interested in slide rules anymore
-    srcdir: /math/one_page_calculator
+    srcdir: /math/SlideRules
 
 cart:
     subdir: shop
@@ -256,23 +253,25 @@ cheat:
         pipe_threads.ods,
         tap_drills.ods,
         thread_depths.ods,
-        Torx.ods,
+        TorxGauging.ods,
+        TorxSizes.odt,
         TurningSpeeds.odt,
         weights_bar_stock1.ods,
         wrench_sizes.ods,
-        pdfs/0readme.pdf,
-        pdfs/common_threads.pdf,
-        pdfs/cutting_info.pdf,
-        pdfs/decimal_equivalents.pdf,
-        pdfs/diameter_to_rpm.pdf,
-        pdfs/fractions.pdf,
-        pdfs/pipe_threads.pdf,
-        pdfs/tap_drills.pdf,
-        pdfs/thread_depths.pdf,
-        pdfs/Torx.pdf,
-        pdfs/TurningSpeeds.pdf,
-        pdfs/weights_bar_stock1.pdf,
-        pdfs/wrench_sizes.pdf
+        pdf/0readme.pdf,
+        pdf/common_threads.pdf,
+        pdf/cutting_info.pdf,
+        pdf/decimal_equivalents.pdf,
+        pdf/diameter_to_rpm.pdf,
+        pdf/fractions.pdf,
+        pdf/pipe_threads.pdf,
+        pdf/tap_drills.pdf,
+        pdf/thread_depths.pdf,
+        pdf/TorxGauging.pdf,
+        pdf/TorxSizes.pdf,
+        pdf/TurningSpeeds.pdf,
+        pdf/weights_bar_stock1.pdf,
+        pdf/wrench_sizes.pdf
     ]
     ignore: Pretty specialized
     srcdir: /shop/cheat_sheets
@@ -340,10 +339,10 @@ cnt:
     files:
         - cnt.py
         - cnt.readme
-        - fpformat.py
-        - [pgm/pager.py, pager.py]
+        - [../fpformat.py, fpformat.py]
+        - pager.py
     ignore: Of interest to few
-    srcdir: /pylib
+    srcdir: /pylib/pgm
 
 color:
     subdir: util
@@ -395,25 +394,25 @@ cs:
         - pictures/shunt_current_source.jpg*
     srcdir: /elec/projects
 
-csnippets:
-    subdir: prog
-    descr: This is a zip file of the C snippets code put together by
-        Bob Stout; it is the Jul 1997 edition, although I downloaded
-        it 18 Jan 2011 from somewhere. Apparently Bob Stout died in
-        2008 and the snippets domain wasn't picked up by anyone else
-        (the snippets.org now belongs to someone, but it isn't related
-        to Stout's snippet collection). I thought it would be useful
-        to make sure there was another cache of the Snippets collection.
-        While some of the code is only of interest to archeologists
-        investigating primitive DOS cultures, there are numerous useful
-        algorithms in there, so it's worth your time to take a look,
-        as there are 416 separate C files.  We all owe a debt of gratitude
-        to Bob Stout for his dedication in writing, collecting, and
-        collating all this stuff.
-    files:
-        - [C_snippets_Jan2011.zip, C_snippets.zip]
-    ignore: 'Yes'
-    srcdir: /p/pictures/hu.orig/other
+#csnippets:
+#    subdir: prog
+#    descr: This is a zip file of the C snippets code put together by
+#        Bob Stout; it is the Jul 1997 edition, although I downloaded
+#        it 18 Jan 2011 from somewhere. Apparently Bob Stout died in
+#        2008 and the snippets domain wasn't picked up by anyone else
+#        (the snippets.org now belongs to someone, but it isn't related
+#        to Stout's snippet collection). I thought it would be useful
+#        to make sure there was another cache of the Snippets collection.
+#        While some of the code is only of interest to archeologists
+#        investigating primitive DOS cultures, there are numerous useful
+#        algorithms in there, so it's worth your time to take a look,
+#        as there are 416 separate C files.  We all owe a debt of gratitude
+#        to Bob Stout for his dedication in writing, collecting, and
+#        collating all this stuff.
+#    files:
+#        - [C_snippets_Jan2011.zip, C_snippets.zip]
+#    ignore: 'Yes'
+#    srcdir: /p/pictures/hu.orig/other
 
 cut:
     subdir: shop
@@ -630,17 +629,17 @@ ds:
         - [../../tools/app.cpp, app.cpp]
     srcdir: /pylib/pgm
 
-dupfile:
-    subdir: util
-    descr: Python script to find duplicated files in a directory tree.
-        It works by hashing each file, then looking for duplicate hashes
-        and equal file sizes. It may take a long time on a big directory
-        tree, but it will find places you're wasting space, especially
-        if they are big files.  It will also find files that are hard-linked
-        together, but you may want to use lnk.py for this task instead.
-    files: [dupfile.py]
-    ignore: Need to fix algorithm for speedup
-    srcdir: /pylib/pgm
+#dupfile:
+#    subdir: util
+#    descr: Python script to find duplicated files in a directory tree.
+#        It works by hashing each file, then looking for duplicate hashes
+#        and equal file sizes. It may take a long time on a big directory
+#        tree, but it will find places you're wasting space, especially
+#        if they are big files.  It will also find files that are hard-linked
+#        together, but you may want to use lnk.py for this task instead.
+#    files: [dupfile.py]
+#    ignore: Can't find script
+#    srcdir: /pylib/pgm
 
 ef:
     subdir: math
@@ -802,7 +801,8 @@ fpen:
         - pictures/pen_case.jpg*
         - pictures/pen_wrap_Elizabeth_Boling.jpg*
         - pictures/pen_holder.jpg*
-        - pictures/storage.jpg* pictures/belt_holder.jpg,
+        - pictures/storage.jpg*
+        - pictures/belt_holder.jpg*
         - pictures/blotter.jpg*
         - pictures/bench_block.jpg*
         - pictures/pen_disassembly_1.jpg*
@@ -810,7 +810,7 @@ fpen:
         - pictures/pen_disassembly_3.jpg*
         - pictures/pen_disassembly_4.jpg*
         - pictures/pen_dewaterer.jpg*
-        - pictures/ink_syringe_kit.jpg- *
+        - pictures/ink_syringe_kit.jpg*
         - pictures/parker_slimfold_shading.jpg*
         - pictures/micromike.jpg*
         - pictures/ohaus_balance.jpg*
@@ -921,12 +921,12 @@ gpaper:
         so you can hack things if you e.g. want to change to A4 paper
         or modify colors or line widths.
     files:
-        - graph_paper.py,
-        - 5mm_A.pdf,
-        - dots_2tenths_A.pdf,
-        - drafting_A.pdf,
-        - engineering_A.pdf,
-        - letter_ruled_A.pdf,
+        - graph_paper.py
+        - 5mm_A.pdf
+        - dots_2tenths_A.pdf
+        - drafting_A.pdf
+        - engineering_A.pdf
+        - letter_ruled_A.pdf
         - quarter_inch_A.pdf
     ignore: Little interest
     srcdir: /doc/graph_paper
@@ -975,7 +975,7 @@ help:
         - prog/perl4
         - prog/perl5
         - prog/ps
-        - prog/python
+        - prog/python2
         - prog/sed
         - prog/snippets
         - prog/sql
@@ -1058,8 +1058,8 @@ hppn:
         be considered complete.  A python script can do the lookup
         tasks.
     files:
-        - 0readme, 
-        - hp.py,
+        - 0readme
+        - hp.py
         - hp_parts
     ignore: Limited interest
     srcdir: /elec/hp
@@ -1070,9 +1070,9 @@ iapws:
         the IAPWS95 equations for the thermodynamic properties of water.
         See http://www.iapws.org/relguide/IAPWS-95.htm IAPWS95
     files:
-        - iapws95.cpp,
-        - iapws95.h,
-        - iapws95.py,
+        - iapws95.cpp
+        - iapws95.h
+        - iapws95.py
         - test.py
     ignore: Limited interest
     srcdir: /science/john_pye/py
@@ -1339,8 +1339,8 @@ oct:
         1930's.
     files:
         - 0readme
-        - Octopus.odt*
-        - Octopus.pdf
+        - Octopus_new.odt*
+        - Octopus_new.pdf
         - pictures/octopus_non_sine.png*
         - [pictures/small/BNC_connectors.png*, pictures/BNC_connectors.png*]
         - [pictures/small/octopus_100_nF.png*, pictures/octopus_100_nF.png*]
@@ -1535,7 +1535,6 @@ primes:
     files:
         - primes.py
         - [pgm/int.py, int.py]
-        - primes.readme
         - [/tools/primes_fast.cpp, primes_fast.cpp]
     ignore: Test under python 3.  Move files to /math.
     srcdir: /pylib
@@ -1644,12 +1643,12 @@ res:
         cross sections (handy for designing shunts).  The PDF files
         contain the documentation.
     files:
-        - makefile,
-        - resistor.cpp,
-        - resistor.ods,
-        - resistor.odt,
-        - resistor.pdf,
-        - resistor_s.pdf,
+        - makefile
+        - resistor.cpp
+        - resistor.ods
+        - resistor.odt*
+        - resistor.pdf
+        - resistor_s.pdf
         - resistor.test
     ignore: Limited interest
     srcdir: /elec/software/resistors
@@ -1864,7 +1863,7 @@ split_cat:
         later back into the original file. Useful for band-limited
         tools like email and floppy disks.
     files:
-        - split.py,
+        - split.py
         - cat.py
     ignore: Limited interest
     srcdir: /pylib/pgm
@@ -1879,7 +1878,7 @@ square:
         square and it's accurate enough for the usual purposes.
     files:
         - [angles_and_carpenters_square.odt*, square.odt*]
-        - [angles_and_carpenters_square.pdf, square.pdf]
+        - [pdf/angles_and_carpenters_square.pdf, square.pdf]
     ignore: Limited interest
     srcdir: /shop/cheat_sheets
 
@@ -1978,9 +1977,9 @@ ts:
         it's relatively simple to use, it can provide a fair bit
         of power.
     files:
-        - ts.py,
+        - ts.py
         - ts.ts 
-        - makefile,
+        - makefile
         - ts.css
     ignore: Not released yet
     srcdir: /pylib/pgm/ts
@@ -2110,7 +2109,7 @@ weigh:
         - weighing1.jpg*
         - weighing4.jpg*
     ignore: Limited interest
-    srcdir: /doc/trailer
+    srcdir: /doc/trailer/weighing_trailer
 
 wordnum:
     subdir: prog
@@ -2218,8 +2217,8 @@ yankee:
         of these screwdrivers apart so it can be cleaned.  Dimensional
         sketches are included of some parts that might need to be made.
     files:
-        - YankeeDriver.odt**
-        - YankeeDriver.pdf
+        - YankeePushDrill.odt*
+        - YankeePushDrill.pdf
         - pictures/yankee_screwdriver_1.png*
         - pictures/yankee_screwdriver_2.png*
         - pictures/yankee_screwdriver_3.png*

@@ -14,9 +14,14 @@ containing the information that the project's data are constructed from.
 For projects that are python scripts, I have standardized on python 3.6 for running
 the scripts.  Many of these scripts have also been tested on python 2.7, but I am
 no longer making the effort to keep things running with python 2.7, as python 3 is
-mature and well-supported by the needed libraries.  Where self-tests are available,
-they will be python scripts that have the same name as the script with '\_test'
-appended.
+mature and well-supported by the needed libraries.  If you see a script contain the
+line
+
+```from __future__ import division, print_function```
+
+then it's probable that the script will run under python 2.7 Where self-tests are
+available, they will be python scripts that have the same name as the script with
+'\_test' appended.
 
 The ./projects file in the repository is used to keep track of the things that are
 in this repository (its main function is to map the files on my hard disk to the
