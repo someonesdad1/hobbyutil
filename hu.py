@@ -218,9 +218,8 @@ Commands:
     list        List active and inactive projects.
 
 Options:
-    -i      If the -z option is given, then zip up the indicated project
-            even if it is ignored.  This can be used to find missing
-            project files.
+    -i      Ignore the ignore flag in the projects file.  This can be used
+            to find missing project files.
     -z      Package the indicated project(s) in args into separate zip
             containers.  These will be located in the directory indicated
             by the global variable package_dir.
@@ -359,13 +358,13 @@ def BuildProjectZip(project_object):
         zf.write(src, DEST)
     zf.close()
 
-def Build(projects):
+def Build(projects, d):
     print("Building projects:")
     if projects[0] == ".":
         projects = data.keys()
     for project in projects:
         project_object = data[project]
-        if project_object.ignore:
+        if project_object.ignore and not d["-i"]:
             continue
         print(project)
         BuildProject(project_object)
@@ -408,7 +407,7 @@ if __name__ == "__main__":
     if cmd == "build":
         if not args:
             Usage(d)
-        BuildZips(args, d) if d["-z"] else Build(args)
+        BuildZips(args, d) if d["-z"] else Build(args, d)
     elif cmd == "list":
         List(d)
     else:
