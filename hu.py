@@ -78,7 +78,7 @@ tw.initial_indent = tw.subsequent_indent = " "*4
 output_directories = set()
 
 # Name of the project list markdown file
-project_list = "project_list.md"
+project_list_markdown = "project_list.md"
 
 # Map output directories to more meaningful names
 output_directories_map = OrderedDict((
@@ -390,19 +390,65 @@ def Build(projects, d):
         print(project)
         BuildProject(project_object)
     print()
-    # Now build the project list markdown page
-    pl = open(project_list, "w")
+    BuildProjectPage(d)
+
+def BuildProjectPage(d):
+    '''This builds the project_list.md file.  Note it has to include all
+    the projects that are not ignored.  To do this, we build an OrderedDict
+    that has the category names as keys (e.g., Electrical, etc.) and a list
+    as value.  Each non-ignored project is then appended to the list as the
+    data container is iterated over.
+    '''
+    # Build a container of Project objects indexed by the category and in
+    # alphabetical order under each category.
+    project_container = OrderedDict((
+        ("elec", []),
+        ("eng", []),
+        ("math", []),
+        ("misc", []),
+        ("prog", []),
+        ("science", []),
+        ("shop", []),
+        ("util", []),
+    ))
+    for project_name in data:
+        po = project_object = data[project_name]
+        if po.ignore:
+            continue
+        # The list entry will be a (link_abbrev, description) tuple.
+        abbr = "{}/{}".format(po.subdir, project_name)
+        link = "[{}]({})".format(abbr, abbr)
+        description = po.descr
+        entry = (link, description)
+        project_container[po.subdir].append(entry)
+    if 0:
+        from pprint import pprint as pp
+        pp(project_container)
+        exit()
+    # Write the project_list.md markdown file (this produces the webpage's
+    # table).
+    pl = open(project_list_markdown, "w")
     pl.write(Header + nl)
-    for project in Project.projects:
-        pl.write(nl + "## " + output_directories_map[project] + nl + nl)
+    for category in project_container:
+        # Write heading for category
+        pl.write(nl + "## " + output_directories_map[category] + nl + nl)
         # Start a table
         pl.write('''Link | Description
 --- | ---
 ''')
-        for name, descr in Project.projects[project]:
-            link = "[{}]({})".format(name, name)
+        for link, descr in project_container[category]:
             pl.write("{} | {}\n".format(link, descr))
+    # Add in some statistics
     pl.write(nl + "Updated {}".format(asctime()))
+    pl.write(nl + "Number of projects:")
+    total_number_of_projects = 0
+    for category in project_container:
+        n = len(project_container[category])
+        name = output_directories_map[category]
+        pl.write(nl + "  {:3d} {}".format(n, name))
+        total_number_of_projects += n
+    pl.write(nl + "Total number of projects = {}".format(
+                total_number_of_projects))
     pl.close()
 
 def BuildZips(projects, d):
