@@ -309,13 +309,18 @@ def MakeDirectories(d):
         if not os.path.isdir(dir):
             os.mkdir(dir)
 
-def BuildProject(project_object):
-    # Make a list of the files without an ending asterisk in name
+def GetFileList(project_object):
+    ''' Make a list of the files without an ending asterisk in name.
+    '''
     file_list = []
     for src, dest in project_object.files:
         if not src.endswith("*"):
             file_list.append((src, dest))
     assert(file_list)
+    return file_list
+
+def BuildProject(project_object):
+    file_list = GetFileList(project_object)
     if len(file_list) == 1:
         # Copy the single file.  Assumes we are in the root of the
         # repository.
@@ -392,6 +397,17 @@ def Build(projects, d):
     print()
     BuildProjectPage(d)
 
+def GetLinkName(project_object):
+    '''Return the name of the file to link to for this project.  It will be
+    a zip file if the project contains more than one file.
+    '''
+    files = GetFileList(project_object)
+    if len(files) == 1:
+        file = files[0][1]
+    else:
+        file = project_object.name + ".zip"
+    return "{}/{}".format(project_object.subdir, file)
+
 def BuildProjectPage(d):
     '''This builds the project_list.md file.  Note it has to include all
     the projects that are not ignored.  To do this, we build an OrderedDict
@@ -416,7 +432,7 @@ def BuildProjectPage(d):
         if po.ignore:
             continue
         # The list entry will be a (link_abbrev, description) tuple.
-        abbr = "{}/{}".format(po.subdir, project_name)
+        abbr = GetLinkName(po)
         link = "[{}]({})".format(abbr, abbr)
         description = po.descr
         entry = (link, description)
