@@ -1,7 +1,9 @@
 # This file defines the projects and the location of the source files.  The
-# fields are in YAML format and each entry is turned into a dictionary with
+# fields are in YAML format and the data are turned into a dictionary with
 # the key being the item with the colon in the first column.  I chose to
 # use YAML because it's a little more terse than using a python dictionary.
+# You can get a python library for YAML from
+# https://github.com/yaml/pyyaml.
 #
 # The fields are (* means optional):
 #
@@ -47,7 +49,6 @@ antif:
         - pictures/misco_scales.jpg*
         - pictures/sulfuric_acid_density.png*
         - pictures/sulfuric_acid_density_residuals.png*
-    ignore: Needs updating
     srcdir: /science/antifreeze
 
 app:
@@ -120,7 +121,6 @@ bcmt:
         - out/small_log_table.png*
         - out/small_math_tables.page1.png*
         - out/small_math_tables.page2.png*
-    ignore: Probably of interest to few people
     srcdir: /math/BusinessCardMathTables
 
 bd:
@@ -137,7 +137,6 @@ bgrep:
     descr: Python script to search for regular expressions and strings
         in binary files.
     files: [bgrep.py]
-    ignore: Few people would be interested
     srcdir: /pylib/pgm
 
 bidict:
@@ -203,8 +202,27 @@ c300:
         - Concise300.odt*
         - Concise300.pdf
         - Concise/Concise_300.jpg*
-    ignore: Few people are interested in slide rules anymore
     srcdir: /math/SlideRules
+
+calipers:
+    subdir: shop
+    descr: Discussion and use of old-style machinist calipers.
+    files:
+        - Calipers.odt*
+        - Calipers.pdf
+        - pictures/caliper_types_1.jpg*
+        - pictures/transfer_calipers_substitute.jpg*
+        - pictures/calipers_for_woodworking.jpg*
+        - pictures/stevens_thread_calipers_1.png*
+        - pictures/Homemade_inside_firm_joint.jpg*
+        - [../../projects/pictures/filing_3_flats_1.png*, pictures/filing_3_flats_1.png*]
+        - [../../projects/pictures/filing_3_flats_2.png*, pictures/filing_3_flats_2.png*]
+        - [../../projects/pictures/filing_3_flats_4.png*, pictures/filing_3_flats_4.png*]
+        - [../../projects/pictures/rotary_table_1.jpg*, pictures/rotary_table_1.jpg*]
+        - [../../projects/pictures/rotary_table_2.jpg*, pictures/rotary_table_2.jpg*]
+        - [../../projects/pictures/hammers_cross_pein.jpg*, pictures/hammers_cross_pein.jpg*]
+        - [patents/starrett_fay_1895_lock_joint_US539759.png*, /patents/starrett_fay_1895_lock_joint_US539759.png*]
+    srcdir: /shop/LengthMeasurement/calipers
 
 cart:
     subdir: shop
@@ -216,7 +234,6 @@ cart:
         - pictures/green_cart_platform2.jpg*
         - pictures/green_cart_platform4.jpg*
         - pictures/green_cart_platform5.jpg*
-    ignore: Update to show axle modifications
     srcdir: /shop/projects/CartPlatform
 
 chain:
@@ -276,7 +293,6 @@ chemname:
         - chemical_names.odt*
         - chemical_names.pdf
     srcdir: /help/science
-    ignore:  Convert over to the spreadsheet version in /p/doc/spreadsheets/chemical_names.ods.
 
 circ3:
     subdir: shop
@@ -317,7 +333,6 @@ clamps:
         - [pictures/small/machinist_clamp_6_aluminum.png*, pictures/machinist_clamp_6_aluminum.png*]
         - [pictures/small/machinist_clamp_7_jaws.png*, pictures/machinist_clamp_7_jaws.png*]
         - [pictures/small/toolmaker_clamp1.png*, pictures/toolmaker_clamp1.png*]
-    ignore: Reduce picture sizes by 2
     srcdir: /shop/projects
 
 cnt:
@@ -332,7 +347,6 @@ cnt:
         - cnt.readme
         - [../fpformat.py, fpformat.py]
         - pager.py
-    ignore: Of interest to few
     srcdir: /pylib/pgm
 
 color:
@@ -356,7 +370,6 @@ comb:
     descr: A python script that will produce permutations and combinations
         of the lines in a file. Can be useful for generating test cases.
     files: [comb.py]
-    ignore: itertools has such things today
     srcdir: /pylib/pgm
 
 cove:
@@ -474,44 +487,26 @@ diam:
     descr: Plots of circles showing the relative mean diameters of
         planets and moons in the solar system.
     files: [diameters.pdf]
-    ignore: Limited interest
     srcdir: /science/astronomy/diameters
 
 dino:
     subdir: math
     descr: This document discusses doing calculations without using
-        an electronic calculator. It also includes a spreadsheet that
-        gives the tables that were common in the math books years ago,
-        as people don't use this stuff much anymore. I'm not advocating
-        that we give up our calculators, but it's useful for a technical
-        person to know how to reason quantitatively when a calculator
-        isn't handy. This document looks at some of the methods for
-        doing this.
+        an electronic calculator.  I'm not advocating that we give up our
+        calculators, but it's useful for a technical person to know how to
+        reason quantitatively when a calculator isn't handy.
     files:
-        - DinosaurArithmetic.odt*
-        - DinosaurArithmetic.pdf
-        - pictures/round_abs_4_digits.png*
-        - pictures/round_rel_4_digits.png*
-        - pictures/roundoff_study_4_digits.png*
-        - pictures/barlows_squares.png*
-        - pictures/binom_approx.png*
+        - DinosaurArithmeticSmall.odt*
+        - DinosaurArithmeticSmall.pdf
         - pictures/trig_approx.png*
-        - pictures/squares_cubes.png*
-        - pictures/5_place_logs.png*
-        - pictures/business_card_math_tables.jpg*
-        - pictures/slide_rule.png*
-        - pictures/sama_etani_ee_front.png*
-        - pictures/sama_etani_ee_back.png*
-        - pictures/angle_square_root_2_multiply.png*
-    ignore: Update to a single PDF and eliminate tables
     srcdir: /math/Dinosaur_Arithmetic
 
 ditchpump:
     subdir: shop
     descr: Comments and tips on using a ditch pump to water your lawn.
     files:
-        - [DitchPump_pub.odt*, DitchPump.odt*]
-        - [DitchPump_pub.pdf, DitchPump.pdf]
+        - DitchPump_pub.odt*
+        - DitchPump_pub.pdf
         - pictures/internal_pipe_wrench.jpg*
         - pictures/pump_house.png*
         - pictures/cimg1743.jpg*
@@ -521,7 +516,6 @@ ditchpump:
         - [pictures/small/pipe_shield_2.png*, pictures/pipe_shield_2.png*]
         - pictures/small/pump_house.png*
         - [pictures/small/pump_rear_5Aug2012.png*, pictures/pump_rear_5Aug2012.png*]
-    ignore: Reduce picture size by 3
     srcdir: /doc/home/sprinklers
 
 diurnal:
@@ -547,7 +541,6 @@ diurnal:
         - pictures/28Jul2011_effects.jpg*
         - pictures/mounting_geometry.jpg*
         - pictures/collimated_detector_view.jpg*
-    ignore: Yes -- keep legacy PDF because it's big
     srcdir: /science/diurnal_optics
 
 dmath:
@@ -561,7 +554,6 @@ dmath:
         - dmath.py
         - dmath_test.py
         - [readme, 0readme]
-    ignore: Limited interest, but probably should be included
     srcdir: /math/dmath
 
 donor:
@@ -582,7 +574,6 @@ drtri:
         - [drafting_triangle_tip.odt*, DraftingTriangleTip.odt*]
         - [drafting_triangle_tip.pdf, DraftingTriangleTip.pdf]
         - pictures/drafting_triangle_tip.png*
-    ignore: Limited interest
     srcdir: /shop/projects
 
 drules:
@@ -592,7 +583,6 @@ drules:
         You can print them at full scale and glue them to a chunk of
         wood to make some handy scales.
     files: [drules.pdf]
-    ignore: Limited interest
     srcdir: /shop/drafting_rules
 
 ds:
@@ -667,31 +657,24 @@ elements:
         table of the elements, a plot of the vapor pressures of the
         elements, values of physical parameters sorted by value, and
         various physical parameters of the elements plotted as a function
-        of atomic number. The raw data are contained in the elements.ods
-        Open Office spreadsheet; the zip archive includes the python
-        scripts used to generate the plots. If you'd like to generate
-        the plots yourself, you can, as the tools are all open source
-        or freely available, but be warned that there are numerous
-        libraries that you'll need to get. I've wanted a document like
-        this since the 1970's, but I knew that most of the work would
-        be in manually typing in all the data from various places.
-        I was right...  :^)
+        of atomic number.  I've wanted a document like this since the
+        1970's, but I knew that most of the work would be in manually
+        typing in all the data from various places.  I was right...  :^)
     files:
-        - 0readme
+        - 0readme*
         - elements.ods*
         - elements.pdf
-        - elements.py
+        - elements.py*
         - elements_doc.odt*
         - elements_doc.pdf
-        - periodic_table.py
-        - plot_page.py
-        - property_plots.py
-        - raw.py
-        - sorted_properties.py
-        - vapor_pressure.py
+        - periodic_table.py*
+        - plot_page.py*
+        - property_plots.py*
+        - raw.py*
+        - sorted_properties.py*
+        - vapor_pressure.py*
         - pictures/elastic_constants.jpg*
-        - [/pylib/fpformat.py, fpformat.py]
-    ignore: PDF is large
+        - [/pylib/fpformat.py*, fpformat.py*]
     srcdir: /science/elements
 
 esr:
@@ -742,7 +725,6 @@ fit:
         after a sentence and it won't recognize common abbreviations
         with a trailing period as the end of a sentence.
     files: [fit.py]
-    ignore: Limited interest
     srcdir: /pylib/pgm
 
 fits:
@@ -804,8 +786,7 @@ fpen:
         - pictures/parker_slimfold_shading.jpg*
         - pictures/micromike.jpg*
         - pictures/ohaus_balance.jpg*
-        - pictures/ink_density_with_no_flash.jpg
-    ignore: PDF is big
+        - pictures/ink_density_with_no_flash.jpg*
     srcdir: /doc/pens
 
 frac:
@@ -855,7 +836,6 @@ fseq:
         - fseq.pdf
         - [../cmddecode.py, cmddecode.py]
         - pictures/sampling_wor.png*
-    ignore: Limited interest
     srcdir: /pylib/pgm
 
 fset:
@@ -891,7 +871,6 @@ glendag:
         - GlendaGuard.pdf
         - pictures/glenda_guard_2.jpg*
         - pictures/glenda_guard_1.jpg
-    ignore: Limited interest
     srcdir: /shop/projects/GlendaGuard
 
 goto:
@@ -918,7 +897,6 @@ gpaper:
         - engineering_A.pdf
         - letter_ruled_A.pdf
         - quarter_inch_A.pdf
-    ignore: Little interest
     srcdir: /doc/graph_paper
 
 grid:
@@ -926,8 +904,21 @@ grid:
     descr: This python script will generate most any linear isotropic
         graph paper by creating a PostScript file.
     files: [eng_grid.py]
-    ignore: Many similar things available on web
     srcdir: /pylib/pgm
+
+hammer:
+    subdir: shop
+    descr: Discusses the common hammer types and making a new handle for one.
+    files:
+        - hammer.odt*
+        - hammer.pdf
+        - pictures/hammers_cross_pein.jpg*
+        - pictures/cut_masonry_nail.jpg*
+        - pictures/punch_holder.png*
+        - pictures/hammers.jpg*
+        - pictures/hammer_handle_prototype_1.jpg*
+        - pictures/hammer_handle_prototype_2.jpg*
+    srcdir: /shop/projects
 
 help:
     subdir: prog
@@ -1051,7 +1042,6 @@ hppn:
         - 0readme
         - hp.py
         - hp_parts
-    ignore: Limited interest
     srcdir: /elec/hp
 
 iapws:
@@ -1064,7 +1054,6 @@ iapws:
         - iapws95.h
         - iapws95.py
         - test.py
-    ignore: Limited interest
     srcdir: /science/john_pye/py
 
 imp:
@@ -1078,7 +1067,6 @@ imp:
         frequency is 1 kHz, but you can change this with a command
         line option.
     files: [impedance.py]
-    ignore: Limited interest
     srcdir: /pylib/pgm
 
 ind:
@@ -1091,12 +1079,11 @@ ind:
         Office -- this will help you decide if you want to download
         and install Open Office to be able to use the spreadsheet.
     files:
-        - inductance.ods*
+        - inductance.ods
         - inductance.odt*
         - inductance.pdf
         - inductance_spreadsheet.pdf
-        - pictures/screenshot.jpg
-    ignore: Limited interest
+        - pictures/screenshot.jpg*
     srcdir: /elec/software/coil_inductance
 
 irr:
@@ -1106,7 +1093,6 @@ irr:
         spectroradiometer files, but it can easily be modified to work
         with other data files.
     files: [irr.py]
-    ignore: Limited interest
     srcdir: /pylib/pgm
 
 lib:
@@ -1120,8 +1106,7 @@ lib:
         hack the color.py module to work on other systems).
     files:
         - lib.py
-        - lib.dat
-    ignore: Need to sanitize data file
+        - [lib.dat.sample, lib.dat]
     srcdir: /pylib/pgm
 
 license:
@@ -1148,7 +1133,6 @@ lnk:
         structure. If you have GNU find, the -samefile option can be
         used to do this too.
     files: [lnk.py]
-    ignore: Limited interest
     srcdir: /pylib/pgm
 
 loo:
@@ -1164,6 +1148,7 @@ loo:
         - loo.py
         - color.py
     srcdir: /pylib
+    ignore:  Looks like it's broken
 
 lookup:
     subdir: util
@@ -1196,7 +1181,6 @@ lvise:
         - pictures/LittleVise_1.png*
         - pictures/LittleVise_2.png*
         - pictures/Starrett_160_clamp.png*
-    ignore: Limited interest
     srcdir: /shop/projects
 
 manufy:
@@ -1206,7 +1190,6 @@ manufy:
         you to quickly write manpages for C or C++ code. The script
         also has a -u option to unmanufy some text.
     files: [manufy.py]
-    ignore: Limited interest
     srcdir: /pylib/pgm
 
 markup:
@@ -1265,7 +1248,6 @@ mk:
         because you don't have to reach for the mouse, move to another
         window, run a command, then move back.
     files: [mk.py]
-    ignore: Limited interest
     srcdir: /pylib/pgm
 
 mod:
@@ -1280,11 +1262,10 @@ mod:
 mortgage:
     subdir: misc
     descr: Gives a table that lets you estimate your mortgage's monthly
-        payment.  Doesn't include taxes or insurance though.
+        payment.  Doesn't include taxes or insurance.
     files:
         - Mortgage.odt*
         - Mortgage.pdf
-    ignore: Limited interest
     srcdir: /math/mortgage
 
 mp:
@@ -1293,7 +1274,6 @@ mp:
         tool. You can also include arbitrary python code in your text
         files. Use mp.py -h to read the man page.
     files: [mp.py]
-    ignore: Limited interest
     srcdir: /pylib/pgm
 
 novas:
@@ -1303,7 +1283,6 @@ novas:
         It contains routines that are nearly identical to those used
         for calculations of the Astronomical Almanac.
     files: [novas.py]
-    ignore: Limited interest
     srcdir: /pylib
 
 nozzle:
@@ -1316,7 +1295,6 @@ nozzle:
         - nozzle.pdf
         - nozzle.jpg*
         - nozzle2.jpg*
-    ignore: Limited interest
     srcdir: /shop/projects/hose_nozzle
 
 oct:
@@ -1348,7 +1326,6 @@ oct:
         - [pictures/small/octopus_res_cap_parallel.png*, pictures/octopus_res_cap_parallel.png*]
         - [pictures/small/octopus_res_diode_components.png*, pictures/octopus_res_diode_components.png*]
         - [pictures/small/octopus_res_diode_composite.png*, pictures/octopus_res_diode_composite.png*]
-    ignore: PDF is large
     srcdir: /elec/projects/octopus
 
 odict:
@@ -1374,7 +1351,6 @@ oo_math:
         - OO_math.pdf
         - math_cheatsheet.odt*
         - math_cheatsheet.pdf
-    ignore: Change to just include cheatsheet
     srcdir: /doc
 
 oopy:
@@ -1399,7 +1375,6 @@ out:
         - out.pdf
         - out.py
         - [test/out_test.py, out_test.py]
-    ignore: Limited interest (use print() in python 3 code)
     srcdir: /pylib
 
 paper:
@@ -1413,18 +1388,14 @@ paper:
         I should start a specialty paper business (the results convinced
         me I shouldn't).
     files: [paper.py]
-    ignore: Limited interest
     srcdir: /pylib/pgm
 
 papersz:
     subdir: misc
-    descr: Shows a scale drawing of various ISO and US paper sizes.  The
-        python script that generates it is included, but you'll need
-        to download a graphics library to use it.
+    descr: Shows a scale drawing of various ISO and US paper sizes.
     files:
-        - paper_sizes.py
+        - paper_sizes.py*
         - paper_sizes.pdf
-    ignore: Limited interest
     srcdir: /pylib/pgm
 
 parts:
@@ -1434,15 +1405,13 @@ parts:
     files:
         - PartsStorageMethods.odt*
         - PartsStorageMethods.pdf
-    ignore: Limited interest
     srcdir: /elec/projects
 
 pcmplx:
-    subdir: prog
+    subdir: math
     descr: Python module that allows you to parse complex numbers when
         they are written in the ways humans like to write them.
     files: [parse_complex.py]
-    ignore: Limited interest
     srcdir: /pylib
 
 pdf:
@@ -1453,7 +1422,6 @@ pdf:
         to another PDF file, rotating pages, watermarking. etc. You'll
         also need to download the pyPdf library to use this script.
     files: [pdf.py]
-    ignore: Limited interest
     srcdir: /pylib
 
 pfind:
@@ -1469,7 +1437,6 @@ pflow:
     subdir: eng
     descr: Nomograph for pipe flow.
     files: [flow.pdf]
-    ignore: Limited interest
     srcdir: /science/nomographs
 
 pipes:
@@ -1493,7 +1460,6 @@ posts:
         - pictures/hi_lift_jack_and_plate.png*
         - pictures/chain_with_hooks.png*
         - pictures/chain_grab.png*
-    ignore: Limited interest
     srcdir: /shop/projects/PullingFencePosts
 
 pqs:
@@ -1551,7 +1517,6 @@ qmd:
     files:
         - QuickMultDiv.odt*
         - QuickMultDiv.pdf
-    ignore: Limited interest
     srcdir: /math/Dinosaur_Arithmetic
 
 react:
@@ -1564,7 +1529,6 @@ react:
         - [out/big_reactance.pdf, big_reactance.pdf]
         - [../ohms_law_chart/OhmsLaw1.pdf, OhmsLaw1.pdf]
         - [../ohms_law_chart/OhmsLaw2.pdf, OhmsLaw2.pdf]
-    ignore: Limited interest
     srcdir: /elec/software/reactance_chart
 
 readability:
@@ -1576,7 +1540,6 @@ readability:
         - readability.py
         - readability.readme
         - words_syllables.py
-    ignore: Limited interest
     srcdir: /pylib/pgm
 
 refcards:
@@ -1689,7 +1652,6 @@ sawbuck:
         - SawBuck.pdf
         - pictures/sawbuck_oblique_open.jpg*
         - pictures/sawbuck_side_folded.jpg*
-    ignore: Limited interest
     srcdir: /shop/projects
 
 scale:
@@ -1704,7 +1666,6 @@ scale:
         - OnePageCalculator.odt*
         - OnePageCalculator.pdf
         - pictures/sfpm.png*
-    ignore: Limited interest
     srcdir: /math/one_page_calculator
 
 scramble:
@@ -1719,7 +1680,6 @@ scramble:
     files:
         - scramble.py
         - scramble.html
-    ignore: Limited interest
     srcdir: /pylib/pgm
 
 seg:
@@ -1727,7 +1687,6 @@ seg:
     descr: Python script to calculate parameters of a circular segment.
         Translated from a program written by Marv Klotz.
     files: [seg.py]
-    ignore: Limited interest
     srcdir: /pylib/pgm
 
 seq:
@@ -1760,7 +1719,6 @@ shorttbl:
         - ShortTables.odt*
         - ShortTables.pdf
         - ShortTables_doc.pdf
-    ignore: Little apparent interest; obsolete
     srcdir: /math/tables
 
 shuffle:
@@ -1770,7 +1728,6 @@ shuffle:
         or an external source of random bytes (i.e., a file) to do
         the shuffling.
     files: [shuffle.c]
-    ignore: Limited interest
     srcdir: /tools/shuffle
 
 sig:
@@ -1797,7 +1754,6 @@ sinesticks:
     files:
         - sine_sticks.odt*
         - sine_sticks.pdf
-    ignore: Reduce picture size by 2
     srcdir: /shop/projects
 
 solar:
@@ -1813,7 +1769,6 @@ solar:
         - SolarSystemScaleModel.pdf
         - pictures/zoom_from_neptune.jpg*
         - pictures/zoom_from_saturn.jpg*
-    ignore: Limited interest
     srcdir: /science/astronomy/diameters
 
 space:
@@ -1855,7 +1810,6 @@ split_cat:
     files:
         - split.py
         - cat.py
-    ignore: Limited interest
     srcdir: /pylib/pgm
 
 square:
@@ -1869,7 +1823,6 @@ square:
     files:
         - [angles_and_carpenters_square.odt*, square.odt*]
         - [pdf/angles_and_carpenters_square.pdf, square.pdf]
-    ignore: Limited interest
     srcdir: /shop/cheat_sheets
 
 stack:
@@ -1889,7 +1842,6 @@ sumbytes:
         from them. Outputs the number of bytes read, sum, sum of squares,
         mean, standard deviation, and minimum/maximum values.
     files: [sumbytes.cpp]
-    ignore: Limited interest
     srcdir: /tools
 
 thd:
@@ -1915,7 +1867,6 @@ tokens:
         all in lower case, one per line. You could then run the list
         of words through a spell checker.
     files: [html_tokens.py]
-    ignore: Limited interest
     srcdir: /pylib/pgm
 
 tree:
@@ -1971,7 +1922,6 @@ ts:
         - ts.ts 
         - makefile
         - ts.css
-    ignore: Not released yet
     srcdir: /pylib/pgm/ts
 
 u:
@@ -2022,7 +1972,6 @@ unx:
         Windows programs don't know how to behave properly with respect
         to the execute bit.
     files: [unx.py]
-    ignore: Windows only
     srcdir: /pylib/pgm
 
 url:
@@ -2086,7 +2035,6 @@ wave:
         - pictures/waveform_staircase.png*
         - pictures/waveform_modulation.png*
         - pictures/waveform_mw.png*
-    ignore: Limited interest
     srcdir: /pylib/pgm
 
 weigh:
@@ -2098,7 +2046,6 @@ weigh:
         - [weighing_a_trailer.pdf, weigh.pdf]
         - weighing1.jpg*
         - weighing4.jpg*
-    ignore: Limited interest
     srcdir: /doc/trailer/weighing_trailer
 
 wordnum:
@@ -2125,7 +2072,6 @@ wrap:
     files:
         - wrap.py
         - unwrap.py
-    ignore: Limited interest
     srcdir: /pylib/pgm
 
 xmastom:
@@ -2135,7 +2081,6 @@ xmastom:
     files:
         - XmasTomatoes.odt*
         - XmasTomatoes.pdf
-    ignore: Limited interest
     srcdir: /doc
 
 xor:
@@ -2155,7 +2100,6 @@ xor:
         - mkfile.py
         - md5.c
         - md5.h
-    ignore: Limited interest
     srcdir: /tools/xor
 
 xref:
@@ -2219,5 +2163,4 @@ yankee:
         - pictures/yankee_screwdriver_8.png*
         - pictures/yankee_screwdriver_9.png*
         - pictures/yankee_screwdriver_dims.png*
-    ignore: Reduce picture size by 2
     srcdir: /shop/projects
