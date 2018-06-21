@@ -18,13 +18,14 @@
 
 ag:
     subdir: math
-    descr: Contains formulas relating to analytic geometry in the plane
+    descr: Contains formulas relating to analytic geometry in the plane. 
+        Well, it started out this way, but it now includes trig, mensuration, 
+        and other stuff that I need to look up on a regular basis.
     files:
         - AnalyticGeometry.odt*
         - AnalyticGeometry.pdf
         - pictures/trig_quadrants.png*
         - pictures/trig_functions.png*
-    ignore: Needs updating
     srcdir: /math/AnalyticGeometry
 
 antif:
@@ -168,7 +169,6 @@ bnc:
         - pictures/connector_dimensions.jpg*
         - pictures/bnc_connector_parts.jpg*
         - pictures/bnc_outside_resistance.jpg*
-    ignore: PDF is large
     srcdir: /elec/components
 
 bode:
