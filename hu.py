@@ -442,11 +442,16 @@ def BuildProjectPage(d):
     pl.write(nl + "Updated {}".format(asctime()))
     pl.write(nl*2 + "Number of projects:")
     total_number_of_projects = 0
+    pl.write('''Number | Project
+--- | ---
+''')
     for category in project_container:
         n = len(project_container[category])
         name = output_directories_map[category]
         pl.write(nl*2 + "  {:3d} {}".format(n, name))
         total_number_of_projects += n
+        pl.write("{} | {}\n".format(n, name))
+    pl.write("{} | {}\n".format(total_number_of_projects, "Total"))
     pl.write(nl*2 + "Total number of projects = {}".format(
                 total_number_of_projects))
     pl.close()

@@ -117,24 +117,35 @@ Link | Description
 [util/uni](util/uni) | A handy python script to find Unicode characters.  An example is to find the Unicode symbol for a steaming pile of poo.  Run the script with the regular expression 'poo' as an argument. You'll see the symbol you want has a code point of U+1f4a9. Run the script with '1f4a9' on the command line and the PDF containing the symbol will be opened.  You'll need to download the relevant files from the Unicode website (see the comments for the links).
 [util/us](util/us) | Python script to replace all space characters in file names with underscores. Can also do the reverse and act recursively.
 
-Updated Thu Jun 21 10:15:59 2018
+Updated Thu Jun 21 10:30:35 2018
 
-Number of projects:
+Number of projects:Number | Project
+--- | ---
 
-    6 Electrical
 
-    1 Engineering
+    6 Electrical6 | Electrical
 
-   10 Math
 
-    3 Miscellaneous
+    1 Engineering1 | Engineering
 
-   12 Programming
 
-    5 Science
+   10 Math10 | Math
 
-   19 Shop
 
-   19 Utilities
+    3 Miscellaneous3 | Miscellaneous
+
+
+   12 Programming12 | Programming
+
+
+    5 Science5 | Science
+
+
+   19 Shop19 | Shop
+
+
+   19 Utilities19 | Utilities
+75 | Total
+
 
 Total number of projects = 75
