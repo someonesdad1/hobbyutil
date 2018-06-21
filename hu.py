@@ -439,8 +439,7 @@ def BuildProjectPage(d):
         for link, descr in project_container[category]:
             pl.write("{} | {}\n".format(link, descr))
     # Add in some statistics
-    pl.write(nl + "Updated {}".format(asctime()))
-    pl.write(nl*2 + "Number of projects:")
+    pl.write(nl + "Updated {}".format(asctime()) + nl*2)
     total_number_of_projects = 0
     pl.write('''Number | Project
 --- | ---
