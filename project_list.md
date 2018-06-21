@@ -54,7 +54,7 @@ Link | Description
 [shop/LayingOutFrustumWithDividers.pdf](shop/LayingOutFrustumWithDividers.pdf) | Shows how to lay out the frustum of a cone with dividers in your shop.
 [shop/gblock.zip](shop/gblock.zip) | A C++ program to print out combinations of gauge blocks that yield a desired composite length (the subset sum problem). Should work with most any set of gauge blocks. Uses brute-force searching to find solutions -- it's not elegant, but it works.  A python script is also included that does the same task and it will probably be fast enough for most folks' needs.  The C++ code runs about an order of magnitude faster than the python code.
 [shop/holes.zip](shop/holes.zip) | Contains a python script that will help you lay out holes that are equally-spaced around a circle.
-[shop/hose.zip](shop/hose.zip) | Here's an effective way to secure a hose to a hose fitting. It's better than anything I've found in a store.
+[shop/HoseFitting.pdf](shop/HoseFitting.pdf) | Here's an effective way to secure a hose to a hose fitting. It's better than anything I've found in a store.
 [shop/mass.zip](shop/mass.zip) | Contains a python script that will calculate the volume and mass of a project constructed from various primitive geometrical objects.  This lets you e.g. evaluate the mass and volume of a prospective design and document it through the datafile describing it.
 [shop/pipes.pdf](shop/pipes.pdf) | A document showing a derivation of a formula that can be used to make a template for cutting the end of a pipe so that it can be welded to another pipe.
 [shop/refcards.zip](shop/refcards.zip) | Contains some reference cards that will print out on 4 by 6 inch cards. I find these handy to keep in my drafting materials box when I'm doing design work at a drafting board.
@@ -66,7 +66,7 @@ Link | Description
 --- | ---
 [elec/bode.py](elec/bode.py) | Generate a Bode plot with a python script (needs numpy and matplotlib).  You define the transfer function in a file which is passed on the command line.
 [elec/CurrentSource.pdf](elec/CurrentSource.pdf) | Describes how to make a battery-operated 1 ampere current source used to make low resistance measurements.  You can measure to 0.1 milliohm with the typical digital multimeter.
-[elec/esr.zip](elec/esr.zip) | Describes a technique of estimating a capacitor's ESR (equivalent series resistance) without having to buy a special meter.
+[elec/MeasuringESR.pdf](elec/MeasuringESR.pdf) | Describes a technique of estimating a capacitor's ESR (equivalent series resistance) without having to buy a special meter.
 [elec/RMS.pdf](elec/RMS.pdf) | An article for hobbyists about making RMS electrical measurements.
 [elec/PortableVoltageStandard.pdf](elec/PortableVoltageStandard.pdf) | Here's a cheap and simple voltage standard you can make with one resistor, an IC that costs about a buck, and three AAA batteries (and it doesn't need a power switch). The last set of batteries of mine lasted for 4.8 years and the standard deviation of the voltage output was 170 uV including room temperature variations and the variance of the voltmeter over that time period.
 
@@ -99,7 +99,7 @@ Link | Description
 
 Link | Description
 --- | ---
-[math/ef.zip](math/ef.zip) | Graphs of a variety of elementary math functions, useful for a quick picture of how they behave or to grab one or two significant figures of the value.
+[math/ElementaryFunctions.pdf](math/ElementaryFunctions.pdf) | Graphs of a variety of elementary math functions, useful for a quick picture of how they behave or to grab one or two significant figures of the value.
 [math/frange.zip](math/frange.zip) | A python module that provides a floating point analog to range().  Doesn't suffer from the typical floating point problems seen in naive implementations.
 [math/root.zip](math/root.zip) | Pure-python root-finding methods such as bisection, Brent's method, Ridder's method, Newton-Raphson, and a general-purpose method by Jack Crenshaw that uses inverse parabolic interpolation.
 [math/rpath.zip](math/rpath.zip) | A python module for a rectilinear path object.  You supply it with a set of points and then you can interpolate to points on the path via a parameter.
@@ -115,4 +115,4 @@ Link | Description
 --- | ---
 [eng/pqs.zip](eng/pqs.zip) | This package contains python scripts that make it easy to simulate a production process that is inspected by a measurement process with a significant measurement uncertainty.  Such a situation can result in significant producer's and consumer's risk.  It's easy to understand how this Monte Carlo simulation script works and believe its output.
 
-Updated Wed Jun 20 18:17:27 2018
+Updated Wed Jun 20 21:24:37 2018

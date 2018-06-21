@@ -19,12 +19,11 @@
 ag:
     subdir: math
     descr: Contains formulas relating to analytic geometry in the plane
-    files: [
-        AnalyticGeometry.odt*, 
-        AnalyticGeometry.pdf,
-        pictures/trig_quadrants.png*,
-        pictures/trig_functions.png*
-    ]
+    files:
+        - AnalyticGeometry.odt*
+        - AnalyticGeometry.pdf
+        - pictures/trig_quadrants.png*
+        - pictures/trig_functions.png*
     ignore: Needs updating
     srcdir: /math/AnalyticGeometry
 
@@ -35,19 +34,18 @@ antif:
         also looks at the refractometer, a tool to measure antifreeze
         concentrations and a lead-acid battery's sulfuric acid specific
         gravity (which tells you the state of charge).
-    files: [
-        antifreeze.odt*,
-        antifreeze.pdf,
-        pictures/freezing_point_depression_ethylene_glycol.png*,
-        pictures/refractometer.jpg*,
-        pictures/misco_side.jpg*,
-        pictures/misco_side_open.jpg*,
-        pictures/misco_bottom.jpg*,
-        pictures/refractometer_display.jpg*,
-        pictures/misco_scales.jpg*,
-        pictures/sulfuric_acid_density.png*,
-        pictures/sulfuric_acid_density_residuals.png*
-    ]
+    files:
+        - antifreeze.odt*
+        - antifreeze.pdf
+        - pictures/freezing_point_depression_ethylene_glycol.png*
+        - pictures/refractometer.jpg*
+        - pictures/misco_side.jpg*
+        - pictures/misco_side_open.jpg*
+        - pictures/misco_bottom.jpg*
+        - pictures/refractometer_display.jpg*
+        - pictures/misco_scales.jpg*
+        - pictures/sulfuric_acid_density.png*
+        - pictures/sulfuric_acid_density_residuals.png*
     ignore: Needs updating
     srcdir: /science/antifreeze
 
@@ -115,13 +113,12 @@ bcmt:
     subdir: math
     descr: A document containing small math tables that will print
         out to be about the size of a business card.
-    files: [
-        BusinessCardMathTables.odt*,
-        BusinessCardMathTables.pdf,
-        out/small_log_table.png*,
-        out/small_math_tables.page1.png*,
-        out/small_math_tables.page2.png*
-    ]
+    files:
+        - BusinessCardMathTables.odt*
+        - BusinessCardMathTables.pdf
+        - out/small_log_table.png*
+        - out/small_math_tables.page1.png*
+        - out/small_math_tables.page2.png*
     ignore: Probably of interest to few people
     srcdir: /math/BusinessCardMathTables
 
@@ -161,17 +158,16 @@ bnc:
     subdir: elec
     descr: Gives some experimental data about using RF coax cables
         with BNC connectors for DC and low-frequency power.
-    files: [
-        BNC_connector_power.odt*,
-        BNC_connector_power.pdf,
-        pictures/CenTech_IR_Thermometer.jpg*,
-        pictures/bnc_cable_measuring_short_resistance.jpg*,
-        pictures/bnc_cable_HP_cable_resistance.jpg*,
-        pictures/bnc_cable.png*,
-        pictures/connector_dimensions.jpg*,
-        pictures/bnc_connector_parts.jpg*,
-        pictures/bnc_outside_resistance.jpg*
-    ]
+    files:
+        - BNC_connector_power.odt*
+        - BNC_connector_power.pdf
+        - pictures/CenTech_IR_Thermometer.jpg*
+        - pictures/bnc_cable_measuring_short_resistance.jpg*
+        - pictures/bnc_cable_HP_cable_resistance.jpg*
+        - pictures/bnc_cable.png*
+        - pictures/connector_dimensions.jpg*
+        - pictures/bnc_connector_parts.jpg*
+        - pictures/bnc_outside_resistance.jpg*
     ignore: PDF is large
     srcdir: /elec/components
 
@@ -191,11 +187,10 @@ bucket:
         shape of the bucket.  Includes a python script that will do the
         calculations for you (you'll have to modify the script if the
         bucket isn't round or square).
-    files: [
-        bucket.py,
-        bucket.odt*,
-        bucket.pdf
-    ]
+    files:
+        - bucket.py
+        - bucket.odt*
+        - bucket.pdf
     srcdir: /pylib/pgm
 
 c300:
@@ -204,25 +199,23 @@ c300:
         production in Japan. If you've never used a slide rule, you
         may be surprised to find that they can be good tools to help
         you with calculations accurate to roughly one percent.
-    files: [
-        Concise300.odt*,
-        Concise300.pdf,
-        Concise/Concise_300.jpg*,
-    ]
+    files:
+        - Concise300.odt*
+        - Concise300.pdf
+        - Concise/Concise_300.jpg*
     ignore: Few people are interested in slide rules anymore
     srcdir: /math/SlideRules
 
 cart:
     subdir: shop
     descr: Simple platform for Harbor Freight garden cart.
-    files: [
-        CartPlatform.odt*,
-        CartPlatform.pdf,
-        pictures/green_cart_platform1.jpg*,
-        pictures/green_cart_platform2.jpg*,
-        pictures/green_cart_platform4.jpg*,
-        pictures/green_cart_platform5.jpg*
-    ]
+    files:
+        - CartPlatform.odt*
+        - CartPlatform.pdf
+        - pictures/green_cart_platform1.jpg*
+        - pictures/green_cart_platform2.jpg*
+        - pictures/green_cart_platform4.jpg*
+        - pictures/green_cart_platform5.jpg*
     ignore: Update to show axle modifications
     srcdir: /shop/projects/CartPlatform
 
@@ -231,7 +224,7 @@ chain:
     descr: Contains a python script and a document to help with chain
         drilling holes and disks.
     files:
-        - chain.odt
+        - chain.odt*
         - chain.pdf
         - chain.py
         - chain.readme
@@ -243,36 +236,35 @@ cheat:
     subdir: shop
     descr: Contains various spreadsheets in Open Office format and
         PDFs of tables that I find handy to have in the shop.
-    files: [
-        0readme.odt,
-        common_threads.ods,
-        cutting_info.ods,
-        decimal_equivalents.ods,
-        diameter_to_rpm.ods,
-        fractions.ods,
-        pipe_threads.ods,
-        tap_drills.ods,
-        thread_depths.ods,
-        TorxGauging.ods,
-        TorxSizes.odt,
-        TurningSpeeds.odt,
-        weights_bar_stock1.ods,
-        wrench_sizes.ods,
-        pdf/0readme.pdf,
-        pdf/common_threads.pdf,
-        pdf/cutting_info.pdf,
-        pdf/decimal_equivalents.pdf,
-        pdf/diameter_to_rpm.pdf,
-        pdf/fractions.pdf,
-        pdf/pipe_threads.pdf,
-        pdf/tap_drills.pdf,
-        pdf/thread_depths.pdf,
-        pdf/TorxGauging.pdf,
-        pdf/TorxSizes.pdf,
-        pdf/TurningSpeeds.pdf,
-        pdf/weights_bar_stock1.pdf,
-        pdf/wrench_sizes.pdf
-    ]
+    files:
+        - 0readme.odt
+        - common_threads.ods
+        - cutting_info.ods
+        - decimal_equivalents.ods
+        - diameter_to_rpm.ods
+        - fractions.ods
+        - pipe_threads.ods
+        - tap_drills.ods
+        - thread_depths.ods
+        - TorxGauging.ods
+        - TorxSizes.odt
+        - TurningSpeeds.odt
+        - weights_bar_stock1.ods
+        - wrench_sizes.ods
+        - pdf/0readme.pdf
+        - pdf/common_threads.pdf
+        - pdf/cutting_info.pdf
+        - pdf/decimal_equivalents.pdf
+        - pdf/diameter_to_rpm.pdf
+        - pdf/fractions.pdf
+        - pdf/pipe_threads.pdf
+        - pdf/tap_drills.pdf
+        - pdf/thread_depths.pdf
+        - pdf/TorxGauging.pdf
+        - pdf/TorxSizes.pdf
+        - pdf/TurningSpeeds.pdf
+        - pdf/weights_bar_stock1.pdf
+        - pdf/wrench_sizes.pdf
     ignore: Pretty specialized
     srcdir: /shop/cheat_sheets
 
@@ -280,10 +272,9 @@ chemname:
     subdir: science
     descr: A list of archaic chemical names with their modern equivalents
         and chemical formulas.
-    files: [
-        chemical_names.odt,
-        chemical_names.pdf
-    ]
+    files:
+        - chemical_names.odt*
+        - chemical_names.pdf
     srcdir: /help/science
     ignore:  Convert over to the spreadsheet version in /p/doc/spreadsheets/chemical_names.ods.
 
@@ -374,11 +365,10 @@ cove:
         a cove with your table saw.  Use this formula and method when
         it just has to be done correctly on a workpiece you can't mess
         up on.
-    files: [
-        cove.odt*,
-        cove.pdf,
-        cove.py
-    ]
+    files:
+        - cove.odt*
+        - cove.pdf
+        - cove.py
     srcdir: /pylib/pgm
 
 cs:
@@ -668,7 +658,7 @@ ef:
         - images/elliptic1_deg.png*
         - images/elliptic1_rad.png*
         - images/elliptic2_deg.png*
-        - images/elliptic2_rad.png
+        - images/elliptic2_rad.png*
     srcdir: /math/elementary_functions
 
 elements:
@@ -1034,7 +1024,7 @@ holes:
         - holes.drills
         - holes.odt*
         - holes.pdf
-        - pictures/drill_layout.png
+        - pictures/drill_layout.png*
         - [../sig.py, sig.py]
     srcdir: /pylib/pgm
 
@@ -1045,7 +1035,7 @@ hose:
     files:
         - HoseFitting.odt*
         - HoseFitting.pdf
-        - pictures/constrictor_knot_on_hose_fitting.png
+        - pictures/constrictor_knot_on_hose_fitting.png*
     srcdir: /shop/projects
 
 hppn:
@@ -1626,8 +1616,8 @@ refcards:
         - weight_bar_stock_kg.ods
         - weight_bar_stock_lb.ods
         - wrench_sizes.ods
-        - pictures/self_tapping_screws1.jpg
-        - pictures/self_tapping_screws2.jpg
+        - pictures/self_tapping_screws1.jpg*
+        - pictures/self_tapping_screws2.jpg*
     srcdir: /shop/ReferenceCards
 
 res:
