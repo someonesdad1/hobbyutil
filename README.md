@@ -3,14 +3,14 @@
 Click [here](./project_list.md) to go to the projects page where you can
 download the individual projects and read their descriptions.
 
-This repository is for things (I'll call them projects here)  I've
-developed over the years for my various hobbies.  Each project is a link
-which you can click on to get the file(s) associated with the project.  For
-documents, the PDF form is typically the only file included.  A project
-that contains more than one file will be a zip archive.  If you would like
-the source documents (usually constructed from an Open Office document),
-email me at someonesdad1@gmail.com and I'll send you a zip file containing
-the information that the project's data are constructed from.
+This repository is for projects I've developed over the years for my
+various hobbies.  Each project is a link which you can click on to get the
+file(s) associated with the project.  For documents, the PDF form is
+typically the only file included.  A project that contains more than one
+file will be a zip archive.  If you would like the source documents
+(usually constructed from an Open Office document), email me at
+someonesdad1@gmail.com and I'll send you a zip file containing the
+information that the project's data are constructed from.
 
 For projects that are python scripts, I have standardized on python 3.6 for
 running the scripts.  Many of these scripts have also been tested on python

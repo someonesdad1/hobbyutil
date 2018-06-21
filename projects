@@ -712,7 +712,7 @@ esr:
         - MeasuringESR.odt*
         - MeasuringESR.pdf
         - pictures/fluke83_freq_response.png*
-        - pictures/ESR_estimate_pulse.png
+        - pictures/ESR_estimate_pulse.png*
     srcdir: /elec/Articles
 
 ext:

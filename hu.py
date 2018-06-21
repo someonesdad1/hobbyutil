@@ -17,7 +17,7 @@ zip file so they can be emailed to the user.
 '''
 
 from __future__ import print_function
-from collections import defaultdict
+from collections import defaultdict, OrderedDict
 from columnize import Columnize
 import color as c
 import getopt
@@ -33,6 +33,7 @@ import traceback as TB
 import yaml
 import zipfile
 from textwrap import dedent
+from time import asctime
 from pdb import set_trace as xx
 
 # Copyright (C) 2014 Don Peterson
@@ -80,16 +81,16 @@ output_directories = set()
 project_list = "project_list.md"
 
 # Map output directories to more meaningful names
-output_directories_map = {
-    "elec": "Electrical",
-    "eng": "Engineering",
-    "math": "Math",
-    "misc": "Miscellaneous",
-    "prog": "Programming",
-    "science": "Science",
-    "shop": "Shop",
-    "util": "Utilities",
-}
+output_directories_map = OrderedDict((
+    ("elec", "Electrical"),
+    ("eng", "Engineering"),
+    ("math", "Math"),
+    ("misc", "Miscellaneous"),
+    ("prog", "Programming"),
+    ("science", "Science"),
+    ("shop", "Shop"),
+    ("util", "Utilities"),
+))
 
 # YAML data
 yamlfile = "projects"   # Where YAML data are saved (never written)
@@ -176,6 +177,17 @@ class Project(object):
                 open(src, "rb").read()
             except Exception:
                 Error("'{}' can't be read".format(src))
+    def __str__(self):
+        s = '''{0.name}
+  subdir = {0.subdir}
+  descr  = {0.descr}
+  srcdir = {0.srcdir}
+  ignore = {0.ignore}
+  files (source, destination):
+'''.format(self)
+        for src, dest in self.files:
+            s += "      {}, {}\n".format(src, dest)
+        return s
 
 def Error(msg, status=1):
     c.fg(c.lred)
@@ -215,7 +227,9 @@ Commands:
                 the zip files.  Also make the markdown file containing the
                 descriptions.  You can specify which projects in args or
                 use '.' to build everything.
-    list        List active and inactive projects.
+    list        List active and inactive projects.  You can specify
+                particular projects on the command line and the projects'
+                details will be printed.
 
 Options:
     -i      Ignore the ignore flag in the projects file.  This can be used
@@ -321,27 +335,34 @@ def BuildProject(project_object):
     entry = (dest, project_object.descr)
     Project.projects[project_object.subdir].append(entry)
 
-def List(d):
+def List(projects, d):
     '''List active and inactive projects.
     '''
-    active, inactive = [], []
-    for project in data:
-        if data[project].ignore:
-            inactive.append(project)
-        else:
-            active.append(project)
-    w = 80
-    s = "{} Inactive projects".format(len(inactive))
-    print("{:^{}s}".format(s, w))
-    print("{:^{}s}".format("-"*len(s), w))
-    for i in Columnize(inactive):
-        print(i)
-    print()
-    s = "{} Active projects".format(len(active))
-    print("{:^{}s}".format(s, w))
-    print("{:^{}s}".format("-"*len(s), w))
-    for i in Columnize(active):
-        print(i)
+    if projects:
+        # List details on given projects
+        for project in projects:
+            project_object = data[project]
+            print(project_object)
+    else:
+        # List active and inactive projects
+        active, inactive = [], []
+        for project in data:
+            if data[project].ignore:
+                inactive.append(project)
+            else:
+                active.append(project)
+        w = 80
+        s = "{} Inactive projects".format(len(inactive))
+        print("{:^{}s}".format(s, w))
+        print("{:^{}s}".format("-"*len(s), w))
+        for i in Columnize(inactive):
+            print(i)
+        print()
+        s = "{} Active projects".format(len(active))
+        print("{:^{}s}".format(s, w))
+        print("{:^{}s}".format("-"*len(s), w))
+        for i in Columnize(active):
+            print(i)
 
 def BuildProjectZip(project_object):
     # Make a list of all the files without an ending asterisk in name
@@ -381,6 +402,7 @@ def Build(projects, d):
         for name, descr in Project.projects[project]:
             link = "[{}]({})".format(name, name)
             pl.write("{} | {}\n".format(link, descr))
+    pl.write(nl + "Updated {}".format(asctime()))
     pl.close()
 
 def BuildZips(projects, d):
@@ -409,6 +431,6 @@ if __name__ == "__main__":
             Usage(d)
         BuildZips(args, d) if d["-z"] else Build(args, d)
     elif cmd == "list":
-        List(d)
+        List(args, d)
     else:
         Error("'%s' is an unrecognized command" % cmd)
