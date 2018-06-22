@@ -1,7 +1,7 @@
 # hobbyutil
 
 Click [here](./project_list.md) to go to the projects page to read their
-descriptions and download them. 
+descriptions and download them.  
 
 This repository is for projects I've developed over the years for my
 various hobbies.  Each project is a link which you can click on to get the
