@@ -188,7 +188,7 @@ Link | Description
 [util/unx.py](util/unx.py) | Produces a list of files that are candidates for turning their execute bit permission off. Handy in cygwin, since most Windows programs don't know how to behave properly with respect to the execute bit.
 [util/spc_to_underscore.py](util/spc_to_underscore.py) | Python script to replace all space characters in file names with underscores. Can also do the reverse and act recursively.
 
-Updated Thu Jun 21 13:49:45 2018
+Updated Fri Jun 22 10:26:53 2018
 
 Number | Project
 --- | ---

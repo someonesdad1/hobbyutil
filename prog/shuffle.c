@@ -584,7 +584,7 @@ void ReadFile(const char *filename, byte ** bytes, ulong * numbytes)
         fprintf(stderr, "Input file is empty\n");
         exit(1);
     }
-    *numbytes = ulong(number_of_bytes);
+    *numbytes = (ulong) number_of_bytes;
     // Allocate memory
     *bytes = (byte *) malloc(*numbytes);
     if (! *bytes)
@@ -770,7 +770,7 @@ void Shuffle(void)
     {
         // Make j an integer in the interval [0, i-1]
         u = g.rnd()/scale;
-        j = ulong(i*u);
+        j = (ulong)(i*u);
         if (g.debug)
             fprintf(stderr, "i = %d, j = %d, u = %f\n", i, j, u);
         // Swap bytes at positions i and j
@@ -815,7 +815,7 @@ void Unshuffle(void)
     while (i < g.N)
     {
         u = g.rnd()/scale;
-        j = ulong(u*i);
+        j = (ulong)(u*i);
         if (g.debug)
             fprintf(stderr, "i = %d, j = %d, u = %f\n", i, j, u);
         // Swap bytes at positions i and j
