@@ -20,9 +20,8 @@
 
 ag:
     subdir: math
-    descr: Contains formulas relating to analytic geometry in the plane. 
-        Well, it started out this way, but it now includes trig, mensuration, 
-        and other stuff that I need to look up on a regular basis.
+    descr: Contains formulas relating to analytic geometry in the plane and other
+        math stuff I need to look up on a regular basis.
     files:
         - AnalyticGeometry.odt*
         - AnalyticGeometry.pdf
@@ -33,10 +32,8 @@ ag:
 antif:
     subdir: eng
     descr: How to calculate how much antifreeze to add to an existing
-        partially-filled radiator to get a desired concentration.  It
-        also looks at the refractometer, a tool to measure antifreeze
-        concentrations and a lead-acid battery's sulfuric acid specific
-        gravity (which tells you the state of charge).
+        partially-filled radiator to get a desired concentration.  Also looks at 
+        the refractometer.
     files:
         - antifreeze.odt*
         - antifreeze.pdf
@@ -57,21 +54,20 @@ app:
         line. Given one or more files, it will cause them to be opened
         with their registered application.
     files: [app.cpp]
+    ignore:  cygstart does the same thing under cygwin; start does it under Windows.
     srcdir: /tools
 
 asc:
     subdir: util
-    descr: Console python script to print out ASCII character table
-        in decimal, hex, or octal.
+    descr: Python script to print out an ASCII character table in decimal, hex, 
+        or octal.
     files: [asc.py]
     srcdir: /pylib/pgm
 
 astro:
     subdir: science
     descr: Collection of a few astronomical utilities, mostly derived
-        from Meeus' books. meeus.py contains a number of Meeus' algorithms.
-        julian.py contains Julian day routines. moon.py calculates
-        the moon's phases. kepler.py solves the Kepler equation.
+        from Meeus' books.
     files:
         - meeus.py
         - julian.py
@@ -91,10 +87,7 @@ ball:
 bar:
     subdir: shop
     descr: Python script to print out a table of the masses of bar
-        stock in different sizes. You can choose diameters of either
-        inches or mm and get the table in units of kg/m, lbf/ft, or
-        lbm/in. Use the -c option to get conversion factors for other
-        materials.
+        stock in different sizes. 
     files: 
         - bar.py
         - bar.readme
@@ -126,9 +119,7 @@ bcmt:
 bd:
     subdir: util
     descr: Performs a comparison between binary files; differences
-        are printed in hex dump format. You can print an ASCII picture
-        that represents where the different bytes in the files are
-        in percentage through the file.
+        are printed in hex dump format. 
     files: [bd.c]
     srcdir: /tools/misc
 
@@ -142,13 +133,8 @@ bgrep:
 bidict:
     subdir: util
     descr: Creates a dictionary object in python that lets you treat
-        it in both directions as a mapping. If bd is a bidict, you
-        perform normal dictionary access as 'bd[key]', while getting
-        the key that corresponds to a particular value is gotten via
-        'bd(value)'. I wrote this because an application needed to
-        get both the number of month names (e.g., Feb to 2 and be
-        able to get the month name associated with a month number).
-        It's an example of a discrete bijective function.
+        it in both directions as a mapping.  It's an example of a discrete bijective
+        function.
     files: 
         - bidict.py
         - [test/bidict_test.py, bidict_test.py]
@@ -173,19 +159,16 @@ bnc:
 bode:
     subdir: elec
     descr: Generate a Bode plot with a python script (needs numpy and
-        matplotlib).  You define the transfer function in a file which
-        is passed on the command line.
+        matplotlib).  You define the transfer function in a file 
+        passed on the command line.
     files: [bode.py]
     srcdir: /pylib/pgm
 
 bucket:
     subdir: shop
     descr: Shows how to calculate bucket volumes and mark volume calibration
-        marks on nearly any bucket.  It turns out there's a reasonably
-        simple closed formula for this, regardless of the cross-sectional
-        shape of the bucket.  Includes a python script that will do the
-        calculations for you (you'll have to modify the script if the
-        bucket isn't round or square).
+        marks on nearly any bucket.  Includes a python script that will do the
+        calculations for you.
     files:
         - bucket.py
         - bucket.odt*
@@ -195,9 +178,7 @@ bucket:
 c300:
     subdir: math
     descr: Discusses the Concise 300, a circular slide rule still in
-        production in Japan. If you've never used a slide rule, you
-        may be surprised to find that they can be good tools to help
-        you with calculations accurate to roughly one percent.
+        production in Japan.
     files:
         - Concise300.odt*
         - Concise300.pdf
@@ -238,8 +219,7 @@ cart:
 
 chain:
     subdir: shop
-    descr: Contains a python script and a document to help with chain
-        drilling holes and disks.
+    descr: Python script to help with chain drilling holes and disks.
     files:
         - chain.odt*
         - chain.pdf
@@ -297,11 +277,7 @@ chemname:
 circ3:
     subdir: shop
     descr: Python script that calculates the radius/diameter of a circle
-        that passes through three points. You can specify either the
-        Cartesian coordinates of the points or the distances between
-        the points. If you download the python uncertainties library,
-        the script will calculate the uncertainty in the radius/diameter
-        given one or more uncertainties for the points or distances.
+        that passes through three points.
     files: 
         - circ3.py
         - circ3.odt*
@@ -338,10 +314,7 @@ clamps:
 cnt:
     subdir: util
     descr: Command-line utility to count the number of bytes in a file
-        and present a histogram of the results. It can optionally present
-        a 256x256 table of the counts of one byte that follows another
-        byte. A command line option allows various filters to be applied
-        before doing the counting.
+        and present a histogram of the results.
     files:
         - cnt.py
         - cnt.readme
@@ -358,10 +331,7 @@ color:
 
 columnize:
     subdir: prog
-    descr: Python script to columnize a sequence into columns. Run
-        it as a script to convert stdin to columns or use the Columnize()
-        function in your own scripts. Somewhat similar to the UNIX
-        pr command, but doesn't do pagination.
+    descr: Python script to columnize a sequence into columns. 
     files: [columnize.py]
     srcdir: /pylib
 
@@ -374,10 +344,9 @@ comb:
 
 cove:
     subdir: shop
-    descr: A python script and documentation that show you how to cut
-        a cove with your table saw.  Use this formula and method when
-        it just has to be done correctly on a workpiece you can't mess
-        up on.
+    descr: Python script shows you how to cut a cove with your table saw.  Use this
+        formula and method when it just has to be done correctly on a workpiece you 
+        can't mess up on.
     files:
         - cove.odt*
         - cove.pdf
@@ -387,8 +356,7 @@ cove:
 cs:
     subdir: elec
     descr: Describes how to make a battery-operated 1 ampere current source
-        used to make low resistance measurements.  You can measure to 0.1 
-        milliohm with the typical digital multimeter.
+        used to make low resistance measurements.
     files:
         - CurrentSource.odt*
         - CurrentSource.pdf
@@ -419,13 +387,9 @@ cs:
 
 cut:
     subdir: shop
-    descr: Contains a python script that will calculate a solution
-        to the one-dimensional cutting problem.  This problem appears
-        when you have a set of raw materials and need to cut a stated
-        set of workpieces from the stock.  The algorithm used is one
-        called first fit decreasing, which means to sort the stock
-        and pieces to be cut by size, then select the largest piece
-        and cut it from the smallest piece of stock.
+    descr: Python script that will calculate a solution to the one-dimensional 
+        cutting problem.  This problem appears when you have a set of raw materials
+        and need to cut a stated set of workpieces from the stock.  
     files:
         - cut.odt*
         - cut.pdf 
@@ -470,11 +434,7 @@ demag:
 
 density:
     subdir: shop
-    descr: Python script to calculate densities of various materials.
-        The script performs the following tasks.  Look up the density
-        of a particular material, find materials that have a density
-        close to a given value, express density information in desired
-        units, and show results relative to a given density.
+    descr: Python script to display densities of various materials.
     files:
         - density.odt*
         - density.pdf
@@ -491,10 +451,9 @@ diam:
 
 dino:
     subdir: math
-    descr: This document discusses doing calculations without using
-        an electronic calculator.  I'm not advocating that we give up our
-        calculators, but it's useful for a technical person to know how to
-        reason quantitatively when a calculator isn't handy.
+    descr: This document discusses doing calculations without using an electronic
+        calculator.  It's useful for a technical person to know how to reason 
+        quantitatively when a calculator isn't handy.
     files:
         - DinosaurArithmeticSmall.odt*
         - DinosaurArithmeticSmall.pdf
@@ -521,11 +480,7 @@ ditchpump:
 diurnal:
     subdir: science
     descr: Shows a plot of the light from the sky measured with a cheap
-        photodiode.  Since inexpensive datalogging equipment can be
-        purchased that uses e.g. the USB interface, this would be a
-        great experiment for school kids and parents to do together.
-        Because it's so simple to do, I predict you'll get hooked if
-        you try it.
+        photodiode.  Simple experiment that would be fun do to with a child.
     files:
         - diurnal_variations.odt*
         - diurnal_variations.pdf
@@ -548,8 +503,7 @@ dmath:
     descr: Contains a python module dmath.py that is a drop-in replacement
         (nearly) for the python math module when calculating with python's
         Decimal numbers.  Using this library, you can calculate elementary
-        functions to any desired accuracy.  To make the switch, just
-        change e.g.  'import math' to 'import dmath as math'.
+        functions to any desired accuracy.
     files:
         - dmath.py
         - dmath_test.py
@@ -558,8 +512,8 @@ dmath:
 
 donor:
     subdir: misc
-    descr: Organ donation became an important topic for me
-        after my granddaughter was killed.
+    descr: Organ donation became an important topic for me after my granddaughter
+        was killed.
     files:
         - Donor.odt*
         - Donor.pdf
@@ -578,8 +532,7 @@ drtri:
 
 drules:
     subdir: shop
-    descr: Contains some drafting rules that I've always wanted. These
-        are primarily 6 inch scales both in inch and mm divisions.
+    descr: PDFs containing some drafting rules that I've always wanted.
         You can print them at full scale and glue them to a chunk of
         wood to make some handy scales.
     files: [drules.pdf]
@@ -590,16 +543,7 @@ ds:
     descr: Contains python scripts to help you launch datasheets, manuals,
         and other documentation files from a command line prompt.  I
         use this script to lauch manuals and ebooks and it quickly
-        finds the ones I want amongst thousands of files.  For example,
-        to open the PDF manual on my HP 3400 voltmeter, I type the
-        command  'ds 3400'  and I'm presented with three document choices
-        that have the string '3400' in the file name. I choose the
-        number of the file I want to open and it's launched.  If there's
-        only one match, the file is opened in less than a second.  This
-        is much faster than using a file system explorer to find
-        a file.  I also describe how I launch various project I'm working
-        on in my cygwin environment on Windows (a UNIX-like working
-        environment).
+        finds the ones I want amongst thousands of files.
     files:
         - ds.py
         - ds.odt* 
@@ -612,11 +556,6 @@ ds:
 #dupfile:
 #    subdir: util
 #    descr: Python script to find duplicated files in a directory tree.
-#        It works by hashing each file, then looking for duplicate hashes
-#        and equal file sizes. It may take a long time on a big directory
-#        tree, but it will find places you're wasting space, especially
-#        if they are big files.  It will also find files that are hard-linked
-#        together, but you may want to use lnk.py for this task instead.
 #    files: [dupfile.py]
 #    ignore: Can't find script
 #    srcdir: /pylib/pgm
@@ -657,9 +596,7 @@ elements:
         table of the elements, a plot of the vapor pressures of the
         elements, values of physical parameters sorted by value, and
         various physical parameters of the elements plotted as a function
-        of atomic number.  I've wanted a document like this since the
-        1970's, but I knew that most of the work would be in manually
-        typing in all the data from various places.  I was right...  :^)
+        of atomic number.
     files:
         - 0readme*
         - elements.ods*
@@ -690,10 +627,8 @@ esr:
 
 ext:
     subdir: util
-    descr: This python script will make a list of the extensions used
+    descr: Python script to make a list of the extensions used
         in file names in the directories given on the command line.
-        It can also recurse into each directory given on the command
-        line.
     files: [ext.py]
     srcdir: /pylib/pgm
 
@@ -701,15 +636,7 @@ fdiff:
     subdir: util
     descr: Contains python scripts that can identify differences in
         two directory trees and perform updates as needed to synchronize
-        these two trees.  I wrote these utilities in the late 1990's
-        to help keep my work and home computers synchronized; the challenge
-        was that new files that needed to be kept could be generated
-        on either computer, so blind copying couldn't be used -- the
-        script needs to determine the differences, based on such things
-        as timestamp or file contents.  There are more modern tools
-        such as WinMerge at Sourceforge, kdiff3, meld, etc.  that can
-        do these comparisons, but I still sometimes utilize this python
-        code for checking things with scripts.
+        these two trees.
     files:
         - ddiff.py
         - ddiffcp.py
@@ -720,10 +647,7 @@ fdiff:
 fit:
     subdir: util
     descr: Provides a python function to fit a string of words into
-        a given number of columns. When run as a script, can act as
-        a simple text formatter.  You can control the number of spaces
-        after a sentence and it won't recognize common abbreviations
-        with a trailing period as the end of a sentence.
+        a given number of columns.
     files: [fit.py]
     srcdir: /pylib/pgm
 
@@ -793,9 +717,7 @@ frac:
     subdir: math
     descr: A python script that will calculate a rational approximation
         to a  real number.  If you download the mpmath library, you can
-        calculate to arbitrary precision.  Python 2.6 and later versions
-        include the fractions module, which makes it easy to do such
-        calculations.
+        calculate to arbitrary precision.
     files: 
         - frac.py
     ignore: Limited interest since Fractions module introduced
@@ -827,9 +749,7 @@ fseq:
         sequence generation (arithmetic, geometric, logarithmically-spaced,
         etc.).  The script also provides useful random number generation
         facilities for doing Monte Carlo calculations at the command
-        line, along with CDFs and PDFs of some distributions. It's
-        easy to add support for other distributions.  See seq.py
-        for a simpler script that just provides arithmetic series.
+        line, along with CDFs and PDFs of some distributions.
     files:
         - fseq.py
         - fseq.odt*
@@ -850,12 +770,7 @@ gblock:
     subdir: shop
     descr: A C++ program to print out combinations of gauge blocks
         that yield a desired composite length (the subset sum problem).
-        Should work with most any set of gauge blocks. Uses brute-force
-        searching to find solutions -- it's not elegant, but it works.  A
-        python script is also included that does the same task and
-        it will probably be fast enough for most folks' needs.  The
-        C++ code runs about an order of magnitude faster than the python
-        code.
+        Uses brute-force searching to find solutions.
     files:
         - gauge.cpp
         - [/pylib/pgm/gb.py, gb.py]
@@ -864,8 +779,7 @@ gblock:
 glendag:
     subdir: shop
     descr: Describes a simple concrete sprinkler guard that my wife
-        designed and built. We've used them for over 20 years and they
-        work well, are simple to make, and cheap.
+        designed and built.
     files: 
         - GlendaGuard.odt*
         - GlendaGuard.pdf
@@ -886,9 +800,7 @@ goto:
 gpaper:
     subdir: math
     descr: Provides some common graph papers in PDF files that print
-        on ANSI  A paper.  The python script that made them is included,
-        so you can hack things if you e.g. want to change to A4 paper
-        or modify colors or line widths.
+        on ANSI A paper.
     files:
         - graph_paper.py
         - 5mm_A.pdf
@@ -926,9 +838,7 @@ help:
         accessing textual information. This package contains the tools
         I use to build a help system I've used for the past couple
         of decades (I started building this textual information in
-        the 1980's). Vim's ability to use  hyperlinks in its textual
-        help files is used to advantage here.  I've used these files
-        on both Windows and Linux boxes.
+        the 1980's).
     files:
         - misc/makefile
         - misc/mort
@@ -993,11 +903,7 @@ help:
 hg:
     subdir: prog
     descr: Some python scripts that make it easier to work with Mercurial
-        repositories.  delta.py shows you the revision numbers where
-        a file changed; hgs.py shows you things like files that are
-        not in the repository, changed files, etc.  fhg.py will find
-        all Mercurial repositories under a given directory and show
-        those needing a check-in.
+        repositories.
     files:
         - delta.py
         - fhg.py
@@ -1032,12 +938,9 @@ hose:
 hppn:
     subdir: elec
     descr: This is a compilation of various 8-digit HP part numbers
-        translated into more identifiable numbers. For example, a typical
-        line is 1820-0839 TTL IC SN74175N.  This list may be of use
-        to those with old HP instruments that need to find a replacement
-        part. There are only about 2700 parts in this list, so it cannot
-        be considered complete.  A python script can do the lookup
-        tasks.
+        translated into more identifiable numbers.  TTL IC SN74175N.  This list may
+        be of use to those with old HP instruments that need to find a replacement
+        part.
     files:
         - 0readme
         - hp.py
@@ -1046,9 +949,9 @@ hppn:
 
 iapws:
     subdir: eng
-    descr: This zipfile contains C++ and python code that implements
-        the IAPWS95 equations for the thermodynamic properties of water.
-        See http://www.iapws.org/relguide/IAPWS-95.htm IAPWS95
+    descr: Contains C++ and python code that implements the IAPWS95 equations for 
+        the thermodynamic properties of water.
+        See http://www.iapws.org/relguide/IAPWS-95.htm
     files:
         - iapws95.cpp
         - iapws95.h
@@ -1060,12 +963,7 @@ imp:
     subdir: elec
     descr: This python script will take a complex impedance in polar
         coordinates and print out the series and parallel models' values,
-        reactance, dissipation factor, and quality factor.  I find
-        this handy with an LCR meter -- I usually have the LCR meter
-        measure the impedance and write that down; this script lets
-        me then see all the other related parameters.  The measurement
-        frequency is 1 kHz, but you can change this with a command
-        line option.
+        reactance, dissipation factor, and quality factor.
     files: [impedance.py]
     srcdir: /pylib/pgm
 
@@ -1074,10 +972,7 @@ ind:
     descr: Provides an Open Office spreadsheet that can calculate the
         inductance of common electrical structures.  Includes a PDF
         document describing the use and which gives references for
-        the formulas used.  There is also a PDF file of the spreadsheet
-        so that you can see what it looks like without having Open
-        Office -- this will help you decide if you want to download
-        and install Open Office to be able to use the spreadsheet.
+        the formulas used. 
     files:
         - inductance.ods
         - inductance.odt*
@@ -1089,21 +984,14 @@ ind:
 irr:
     subdir: science
     descr: Calculate irradiance over a wavelength band from a spectral
-        irradiance data file. It is written to work with StellarNet
-        spectroradiometer files, but it can easily be modified to work
-        with other data files.
+        irradiance data file.
     files: [irr.py]
     srcdir: /pylib/pgm
 
 lib:
     subdir: util
     descr: Python script command line tool to provide a facility for
-        keeping snippets of code handy.  If you develop code at a command
-        line, you may want to use this script to keep often-used
-        chunks of code at hand.  A handy feature is that it will highlight
-        the items in color to indicate the language each snippet is
-        implemented in (only works on Windows, but would be easy to
-        hack the color.py module to work on other systems).
+        keeping snippets of code handy.
     files:
         - lib.py
         - [lib.dat.sample, lib.dat]
@@ -1112,13 +1000,7 @@ lib:
 license:
     subdir: prog
     descr: This is a python script that will allow you to change the
-        license  you use in your source code files.  This is done by
-        replacing a string between two 'trigger' strings.  A number
-        of open source licenses are included in the script (e.g., BSD,
-        GPL2, etc.) and it's easy to include others.  The script will
-        first check that all the indicated source files have the trigger
-        strings and that backup copies of the source files can first
-        be made.
+        license  you use in your source code files.  
     files:
         - license.py
         - color.py
@@ -1126,11 +1008,8 @@ license:
 
 lnk:
     subdir: util
-    descr: Python script to list the files in two directory trees that
-        are hard-linked together. When you see an 'ls -l' listing that
-        shows a file with 2 or more links, this script can help you
-        find where those other links are without delving into the filesystem
-        structure. If you have GNU find, the -samefile option can be
+    descr: Python script to list the files in two directory trees that are 
+        hard-linked together.  If you have GNU find, the -samefile option can be
         used to do this too.
     files: [lnk.py]
     srcdir: /pylib/pgm
@@ -1138,12 +1017,9 @@ lnk:
 loo:
     subdir: util
     descr: Python script that will print out the image files in Open
-        Office documents.  Image files that are not at or below the same
-        directory as the document file will be marked '[not relative]'.
-        Missing files will be marked '[missing]'.  It can also be used as a
-        module in other python programs.  Uses a heuristic rather than any
-        deep knowledge about OO files.  It is particularly useful if you
-        link image files into OO files (which I always do).
+        Office documents.  Image files that are not at or below the same directory
+        as the document file will be marked '[not relative]'.  Missing files will
+        be marked '[missing]'.  It is useful if you link image files into OO files.
     files:
         - loo.py
         - color.py
@@ -1153,10 +1029,9 @@ loo:
 lookup:
     subdir: util
     descr: Package that contains a python script that can help you
-        look up words in a word dictionary. It can also use the information
+        look up words in a word dictionary and use the information
         from WordNet to show synonyms, definitions, and types of words
-        (e.g., adjectives, adverbs, nouns, and verbs).  See the words.pdf
-        file for examples of use and what it can do for you.
+        (e.g., adjectives, adverbs, nouns, and verbs).
     files:
         - lookup.py
         - mkwords.py
@@ -1172,9 +1047,7 @@ lookup:
 lvise:
     subdir: shop
     descr: Describes a snall vise that is straightforward to make with
-        a milling machine.  I made mine from some 1 inch square aluminum
-        bar stock and it has proven useful.  Scale it up or down as
-        needed.
+        a milling machine.
     files:
         - LittleVise.odt*
         - LittleVise.pdf
@@ -1185,10 +1058,9 @@ lvise:
 
 manufy:
     subdir: prog
-    descr: A short python script that will convert text lines to have
+    descr: Python script to convert text lines to have
         double quotes and a newline at the end. This is useful to allow
-        you to quickly write manpages for C or C++ code. The script
-        also has a -u option to unmanufy some text.
+        you to quickly write manpages for C or C++ code. 
     files: [manufy.py]
     srcdir: /pylib/pgm
 
@@ -1204,11 +1076,8 @@ markup:
 
 mass:
     subdir: shop
-    descr: Contains a python script that will calculate the volume
-        and mass of a project constructed from various primitive geometrical
-        objects.  This lets you e.g. evaluate the mass and volume of
-        a prospective design and document it through the datafile describing
-        it.
+    descr: Python script to calculate the volume and mass of a project constructed from various primitive geometrical
+        objects.
     files:
         - mass.bolt
         - mass.bucket
@@ -1235,27 +1104,16 @@ mixture:
 
 mk:
     subdir: util
-    descr: This is a python script that is invoked with a file that
+    descr: Python script that is invoked with a file that
         contains lines of file pairs and a recipe.  When the first
-        file is newer than the second, the recipe is executed.  I use
-        it, for example, when editing a restructured text and CSS files
-        used to make an HTML file.  When I save the RST or CSS file
-        from my editor, the mk.py script detects that the source file
-        is newer than the HTML file and executes the recipe, which
-        in this case is 'make project.html'.  My browser is set to
-        automatically load changed files, so I can see the changed
-        HTML file immediately.  It's a handy efficiency improvement
-        because you don't have to reach for the mouse, move to another
-        window, run a command, then move back.
+        file is newer than the second, the recipe is executed. 
     files: [mk.py]
     srcdir: /pylib/pgm
 
 mod:
     subdir: util
     descr: Python script to recursively find files that have changed
-        within a specified time period.  It helps you find that file
-        you know you worked on recently, but can't remember where it
-        was or what its name is.
+        within a specified time period.
     files: [mod.py]
     srcdir: /pylib/pgm
 
@@ -1279,17 +1137,13 @@ mp:
 novas:
     subdir: science
     descr: Translation into python of some C code from the US Naval
-        Observatory (http://aa.usno.navy.mil/software/novas/novas_c/novasc_info.html)
-        It contains routines that are nearly identical to those used
-        for calculations of the Astronomical Almanac.
+        Observatory (http://aa.usno.navy.mil/software/novas/novas_c/novasc_info.html).
     files: [novas.py]
     srcdir: /pylib
 
 nozzle:
     subdir: shop
-    descr: Describes a nice hose nozzle you can make if you have a
-        lathe. It will work better for cleaning things off than the
-        typical store-bought nozzles.
+    descr: Nice hose nozzle you can make if you have a lathe.
     files:
         - nozzle.odt* 
         - nozzle.pdf
@@ -1299,14 +1153,9 @@ nozzle:
 
 oct:
     subdir: elec
-    descr: If you own an oscilloscope and like to troubleshoot electrical
-        things, you'll probably want to build an Octopus tester.  One
-        can be built from a 6.3 V RMS filament transformer and a single
-        resistor, so there's no significant parts costs.  It's a handy
-        troubleshooting tool.  People have been using them since the
-        1930's.
+    descr: Build an Octopus, a handy electrical troubleshooting tool (you need an
+        oscilloscope).
     files:
-        - 0readme
         - Octopus_new.odt*
         - Octopus_new.pdf
         - pictures/octopus_non_sine.png*
@@ -1342,10 +1191,7 @@ odict:
 oo_math:
     subdir: math
     descr: Introduces the equation-writing capabilities of Open Office
-        2.0.  I find that I have no need for LaTeX given the equation-handling
-        abilities of Open Office. While not as powerful as TeX or LaTeX,
-        it's adequate for my needs and provides a variety of other
-        tools.  Also includes a cheatsheet that you can modify.
+        2.0.  Includes a cheatsheet that you can modify.
     files:
         - OO_math.odt*
         - OO_math.pdf
@@ -1355,8 +1201,7 @@ oo_math:
 
 oopy:
     subdir: prog
-    descr: A document explaining how to call python functions from
-        Open Office Calc spreadsheets.
+    descr: How to call python functions from Open Office Calc spreadsheets.
     files:
         - PythonFromCalc.odt*
         - PythonFromCalc.pdf
@@ -1375,18 +1220,13 @@ out:
         - out.pdf
         - out.py
         - [test/out_test.py, out_test.py]
+    ignore:  Limited use, as the print() function does the same thing.
     srcdir: /pylib
 
 paper:
     subdir: misc
     descr: Contains a python script to calculate various things about
-        paper.  You input the grammage in grams per square meter, size
-        of the paper sheet, number of sheets, and an optional cost
-        and various metrics about the paper are printed out. Lets you
-        compare paper purchases by e.g.  looking at the cost in $ per
-        square meter. I wrote this script to help me evaluate whether
-        I should start a specialty paper business (the results convinced
-        me I shouldn't).
+        paper to compare paper purchases.
     files: [paper.py]
     srcdir: /pylib/pgm
 
@@ -1416,20 +1256,17 @@ pcmplx:
 
 pdf:
     subdir: util
-    descr: This is a python script that can manipulate PDF files. Typical
-        operations are to concatenate a number of PDF files to another
-        PDF file, select certain pages of a PDF file and write them
-        to another PDF file, rotating pages, watermarking. etc. You'll
-        also need to download the pyPdf library to use this script.
+    descr: This is a python script that can manipulate PDF files. It can concatenate a 
+        number of PDF files, select certain pages and write them to another PDF
+        file, rotating pages, watermarking. etc. You'll also need to download the
+        pyPdf library to use this script.
     files: [pdf.py]
     srcdir: /pylib
 
 pfind:
     subdir: util
     descr: Python script to find files and directories. Similar to
-        the UNIX find (but not as powerful), but with a somewhat simpler
-        syntax. It can color-code the output to show where things matched.
-        I use this script a lot.
+        the UNIX find (but not as powerful), but with a simpler syntax.
     files: [pfind.py]
     srcdir: /pylib/pgm
 
@@ -1441,9 +1278,8 @@ pflow:
 
 pipes:
     subdir: shop
-    descr: A document showing a derivation of a formula that can be
-        used to make a template for cutting the end of a pipe so that
-        it can be welded to another pipe.
+    descr: Derivation of a formula that can be used to make a template for cutting
+        the end of a pipe so that it can be welded to another pipe.
     files:
         - pipes.odt*
         - pipes.pdf
@@ -1464,12 +1300,8 @@ posts:
 
 pqs:
     subdir: eng
-    descr: This package contains python scripts that make it easy to
-        simulate a production process that is inspected by a measurement
-        process with a significant measurement uncertainty.  Such a
-        situation can result in significant producer's and consumer's
-        risk.  It's easy to understand how this Monte Carlo simulation
-        script works and believe its output.
+    descr: Python scripts to simulate a production process that is inspected by a 
+        measurement process with a significant measurement uncertainty.
     files:
         - ProcessSimulator.odt*
         - ProcessSimulator.pdf
@@ -1490,13 +1322,7 @@ pqs:
 primes:
     subdir: math
     descr: Some python scripts that deal with primes, factoring, and
-        integer properties.  The primes.py module generates a list
-        of primes by the Sieve of Eratosthenes and is fast for a script
-        (and it's a short chunk of code only a few lines long).  It
-        also can factor integers.  The int.py script prints out various
-        facts about the integers given on the command line. The primes_fast.cpp
-        file is a chunk of C++ code that is a faster implementation
-        of the sieve.
+        integer properties.
     files:
         - primes.py
         - [pgm/int.py, int.py]
@@ -1506,8 +1332,8 @@ primes:
 
 python:
     subdir: prog
-    descr: Contains a document that discusses why learning the python
-        programming language might be a good thing for technical folks.
+    descr: Discusses why learning the python programming language might be a 
+        good thing for technical folks.
     files:
         - [/doc/Python.odt*, Python.odt*]
         - [/doc/Python.pdf, Python.pdf]
@@ -1518,11 +1344,9 @@ python:
 
 qmd:
     subdir: math
-    descr: Short discussion of how to do multiplications and divisions
+    descr: Discussion of how to do multiplications and divisions
         by hand when you only need a specified number of significant
-        figures in the answer. The methods reduce the amount of work
-        needed over the methods taught in grammar school. Also includes
-        a short blurb on additions.
+        figures in the answer.
     files:
         - QuickMultDiv.odt*
         - QuickMultDiv.pdf
@@ -1531,8 +1355,7 @@ qmd:
 react:
     subdir: elec
     descr: Contains two reactance charts in PDF form along with a short
-        file describing their use. Update 20 May 2013 - added similar
-        charts for Ohm's Law.
+        file describing their use.
     files:
         - [out/reactance.pdf, reactance.pdf]
         - [out/big_reactance.pdf, big_reactance.pdf]
@@ -1594,16 +1417,7 @@ refcards:
 
 res:
     subdir: elec
-    descr: Contains two tools that help you deal with resistors.  The
-        resistor.cpp file is a C++ program that can calculate resistors
-        to use for a voltage divider for a desired ratio. It also has
-        the ability to get a desired resistance using two on-hand resistors
-        in either series or parallel.  You can enter the values of
-        your stock resistors or use standard series such as E6, E12,
-        etc.  The resistor.ods file is an Open Office spreadsheet
-        that calculates the resistance of wires of circular and rectangular
-        cross sections (handy for designing shunts).  The PDF files
-        contain the documentation.
+    descr: Contains two tools that help you deal with resistors.
     files:
         - makefile
         - resistor.cpp
@@ -1651,11 +1465,8 @@ ruler:
 
 sawbuck:
     subdir: shop
-    descr: Describes a simple and easy to make sawbuck that's made
-        from eight identical pieces of 2x4.  I made mine so that I could
-        cut it from two 8 foot long  2x4s.  It should cost less than $10
-        and take less than an hour to make.  All you need to make it are a
-        hand saw, drill/bits, and a screwdriver.
+    descr: A simple and easy to make sawbuck that's made from eight identical
+        pieces of 2x4.
     files:
         - SawBuck.odt*
         - SawBuck.pdf
@@ -1665,11 +1476,8 @@ sawbuck:
 
 scale:
     subdir: math
-    descr: The scale.pdf file contains two sheets of paper with slide
-        rule type scales on them. If you duplex print this and keep
-        it in a binder, you may find it useful for simple technical
-        calculations when an electronic calculator isn't handy. The
-        other file explains how to use things.
+    descr: The scale.pdf file contains two sheets of paper with slide rule type
+        scales on them. You may find it useful for simple technical calculations.
     files:
         - scale.pdf
         - OnePageCalculator.odt*
@@ -1680,12 +1488,7 @@ scale:
 scramble:
     subdir: util
     descr: Contains a python script to scramble letters in words, leaving
-        the first and last characters alone. I wrote this because an
-        intriguing email that's been circulating the web for years
-        seemed to indicate that only the first and last letters of
-        a word are really important for reading comprehension. You
-        can make up your own mind about the truth of this statement
-        by using the script on a variety of text.
+        the first and last characters alone.
     files:
         - scramble.py
         - scramble.html
@@ -1702,7 +1505,6 @@ seq:
     subdir: prog
     descr: Python script to send various arithmetical progressions
         to stdout.  Handles integers, floating point, and fractions.
-        Also see fseq.py.
     files:
         - [pgm/seq.py, seq.py]
         - frange.py
@@ -1719,10 +1521,7 @@ shave:
 shorttbl:
     subdir: math
     descr: A set of tables of elementary math functions intended to
-        print on half of an ANSI-A sized piece of paper. These tables
-        are intended for use when a calculator isn't available. The
-        original is an Open Office spreadsheet -- email me if you'd
-        like a copy of it.
+        print on half of an ANSI-A sized piece of paper.
     files:
         - ShortTables.ods*
         - ShortTables.odt*
@@ -1732,10 +1531,7 @@ shorttbl:
 
 shuffle:
     subdir: prog
-    descr: C program to randomly shuffle the bytes of a file. You can
-        use either the internal simple linear congruential generator
-        or an external source of random bytes (i.e., a file) to do
-        the shuffling.
+    descr: C program to randomly shuffle the bytes of a file.
     files: [shuffle.c]
     srcdir: /tools/shuffle
 
@@ -1743,10 +1539,7 @@ sig:
     subdir: prog
     descr: Contains a python script to format floating point numbers
         to a specified number of significant figures or round to a
-        specified template. Works with floats, integers, python Decimals,
-        fractions, mpmath numbers, numpy arrays, complex numbers, and
-        numbers with uncertainty, including any mix of those number
-        types in a container that can be iterated over.
+        specified template.
     files:
         - sig.py
         - sig.odt*
@@ -1757,9 +1550,7 @@ sig:
 sinesticks:
     subdir: shop
     descr: How to build a simple device from scrap that will measure
-        angles in the shop.  Perhaps surprisingly, it can measure with
-        resolution as good or better than a Starrett machinist's vernier
-        protractor that costs hundreds of dollars.
+        angles in the shop.
     files:
         - sine_sticks.odt*
         - sine_sticks.pdf
@@ -1767,12 +1558,8 @@ sinesticks:
 
 solar:
     subdir: science
-    descr: This document describes a python script that prints out
-        the dimensions of a scaled solar system. You can use it to
-        make a scale solar system in your yard or on your street. Be
-        warned -- things will be smaller and farther apart than you
-        think. This would be a good exercise for a parent and a child
-        -- both will learn information you can't learn from a book.
+    descr: Python script that prints out the dimensions of a scaled solar system.
+        You can use it to make a scale solar system in your yard or on your street.
     files:
         - SolarSystemScaleModel.odt*
         - SolarSystemScaleModel.pdf
@@ -1782,17 +1569,17 @@ solar:
 
 space:
     subdir: util
-    descr: See where the space is being consumed in a directory tree
-        and where the biggest files are.
+    descr: See where the space is being consumed in a directory tree and where the
+        biggest files are.
     files: [space.py]
     srcdir: /pylib/pgm
 
 sphshell:
     subdir: science
-    descr: Discusses gravitation and electrostatics inside a uniform
-        spherical shell and why there is no force on a particle. Also
-        looks at Henry Cavendish's elegant experiment in the 1700's
-        showing that the exponent in Coulomb's Law is 2.
+    descr: Discusses gravitation and electrostatics inside a uniform spherical shell
+        and why there is no force on a particle. Also looks at Henry Cavendish's
+        elegant experiment in the 1700's showing that the exponent in Coulomb's
+        Law is 2.
     files:
         - SphericalShell.odt*
         - SphericalShell.pdf
@@ -1800,10 +1587,7 @@ sphshell:
 
 spiral:
     subdir: math
-    descr: Python scripts that deal with spirals.  spiral.py is an
-        interactive tool to calculate various spiral parameters. archimedean.py
-        is a python module containing a function that calculates the
-        exact length of an Archimedean spiral.
+    descr: Python scripts that deal with spirals.
     files:
         - [pgm/spiral.py, spiral.py]
         - archimedean.py
@@ -1814,8 +1598,7 @@ split_cat:
     subdir: util
     descr: Python scripts to split a file into chunks, print out SHA1
         hashes of each chunk, and allow you to recombine the chunks
-        later back into the original file. Useful for band-limited
-        tools like email and floppy disks.
+        later back into the original file.
     files:
         - split.py
         - cat.py
@@ -1824,11 +1607,7 @@ split_cat:
 square:
     subdir: shop
     descr: How to use a carpenter's square to lay out angles from 1
-        degree to 44 degrees. The fractional values given will result
-        in angles accurate to 0.01 degree, assuming your square and
-        your layouts are accurate enough. I find an angle square a
-        much handier tool for carpentry layout than the carpenter's
-        square and it's accurate enough for the usual purposes.
+        degree to 44 degrees.
     files:
         - [angles_and_carpenters_square.odt*, square.odt*]
         - [pdf/angles_and_carpenters_square.pdf, square.pdf]
@@ -1836,9 +1615,7 @@ square:
 
 stack:
     subdir: prog
-    descr: A python module that implements a basic stack.  You have
-        the options of making the stack homogeneous (i.e., it will only
-        allow storage of one type of item) or of fixed size.
+    descr: A python module that implements a basic stack.
     files:
         - stack.py
         - [test/stack_test.py, stack_test.py]
@@ -1848,16 +1625,14 @@ sumbytes:
     subdir: prog
     descr: A short C++ program that will read all the bytes from the
         files given on the command line and compute various statistics
-        from them. Outputs the number of bytes read, sum, sum of squares,
-        mean, standard deviation, and minimum/maximum values.
+        from them.
     files: [sumbytes.cpp]
     srcdir: /tools
 
 thd:
     subdir: shop
-    descr: Prints out various dimensions associated with threads. Calculates
-        the values based on the ASME B1.1-1989 standard document. If
-        you machine threads on a lathe, you may find this program handy.
+    descr: Prints out various dimensions associated with threads per ASME B1.1-1989.
+        If you machine threads on a lathe, you may find this program handy.
     files:
         - thd.py
         - [../asme.py, asme.py]
@@ -1940,12 +1715,8 @@ ts:
 u:
     subdir: science
     descr: A lightweight python library module that provides conversion
-        factors for various physical units.  Using a clever idea by
-        Steve Byrnes, it can also perform dimensional checking to determine
-        dimensional consistency of numerical calculations. Easy to
-        use -- an experienced scientist or engineer will be using it
-        in a few minutes after seeing an example (see the PDF in the
-        package for details).
+        factors for various physical units.  An experienced scientist or engineer
+        will be using it in a few minutes after seeing an example.
     files:
         - u.odt*
         - u.pdf
@@ -1955,24 +1726,15 @@ u:
 
 uni:
     subdir: util
-    descr: A handy python script to find Unicode characters.  An example
-        is to find the Unicode symbol for a steaming pile of poo.  Run
-        the script with the regular expression 'poo' as an argument.
-        You'll see the symbol you want has a code point of U+1f4a9.
-        Run the script with '1f4a9' on the command line and the PDF
-        containing the symbol will be opened.  You'll need to download
-        the relevant files from the Unicode website (see the comments
-        for the links).
+    descr: Python script to find Unicode characters.  You'll need to download
+        the relevant files from the Unicode website.
     files: [unicode.py]
     srcdir: /pylib/pgm
 
 units:
     subdir: science
     descr: A short blurb on the capabilities of the useful GNU units
-        program.  This is one of the most-used programs on my computer
-        because I am constantly converting between various units. It
-        can also help you do back-of-the-envelope type calculations
-        and avoid making dumb unit mistakes that invalidate everything.
+        program. 
     files:
         - GNU_units.odt*
         - GNU_units.pdf
@@ -1981,19 +1743,14 @@ units:
 unx:
     subdir: util
     descr: Produces a list of files that are candidates for turning
-        their execute bit permission off. Handy in cygwin, since most
-        Windows programs don't know how to behave properly with respect
-        to the execute bit.
+        their execute bit permission off.
     files: [unx.py]
     srcdir: /pylib/pgm
 
 url:
     subdir: util
     descr: Python script that will interpret a URL from a Google search
-        page.  This script uses a heuristic to strip out the relevant
-        URL. As written, it requires the Win32 python extensions, but
-        it shouldn't be too hard to hack it to work under a different
-        OS.
+        page.
     files: [url.py]
     ignore: Windows only
     srcdir: /pylib/pgm
@@ -2001,7 +1758,7 @@ url:
 us:
     subdir: util
     descr: Python script to replace all space characters in file names
-        with underscores. Can also do the reverse and act recursively.
+        with underscores.
     files: [spc_to_underscore.py]
     srcdir: /pylib/pgm
 
@@ -2016,13 +1773,8 @@ util:
 
 vs:
     subdir: elec
-    descr: Here's a cheap and simple voltage standard you can make
-        with one resistor, an IC that costs about a buck, and three
-        AAA batteries (and it doesn't need a power switch). The last
-        set of batteries of mine lasted for 4.8 years and the standard
-        deviation of the voltage output was 170 uV including room temperature
-        variations and the variance of the voltmeter over that time
-        period.
+    descr: Simple voltage standard you can make with one resistor, an IC that costs
+        about a buck, and three AA batteries.
     files:
         - PortableVoltageStandard.odt*
         - PortableVoltageStandard.pdf
@@ -2033,9 +1785,7 @@ wave:
     subdir: elec
     descr: Provides a python script (uses numpy and scipy) that lets
         you construct various waveforms used in engineering and science
-        tasks. The design and semantics allow you to construct more
-        complex composite waveforms.  It's also easy to add new waveform
-        definitions.
+        tasks.
     files:
         - waveform.py
         - waveform.odt*
@@ -2076,12 +1826,7 @@ wordnum:
 
 wrap:
     subdir: prog
-    descr: Two python scripts to wrap and unwrap text files. The unwrap.py
-        script will take a typical text file with two line breaks between
-        paragraphs and change the text to one long line per paragraph.
-        This makes it suitable for importing into word processing programs.
-        wrap.py does the opposite and turns text files with long lines
-        into text files with lines wrapped at a given number of columns.
+    descr: Two python scripts to wrap and unwrap text files.
     files:
         - wrap.py
         - unwrap.py
@@ -2099,12 +1844,7 @@ xmastom:
 xor:
     subdir: prog
     descr: C++ program to XOR a data file and key file together to
-        encrypt a file. While you'd want a cryptographically-secure
-        one time pad for serious encryption work, a file compressed
-        by e.g. zip, gzip, or bzip could be a practical substitute
-        for the key file. Read the xor.pdf file for further thoughts.
-        Also includes two python utilities that can generate one-time
-        pads and create files with fixed or random bytes.
+        encrypt a file.
     files:
         - xor.cpp
         - xor.odt*
@@ -2120,22 +1860,14 @@ xref:
     descr: A C++ console program that will cross reference the tokens
         in a set of files -- each token will be listed in alphabetical
         order with the file it occurs in along with the line numbers
-        it's found on.  It can perform spell checking.  It has a -k
-        option which will split composite tokens in the source code
-        and spell check the individual tokens (this helps identify
-        composite tokens that are misspelled).
+        it's found on.
     files: [xref.cpp]
     srcdir: /tools/xref
 
 xyz:
     subdir: math
-    descr: Contains a python script that provides a mini-language to
-        perform analytical geometry calculations in 2 and 3
-        dimensions.  Use translations, rotations, and dilatations to
-        transform to different coordinate systems.  Geometric objects
-        provided are points, lines, and planes. The script can
-        calculate their intersections, reflections, and projections
-        and find angles and distances between them.  
+    descr: Python script that provides a mini-language to perform analytical geometry
+        calculations in 2 and 3 dimensions.
     files:
         - xyz.py
         - [../geom_prim.py, geom_prim.py]
@@ -2153,16 +1885,7 @@ xyz:
 yankee:
     subdir: shop
     descr: Discusses the Yankee screwdriver, a useful tool that has
-        been in production for more than 100 years.  Also called a
-        push-drill, it's a mechanically-sophisticated tool that can
-        drive screws and drill small holes.  While cordless drills
-        are now the preferred tool for many shop tasks, you'll find
-        that a Yankee screwdriver can still be handy.  This document
-        shows you how to make bits for it, make an adapter that lets
-        the Yankee use 1/4 inch hex bits, or make an adapter for 1/4
-        inch square drive sockets.  It also shows you how to take one
-        of these screwdrivers apart so it can be cleaned.  Dimensional
-        sketches are included of some parts that might need to be made.
+        been in production for more than 100 years.
     files:
         - YankeePushDrill.odt*
         - YankeePushDrill.pdf

@@ -1,0 +1,999 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.15b.dev: http://docutils.sourceforge.net/" />
+<title>project_list.rst</title>
+<style type="text/css">
+
+/*
+:Author: David Goodger (goodger@python.org)
+:Id: $Id: html4css1.css 7952 2016-07-26 18:15:59Z milde $
+:Copyright: This stylesheet has been placed in the public domain.
+
+Default cascading style sheet for the HTML output of Docutils.
+
+See http://docutils.sf.net/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
+
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+.subscript {
+  vertical-align: sub;
+  font-size: smaller }
+
+.superscript {
+  vertical-align: super;
+  font-size: smaller }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+object[type="image/svg+xml"], object[type="application/x-shockwave-flash"] {
+  overflow: hidden;
+}
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title, .code .error {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin: 0 0 0.5em 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left, .figure.align-left, object.align-left, table.align-left {
+  clear: left ;
+  float: left ;
+  margin-right: 1em }
+
+img.align-right, .figure.align-right, object.align-right, table.align-right {
+  clear: right ;
+  float: right ;
+  margin-left: 1em }
+
+img.align-center, .figure.align-center, object.align-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+table.align-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.align-left {
+  text-align: left }
+
+.align-center {
+  clear: both ;
+  text-align: center }
+
+.align-right {
+  text-align: right }
+
+/* reset inner alignment in figures */
+div.align-right {
+  text-align: inherit }
+
+/* div.align-center * { */
+/*   text-align: left } */
+
+.align-top    {
+  vertical-align: top }
+
+.align-middle {
+  vertical-align: middle }
+
+.align-bottom {
+  vertical-align: bottom }
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font: inherit }
+
+pre.literal-block, pre.doctest-block, pre.math, pre.code {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+pre.code .ln { color: grey; } /* line numbers */
+pre.code, code { background-color: #eeeeee }
+pre.code .comment, code .comment { color: #5C6576 }
+pre.code .keyword, code .keyword { color: #3B0D06; font-weight: bold }
+pre.code .literal.string, code .literal.string { color: #0C5404 }
+pre.code .name.builtin, code .name.builtin { color: #352B84 }
+pre.code .deleted, code .deleted { background-color: #DEB0A1}
+pre.code .inserted, code .inserted { background-color: #A3D289}
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+/* "booktabs" style (no vertical lines) */
+table.docutils.booktabs {
+  border: 0px;
+  border-top: 2px solid;
+  border-bottom: 2px solid;
+  border-collapse: collapse;
+}
+table.docutils.booktabs * {
+  border: 0px;
+}
+table.docutils.booktabs th {
+  border-bottom: thin solid;
+  text-align: left;
+}
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+ul.auto-toc {
+  list-style-type: none }
+
+</style>
+</head>
+<body>
+<div class="document">
+
+
+<p><a class="reference external" href="https://someonesdad1.github.io/hobbyutil/">Home</a></p>
+<div class="contents topic" id="table-of-contents">
+<p class="topic-title first">Table of Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#electrical" id="id1">Electrical</a></li>
+<li><a class="reference internal" href="#engineering" id="id2">Engineering</a></li>
+<li><a class="reference internal" href="#math" id="id3">Math</a></li>
+<li><a class="reference internal" href="#miscellaneous" id="id4">Miscellaneous</a></li>
+<li><a class="reference internal" href="#programming" id="id5">Programming</a></li>
+<li><a class="reference internal" href="#science" id="id6">Science</a></li>
+<li><a class="reference internal" href="#shop" id="id7">Shop</a></li>
+<li><a class="reference internal" href="#utilities" id="id8">Utilities</a></li>
+</ul>
+</div>
+<div class="section" id="electrical">
+<h1><a class="toc-backref" href="#id1">Electrical</a></h1>
+<div class="line-block">
+<div class="line"><a class="reference external" href="elec/BNC_connector_power.pdf">elec/BNC_connector_power.pdf</a></div>
+<div class="line-block">
+<div class="line">Gives some experimental data about using RF coax cables with BNC connectors for DC and low-frequency power.</div>
+</div>
+<div class="line"><a class="reference external" href="elec/bode.py">elec/bode.py</a></div>
+<div class="line-block">
+<div class="line">Generate a Bode plot with a python script (needs numpy and matplotlib).  You define the transfer function in a file passed on the command line.</div>
+</div>
+<div class="line"><a class="reference external" href="elec/CurrentSource.pdf">elec/CurrentSource.pdf</a></div>
+<div class="line-block">
+<div class="line">Describes how to make a battery-operated 1 ampere current source used to make low resistance measurements.</div>
+</div>
+<div class="line"><a class="reference external" href="elec/MeasuringESR.pdf">elec/MeasuringESR.pdf</a></div>
+<div class="line-block">
+<div class="line">Describes a technique of estimating a capacitor's ESR (equivalent series resistance) without having to buy a special meter.</div>
+</div>
+<div class="line"><a class="reference external" href="elec/hppn.zip">elec/hppn.zip</a></div>
+<div class="line-block">
+<div class="line">This is a compilation of various 8-digit HP part numbers translated into more identifiable numbers.  TTL IC SN74175N.  This list may be of use to those with old HP instruments that need to find a replacement part.</div>
+</div>
+<div class="line"><a class="reference external" href="elec/impedance.py">elec/impedance.py</a></div>
+<div class="line-block">
+<div class="line">This python script will take a complex impedance in polar coordinates and print out the series and parallel models' values, reactance, dissipation factor, and quality factor.</div>
+</div>
+<div class="line"><a class="reference external" href="elec/ind.zip">elec/ind.zip</a></div>
+<div class="line-block">
+<div class="line">Provides an Open Office spreadsheet that can calculate the inductance of common electrical structures.  Includes a PDF document describing the use and which gives references for the formulas used.</div>
+</div>
+<div class="line"><a class="reference external" href="elec/Octopus_new.pdf">elec/Octopus_new.pdf</a></div>
+<div class="line-block">
+<div class="line">Build an Octopus, a handy electrical troubleshooting tool (you need an oscilloscope).</div>
+</div>
+<div class="line"><a class="reference external" href="elec/PartsStorageMethods.pdf">elec/PartsStorageMethods.pdf</a></div>
+<div class="line-block">
+<div class="line">Describes one way of storing lots of little electronic parts and how to find them quickly.</div>
+</div>
+<div class="line"><a class="reference external" href="elec/react.zip">elec/react.zip</a></div>
+<div class="line-block">
+<div class="line">Contains two reactance charts in PDF form along with a short file describing their use.</div>
+</div>
+<div class="line"><a class="reference external" href="elec/RMS.pdf">elec/RMS.pdf</a></div>
+<div class="line-block">
+<div class="line">An article for hobbyists about making RMS electrical measurements.</div>
+</div>
+<div class="line"><a class="reference external" href="elec/PortableVoltageStandard.pdf">elec/PortableVoltageStandard.pdf</a></div>
+<div class="line-block">
+<div class="line">Simple voltage standard you can make with one resistor, an IC that costs about a buck, and three AA batteries.</div>
+</div>
+<div class="line"><a class="reference external" href="elec/wave.zip">elec/wave.zip</a></div>
+<div class="line-block">
+<div class="line">Provides a python script (uses numpy and scipy) that lets you construct various waveforms used in engineering and science tasks.</div>
+</div>
+</div>
+</div>
+<div class="section" id="engineering">
+<h1><a class="toc-backref" href="#id2">Engineering</a></h1>
+<div class="line-block">
+<div class="line"><a class="reference external" href="eng/antifreeze.pdf">eng/antifreeze.pdf</a></div>
+<div class="line-block">
+<div class="line">How to calculate how much antifreeze to add to an existing partially-filled radiator to get a desired concentration.  Also looks at the refractometer.</div>
+</div>
+<div class="line"><a class="reference external" href="eng/eng_grid.py">eng/eng_grid.py</a></div>
+<div class="line-block">
+<div class="line">This python script will generate most any linear isotropic graph paper by creating a PostScript file.</div>
+</div>
+<div class="line"><a class="reference external" href="eng/iapws.zip">eng/iapws.zip</a></div>
+<div class="line-block">
+<div class="line">Contains C++ and python code that implements the IAPWS95 equations for the thermodynamic properties of water. See <a class="reference external" href="http://www.iapws.org/relguide/IAPWS-95.htm">http://www.iapws.org/relguide/IAPWS-95.htm</a></div>
+</div>
+<div class="line"><a class="reference external" href="eng/flow.pdf">eng/flow.pdf</a></div>
+<div class="line-block">
+<div class="line">Nomograph for pipe flow.</div>
+</div>
+<div class="line"><a class="reference external" href="eng/pqs.zip">eng/pqs.zip</a></div>
+<div class="line-block">
+<div class="line">Python scripts to simulate a production process that is inspected by a measurement process with a significant measurement uncertainty.</div>
+</div>
+</div>
+</div>
+<div class="section" id="math">
+<h1><a class="toc-backref" href="#id3">Math</a></h1>
+<div class="line-block">
+<div class="line"><a class="reference external" href="math/AnalyticGeometry.pdf">math/AnalyticGeometry.pdf</a></div>
+<div class="line-block">
+<div class="line">Contains formulas relating to analytic geometry in the plane and other math stuff I need to look up on a regular basis.</div>
+</div>
+<div class="line"><a class="reference external" href="math/BusinessCardMathTables.pdf">math/BusinessCardMathTables.pdf</a></div>
+<div class="line-block">
+<div class="line">A document containing small math tables that will print out to be about the size of a business card.</div>
+</div>
+<div class="line"><a class="reference external" href="math/Concise300.pdf">math/Concise300.pdf</a></div>
+<div class="line-block">
+<div class="line">Discusses the Concise 300, a circular slide rule still in production in Japan.</div>
+</div>
+<div class="line"><a class="reference external" href="math/DinosaurArithmeticSmall.pdf">math/DinosaurArithmeticSmall.pdf</a></div>
+<div class="line-block">
+<div class="line">This document discusses doing calculations without using an electronic calculator.  It's useful for a technical person to know how to reason quantitatively when a calculator isn't handy.</div>
+</div>
+<div class="line"><a class="reference external" href="math/dmath.zip">math/dmath.zip</a></div>
+<div class="line-block">
+<div class="line">Contains a python module dmath.py that is a drop-in replacement (nearly) for the python math module when calculating with python's Decimal numbers.  Using this library, you can calculate elementary functions to any desired accuracy.</div>
+</div>
+<div class="line"><a class="reference external" href="math/ElementaryFunctions.pdf">math/ElementaryFunctions.pdf</a></div>
+<div class="line-block">
+<div class="line">Graphs of a variety of elementary math functions, useful for a quick picture of how they behave or to grab one or two significant figures of the value.</div>
+</div>
+<div class="line"><a class="reference external" href="math/frange.zip">math/frange.zip</a></div>
+<div class="line-block">
+<div class="line">A python module that provides a floating point analog to range().  Doesn't suffer from the typical floating point problems seen in naive implementations.</div>
+</div>
+<div class="line"><a class="reference external" href="math/fseq.zip">math/fseq.zip</a></div>
+<div class="line-block">
+<div class="line">Contains a python script fseq.py that provides general-purpose sequence generation (arithmetic, geometric, logarithmically-spaced, etc.).  The script also provides useful random number generation facilities for doing Monte Carlo calculations at the command line, along with CDFs and PDFs of some distributions.</div>
+</div>
+<div class="line"><a class="reference external" href="math/gpaper.zip">math/gpaper.zip</a></div>
+<div class="line-block">
+<div class="line">Provides some common graph papers in PDF files that print on ANSI A paper.</div>
+</div>
+<div class="line"><a class="reference external" href="math/oo_math.zip">math/oo_math.zip</a></div>
+<div class="line-block">
+<div class="line">Introduces the equation-writing capabilities of Open Office 2.0.  Includes a cheatsheet that you can modify.</div>
+</div>
+<div class="line"><a class="reference external" href="math/parse_complex.py">math/parse_complex.py</a></div>
+<div class="line-block">
+<div class="line">Python module that allows you to parse complex numbers when they are written in the ways humans like to write them.</div>
+</div>
+<div class="line"><a class="reference external" href="math/QuickMultDiv.pdf">math/QuickMultDiv.pdf</a></div>
+<div class="line-block">
+<div class="line">Discussion of how to do multiplications and divisions by hand when you only need a specified number of significant figures in the answer.</div>
+</div>
+<div class="line"><a class="reference external" href="math/root.zip">math/root.zip</a></div>
+<div class="line-block">
+<div class="line">Pure-python root-finding methods such as bisection, Brent's method, Ridder's method, Newton-Raphson, and a general-purpose method by Jack Crenshaw that uses inverse parabolic interpolation.</div>
+</div>
+<div class="line"><a class="reference external" href="math/rpath.zip">math/rpath.zip</a></div>
+<div class="line-block">
+<div class="line">A python module for a rectilinear path object.  You supply it with a set of points and then you can interpolate to points on the path via a parameter.</div>
+</div>
+<div class="line"><a class="reference external" href="math/scale.zip">math/scale.zip</a></div>
+<div class="line-block">
+<div class="line">The scale.pdf file contains two sheets of paper with slide rule type scales on them. You may find it useful for simple technical calculations.</div>
+</div>
+<div class="line"><a class="reference external" href="math/seg.py">math/seg.py</a></div>
+<div class="line-block">
+<div class="line">Python script to calculate parameters of a circular segment. Translated from a program written by Marv Klotz.</div>
+</div>
+<div class="line"><a class="reference external" href="math/shorttbl.zip">math/shorttbl.zip</a></div>
+<div class="line-block">
+<div class="line">A set of tables of elementary math functions intended to print on half of an ANSI-A sized piece of paper.</div>
+</div>
+<div class="line"><a class="reference external" href="math/spiral.zip">math/spiral.zip</a></div>
+<div class="line-block">
+<div class="line">Python scripts that deal with spirals.</div>
+</div>
+<div class="line"><a class="reference external" href="math/tri.zip">math/tri.zip</a></div>
+<div class="line-block">
+<div class="line">Python script to solve triangles.</div>
+</div>
+<div class="line"><a class="reference external" href="math/TrigDegrees.pdf">math/TrigDegrees.pdf</a></div>
+<div class="line-block">
+<div class="line">Gives some algebraic expressions for a few special values of trigonometric functions in degrees.</div>
+</div>
+<div class="line"><a class="reference external" href="math/triguc.zip">math/triguc.zip</a></div>
+<div class="line-block">
+<div class="line">Contains a vector drawing of the trig functions on the unit circle.  The python script used to generate the graphics is included, so you can tweak it to your tastes.</div>
+</div>
+<div class="line"><a class="reference external" href="math/xyz.zip">math/xyz.zip</a></div>
+<div class="line-block">
+<div class="line">Python script that provides a mini-language to perform analytical geometry calculations in 2 and 3 dimensions.</div>
+</div>
+</div>
+</div>
+<div class="section" id="miscellaneous">
+<h1><a class="toc-backref" href="#id4">Miscellaneous</a></h1>
+<div class="line-block">
+<div class="line"><a class="reference external" href="misc/Donor.pdf">misc/Donor.pdf</a></div>
+<div class="line-block">
+<div class="line">Organ donation became an important topic for me after my granddaughter was killed.</div>
+</div>
+<div class="line"><a class="reference external" href="misc/fountain_pen_primer.pdf">misc/fountain_pen_primer.pdf</a></div>
+<div class="line-block">
+<div class="line">Discusses the care and feeding of fountain pens as writing tools.</div>
+</div>
+<div class="line"><a class="reference external" href="misc/Markup.pdf">misc/Markup.pdf</a></div>
+<div class="line-block">
+<div class="line">Derives the equations for markup and profit used in business.</div>
+</div>
+<div class="line"><a class="reference external" href="misc/Mortgage.pdf">misc/Mortgage.pdf</a></div>
+<div class="line-block">
+<div class="line">Gives a table that lets you estimate your mortgage's monthly payment.  Doesn't include taxes or insurance.</div>
+</div>
+<div class="line"><a class="reference external" href="misc/paper.py">misc/paper.py</a></div>
+<div class="line-block">
+<div class="line">Contains a python script to calculate various things about paper to compare paper purchases.</div>
+</div>
+<div class="line"><a class="reference external" href="misc/paper_sizes.pdf">misc/paper_sizes.pdf</a></div>
+<div class="line-block">
+<div class="line">Shows a scale drawing of various ISO and US paper sizes.</div>
+</div>
+<div class="line"><a class="reference external" href="misc/shaving.pdf">misc/shaving.pdf</a></div>
+<div class="line-block">
+<div class="line">Some thoughts on shaving your beard.</div>
+</div>
+<div class="line"><a class="reference external" href="misc/XmasTomatoes.pdf">misc/XmasTomatoes.pdf</a></div>
+<div class="line-block">
+<div class="line">Using Christmas tree lights to keep tomato plants from freezing at night.</div>
+</div>
+</div>
+</div>
+<div class="section" id="programming">
+<h1><a class="toc-backref" href="#id5">Programming</a></h1>
+<div class="line-block">
+<div class="line"><a class="reference external" href="prog/columnize.py">prog/columnize.py</a></div>
+<div class="line-block">
+<div class="line">Python script to columnize a sequence into columns.</div>
+</div>
+<div class="line"><a class="reference external" href="prog/comb.py">prog/comb.py</a></div>
+<div class="line-block">
+<div class="line">A python script that will produce permutations and combinations of the lines in a file. Can be useful for generating test cases.</div>
+</div>
+<div class="line"><a class="reference external" href="prog/fset.py">prog/fset.py</a></div>
+<div class="line-block">
+<div class="line">Treat lines of files as a set. Allows you to look at the union, intersection, difference, etc. between the lines of various files.</div>
+</div>
+<div class="line"><a class="reference external" href="prog/hg.zip">prog/hg.zip</a></div>
+<div class="line-block">
+<div class="line">Some python scripts that make it easier to work with Mercurial repositories.</div>
+</div>
+<div class="line"><a class="reference external" href="prog/license.zip">prog/license.zip</a></div>
+<div class="line-block">
+<div class="line">This is a python script that will allow you to change the license  you use in your source code files.</div>
+</div>
+<div class="line"><a class="reference external" href="prog/manufy.py">prog/manufy.py</a></div>
+<div class="line-block">
+<div class="line">Python script to convert text lines to have double quotes and a newline at the end. This is useful to allow you to quickly write manpages for C or C++ code.</div>
+</div>
+<div class="line"><a class="reference external" href="prog/PythonFromCalc.pdf">prog/PythonFromCalc.pdf</a></div>
+<div class="line-block">
+<div class="line">How to call python functions from Open Office Calc spreadsheets.</div>
+</div>
+<div class="line"><a class="reference external" href="prog/python.zip">prog/python.zip</a></div>
+<div class="line-block">
+<div class="line">Discusses why learning the python programming language might be a good thing for technical folks.</div>
+</div>
+<div class="line"><a class="reference external" href="prog/seq.zip">prog/seq.zip</a></div>
+<div class="line-block">
+<div class="line">Python script to send various arithmetical progressions to stdout.  Handles integers, floating point, and fractions.</div>
+</div>
+<div class="line"><a class="reference external" href="prog/shuffle.c">prog/shuffle.c</a></div>
+<div class="line-block">
+<div class="line">C program to randomly shuffle the bytes of a file.</div>
+</div>
+<div class="line"><a class="reference external" href="prog/sig.zip">prog/sig.zip</a></div>
+<div class="line-block">
+<div class="line">Contains a python script to format floating point numbers to a specified number of significant figures or round to a specified template.</div>
+</div>
+<div class="line"><a class="reference external" href="prog/stack.zip">prog/stack.zip</a></div>
+<div class="line-block">
+<div class="line">A python module that implements a basic stack.</div>
+</div>
+<div class="line"><a class="reference external" href="prog/sumbytes.cpp">prog/sumbytes.cpp</a></div>
+<div class="line-block">
+<div class="line">A short C++ program that will read all the bytes from the files given on the command line and compute various statistics from them.</div>
+</div>
+<div class="line"><a class="reference external" href="prog/ts.zip">prog/ts.zip</a></div>
+<div class="line-block">
+<div class="line">The ts.py script provides facilities for text substitution in text files.  It has only 3 basic commands (define a substitution, turn  the output on/off, and include a file) and the ability to include blocks of python code in the text file.  Though it's relatively simple to use, it can provide a fair bit of power.</div>
+</div>
+<div class="line"><a class="reference external" href="prog/util.zip">prog/util.zip</a></div>
+<div class="line-block">
+<div class="line">Contains a number of miscellaneous python functions I've written and collected from the web.</div>
+</div>
+<div class="line"><a class="reference external" href="prog/wordnum.zip">prog/wordnum.zip</a></div>
+<div class="line-block">
+<div class="line">A python script that can convert back and forth between numbers and their word forms.  Handles short and long scales, ordinals, integers, floats (normal and exponential notation), and fractions.  Easy interface through an object's function call; wordnum(36) gives 'thirty six'; wordnum('thirty six') returns the integer 36.  Tested on python 2.7.6 and 3.4.0.</div>
+</div>
+<div class="line"><a class="reference external" href="prog/wrap.zip">prog/wrap.zip</a></div>
+<div class="line-block">
+<div class="line">Two python scripts to wrap and unwrap text files.</div>
+</div>
+<div class="line"><a class="reference external" href="prog/xor.zip">prog/xor.zip</a></div>
+<div class="line-block">
+<div class="line">C++ program to XOR a data file and key file together to encrypt a file.</div>
+</div>
+<div class="line"><a class="reference external" href="prog/xref.cpp">prog/xref.cpp</a></div>
+<div class="line-block">
+<div class="line">A C++ console program that will cross reference the tokens in a set of files -- each token will be listed in alphabetical order with the file it occurs in along with the line numbers it's found on.</div>
+</div>
+</div>
+</div>
+<div class="section" id="science">
+<h1><a class="toc-backref" href="#id6">Science</a></h1>
+<div class="line-block">
+<div class="line"><a class="reference external" href="science/astro.zip">science/astro.zip</a></div>
+<div class="line-block">
+<div class="line">Collection of a few astronomical utilities, mostly derived from Meeus' books.</div>
+</div>
+<div class="line"><a class="reference external" href="science/chemical_names.pdf">science/chemical_names.pdf</a></div>
+<div class="line-block">
+<div class="line">A list of archaic chemical names with their modern equivalents and chemical formulas.</div>
+</div>
+<div class="line"><a class="reference external" href="science/diameters.pdf">science/diameters.pdf</a></div>
+<div class="line-block">
+<div class="line">Plots of circles showing the relative mean diameters of planets and moons in the solar system.</div>
+</div>
+<div class="line"><a class="reference external" href="science/diurnal_variations.pdf">science/diurnal_variations.pdf</a></div>
+<div class="line-block">
+<div class="line">Shows a plot of the light from the sky measured with a cheap photodiode.  Simple experiment that would be fun do to with a child.</div>
+</div>
+<div class="line"><a class="reference external" href="science/elements.zip">science/elements.zip</a></div>
+<div class="line-block">
+<div class="line">Contains elements.pdf, a document that contains a periodic table of the elements, a plot of the vapor pressures of the elements, values of physical parameters sorted by value, and various physical parameters of the elements plotted as a function of atomic number.</div>
+</div>
+<div class="line"><a class="reference external" href="science/irr.py">science/irr.py</a></div>
+<div class="line-block">
+<div class="line">Calculate irradiance over a wavelength band from a spectral irradiance data file.</div>
+</div>
+<div class="line"><a class="reference external" href="science/mixture.py">science/mixture.py</a></div>
+<div class="line-block">
+<div class="line">A python script to aid in mixture calculations. Adapted from a C program at <a class="reference external" href="http://www.myvirtualnetwork.com/mklotz/files/mixture.zip">http://www.myvirtualnetwork.com/mklotz/files/mixture.zip</a>.</div>
+</div>
+<div class="line"><a class="reference external" href="science/novas.py">science/novas.py</a></div>
+<div class="line-block">
+<div class="line">Translation into python of some C code from the US Naval Observatory (<a class="reference external" href="http://aa.usno.navy.mil/software/novas/novas_c/novasc_info.html">http://aa.usno.navy.mil/software/novas/novas_c/novasc_info.html</a>).</div>
+</div>
+<div class="line"><a class="reference external" href="science/SolarSystemScaleModel.pdf">science/SolarSystemScaleModel.pdf</a></div>
+<div class="line-block">
+<div class="line">Python script that prints out the dimensions of a scaled solar system. You can use it to make a scale solar system in your yard or on your street.</div>
+</div>
+<div class="line"><a class="reference external" href="science/SphericalShell.pdf">science/SphericalShell.pdf</a></div>
+<div class="line-block">
+<div class="line">Discusses gravitation and electrostatics inside a uniform spherical shell and why there is no force on a particle. Also looks at Henry Cavendish's elegant experiment in the 1700's showing that the exponent in Coulomb's Law is 2.</div>
+</div>
+<div class="line"><a class="reference external" href="science/u.zip">science/u.zip</a></div>
+<div class="line-block">
+<div class="line">A lightweight python library module that provides conversion factors for various physical units.  An experienced scientist or engineer will be using it in a few minutes after seeing an example.</div>
+</div>
+<div class="line"><a class="reference external" href="science/GNU_units.pdf">science/GNU_units.pdf</a></div>
+<div class="line-block">
+<div class="line">A short blurb on the capabilities of the useful GNU units program.</div>
+</div>
+</div>
+</div>
+<div class="section" id="shop">
+<h1><a class="toc-backref" href="#id7">Shop</a></h1>
+<div class="line-block">
+<div class="line"><a class="reference external" href="shop/ball.py">shop/ball.py</a></div>
+<div class="line-block">
+<div class="line">Python script to calculate steps to turn a ball on a lathe.</div>
+</div>
+<div class="line"><a class="reference external" href="shop/bar.zip">shop/bar.zip</a></div>
+<div class="line-block">
+<div class="line">Python script to print out a table of the masses of bar stock in different sizes.</div>
+</div>
+<div class="line"><a class="reference external" href="shop/bc.zip">shop/bc.zip</a></div>
+<div class="line-block">
+<div class="line">Contains a python script that will calculate the Cartesian coordinates of holes on a bolt circle.</div>
+</div>
+<div class="line"><a class="reference external" href="shop/bucket.zip">shop/bucket.zip</a></div>
+<div class="line-block">
+<div class="line">Shows how to calculate bucket volumes and mark volume calibration marks on nearly any bucket.  Includes a python script that will do the calculations for you.</div>
+</div>
+<div class="line"><a class="reference external" href="shop/Calipers.pdf">shop/Calipers.pdf</a></div>
+<div class="line-block">
+<div class="line">Discussion and use of old-style machinist calipers.</div>
+</div>
+<div class="line"><a class="reference external" href="shop/CartPlatform.pdf">shop/CartPlatform.pdf</a></div>
+<div class="line-block">
+<div class="line">Simple platform for Harbor Freight garden cart.</div>
+</div>
+<div class="line"><a class="reference external" href="shop/chain.zip">shop/chain.zip</a></div>
+<div class="line-block">
+<div class="line">Python script to help with chain drilling holes and disks.</div>
+</div>
+<div class="line"><a class="reference external" href="shop/circ3.zip">shop/circ3.zip</a></div>
+<div class="line-block">
+<div class="line">Python script that calculates the radius/diameter of a circle that passes through three points.</div>
+</div>
+<div class="line"><a class="reference external" href="shop/MachinistClamp.pdf">shop/MachinistClamp.pdf</a></div>
+<div class="line-block">
+<div class="line">Discusses machinist's parallel clamps, why they're useful, and how to make your own.</div>
+</div>
+<div class="line"><a class="reference external" href="shop/cove.zip">shop/cove.zip</a></div>
+<div class="line-block">
+<div class="line">Python script shows you how to cut a cove with your table saw.  Use this formula and method when it just has to be done correctly on a workpiece you can't mess up on.</div>
+</div>
+<div class="line"><a class="reference external" href="shop/cut.zip">shop/cut.zip</a></div>
+<div class="line-block">
+<div class="line">Python script that will calculate a solution to the one-dimensional cutting problem.  This problem appears when you have a set of raw materials and need to cut a stated set of workpieces from the stock.</div>
+</div>
+<div class="line"><a class="reference external" href="shop/Demagnetizer.pdf">shop/Demagnetizer.pdf</a></div>
+<div class="line-block">
+<div class="line">Describes a simple demagnetizing tool you can make from scrap materials.</div>
+</div>
+<div class="line"><a class="reference external" href="shop/density.zip">shop/density.zip</a></div>
+<div class="line-block">
+<div class="line">Python script to display densities of various materials.</div>
+</div>
+<div class="line"><a class="reference external" href="shop/DitchPump_pub.pdf">shop/DitchPump_pub.pdf</a></div>
+<div class="line-block">
+<div class="line">Comments and tips on using a ditch pump to water your lawn.</div>
+</div>
+<div class="line"><a class="reference external" href="shop/DraftingTriangleTip.pdf">shop/DraftingTriangleTip.pdf</a></div>
+<div class="line-block">
+<div class="line">This is a simple modification to a 30-60-90 drafting triangle that lets you use it to draw 45 degree angles.</div>
+</div>
+<div class="line"><a class="reference external" href="shop/drules.pdf">shop/drules.pdf</a></div>
+<div class="line-block">
+<div class="line">PDFs containing some drafting rules that I've always wanted. You can print them at full scale and glue them to a chunk of wood to make some handy scales.</div>
+</div>
+<div class="line"><a class="reference external" href="shop/fits.py">shop/fits.py</a></div>
+<div class="line-block">
+<div class="line">Python script to calculate the required shaft or hole size given a basic dimension of a shaft or hole.</div>
+</div>
+<div class="line"><a class="reference external" href="shop/LayingOutFrustumWithDividers.pdf">shop/LayingOutFrustumWithDividers.pdf</a></div>
+<div class="line-block">
+<div class="line">Shows how to lay out the frustum of a cone with dividers in your shop.</div>
+</div>
+<div class="line"><a class="reference external" href="shop/gblock.zip">shop/gblock.zip</a></div>
+<div class="line-block">
+<div class="line">A C++ program to print out combinations of gauge blocks that yield a desired composite length (the subset sum problem). Uses brute-force searching to find solutions.</div>
+</div>
+<div class="line"><a class="reference external" href="shop/glendag.zip">shop/glendag.zip</a></div>
+<div class="line-block">
+<div class="line">Describes a simple concrete sprinkler guard that my wife designed and built.</div>
+</div>
+<div class="line"><a class="reference external" href="shop/hammer.pdf">shop/hammer.pdf</a></div>
+<div class="line-block">
+<div class="line">Discusses the common hammer types and making a new handle for one.</div>
+</div>
+<div class="line"><a class="reference external" href="shop/holes.zip">shop/holes.zip</a></div>
+<div class="line-block">
+<div class="line">Contains a python script that will help you lay out holes that are equally-spaced around a circle.</div>
+</div>
+<div class="line"><a class="reference external" href="shop/HoseFitting.pdf">shop/HoseFitting.pdf</a></div>
+<div class="line-block">
+<div class="line">Here's an effective way to secure a hose to a hose fitting. It's better than anything I've found in a store.</div>
+</div>
+<div class="line"><a class="reference external" href="shop/LittleVise.pdf">shop/LittleVise.pdf</a></div>
+<div class="line-block">
+<div class="line">Describes a snall vise that is straightforward to make with a milling machine.</div>
+</div>
+<div class="line"><a class="reference external" href="shop/mass.zip">shop/mass.zip</a></div>
+<div class="line-block">
+<div class="line">Python script to calculate the volume and mass of a project constructed from various primitive geometrical objects.</div>
+</div>
+<div class="line"><a class="reference external" href="shop/nozzle.pdf">shop/nozzle.pdf</a></div>
+<div class="line-block">
+<div class="line">Nice hose nozzle you can make if you have a lathe.</div>
+</div>
+<div class="line"><a class="reference external" href="shop/pipes.pdf">shop/pipes.pdf</a></div>
+<div class="line-block">
+<div class="line">Derivation of a formula that can be used to make a template for cutting the end of a pipe so that it can be welded to another pipe.</div>
+</div>
+<div class="line"><a class="reference external" href="shop/PullingFencePosts.pdf">shop/PullingFencePosts.pdf</a></div>
+<div class="line-block">
+<div class="line">Using a class 2 lever can be a surprisingly effective way to pull fence posts out of the ground.</div>
+</div>
+<div class="line"><a class="reference external" href="shop/refcards.zip">shop/refcards.zip</a></div>
+<div class="line-block">
+<div class="line">Contains some reference cards that will print out on 4 by 6 inch cards. I find these handy to keep in my drafting materials box when I'm doing design work at a drafting board.</div>
+</div>
+<div class="line"><a class="reference external" href="shop/SawBuck.pdf">shop/SawBuck.pdf</a></div>
+<div class="line-block">
+<div class="line">A simple and easy to make sawbuck that's made from eight identical pieces of 2x4.</div>
+</div>
+<div class="line"><a class="reference external" href="shop/sine_sticks.pdf">shop/sine_sticks.pdf</a></div>
+<div class="line-block">
+<div class="line">How to build a simple device from scrap that will measure angles in the shop.</div>
+</div>
+<div class="line"><a class="reference external" href="shop/square.pdf">shop/square.pdf</a></div>
+<div class="line-block">
+<div class="line">How to use a carpenter's square to lay out angles from 1 degree to 44 degrees.</div>
+</div>
+<div class="line"><a class="reference external" href="shop/thd.zip">shop/thd.zip</a></div>
+<div class="line-block">
+<div class="line">Prints out various dimensions associated with threads per ASME B1.1-1989. If you machine threads on a lathe, you may find this program handy.</div>
+</div>
+<div class="line"><a class="reference external" href="shop/weigh.pdf">shop/weigh.pdf</a></div>
+<div class="line-block">
+<div class="line">Demonstrates how I weighed our trailer with a lever. With a 12 foot long 4x4, I was able to measure 2500 pounds.</div>
+</div>
+<div class="line"><a class="reference external" href="shop/YankeePushDrill.pdf">shop/YankeePushDrill.pdf</a></div>
+<div class="line-block">
+<div class="line">Discusses the Yankee screwdriver, a useful tool that has been in production for more than 100 years.</div>
+</div>
+</div>
+</div>
+<div class="section" id="utilities">
+<h1><a class="toc-backref" href="#id8">Utilities</a></h1>
+<div class="line-block">
+<div class="line"><a class="reference external" href="util/asc.py">util/asc.py</a></div>
+<div class="line-block">
+<div class="line">Python script to print out an ASCII character table in decimal, hex, or octal.</div>
+</div>
+<div class="line"><a class="reference external" href="util/bd.c">util/bd.c</a></div>
+<div class="line-block">
+<div class="line">Performs a comparison between binary files; differences are printed in hex dump format.</div>
+</div>
+<div class="line"><a class="reference external" href="util/bgrep.py">util/bgrep.py</a></div>
+<div class="line-block">
+<div class="line">Python script to search for regular expressions and strings in binary files.</div>
+</div>
+<div class="line"><a class="reference external" href="util/bidict.zip">util/bidict.zip</a></div>
+<div class="line-block">
+<div class="line">Creates a dictionary object in python that lets you treat it in both directions as a mapping.  It's an example of a discrete bijective function.</div>
+</div>
+<div class="line"><a class="reference external" href="util/cnt.zip">util/cnt.zip</a></div>
+<div class="line-block">
+<div class="line">Command-line utility to count the number of bytes in a file and present a histogram of the results.</div>
+</div>
+<div class="line"><a class="reference external" href="util/color.py">util/color.py</a></div>
+<div class="line-block">
+<div class="line">Python module to provide color printing to a console window. Should work on both Windows and Linux.</div>
+</div>
+<div class="line"><a class="reference external" href="util/dedent.py">util/dedent.py</a></div>
+<div class="line-block">
+<div class="line">Python script that will remove the common space characters from a set of text lines from files given on the command line or stdin.</div>
+</div>
+<div class="line"><a class="reference external" href="util/ds.zip">util/ds.zip</a></div>
+<div class="line-block">
+<div class="line">Contains python scripts to help you launch datasheets, manuals, and other documentation files from a command line prompt.  I use this script to lauch manuals and ebooks and it quickly finds the ones I want amongst thousands of files.</div>
+</div>
+<div class="line"><a class="reference external" href="util/ext.py">util/ext.py</a></div>
+<div class="line-block">
+<div class="line">Python script to make a list of the extensions used in file names in the directories given on the command line.</div>
+</div>
+<div class="line"><a class="reference external" href="util/fdiff.zip">util/fdiff.zip</a></div>
+<div class="line-block">
+<div class="line">Contains python scripts that can identify differences in two directory trees and perform updates as needed to synchronize these two trees.</div>
+</div>
+<div class="line"><a class="reference external" href="util/fit.py">util/fit.py</a></div>
+<div class="line-block">
+<div class="line">Provides a python function to fit a string of words into a given number of columns.</div>
+</div>
+<div class="line"><a class="reference external" href="util/goto.py">util/goto.py</a></div>
+<div class="line-block">
+<div class="line">Contains a sh-type shell function and a python script that let you navigate around to various directories from a shell command line. I've had a number of UNIX users tell me they couldn't live without this tool once they started using it.</div>
+</div>
+<div class="line"><a class="reference external" href="util/lib.zip">util/lib.zip</a></div>
+<div class="line-block">
+<div class="line">Python script command line tool to provide a facility for keeping snippets of code handy.</div>
+</div>
+<div class="line"><a class="reference external" href="util/lnk.py">util/lnk.py</a></div>
+<div class="line-block">
+<div class="line">Python script to list the files in two directory trees that are hard-linked together.  If you have GNU find, the -samefile option can be used to do this too.</div>
+</div>
+<div class="line"><a class="reference external" href="util/lookup.zip">util/lookup.zip</a></div>
+<div class="line-block">
+<div class="line">Package that contains a python script that can help you look up words in a word dictionary and use the information from WordNet to show synonyms, definitions, and types of words (e.g., adjectives, adverbs, nouns, and verbs).</div>
+</div>
+<div class="line"><a class="reference external" href="util/mk.py">util/mk.py</a></div>
+<div class="line-block">
+<div class="line">Python script that is invoked with a file that contains lines of file pairs and a recipe.  When the first file is newer than the second, the recipe is executed.</div>
+</div>
+<div class="line"><a class="reference external" href="util/mod.py">util/mod.py</a></div>
+<div class="line-block">
+<div class="line">Python script to recursively find files that have changed within a specified time period.</div>
+</div>
+<div class="line"><a class="reference external" href="util/mp.py">util/mp.py</a></div>
+<div class="line-block">
+<div class="line">This is a macro processor that is a string substitution tool. You can also include arbitrary python code in your text files. Use mp.py -h to read the man page.</div>
+</div>
+<div class="line"><a class="reference external" href="util/pdf.py">util/pdf.py</a></div>
+<div class="line-block">
+<div class="line">This is a python script that can manipulate PDF files. It can concatenate a number of PDF files, select certain pages and write them to another PDF file, rotating pages, watermarking. etc. You'll also need to download the pyPdf library to use this script.</div>
+</div>
+<div class="line"><a class="reference external" href="util/pfind.py">util/pfind.py</a></div>
+<div class="line-block">
+<div class="line">Python script to find files and directories. Similar to the UNIX find (but not as powerful), but with a simpler syntax.</div>
+</div>
+<div class="line"><a class="reference external" href="util/readability.zip">util/readability.zip</a></div>
+<div class="line-block">
+<div class="line">Will calculate various readability indexes for text files, such as the Gunning Fog Index, the Flesch-Kinkaid Grade Level, etc.</div>
+</div>
+<div class="line"><a class="reference external" href="util/scramble.zip">util/scramble.zip</a></div>
+<div class="line-block">
+<div class="line">Contains a python script to scramble letters in words, leaving the first and last characters alone.</div>
+</div>
+<div class="line"><a class="reference external" href="util/space.py">util/space.py</a></div>
+<div class="line-block">
+<div class="line">See where the space is being consumed in a directory tree and where the biggest files are.</div>
+</div>
+<div class="line"><a class="reference external" href="util/split_cat.zip">util/split_cat.zip</a></div>
+<div class="line-block">
+<div class="line">Python scripts to split a file into chunks, print out SHA1 hashes of each chunk, and allow you to recombine the chunks later back into the original file.</div>
+</div>
+<div class="line"><a class="reference external" href="util/tlc.py">util/tlc.py</a></div>
+<div class="line-block">
+<div class="line">Python script to rename all files in a directory to lower or upper case.</div>
+</div>
+<div class="line"><a class="reference external" href="util/html_tokens.py">util/html_tokens.py</a></div>
+<div class="line-block">
+<div class="line">Will produce a list of readable words from an HTML file, all in lower case, one per line. You could then run the list of words through a spell checker.</div>
+</div>
+<div class="line"><a class="reference external" href="util/tree.py">util/tree.py</a></div>
+<div class="line-block">
+<div class="line">Python script to print an ASCII representation of a directory tree.  It can optionally decorate the tree with each directory's size in MBytes.</div>
+</div>
+<div class="line"><a class="reference external" href="util/unicode.py">util/unicode.py</a></div>
+<div class="line-block">
+<div class="line">Python script to find Unicode characters.  You'll need to download the relevant files from the Unicode website.</div>
+</div>
+<div class="line"><a class="reference external" href="util/unx.py">util/unx.py</a></div>
+<div class="line-block">
+<div class="line">Produces a list of files that are candidates for turning their execute bit permission off.</div>
+</div>
+<div class="line"><a class="reference external" href="util/spc_to_underscore.py">util/spc_to_underscore.py</a></div>
+<div class="line-block">
+<div class="line">Python script to replace all space characters in file names with underscores.</div>
+</div>
+</div>
+<p>Updated 23 Jun 2018 11:17:09 am</p>
+</div>
+</div>
+</body>
+</html>

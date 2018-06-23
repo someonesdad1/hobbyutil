@@ -33,7 +33,7 @@ import traceback as TB
 import yaml
 import zipfile
 from textwrap import dedent
-from time import asctime
+from time import asctime, strftime
 from pdb import set_trace as xx
 
 # Copyright (C) 2014 Don Peterson
@@ -78,7 +78,11 @@ tw.initial_indent = tw.subsequent_indent = " "*4
 output_directories = set()
 
 # Name of the project list markdown file
-project_list_markdown = "project_list.md"
+pl = "project_list"
+project_list_markdown = "{}.md".format(pl)
+project_list_rst = "{}.rst".format(pl)
+project_list_css = "{}.css".format(pl)
+del pl
 
 # Map output directories to more meaningful names
 output_directories_map = OrderedDict((
@@ -203,19 +207,6 @@ def Info(back=3):
     stack = TB.extract_stack()[-back:][0]
     return stack[:2]
 
-#----------------------------------------------------------------------
-# This section contains the data for the main project web page.
-
-Header = '''
-
-[Home](./README.md)
-
-Click on the links to download a project's file(s).
-
-'''.strip().format(**globals())
-
-#----------------------------------------------------------------------
-
 def Usage(d, status=1):
     name = sys.argv[0]
     s = '''
@@ -234,6 +225,8 @@ Commands:
 Options:
     -i      Ignore the ignore flag in the projects file.  This can be used
             to find missing project files.
+    -t      Show python test scripts (*_test.py) that are in the projects
+            (used to identify tests that must be run).
     -z      Package the indicated project(s) in args into separate zip
             containers.  These will be located in the directory indicated
             by the global variable package_dir.
@@ -243,21 +236,18 @@ Options:
 
 def ParseCommandLine(d):
     d["-i"]     = False     # If True, zip even if ignored
+    d["-t"]     = False     # If True, print out python test scripts
     d["-z"]     = False     # If True, zip indicated packages
-    if len(sys.argv) < 2:
-        Usage(d)
     try:
-        optlist, args = getopt.getopt(sys.argv[1:], "iz")
+        optlist, args = getopt.getopt(sys.argv[1:], "itz")
     except getopt.GetoptError as e:
         msg, option = e
         print(msg)
         exit(1)
     for opt in optlist:
-        if opt[0] == "-i":
-            d["-i"] = True
-        elif opt[0] == "-z":
-            d["-z"] = True
-    if not args:
+        if opt[0][1] in "itz":
+            d[opt[0]] = not d[opt[0]]
+    if not args and not d["-t"]:
         Usage(d)
     return args
 
@@ -268,7 +258,8 @@ def Message(s, fg, bg=c.black):
 
 def ReadProjectData(d):
     '''Get data and update it to ensure all records are present.  The
-    input data is in YAML format.
+    input data is in YAML format.  After finishing, data is a dictionary
+    keyed by project name; the values are the Project objects.
     '''
     global data, output_directories
     # Load information from disk
@@ -408,6 +399,16 @@ def GetLinkName(project_object):
         file = project_object.name + ".zip"
     return "{}/{}".format(project_object.subdir, file)
 
+def Time():
+    '''Return a string showing the current time.
+    '''
+    def RemoveLeading0(s):
+        return s[1:] if s[0] == "0" else s
+    day, hour = strftime("%d %I").split()
+    ampm = strftime("%p").lower()
+    s = strftime("{} %b %Y {}:%M:%S {}")
+    return s.format(RemoveLeading0(day), RemoveLeading0(hour), ampm)
+
 def BuildProjectPage(d):
     '''This builds the project_list.md file.  Note it has to include all
     the projects that are not ignored.  To do this, we build an OrderedDict
@@ -441,32 +442,56 @@ def BuildProjectPage(d):
         from pprint import pprint as pp
         pp(project_container)
         exit()
-    # Write the project_list.md markdown file (this produces the webpage's
-    # table).
-    pl = open(project_list_markdown, "w")
-    pl.write(Header + nl)
-    for category in project_container:
-        # Write heading for category
-        pl.write(nl + "## " + output_directories_map[category] + nl + nl)
-        # Start a table
-        pl.write('''Link | Description
+    if 1:
+        # Write the project_list.md markdown file (this produces the Github
+        # Pages webpage's table).
+        pl = open(project_list_markdown, "w")
+        pl.write("[Home](./README.md)" + nl + nl)
+        for category in project_container:
+            # Write heading for category
+            pl.write(nl + "## " + output_directories_map[category] + nl + nl)
+            # Start a table
+            pl.write('''Link | Description
 --- | ---
 ''')
-        for link, descr in project_container[category]:
-            pl.write("{} | {}\n".format(link, descr))
-    # Add in some statistics
-    pl.write(nl + "Updated {}".format(asctime()) + nl*2)
-    total_number_of_projects = 0
-    pl.write('''Number | Project
---- | ---
-''')
-    for category in project_container:
-        n = len(project_container[category])
-        name = output_directories_map[category]
-        total_number_of_projects += n
-        pl.write("{} | {}\n".format(n, name))
-    pl.write("{} | {}\n".format(total_number_of_projects, "Total"))
-    pl.close()
+            for link, descr in project_container[category]:
+                pl.write("{} | {}\n".format(link, descr))
+        pl.write(nl + "Updated {}".format(Time()) + nl*2)
+        if 0:
+            # Add a table with project counts
+            total_number_of_projects = 0
+            pl.write('''Number | Project
+    --- | ---
+    ''')
+            for category in project_container:
+                n = len(project_container[category])
+                name = output_directories_map[category]
+                total_number_of_projects += n
+                pl.write("{} | {}\n".format(n, name))
+            pl.write("{} | {}\n".format(total_number_of_projects, "Total"))
+            pl.close()
+    if 1:
+        # Write the project_list.rst file; this is a reStructuredText file
+        # that will result in an HTML file with more dense information on
+        # the web page).
+        hu = open(project_list_rst, "w")
+        # Link to home page
+        hu.write("`Home <https://someonesdad1.github.io/hobbyutil/>`_" + nl + nl)
+        # Table of contents
+        hu.write(".. contents:: Table of Contents" + nl + nl)
+        for category in project_container:
+            # Write heading for category
+            heading = output_directories_map[category]
+            hu.write(heading + nl)
+            hu.write("="*len(heading) + nl + nl)
+            # The list of hyperlinks to projects and their descriptions
+            for link, descr in project_container[category]:
+                lnk = link[1:link.find("]")]
+                hu.write("| `{} <{}>`_\n".format(lnk, lnk))
+                hu.write("|   {}\n".format(descr))
+            hu.write(nl*2)
+        hu.write(nl + "Updated {}".format(Time()) + nl*2)
+        hu.close()
 
 def BuildZips(projects, d):
     '''Construct zipfiles of the indicated projects.
@@ -482,10 +507,27 @@ def BuildZips(projects, d):
         print(project)
         BuildProjectZip(project_object)
 
+def ShowTestScripts(d):
+    '''Print out project names that contain a python script named
+    *_test.py.
+    '''
+    print("Projects with *_test.py test scripts:")
+    for project in data:
+        po = data[project]
+        for src, dest in po.files:
+            if dest.endswith(".py"):
+                base = dest[:-3]
+                if base.endswith("_test"):
+                    print("  {:20s}  {:30s}  {}".format(project, src, po.srcdir))
+                    continue
+    exit(0)
+
 if __name__ == "__main__":
     d = {} # Options dictionary
     args = ParseCommandLine(d)
     ReadProjectData(d)
+    if d["-t"]:
+        ShowTestScripts(d)
     MakeDirectories(d)
     cmd = args[0]
     del args[0]
