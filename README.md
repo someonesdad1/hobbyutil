@@ -1,6 +1,6 @@
 # hobbyutil
 
-Click [here](./project_list.md) to go to the projects page to read their
+Click [here](./project_list.html) to go to the projects page to read their
 descriptions and download them.  
 
 This repository is for projects I've developed over the years for my
