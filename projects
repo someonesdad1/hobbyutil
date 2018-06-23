@@ -1056,6 +1056,15 @@ lvise:
         - pictures/Starrett_160_clamp.png*
     srcdir: /shop/projects
 
+lwtest:
+    subdir: prog
+    descr: Lightweight python script testing framework.
+    files:
+        - lwtest.odt*
+        - lwtest.pdf
+        - lwtest.py
+    srcdir: /pylib
+
 manufy:
     subdir: prog
     descr: Python script to convert text lines to have
