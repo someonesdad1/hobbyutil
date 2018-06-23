@@ -35,8 +35,7 @@ could happen is that lots of people copy this repository to other places
 and share it with other folks.  Feel free to mirror this site if you wish.
 
 If you're interested in archiving your own data on Github, you might want
-to read this
-`tutorial <https://someonesdad1.github.io/hobbyutil/tutorial.html>`_.
+to read `tutorial <https://someonesdad1.github.io/hobbyutil/tutorial.html>`_.
 
 License
 =======
