@@ -197,6 +197,17 @@ class Project(object):
         for src, dest in self.files:
             s += "      {}, {}\n".format(src, dest)
         return s
+    def PDFs(self):
+        '''Return a list of the PDF files in this project; the entries will
+        point to the source locations.
+        '''
+        files = []
+        for src, dest in self.files:
+            t = RemoveAsterisk(src)
+            if t.endswith(".pdf"):
+                s = os.path.join(self.srcdir, t)
+                files.append(s)
+        return files
 
 def Error(msg, status=1):
     c.fg(c.lred)
@@ -225,7 +236,9 @@ Commands:
                 use '.' to build everything.
     list        List active and inactive projects.  You can specify
                 particular projects on the command line and the projects'
-                details will be printed.
+                details will be printed.  The argument 'PDF' will create a
+                listing of all the source PDFs in all the projects, even
+                the inactive ones.
 
 Options:
     -i      Ignore the ignore flag in the projects file.  This can be used
@@ -359,10 +372,20 @@ def List(projects, d):
     '''List active and inactive projects.
     '''
     if projects:
-        # List details on given projects
-        for project in projects:
-            project_object = data[project]
-            print(project_object)
+        if len(projects) == 1 and projects[0] == "PDF":
+            # List PDFs in all projects
+            for project in data:
+                po = data[project]
+                pdfs = po.PDFs()
+                if pdfs:
+                    print(project)
+                    for i in po.PDFs():
+                        print("    {}".format(i))
+        else:
+            # List details on given projects
+            for project in projects:
+                po = data[project]
+                print(po)
     else:
         # List active and inactive projects
         active, inactive, f = [], [], "*"

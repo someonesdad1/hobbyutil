@@ -22,8 +22,9 @@
 
 ag:
     subdir: math
-    descr: Contains formulas relating to analytic geometry in the plane and other
-        math stuff I need to look up on a regular basis.
+    descr: Contains formulas relating to analytic geometry and other
+        math stuff I need to look up on a regular basis.  I'm looking for a
+        new maintainer of this document.
     files:
         - AnalyticGeometry.odt*
         - AnalyticGeometry.pdf
@@ -1275,8 +1276,7 @@ parts:
 
 pcmplx:
     subdir: math
-    descr: Python module that allows you to parse complex numbers when
-        they are written in the ways humans like to write them.
+    descr: Parse complex numbers when they are written in the ways humans like to write them.
     files: [parse_complex.py]
     srcdir: /pylib
 
