@@ -12,7 +12,7 @@ Link | Description
 [elec/hppn.zip](elec/hppn.zip) | This is a compilation of various 8-digit HP part numbers translated into more identifiable numbers.  TTL IC SN74175N.  This list may be of use to those with old HP instruments that need to find a replacement part.
 [elec/impedance.py](elec/impedance.py) | This python script will take a complex impedance in polar coordinates and print out the series and parallel models' values, reactance, dissipation factor, and quality factor.
 [elec/ind.zip](elec/ind.zip) | Provides an Open Office spreadsheet that can calculate the inductance of common electrical structures.  Includes a PDF document describing the use and which gives references for the formulas used.
-[elec/Octopus_new.pdf](elec/Octopus_new.pdf) | Build an Octopus, a handy electrical troubleshooting tool (you need an oscilloscope).
+[elec/octopus.pdf](elec/octopus.pdf) | Build an Octopus, a handy electrical troubleshooting tool (you need an oscilloscope).
 [elec/PartsStorageMethods.pdf](elec/PartsStorageMethods.pdf) | Describes one way of storing lots of little electronic parts and how to find them quickly.
 [elec/react.zip](elec/react.zip) | Contains two reactance charts in PDF form along with a short file describing their use.
 [elec/RMS.pdf](elec/RMS.pdf) | An article for hobbyists about making RMS electrical measurements.
@@ -78,6 +78,7 @@ Link | Description
 [prog/fset.py](prog/fset.py) | Treat lines of files as a set. Allows you to look at the union, intersection, difference, etc. between the lines of various files.
 [prog/hg.zip](prog/hg.zip) | Some python scripts that make it easier to work with Mercurial repositories.
 [prog/license.zip](prog/license.zip) | This is a python script that will allow you to change the license  you use in your source code files.
+[prog/lwtest.zip](prog/lwtest.zip) | Lightweight python script testing framework.
 [prog/manufy.py](prog/manufy.py) | Python script to convert text lines to have double quotes and a newline at the end. This is useful to allow you to quickly write manpages for C or C++ code.
 [prog/PythonFromCalc.pdf](prog/PythonFromCalc.pdf) | How to call python functions from Open Office Calc spreadsheets.
 [prog/python.zip](prog/python.zip) | Discusses why learning the python programming language might be a good thing for technical folks.
@@ -185,5 +186,5 @@ Link | Description
 [util/unx.py](util/unx.py) | Produces a list of files that are candidates for turning their execute bit permission off.
 [util/spc_to_underscore.py](util/spc_to_underscore.py) | Python script to replace all space characters in file names with underscores.
 
-Updated 23 Jun 2018 11:17:09 am
+Updated 23 Jun 2018 6:56:42 pm
 

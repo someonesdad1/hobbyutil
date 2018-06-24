@@ -1166,7 +1166,7 @@ oct:
         oscilloscope).
     files:
         - Octopus_new.odt*
-        - Octopus_new.pdf
+        - [Octopus_new.pdf, octopus.pdf]
         - pictures/octopus_non_sine.png*
         - [pictures/small/BNC_connectors.png*, pictures/BNC_connectors.png*]
         - [pictures/small/octopus_100_nF.png*, pictures/octopus_100_nF.png*]

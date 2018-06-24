@@ -476,9 +476,10 @@ def BuildProjectPage(d):
         # the web page).
         hu = open(project_list_rst, "w")
         # Link to home page
-        hu.write("`Home <https://someonesdad1.github.io/hobbyutil/>`_" + nl + nl)
+        hu.write("`Home <https://someonesdad1.github.io/hobbyutil/>`_" + nl*2)
         # Table of contents
-        hu.write(".. contents:: Table of Contents" + nl + nl)
+        hu.write(".. contents:: Table of Contents" + nl*2)
+        hu.write("Integer after link is file size in bytes divided by 1000" + nl*2)
         for category in project_container:
             # Write heading for category
             heading = output_directories_map[category]
@@ -487,7 +488,13 @@ def BuildProjectPage(d):
             # The list of hyperlinks to projects and their descriptions
             for link, descr in project_container[category]:
                 lnk = link[1:link.find("]")]
-                hu.write("| `{} <{}>`_\n".format(lnk, lnk))
+                if 1:
+                    sz = os.stat(lnk).st_size//1000
+                    hu.write("| `{} <{}>`_ ({})\n".format(lnk, lnk, sz))
+                else:
+                    sz = os.stat(lnk).st_size//1000
+                    print(lnk, sz) #xx
+                    hu.write("| `{} <{}>`_\n".format(lnk, lnk))
                 hu.write("|   {}\n".format(descr))
             hu.write(nl*2)
         hu.write(nl + "Updated {}".format(Time()) + nl*2)
