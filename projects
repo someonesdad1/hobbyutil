@@ -12,6 +12,8 @@
 #   files       Source files making up the project
 #   ignore    * If contains text, then the reason this project is ignored
 #   srcdir      Where to find source files
+#   frozen      Boolean to flag large packages (they'll need the -f option
+#               of the hu.py script to update)
 #
 # A * after a file name in files means it doesn't need to be included in the
 # distribution, but only when the package is constructed.  If there is only
@@ -28,6 +30,7 @@ ag:
         - pictures/trig_quadrants.png*
         - pictures/trig_functions.png*
     srcdir: /math/AnalyticGeometry
+    frozen: yes
 
 antif:
     subdir: eng
@@ -47,6 +50,7 @@ antif:
         - pictures/sulfuric_acid_density.png*
         - pictures/sulfuric_acid_density_residuals.png*
     srcdir: /science/antifreeze
+    frozen: yes
 
 app:
     subdir: util
@@ -155,6 +159,7 @@ bnc:
         - pictures/bnc_connector_parts.jpg*
         - pictures/bnc_outside_resistance.jpg*
     srcdir: /elec/components
+    frozen: yes
 
 bode:
     subdir: elec
@@ -204,6 +209,7 @@ calipers:
         - [../../projects/pictures/hammers_cross_pein.jpg*, pictures/hammers_cross_pein.jpg*]
         - [patents/starrett_fay_1895_lock_joint_US539759.png*, /patents/starrett_fay_1895_lock_joint_US539759.png*]
     srcdir: /shop/LengthMeasurement/calipers
+    frozen: yes
 
 cart:
     subdir: shop
@@ -310,6 +316,7 @@ clamps:
         - [pictures/small/machinist_clamp_7_jaws.png*, pictures/machinist_clamp_7_jaws.png*]
         - [pictures/small/toolmaker_clamp1.png*, pictures/toolmaker_clamp1.png*]
     srcdir: /shop/projects
+    frozen: yes
 
 cnt:
     subdir: util
@@ -459,6 +466,7 @@ dino:
         - DinosaurArithmeticSmall.pdf
         - pictures/trig_approx.png*
     srcdir: /math/Dinosaur_Arithmetic
+    frozen: yes
 
 ditchpump:
     subdir: shop
@@ -476,6 +484,8 @@ ditchpump:
         - pictures/small/pump_house.png*
         - [pictures/small/pump_rear_5Aug2012.png*, pictures/pump_rear_5Aug2012.png*]
     srcdir: /doc/home/sprinklers
+    frozen: yes
+    frozen: yes
 
 diurnal:
     subdir: science
@@ -497,6 +507,7 @@ diurnal:
         - pictures/mounting_geometry.jpg*
         - pictures/collimated_detector_view.jpg*
     srcdir: /science/diurnal_optics
+    frozen: yes
 
 dmath:
     subdir: math
@@ -613,6 +624,7 @@ elements:
         - pictures/elastic_constants.jpg*
         - [/pylib/fpformat.py*, fpformat.py*]
     srcdir: /science/elements
+    frozen: yes
 
 esr:
     subdir: elec
@@ -712,6 +724,7 @@ fpen:
         - pictures/ohaus_balance.jpg*
         - pictures/ink_density_with_no_flash.jpg*
     srcdir: /doc/pens
+    frozen: yes
 
 frac:
     subdir: math
@@ -770,7 +783,8 @@ gblock:
     subdir: shop
     descr: A C++ program to print out combinations of gauge blocks
         that yield a desired composite length (the subset sum problem).
-        Uses brute-force searching to find solutions.
+        Uses brute-force searching to find solutions.  Includes a python
+        script that solves the same problem.
     files:
         - gauge.cpp
         - [/pylib/pgm/gb.py, gb.py]
@@ -784,7 +798,7 @@ glendag:
         - GlendaGuard.odt*
         - GlendaGuard.pdf
         - pictures/glenda_guard_2.jpg*
-        - pictures/glenda_guard_1.jpg
+        - pictures/glenda_guard_1.jpg*
     srcdir: /shop/projects/GlendaGuard
 
 goto:
@@ -831,6 +845,7 @@ hammer:
         - pictures/hammer_handle_prototype_1.jpg*
         - pictures/hammer_handle_prototype_2.jpg*
     srcdir: /shop/projects
+    frozen: yes
 
 help:
     subdir: prog
@@ -980,6 +995,7 @@ ind:
         - inductance_spreadsheet.pdf
         - pictures/screenshot.jpg*
     srcdir: /elec/software/coil_inductance
+    frozen: yes
 
 irr:
     subdir: science
@@ -1185,6 +1201,7 @@ oct:
         - [pictures/small/octopus_res_diode_components.png*, pictures/octopus_res_diode_components.png*]
         - [pictures/small/octopus_res_diode_composite.png*, pictures/octopus_res_diode_composite.png*]
     srcdir: /elec/projects/octopus
+    frozen: yes
 
 odict:
     subdir: prog
@@ -1382,6 +1399,7 @@ readability:
         - readability.readme
         - words_syllables.py
     srcdir: /pylib/pgm
+    frozen: yes
 
 refcards:
     subdir: shop
@@ -1423,6 +1441,7 @@ refcards:
         - pictures/self_tapping_screws1.jpg*
         - pictures/self_tapping_screws2.jpg*
     srcdir: /shop/ReferenceCards
+    frozen: yes
 
 res:
     subdir: elec

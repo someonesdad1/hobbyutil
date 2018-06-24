@@ -234,8 +234,8 @@ Shop
 | `shop/LayingOutFrustumWithDividers.pdf <shop/LayingOutFrustumWithDividers.pdf>`_ (177)
 |   Shows how to lay out the frustum of a cone with dividers in your shop.
 | `shop/gblock.zip <shop/gblock.zip>`_ (23)
-|   A C++ program to print out combinations of gauge blocks that yield a desired composite length (the subset sum problem). Uses brute-force searching to find solutions.
-| `shop/glendag.zip <shop/glendag.zip>`_ (641)
+|   A C++ program to print out combinations of gauge blocks that yield a desired composite length (the subset sum problem). Uses brute-force searching to find solutions.  Includes a python script that solves the same problem.
+| `shop/GlendaGuard.pdf <shop/GlendaGuard.pdf>`_ (399)
 |   Describes a simple concrete sprinkler guard that my wife designed and built.
 | `shop/hammer.pdf <shop/hammer.pdf>`_ (1274)
 |   Discusses the common hammer types and making a new handle for one.
@@ -335,5 +335,5 @@ Utilities
 
 
 
-Updated 23 Jun 2018 6:56:42 pm
+Updated 24 Jun 2018 7:55:35 am
 

@@ -146,6 +146,7 @@ class Project(object):
     files       [src, dest] pairs of the project's files
     srcdir      Where the source files reside
     ignore      If not None, the reason this file isn't built
+    frozen      If true, it's a big file, so only build when -f option used
 
     The class variable projects is a dictionary keyed by each subdir name
     (such as 'math', 'shop', etc.); each key's value is a list of the
@@ -158,6 +159,8 @@ class Project(object):
         self.data = project_data_dict
         if "ignore" not in self.data:
             self.data["ignore"] = None
+        if "frozen" not in self.data:
+            self.data["frozen"] = False
         self.validate_data()
     def validate_data(self):
         for key in "subdir descr files srcdir ignore".split():
@@ -169,6 +172,7 @@ class Project(object):
         self.files = self.data["files"]
         self.srcdir = self.data["srcdir"]
         self.ignore = self.data["ignore"]
+        self.frozen = bool(self.data["frozen"])
         if self.ignore:
             return
         # Make sure all source files exist and can be read
@@ -187,6 +191,7 @@ class Project(object):
   descr  = {0.descr}
   srcdir = {0.srcdir}
   ignore = {0.ignore}
+  frozen = {0.frozen}
   files (source, destination):
 '''.format(self)
         for src, dest in self.files:
@@ -225,6 +230,9 @@ Commands:
 Options:
     -i      Ignore the ignore flag in the projects file.  This can be used
             to find missing project files.
+    -f      Build frozen files.  These are the large packages in the
+            repository that shouldn't change very often.  Only those
+            packages given on the command line will be built.
     -t      Show python test scripts (*_test.py) that are in the projects
             (used to identify tests that must be run).
     -z      Package the indicated project(s) in args into separate zip
@@ -236,16 +244,17 @@ Options:
 
 def ParseCommandLine(d):
     d["-i"]     = False     # If True, zip even if ignored
+    d["-f"]     = False     # If True, build frozen files
     d["-t"]     = False     # If True, print out python test scripts
     d["-z"]     = False     # If True, zip indicated packages
     try:
-        optlist, args = getopt.getopt(sys.argv[1:], "itz")
+        optlist, args = getopt.getopt(sys.argv[1:], "fitz")
     except getopt.GetoptError as e:
         msg, option = e
         print(msg)
         exit(1)
     for opt in optlist:
-        if opt[0][1] in "itz":
+        if opt[0][1] in "fitz":
             d[opt[0]] = not d[opt[0]]
     if not args and not d["-t"]:
         Usage(d)
@@ -331,6 +340,21 @@ def BuildProject(project_object):
     entry = (dest, project_object.descr)
     Project.projects[project_object.subdir].append(entry)
 
+def ShowTestScripts(d):
+    '''Print out project names that contain a python script named
+    *_test.py.
+    '''
+    print("Projects with *_test.py test scripts:")
+    for project in data:
+        po = data[project]
+        for src, dest in po.files:
+            if dest.endswith(".py"):
+                base = dest[:-3]
+                if base.endswith("_test"):
+                    print("  {:20s}  {:30s}  {}".format(project, src, po.srcdir))
+                    continue
+    exit(0)
+
 def List(projects, d):
     '''List active and inactive projects.
     '''
@@ -341,14 +365,16 @@ def List(projects, d):
             print(project_object)
     else:
         # List active and inactive projects
-        active, inactive = [], []
+        active, inactive, f = [], [], "*"
         for project in data:
-            if data[project].ignore:
-                inactive.append(project)
+            p = data[project]
+            if p.ignore or p.frozen:
+                #inactive.append((f if p.frozen else "") + project)
+                inactive.append(project + (f if p.frozen else ""))
             else:
                 active.append(project)
         w = 80
-        s = "{} Inactive projects".format(len(inactive))
+        s = "{} Inactive or frozen ({}) projects".format(len(inactive), f)
         print("{:^{}s}".format(s, w))
         print("{:^{}s}".format("-"*len(s), w))
         for i in Columnize(inactive):
@@ -382,6 +408,9 @@ def Build(projects, d):
     for project in projects:
         project_object = data[project]
         if project_object.ignore and not d["-i"]:
+            continue
+        if project_object.frozen and not d["-f"]:
+            print("{}   [not built because it is big (use -f)]".format(project))
             continue
         print(project)
         BuildProject(project_object)
@@ -514,21 +543,6 @@ def BuildZips(projects, d):
         print(project)
         BuildProjectZip(project_object)
 
-def ShowTestScripts(d):
-    '''Print out project names that contain a python script named
-    *_test.py.
-    '''
-    print("Projects with *_test.py test scripts:")
-    for project in data:
-        po = data[project]
-        for src, dest in po.files:
-            if dest.endswith(".py"):
-                base = dest[:-3]
-                if base.endswith("_test"):
-                    print("  {:20s}  {:30s}  {}".format(project, src, po.srcdir))
-                    continue
-    exit(0)
-
 if __name__ == "__main__":
     d = {} # Options dictionary
     args = ParseCommandLine(d)
@@ -541,7 +555,8 @@ if __name__ == "__main__":
     if cmd == "build":
         if not args:
             Usage(d)
-        BuildZips(args, d) if d["-z"] else Build(args, d)
+        else:
+            BuildZips(args, d) if d["-z"] else Build(args, d)
     elif cmd == "list":
         List(args, d)
     else:

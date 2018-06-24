@@ -133,8 +133,8 @@ Link | Description
 [shop/drules.pdf](shop/drules.pdf) | PDFs containing some drafting rules that I've always wanted. You can print them at full scale and glue them to a chunk of wood to make some handy scales.
 [shop/fits.py](shop/fits.py) | Python script to calculate the required shaft or hole size given a basic dimension of a shaft or hole.
 [shop/LayingOutFrustumWithDividers.pdf](shop/LayingOutFrustumWithDividers.pdf) | Shows how to lay out the frustum of a cone with dividers in your shop.
-[shop/gblock.zip](shop/gblock.zip) | A C++ program to print out combinations of gauge blocks that yield a desired composite length (the subset sum problem). Uses brute-force searching to find solutions.
-[shop/glendag.zip](shop/glendag.zip) | Describes a simple concrete sprinkler guard that my wife designed and built.
+[shop/gblock.zip](shop/gblock.zip) | A C++ program to print out combinations of gauge blocks that yield a desired composite length (the subset sum problem). Uses brute-force searching to find solutions.  Includes a python script that solves the same problem.
+[shop/GlendaGuard.pdf](shop/GlendaGuard.pdf) | Describes a simple concrete sprinkler guard that my wife designed and built.
 [shop/hammer.pdf](shop/hammer.pdf) | Discusses the common hammer types and making a new handle for one.
 [shop/holes.zip](shop/holes.zip) | Contains a python script that will help you lay out holes that are equally-spaced around a circle.
 [shop/HoseFitting.pdf](shop/HoseFitting.pdf) | Here's an effective way to secure a hose to a hose fitting. It's better than anything I've found in a store.
@@ -186,5 +186,5 @@ Link | Description
 [util/unx.py](util/unx.py) | Produces a list of files that are candidates for turning their execute bit permission off.
 [util/spc_to_underscore.py](util/spc_to_underscore.py) | Python script to replace all space characters in file names with underscores.
 
-Updated 23 Jun 2018 6:56:42 pm
+Updated 24 Jun 2018 7:55:35 am
 
