@@ -58,7 +58,8 @@ app:
     descr: Handy application if you like to work at a cygwin command
         line. Given one or more files, it will cause them to be opened
         with their registered application.
-    files: [app.cpp]
+    files:
+        - app.cpp
     ignore:  cygstart does the same thing under cygwin; start does it under Windows.
     srcdir: /tools
 
@@ -66,7 +67,8 @@ asc:
     subdir: util
     descr: Python script to print out an ASCII character table in decimal, hex, 
         or octal.
-    files: [asc.py]
+    files: 
+        - asc.py
     srcdir: /pylib/pgm
 
 astro:
@@ -86,7 +88,8 @@ astro:
 ball:
     subdir: shop
     descr: Python script to calculate steps to turn a ball on a lathe.
-    files: [ball.py]
+    files:
+        - ball.py
     srcdir: /pylib/pgm
 
 bar:
@@ -125,14 +128,16 @@ bd:
     subdir: util
     descr: Performs a comparison between binary files; differences
         are printed in hex dump format. 
-    files: [bd.c]
+    files:
+        - bd.c
     srcdir: /tools/misc
 
 bgrep:
     subdir: util
     descr: Python script to search for regular expressions and strings
         in binary files.
-    files: [bgrep.py]
+    files:
+        - bgrep.py
     srcdir: /pylib/pgm
 
 bidict:
@@ -167,7 +172,8 @@ bode:
     descr: Generate a Bode plot with a python script (needs numpy and
         matplotlib).  You define the transfer function in a file 
         passed on the command line.
-    files: [bode.py]
+    files:
+        - bode.py
     srcdir: /pylib/pgm
 
 bucket:
@@ -277,7 +283,7 @@ chemname:
     descr: A list of archaic chemical names with their modern equivalents
         and chemical formulas.
     files:
-        - chemical_names.odt*
+        - chemical_names.ods*
         - chemical_names.pdf
     srcdir: /help/science
 
@@ -334,20 +340,23 @@ color:
     subdir: util
     descr: Python module to provide color printing to a console window.
         Should work on both Windows and Linux.
-    files: [color.py]
+    files:
+        - color.py
     srcdir: /pylib
 
 columnize:
     subdir: prog
     descr: Python script to columnize a sequence into columns. 
-    files: [columnize.py]
+    files:
+        - columnize.py
     srcdir: /pylib
 
 comb:
     subdir: prog
     descr: A python script that will produce permutations and combinations
         of the lines in a file. Can be useful for generating test cases.
-    files: [comb.py]
+    files:
+        - comb.py
     srcdir: /pylib/pgm
 
 cove:
@@ -366,11 +375,10 @@ cs:
     descr: Describes how to make a battery-operated 1 ampere current source
         used to make low resistance measurements.
     files:
-        - CurrentSource.odt*
+        - [CurrentSource_pub.odt*, CurrentSource.odt*]
         - CurrentSource.pdf
-        - pictures/1_A_current_source.jpg*
-        - pictures/LM317_current_source.jpg*
-        - pictures/shunt_current_source.jpg*
+        - pictures/current_source_1.png*
+        - pictures/current_source_schematic.png*
     srcdir: /elec/projects
 
 #csnippets:
@@ -412,7 +420,9 @@ dbm:
         ohm impedances.
     files:
         - dbm.odt*
+        - dbm.ods*
         - dbm.pdf
+        - dbm_details.pdf
     ignore: Limited interest
     srcdir: /elec/spreadsheets
 
@@ -421,7 +431,8 @@ dedent:
     descr: Python script that will remove the common space characters
         from a set of text lines from files given on the command line
         or stdin.
-    files: [dedent.py]
+    files:
+        - dedent.py
     srcdir: /pylib/pgm
 
 demag:
@@ -454,7 +465,8 @@ diam:
     subdir: science
     descr: Plots of circles showing the relative mean diameters of
         planets and moons in the solar system.
-    files: [diameters.pdf]
+    files:
+        - diameters.pdf
     srcdir: /science/astronomy/diameters
 
 dino:
@@ -547,7 +559,8 @@ drules:
     descr: PDFs containing some drafting rules that I've always wanted.
         You can print them at full scale and glue them to a chunk of
         wood to make some handy scales.
-    files: [drules.pdf]
+    files:
+        - drules.pdf
     srcdir: /shop/drafting_rules
 
 ds:
@@ -568,7 +581,8 @@ ds:
 #dupfile:
 #    subdir: util
 #    descr: Python script to find duplicated files in a directory tree.
-#    files: [dupfile.py]
+#    files:
+#       - dupfile.py
 #    ignore: Can't find script
 #    srcdir: /pylib/pgm
 
@@ -642,7 +656,8 @@ ext:
     subdir: util
     descr: Python script to make a list of the extensions used
         in file names in the directories given on the command line.
-    files: [ext.py]
+    files:
+        - ext.py
     srcdir: /pylib/pgm
 
 fdiff:
@@ -661,14 +676,16 @@ fit:
     subdir: util
     descr: Provides a python function to fit a string of words into
         a given number of columns.
-    files: [fit.py]
+    files:
+        - fit.py
     srcdir: /pylib/pgm
 
 fits:
     subdir: shop
     descr: Python script to calculate the required shaft or hole size
         given a basic dimension of a shaft or hole.
-    files: [fits.py]
+    files:
+        - fits.py
     srcdir: /pylib/pgm
 
 fpen:
@@ -777,7 +794,8 @@ fset:
     descr: Treat lines of files as a set. Allows you to look at the
         union, intersection, difference, etc. between the lines of
         various files.
-    files: [fset.py]
+    files:
+        - fset.py
     srcdir: /pylib/pgm
 
 gblock:
@@ -830,7 +848,8 @@ grid:
     subdir: eng
     descr: This python script will generate most any linear isotropic
         graph paper by creating a PostScript file.
-    files: [eng_grid.py]
+    files:
+        - eng_grid.py
     srcdir: /pylib/pgm
 
 hammer:
@@ -980,7 +999,8 @@ imp:
     descr: This python script will take a complex impedance in polar
         coordinates and print out the series and parallel models' values,
         reactance, dissipation factor, and quality factor.
-    files: [impedance.py]
+    files:
+        - impedance.py
     srcdir: /pylib/pgm
 
 ind:
@@ -1002,7 +1022,8 @@ irr:
     subdir: science
     descr: Calculate irradiance over a wavelength band from a spectral
         irradiance data file.
-    files: [irr.py]
+    files:
+        - irr.py
     srcdir: /pylib/pgm
 
 lib:
@@ -1028,7 +1049,8 @@ lnk:
     descr: Python script to list the files in two directory trees that are 
         hard-linked together.  If you have GNU find, the -samefile option can be
         used to do this too.
-    files: [lnk.py]
+    files:
+        - lnk.py
     srcdir: /pylib/pgm
 
 loo:
@@ -1087,7 +1109,8 @@ manufy:
     descr: Python script to convert text lines to have
         double quotes and a newline at the end. This is useful to allow
         you to quickly write manpages for C or C++ code. 
-    files: [manufy.py]
+    files:
+        - manufy.py
     srcdir: /pylib/pgm
 
 markup:
@@ -1125,7 +1148,8 @@ mixture:
     subdir: science
     descr: A python script to aid in mixture calculations. Adapted
         from a C program at http://www.myvirtualnetwork.com/mklotz/files/mixture.zip.
-    files: [mixture.py]
+    files:
+        - mixture.py
     srcdir: /pylib/pgm
 
 mk:
@@ -1133,14 +1157,16 @@ mk:
     descr: Python script that is invoked with a file that
         contains lines of file pairs and a recipe.  When the first
         file is newer than the second, the recipe is executed. 
-    files: [mk.py]
+    files:
+        - mk.py
     srcdir: /pylib/pgm
 
 mod:
     subdir: util
     descr: Python script to recursively find files that have changed
         within a specified time period.
-    files: [mod.py]
+    files:
+        - mod.py
     srcdir: /pylib/pgm
 
 mortgage:
@@ -1157,14 +1183,16 @@ mp:
     descr: This is a macro processor that is a string substitution
         tool. You can also include arbitrary python code in your text
         files. Use mp.py -h to read the man page.
-    files: [mp.py]
+    files:
+        - mp.py
     srcdir: /pylib/pgm
 
 novas:
     subdir: science
     descr: Translation into python of some C code from the US Naval
         Observatory (http://aa.usno.navy.mil/software/novas/novas_c/novasc_info.html).
-    files: [novas.py]
+    files:
+        - novas.py
     srcdir: /pylib
 
 nozzle:
@@ -1254,7 +1282,8 @@ paper:
     subdir: misc
     descr: Contains a python script to calculate various things about
         paper to compare paper purchases.
-    files: [paper.py]
+    files:
+        - paper.py
     srcdir: /pylib/pgm
 
 papersz:
@@ -1277,7 +1306,8 @@ parts:
 pcmplx:
     subdir: math
     descr: Parse complex numbers when they are written in the ways humans like to write them.
-    files: [parse_complex.py]
+    files:
+        - parse_complex.py
     srcdir: /pylib
 
 pdf:
@@ -1286,20 +1316,23 @@ pdf:
         number of PDF files, select certain pages and write them to another PDF
         file, rotating pages, watermarking. etc. You'll also need to download the
         pyPdf library to use this script.
-    files: [pdf.py]
+    files:
+        - pdf.py
     srcdir: /pylib
 
 pfind:
     subdir: util
     descr: Python script to find files and directories. Similar to
         the UNIX find (but not as powerful), but with a simpler syntax.
-    files: [pfind.py]
+    files:
+        - pfind.py
     srcdir: /pylib/pgm
 
 pflow:
     subdir: eng
     descr: Nomograph for pipe flow.
-    files: [flow.pdf]
+    files:
+        - flow.pdf
     srcdir: /science/nomographs
 
 pipes:
@@ -1383,6 +1416,7 @@ react:
     descr: Contains two reactance charts in PDF form along with a short
         file describing their use.
     files:
+        - reactance_notes.pdf
         - [out/reactance.pdf, reactance.pdf]
         - [out/big_reactance.pdf, big_reactance.pdf]
         - [../ohms_law_chart/OhmsLaw1.pdf, OhmsLaw1.pdf]
@@ -1460,7 +1494,8 @@ res:
 rms:
     subdir: elec
     descr: An article for hobbyists about making RMS electrical measurements.
-    files: [RMS.pdf]
+    files:
+        - RMS.pdf
     srcdir: /elec/Articles
 
 root:
@@ -1487,7 +1522,8 @@ ruler:
     subdir: util
     descr: For console windows; prints a variety of rulers to stdout.
         It's easy to modify to get different ruler types.
-    files: [ruler.py]
+    files:
+        - ruler.py
     ignore: Limited interest
     srcdir: /pylib/pgm
 
@@ -1526,7 +1562,8 @@ seg:
     subdir: math
     descr: Python script to calculate parameters of a circular segment.
         Translated from a program written by Marv Klotz.
-    files: [seg.py]
+    files:
+        - seg.py
     srcdir: /pylib/pgm
 
 seq:
@@ -1560,7 +1597,8 @@ shorttbl:
 shuffle:
     subdir: prog
     descr: C program to randomly shuffle the bytes of a file.
-    files: [shuffle.c]
+    files:
+        - shuffle.c
     srcdir: /tools/shuffle
 
 sig:
@@ -1599,7 +1637,8 @@ space:
     subdir: util
     descr: See where the space is being consumed in a directory tree and where the
         biggest files are.
-    files: [space.py]
+    files:
+        - space.py
     srcdir: /pylib/pgm
 
 sphshell:
@@ -1654,8 +1693,19 @@ sumbytes:
     descr: A short C++ program that will read all the bytes from the
         files given on the command line and compute various statistics
         from them.
-    files: [sumbytes.cpp]
+    files:
+        - sumbytes.cpp
     srcdir: /tools
+
+sz:
+    subdir: util
+    descr: Python script to print out sizes of subdirectories.  The output is to 1
+        figure and is color-coded for quickly seeing where most of the storage space
+        is being taken.
+    files: 
+        - sz.py
+        - [../color.py, color.py]
+    srcdir: /pylib/pgm
 
 thd:
     subdir: shop
@@ -1670,7 +1720,8 @@ tlc:
     subdir: util
     descr: Python script to rename all files in a directory to lower
         or upper case.
-    files: [tlc.py]
+    files:
+        - tlc.py
     srcdir: /pylib/pgm
 
 tokens:
@@ -1678,7 +1729,8 @@ tokens:
     descr: Will produce a list of readable words from an HTML file,
         all in lower case, one per line. You could then run the list
         of words through a spell checker.
-    files: [html_tokens.py]
+    files:
+        - html_tokens.py
     srcdir: /pylib/pgm
 
 tree:
@@ -1686,7 +1738,8 @@ tree:
     descr: Python script to print an ASCII representation of a directory
         tree.  It can optionally decorate the tree with each directory's
         size in MBytes.
-    files: [tree.py]
+    files:
+        - tree.py
     srcdir: /pylib/pgm
 
 tri:
@@ -1756,7 +1809,8 @@ uni:
     subdir: util
     descr: Python script to find Unicode characters.  You'll need to download
         the relevant files from the Unicode website.
-    files: [unicode.py]
+    files:
+        - unicode.py
     srcdir: /pylib/pgm
 
 units:
@@ -1772,14 +1826,16 @@ unx:
     subdir: util
     descr: Produces a list of files that are candidates for turning
         their execute bit permission off.
-    files: [unx.py]
+    files:
+        - unx.py
     srcdir: /pylib/pgm
 
 url:
     subdir: util
     descr: Python script that will interpret a URL from a Google search
         page.
-    files: [url.py]
+    files:
+        - url.py
     ignore: Windows only
     srcdir: /pylib/pgm
 
@@ -1787,7 +1843,8 @@ us:
     subdir: util
     descr: Python script to replace all space characters in file names
         with underscores.
-    files: [spc_to_underscore.py]
+    files:
+        - spc_to_underscore.py
     srcdir: /pylib/pgm
 
 util:
@@ -1889,7 +1946,8 @@ xref:
         in a set of files -- each token will be listed in alphabetical
         order with the file it occurs in along with the line numbers
         it's found on.
-    files: [xref.cpp]
+    files:
+        - xref.cpp
     srcdir: /tools/xref
 
 xyz:

@@ -1,0 +1,7 @@
+* hu.py
+    - For 'list' feature, make changed projects print in color
+    - Flag when a PDF is older than its ODT file
+* oct: Needs to be rather severely edited, as there's quite a bit of junk.
+* elements:  get working under python 3.
+* refcards:  Need to generate all new PDFs in PDF/A form.
+* cheat:  Need to generate all new PDFs in PDF/A form.
