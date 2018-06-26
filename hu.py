@@ -52,12 +52,15 @@ from pdb import set_trace as xx
 # implied.  See the License for the specific language governing
 # permissions and limitations under the License.
 #
+
 if 0:
     import debug
     debug.SetDebugger()
 
+
 nl = "\n"
 email_address = "someonesdad1@gmail.com"
+Join = os.path.join
 
 # Under cygwin, the root directory's actual location is needed
 on_windows = True
@@ -147,6 +150,7 @@ class Project(object):
     srcdir      Where the source files reside
     ignore      If not None, the reason this file isn't built
     frozen      If true, it's a big file, so only build when -f option used
+    stale       One or more source files is newer than the repository files
 
     The class variable projects is a dictionary keyed by each subdir name
     (such as 'math', 'shop', etc.); each key's value is a list of the
@@ -173,18 +177,49 @@ class Project(object):
         self.srcdir = self.data["srcdir"]
         self.ignore = self.data["ignore"]
         self.frozen = bool(self.data["frozen"])
+        self.stale = self.IsStale()
+    def IsStale(self):
+        # To see if this is a stale project, the destination will either be
+        # a single file or a zip file.  Get the destination's time and the
+        # project will be labeled stale if any of the source files' time
+        # are larger than the destination's.
         if self.ignore:
-            return
-        # Make sure all source files exist and can be read
+            return False
         srcdir = self.data["srcdir"]
-        for SRC, DEST in self.files:
-            src = os.path.join(cygwin + srcdir, RemoveAsterisk(SRC))
-            if not os.path.isfile(src):
-                Error("'{}' doesn't exist".format(src))
+        non_asterisked_files = self.GetDestinationFiles()
+        if len(non_asterisked_files) == 1:
+            # It's a single file
+            SRC, DEST = non_asterisked_files[0]
+            srctime = os.stat(Join(self.srcdir, SRC)).st_mtime
             try:
-                open(src, "rb").read()
-            except Exception:
-                Error("'{}' can't be read".format(src))
+                desttime = os.stat(Join(self.subdir, DEST)).st_mtime
+            except FileNotFoundError:
+                return True
+            if srctime > desttime:
+                return True
+        else:
+            # It's a zip file
+            zip = Join(self.subdir, self.name) + ".zip"
+            try:
+                ziptime = os.stat(zip).st_mtime
+            except FileNotFoundError:
+                # Zip file has not been made
+                return True
+            for SRC, dest in non_asterisked_files:
+                srctime = os.stat(Join(self.srcdir, SRC)).st_mtime
+                if srctime > ziptime:
+                    return True
+        return False
+    def GetDestinationFiles(self):
+        '''Return a list of the non-asterisked destination files.  Note we
+        return both the source and destination files in list of tuples.
+        '''
+        files = []
+        for src, dest in self.files:
+            if dest.endswith("*"):
+                continue
+            files.append((src, dest))
+        return files
     def __str__(self):
         s = '''{0.name}
   subdir = {0.subdir}
@@ -192,6 +227,7 @@ class Project(object):
   srcdir = {0.srcdir}
   ignore = {0.ignore}
   frozen = {0.frozen}
+  stale  = {0.stale}
   files (source, destination):
 '''.format(self)
         for src, dest in self.files:
@@ -204,8 +240,8 @@ class Project(object):
         files = []
         for src, dest in self.files:
             t = RemoveAsterisk(src)
-            if t.endswith(".pdf"):
-                s = os.path.join(self.srcdir, t)
+            if t.lower().endswith(".pdf"):
+                s = Join(self.srcdir, t)
                 files.append(s)
         return files
 
@@ -337,16 +373,16 @@ def BuildProject(project_object):
     if len(file_list) == 1:
         # Copy the single file.  Assumes we are in the root of the
         # repository.
-        src = os.path.join(cygwin + project_object.srcdir, file_list[0][0])
-        dest = os.path.join(project_object.subdir, file_list[0][1])
+        src = Join(cygwin + project_object.srcdir, file_list[0][0])
+        dest = Join(project_object.subdir, file_list[0][1])
         shutil.copyfile(src, dest)
     else:
         # Construct a zipfile of these files
         zname = project_object.name + ".zip"
-        dest = os.path.join(project_object.subdir, zname)
+        dest = Join(project_object.subdir, zname)
         zf = zipfile.ZipFile(dest, "w")
         for SRC, DEST in file_list:
-            src = os.path.join(cygwin + project_object.srcdir, SRC)
+            src = Join(cygwin + project_object.srcdir, SRC)
             zf.write(src, DEST)
         zf.close()
     # Update the Project.projects class variable
@@ -369,18 +405,25 @@ def ShowTestScripts(d):
     exit(0)
 
 def List(projects, d):
-    '''List active and inactive projects.
+    '''projects will be a list of project names; list the project details.
+    If projects is empty, show active and inactive projects.
     '''
     if projects:
-        if len(projects) == 1 and projects[0] == "PDF":
-            # List PDFs in all projects
-            for project in data:
-                po = data[project]
-                pdfs = po.PDFs()
-                if pdfs:
-                    print(project)
-                    for i in po.PDFs():
-                        print("    {}".format(i))
+        if len(projects) == 1:
+            if projects[0] == "PDF":
+                # List PDFs in all projects
+                for project in data:
+                    po = data[project]
+                    pdfs = po.PDFs()
+                    if pdfs:
+                        print(project)
+                        for i in po.PDFs():
+                            print("    {}".format(i))
+            elif projects[0].lower() == "all":
+                # List all projects
+                for project in data:
+                    po = data[project]
+                    print(po)
         else:
             # List details on given projects
             for project in projects:
@@ -389,15 +432,24 @@ def List(projects, d):
     else:
         # List active and inactive projects
         active, inactive, f = [], [], "*"
+        # Escape sequences for colors
+        fz = c.fg(c.lblue, s=True)  # Frozen
+        st = c.fg(c.lred, s=True)   # Stale
+        no = c.normal(s=True)       # Normal color
         for project in data:
             p = data[project]
             if p.ignore or p.frozen:
-                #inactive.append((f if p.frozen else "") + project)
-                inactive.append(project + (f if p.frozen else ""))
+                if p.frozen:
+                    inactive.append(fz + project + no)
+                else:
+                    inactive.append(project)
             else:
-                active.append(project)
+                if p.stale:
+                    active.append(st + project + no)
+                else:    
+                    active.append(project)
         w = 80
-        s = "{} Inactive or frozen ({}) projects".format(len(inactive), f)
+        s = "{} Inactive or frozen projects".format(len(inactive))
         print("{:^{}s}".format(s, w))
         print("{:^{}s}".format("-"*len(s), w))
         for i in Columnize(inactive):
@@ -408,6 +460,8 @@ def List(projects, d):
         print("{:^{}s}".format("-"*len(s), w))
         for i in Columnize(active):
             print(i)
+        print("\n{}Blue{} means frozen".format(fz, no))
+        print("{}Red{} means stale".format(st, no))
 
 def BuildProjectZip(project_object):
     # Make a list of all the files without an ending asterisk in name
@@ -417,10 +471,10 @@ def BuildProjectZip(project_object):
     assert(files)
     # Construct a zipfile of these files
     zname = project_object.name + ".zip"
-    dest = os.path.join(package_dir, zname)
+    dest = Join(package_dir, zname)
     zf = zipfile.ZipFile(dest, "w")
     for SRC, DEST in files:
-        src = os.path.join(cygwin + project_object.srcdir, SRC)
+        src = Join(cygwin + project_object.srcdir, SRC)
         zf.write(src, DEST)
     zf.close()
 

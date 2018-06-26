@@ -33,7 +33,7 @@ Link | Description
 
 Link | Description
 --- | ---
-[math/AnalyticGeometry.pdf](math/AnalyticGeometry.pdf) | Contains formulas relating to analytic geometry in the plane and other math stuff I need to look up on a regular basis.
+[math/AnalyticGeometry.pdf](math/AnalyticGeometry.pdf) | Contains formulas relating to analytic geometry and other math stuff I need to look up on a regular basis.  I'm looking for a new maintainer of this document.
 [math/BusinessCardMathTables.pdf](math/BusinessCardMathTables.pdf) | A document containing small math tables that will print out to be about the size of a business card.
 [math/Concise300.pdf](math/Concise300.pdf) | Discusses the Concise 300, a circular slide rule still in production in Japan.
 [math/DinosaurArithmeticSmall.pdf](math/DinosaurArithmeticSmall.pdf) | This document discusses doing calculations without using an electronic calculator.  It's useful for a technical person to know how to reason quantitatively when a calculator isn't handy.
@@ -43,7 +43,7 @@ Link | Description
 [math/fseq.zip](math/fseq.zip) | Contains a python script fseq.py that provides general-purpose sequence generation (arithmetic, geometric, logarithmically-spaced, etc.).  The script also provides useful random number generation facilities for doing Monte Carlo calculations at the command line, along with CDFs and PDFs of some distributions.
 [math/gpaper.zip](math/gpaper.zip) | Provides some common graph papers in PDF files that print on ANSI A paper.
 [math/oo_math.zip](math/oo_math.zip) | Introduces the equation-writing capabilities of Open Office 2.0.  Includes a cheatsheet that you can modify.
-[math/parse_complex.py](math/parse_complex.py) | Python module that allows you to parse complex numbers when they are written in the ways humans like to write them.
+[math/parse_complex.py](math/parse_complex.py) | Parse complex numbers when they are written in the ways humans like to write them.
 [math/QuickMultDiv.pdf](math/QuickMultDiv.pdf) | Discussion of how to do multiplications and divisions by hand when you only need a specified number of significant figures in the answer.
 [math/root.zip](math/root.zip) | Pure-python root-finding methods such as bisection, Brent's method, Ridder's method, Newton-Raphson, and a general-purpose method by Jack Crenshaw that uses inverse parabolic interpolation.
 [math/rpath.zip](math/rpath.zip) | A python module for a rectilinear path object.  You supply it with a set of points and then you can interpolate to points on the path via a parameter.
@@ -179,6 +179,7 @@ Link | Description
 [util/scramble.zip](util/scramble.zip) | Contains a python script to scramble letters in words, leaving the first and last characters alone.
 [util/space.py](util/space.py) | See where the space is being consumed in a directory tree and where the biggest files are.
 [util/split_cat.zip](util/split_cat.zip) | Python scripts to split a file into chunks, print out SHA1 hashes of each chunk, and allow you to recombine the chunks later back into the original file.
+[util/sz.zip](util/sz.zip) | Python script to print out sizes of subdirectories.  The output is to 1 figure and is color-coded for quickly seeing where most of the storage space is being taken.
 [util/tlc.py](util/tlc.py) | Python script to rename all files in a directory to lower or upper case.
 [util/html_tokens.py](util/html_tokens.py) | Will produce a list of readable words from an HTML file, all in lower case, one per line. You could then run the list of words through a spell checker.
 [util/tree.py](util/tree.py) | Python script to print an ASCII representation of a directory tree.  It can optionally decorate the tree with each directory's size in MBytes.
@@ -186,5 +187,5 @@ Link | Description
 [util/unx.py](util/unx.py) | Produces a list of files that are candidates for turning their execute bit permission off.
 [util/spc_to_underscore.py](util/spc_to_underscore.py) | Python script to replace all space characters in file names with underscores.
 
-Updated 24 Jun 2018 7:55:35 am
+Updated 26 Jun 2018 7:23:29 am
 

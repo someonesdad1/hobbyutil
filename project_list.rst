@@ -54,7 +54,7 @@ Math
 ====
 
 | `math/AnalyticGeometry.pdf <math/AnalyticGeometry.pdf>`_ (4311)
-|   Contains formulas relating to analytic geometry in the plane and other math stuff I need to look up on a regular basis.
+|   Contains formulas relating to analytic geometry and other math stuff I need to look up on a regular basis.  I'm looking for a new maintainer of this document.
 | `math/BusinessCardMathTables.pdf <math/BusinessCardMathTables.pdf>`_ (524)
 |   A document containing small math tables that will print out to be about the size of a business card.
 | `math/Concise300.pdf <math/Concise300.pdf>`_ (503)
@@ -74,7 +74,7 @@ Math
 | `math/oo_math.zip <math/oo_math.zip>`_ (268)
 |   Introduces the equation-writing capabilities of Open Office 2.0.  Includes a cheatsheet that you can modify.
 | `math/parse_complex.py <math/parse_complex.py>`_ (5)
-|   Python module that allows you to parse complex numbers when they are written in the ways humans like to write them.
+|   Parse complex numbers when they are written in the ways humans like to write them.
 | `math/QuickMultDiv.pdf <math/QuickMultDiv.pdf>`_ (111)
 |   Discussion of how to do multiplications and divisions by hand when you only need a specified number of significant figures in the answer.
 | `math/root.zip <math/root.zip>`_ (54)
@@ -320,6 +320,8 @@ Utilities
 |   See where the space is being consumed in a directory tree and where the biggest files are.
 | `util/split_cat.zip <util/split_cat.zip>`_ (4)
 |   Python scripts to split a file into chunks, print out SHA1 hashes of each chunk, and allow you to recombine the chunks later back into the original file.
+| `util/sz.zip <util/sz.zip>`_ (14)
+|   Python script to print out sizes of subdirectories.  The output is to 1 figure and is color-coded for quickly seeing where most of the storage space is being taken.
 | `util/tlc.py <util/tlc.py>`_ (6)
 |   Python script to rename all files in a directory to lower or upper case.
 | `util/html_tokens.py <util/html_tokens.py>`_ (1)
@@ -335,5 +337,5 @@ Utilities
 
 
 
-Updated 24 Jun 2018 7:55:35 am
+Updated 26 Jun 2018 7:23:29 am
 
