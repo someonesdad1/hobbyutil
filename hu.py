@@ -70,6 +70,11 @@ cygwin = "c:/cygwin" if on_windows else ""
 # the packages will reside (it's separate from the repository).
 package_dir = cygwin + "/home/Don/hobbyutil_packages"
 
+# Escape sequences for colors
+fz = c.fg(c.lblue, s=True)  # Frozen
+st = c.fg(c.lred, s=True)   # Stale
+no = c.normal(s=True)       # Normal color
+
 # Text wrapper
 tw = textwrap.TextWrapper()
 tw.width = int(os.environ.get("COLUMNS", 80)) - 5
@@ -221,15 +226,20 @@ class Project(object):
             files.append((src, dest))
         return files
     def __str__(self):
-        s = '''{0.name}
-  subdir = {0.subdir}
-  descr  = {0.descr}
-  srcdir = {0.srcdir}
-  ignore = {0.ignore}
-  frozen = {0.frozen}
-  stale  = {0.stale}
+        me = self
+        f = fz if self.frozen else ""
+        nf = no if self.frozen else ""
+        t = st if self.stale else ""
+        nt = no if self.stale else ""
+        s = '''{me.name}
+  subdir = {me.subdir}
+  descr  = {me.descr}
+  srcdir = {me.srcdir}
+  ignore = {me.ignore}
+  {f}frozen = {me.frozen}{nf}
+  {t}stale  = {me.stale}{nt}
   files (source, destination):
-'''.format(self)
+'''.format(**locals())
         for src, dest in self.files:
             s += "      {}, {}\n".format(src, dest)
         return s
@@ -318,12 +328,15 @@ def ReadProjectData(d):
     '''Get data and update it to ensure all records are present.  The
     input data is in YAML format.  After finishing, data is a dictionary
     keyed by project name; the values are the Project objects.
+
+    Note:  I chose to use the YAML syntax because it is easier to edit than
+    e.g. using regular python code to define a dictionary.  JSON could have
+    been used (and has a python parser in the standard library), but it
+    wouldn't look much different than regular python code.
     '''
     global data, output_directories
-    # Load information from disk
-    tool, filename, mode = yaml, yamlfile, "r"
-    # This reads the YAML syntax into a dictionary
-    data = tool.load(open(filename, mode))
+    # Read the YAML syntax into a dictionary
+    data = yaml.load(open(yamlfile, "r"))
     # Check each project's entries
     for project in data:
         project_data = data[project]
@@ -409,21 +422,20 @@ def List(projects, d):
     If projects is empty, show active and inactive projects.
     '''
     if projects:
-        if len(projects) == 1:
-            if projects[0] == "PDF":
-                # List PDFs in all projects
-                for project in data:
-                    po = data[project]
-                    pdfs = po.PDFs()
-                    if pdfs:
-                        print(project)
-                        for i in po.PDFs():
-                            print("    {}".format(i))
-            elif projects[0].lower() == "all":
-                # List all projects
-                for project in data:
-                    po = data[project]
-                    print(po)
+        if projects[0] == "PDF":
+            # List PDFs in all projects
+            for project in data:
+                po = data[project]
+                pdfs = po.PDFs()
+                if pdfs:
+                    print(project)
+                    for i in po.PDFs():
+                        print("    {}".format(i))
+        elif projects[0].lower() == "all":
+            # List all projects
+            for project in data:
+                po = data[project]
+                print(po)
         else:
             # List details on given projects
             for project in projects:
@@ -432,10 +444,6 @@ def List(projects, d):
     else:
         # List active and inactive projects
         active, inactive, f = [], [], "*"
-        # Escape sequences for colors
-        fz = c.fg(c.lblue, s=True)  # Frozen
-        st = c.fg(c.lred, s=True)   # Stale
-        no = c.normal(s=True)       # Normal color
         for project in data:
             p = data[project]
             if p.ignore or p.frozen:

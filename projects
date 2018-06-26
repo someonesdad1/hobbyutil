@@ -23,8 +23,7 @@
 ag:
     subdir: math
     descr: Contains formulas relating to analytic geometry and other
-        math stuff I need to look up on a regular basis.  I'm looking for a
-        new maintainer of this document.
+        math stuff I need to look up on a regular basis.
     files:
         - AnalyticGeometry.odt*
         - AnalyticGeometry.pdf
@@ -60,13 +59,15 @@ app:
         with their registered application.
     files:
         - app.cpp
-    ignore:  cygstart does the same thing under cygwin; start does it under Windows.
+    ignore:  Typical OS's have equivalent commands
+        # cygstart, start, exo-open
     srcdir: /tools
 
 asc:
     subdir: util
-    descr: Python script to print out an ASCII character table in decimal, hex, 
-        or octal.
+    descr: Python script to print out an ASCII character table in decimal, 
+        hex, or octal.  Useful at a command line to see your terminal's
+        encoding.
     files: 
         - asc.py
     srcdir: /pylib/pgm
@@ -94,8 +95,7 @@ ball:
 
 bar:
     subdir: shop
-    descr: Python script to print out a table of the masses of bar
-        stock in different sizes. 
+    descr: Python script to print out a table of the masses of bar stock.
     files: 
         - bar.py
         - bar.readme
@@ -576,15 +576,15 @@ ds:
         - abspath.py
         - _goto.py
         - [../../tools/app.cpp, app.cpp]
+        - [../color.py, color.py]
     srcdir: /pylib/pgm
 
-#dupfile:
-#    subdir: util
-#    descr: Python script to find duplicated files in a directory tree.
-#    files:
-#       - dupfile.py
-#    ignore: Can't find script
-#    srcdir: /pylib/pgm
+dupfile:
+    subdir: util
+    descr: Python script to find duplicated files in a directory tree.
+    files:
+       - dup.py
+    srcdir: /pylib/pgm
 
 ef:
     subdir: math
