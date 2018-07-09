@@ -143,8 +143,8 @@ bgrep:
 bidict:
     subdir: util
     descr: Creates a dictionary object in python that lets you treat
-        it in both directions as a mapping.  It's an example of a discrete bijective
-        function.
+        it in both directions as a mapping.  It's an example of a discrete
+        bijective function.
     files: 
         - bidict.py
         - [test/bidict_test.py, bidict_test.py]
@@ -346,7 +346,8 @@ color:
 
 columnize:
     subdir: prog
-    descr: Python script to columnize a sequence into columns. 
+    descr: Python function to print a sequence in columns.  The order can be 
+        down (default) or across.
     files:
         - columnize.py
     srcdir: /pylib
@@ -361,9 +362,9 @@ comb:
 
 cove:
     subdir: shop
-    descr: Python script shows you how to cut a cove with your table saw.  Use this
-        formula and method when it just has to be done correctly on a workpiece you 
-        can't mess up on.
+    descr: Python script shows you how to cut a cove with your table saw.  
+        Use this formula and method when it just has to be done correctly
+        on a workpiece you can't mess up on.
     files:
         - cove.odt*
         - cove.pdf
@@ -372,8 +373,8 @@ cove:
 
 cs:
     subdir: elec
-    descr: Describes how to make a battery-operated 1 ampere current source
-        used to make low resistance measurements.
+    descr: How to make a battery-operated 1 ampere current source used to
+        make low resistance measurements.
     files:
         - [CurrentSource_pub.odt*, CurrentSource.odt*]
         - CurrentSource.pdf
@@ -404,8 +405,9 @@ cs:
 cut:
     subdir: shop
     descr: Python script that will calculate a solution to the one-dimensional 
-        cutting problem.  This problem appears when you have a set of raw materials
-        and need to cut a stated set of workpieces from the stock.  
+        cutting problem.  This problem appears when you have a set of raw
+        materials and need to cut a stated set of workpieces from the
+        stock.  
     files:
         - cut.odt*
         - cut.pdf 
@@ -428,7 +430,7 @@ dbm:
 
 dedent:
     subdir: util
-    descr: Python script that will remove the common space characters
+    descr: Python function that will remove the common space characters
         from a set of text lines from files given on the command line
         or stdin.
     files:
@@ -437,8 +439,7 @@ dedent:
 
 demag:
     subdir: shop
-    descr: Describes a simple demagnetizing tool you can make from scrap
-        materials.
+    descr: A simple demagnetizing tool made from scrap materials.
     files:
         - Demagnetizer.odt*
         - Demagnetizer.pdf
@@ -471,9 +472,9 @@ diam:
 
 dino:
     subdir: math
-    descr: This document discusses doing calculations without using an electronic
-        calculator.  It's useful for a technical person to know how to reason 
-        quantitatively when a calculator isn't handy.
+    descr: This document discusses doing calculations without using an 
+        electronic calculator.  It's useful for a technical person to know
+        how to reason quantitatively when a calculator isn't handy.
     files:
         - DinosaurArithmeticSmall.odt*
         - DinosaurArithmeticSmall.pdf
@@ -498,12 +499,12 @@ ditchpump:
         - [pictures/small/pump_rear_5Aug2012.png*, pictures/pump_rear_5Aug2012.png*]
     srcdir: /doc/home/sprinklers
     frozen: yes
-    frozen: yes
 
 diurnal:
     subdir: science
     descr: Shows a plot of the light from the sky measured with a cheap
-        photodiode.  Simple experiment that would be fun do to with a child.
+        photodiode.  This is a simple experiment that would be fun do to
+        with a child.
     files:
         - diurnal_variations.odt*
         - diurnal_variations.pdf
@@ -536,8 +537,8 @@ dmath:
 
 donor:
     subdir: misc
-    descr: Organ donation became an important topic for me after my granddaughter
-        was killed.
+    descr: Organ donation became an important topic for me after my 
+        granddaughter was killed.
     files:
         - Donor.odt*
         - Donor.pdf
@@ -547,7 +548,7 @@ donor:
 drtri:
     subdir: shop
     descr: This is a simple modification to a 30-60-90 drafting triangle
-        that lets you use it to draw 45 degree angles.
+        that lets you draw 45 degree angles.
     files:
         - [drafting_triangle_tip.odt*, DraftingTriangleTip.odt*]
         - [drafting_triangle_tip.pdf, DraftingTriangleTip.pdf]
@@ -655,7 +656,8 @@ esr:
 ext:
     subdir: util
     descr: Python script to make a list of the extensions used
-        in file names in the directories given on the command line.
+        in file names and their counts in the directories given on the
+        command line.
     files:
         - ext.py
     srcdir: /pylib/pgm
@@ -780,7 +782,8 @@ fseq:
         sequence generation (arithmetic, geometric, logarithmically-spaced,
         etc.).  The script also provides useful random number generation
         facilities for doing Monte Carlo calculations at the command
-        line, along with CDFs and PDFs of some distributions.
+        line, along with CDFs and PDFs of some distributions.  Requires
+        numpy.
     files:
         - fseq.py
         - fseq.odt*
@@ -797,6 +800,15 @@ fset:
     files:
         - fset.py
     srcdir: /pylib/pgm
+
+fuse:
+    subdir: elec
+    descr: Notes on using ATO automobile fuses as poor-man's shunts.
+    files:
+        - fuse_as_shunt.odt*
+        - fuse_as_shunt.pdf
+    srcdir: /elec/projects/fuse_as_shunt
+    ignore:  Need to proof/edit.
 
 gblock:
     subdir: shop
@@ -824,8 +836,8 @@ goto:
     subdir: util
     descr: Contains a sh-type shell function and a python script that
         let you navigate around to various directories from a shell command
-        line. I've had a number of UNIX users tell me they couldn't live
-        without this tool once they started using it.
+        line. A number of UNIX users have told me they couldn't live without
+        this tool once they started using it.
     files:
         - [_goto.py, goto.py]
     srcdir: /pylib/pgm
@@ -852,6 +864,7 @@ grid:
         - eng_grid.py
     srcdir: /pylib/pgm
 
+#yy
 hammer:
     subdir: shop
     descr: Discusses the common hammer types and making a new handle for one.

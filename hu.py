@@ -21,10 +21,7 @@ from collections import defaultdict, OrderedDict
 from columnize import Columnize
 import color as c
 import getopt
-import hashlib
-import loo
 import os
-import pickle
 import shutil
 import subprocess
 import sys
@@ -65,6 +62,13 @@ Join = os.path.join
 # Under cygwin, the root directory's actual location is needed
 on_windows = True
 cygwin = "c:/cygwin" if on_windows else ""
+
+# If we need to launch a file with its registered app, we use the following
+# command.
+if on_windows:
+    start = Join(cygwin, "/usr/bin/cygstart")
+else:
+    start = "exo-open"  # On Linux
 
 # If a package is to be made with the -z option, this directory is where
 # the packages will reside (it's separate from the repository).
@@ -285,6 +289,7 @@ Commands:
                 details will be printed.  The argument 'PDF' will create a
                 listing of all the source PDFs in all the projects, even
                 the inactive ones.
+    show        If the package has one PDF, launch this file.
 
 Options:
     -i      Ignore the ignore flag in the projects file.  This can be used
@@ -628,21 +633,33 @@ def BuildZips(projects, d):
         print(project)
         BuildProjectZip(project_object)
 
+def Show(projects, d):
+    '''If the indicated projects have one PDF, launch this file.
+    '''
+    for project in projects:
+        pdfs = data[project].PDFs()
+        if len(pdfs) == 1:
+            os.system(start + " " + Join(cygwin, pdfs[0]))
+        else:
+            print("More than one PDF")
+
 if __name__ == "__main__":
     d = {} # Options dictionary
-    args = ParseCommandLine(d)
+    projects = ParseCommandLine(d)
     ReadProjectData(d)
     if d["-t"]:
         ShowTestScripts(d)
     MakeDirectories(d)
-    cmd = args[0]
-    del args[0]
+    cmd = projects[0]
+    del projects[0]
     if cmd == "build":
-        if not args:
+        if not projects:
             Usage(d)
         else:
-            BuildZips(args, d) if d["-z"] else Build(args, d)
+            BuildZips(projects, d) if d["-z"] else Build(projects, d)
     elif cmd == "list":
-        List(args, d)
+        List(projects, d)
+    elif cmd == "show":
+        Show(projects, d)
     else:
         Error("'%s' is an unrecognized command" % cmd)
