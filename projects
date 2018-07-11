@@ -217,6 +217,7 @@ calipers:
         - [patents/starrett_fay_1895_lock_joint_US539759.png*, /patents/starrett_fay_1895_lock_joint_US539759.png*]
     srcdir: /shop/LengthMeasurement/calipers
     frozen: yes
+    todo:  Need to fix relative pictures
 
 cart:
     subdir: shop
@@ -381,6 +382,7 @@ cs:
         - pictures/current_source_1.png*
         - pictures/current_source_schematic.png*
     srcdir: /elec/projects
+    todo:  Pictures not correct per loo
 
 #csnippets:
 #    subdir: prog
@@ -745,6 +747,7 @@ fpen:
         - pictures/ink_density_with_no_flash.jpg*
     srcdir: /doc/pens
     frozen: yes
+    todo:  Doesn't match loo list of pictures
 
 frac:
     subdir: math
@@ -864,7 +867,6 @@ grid:
         - eng_grid.py
     srcdir: /pylib/pgm
 
-#yy
 hammer:
     subdir: shop
     descr: Discusses the common hammer types and making a new handle for one.
@@ -1051,7 +1053,7 @@ lib:
 license:
     subdir: prog
     descr: This is a python script that will allow you to change the
-        license  you use in your source code files.  
+        license you use in your source code files.  
     files:
         - license.py
         - color.py
@@ -1060,23 +1062,24 @@ license:
 lnk:
     subdir: util
     descr: Python script to list the files in two directory trees that are 
-        hard-linked together.  If you have GNU find, the -samefile option can be
-        used to do this too.
+        hard-linked together.  If you have GNU find, the -samefile option
+        can be used to do this too.
     files:
         - lnk.py
     srcdir: /pylib/pgm
 
+#yy
 loo:
     subdir: util
     descr: Python script that will print out the image files in Open
-        Office documents.  Image files that are not at or below the same directory
-        as the document file will be marked '[not relative]'.  Missing files will
-        be marked '[missing]'.  It is useful if you link image files into OO files.
+        Office documents.  Image files that are not at or below the same
+        directory as the document file will be marked '[not relative]'.
+        Missing files will be marked '[missing]'.  It is useful if you link
+        image files into OO files.
     files:
         - loo.py
         - color.py
     srcdir: /pylib
-    ignore:  Looks like it's broken
 
 lookup:
     subdir: util
