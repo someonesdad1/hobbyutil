@@ -1,6 +1,8 @@
 Must
 ----
 
+    * Need the color.py script and a dummy object to replace it if it's not
+      present.
     * For each description of a project, add a sentence why someone might
       want to use the item.
     * oct: Needs to be rather severely edited, as there's quite a bit of
@@ -9,7 +11,11 @@ Must
 Want
 ----
 
+    * manufy.py doesn't work correctly when it's -h output is manufy'd:  the
+      newlines in the quoted lines should be changed to double backslashes.
+    * seg.py isn't working yet.
     * refcards:  Need to generate all new PDFs in PDF/A form.
+    * mass.py should allow a # character in a string.
     * cheat:  Need to generate all new PDFs in PDF/A form.
 
 Low priority

@@ -988,9 +988,9 @@ hose:
 hppn:
     subdir: elec
     descr: This is a compilation of various 8-digit HP part numbers
-        translated into more identifiable numbers.  TTL IC SN74175N.  This list may
-        be of use to those with old HP instruments that need to find a replacement
-        part.
+        translated into more identifiable numbers.  This list may
+        be of use to those with old HP instruments that need to find a
+        replacement part.
     files:
         - 0readme
         - hp.py
@@ -999,9 +999,9 @@ hppn:
 
 iapws:
     subdir: eng
-    descr: Contains C++ and python code that implements the IAPWS95 equations for 
-        the thermodynamic properties of water.
-        See http://www.iapws.org/relguide/IAPWS-95.htm
+    descr: Contains C++ and python code that implements the IAPWS95 
+        equations for the thermodynamic properties of water.
+        See http://www.iapws.org.
     files:
         - iapws95.cpp
         - iapws95.h
@@ -1068,7 +1068,6 @@ lnk:
         - lnk.py
     srcdir: /pylib/pgm
 
-#yy
 loo:
     subdir: util
     descr: Python script that will print out the image files in Open
@@ -1101,8 +1100,8 @@ lookup:
 
 lvise:
     subdir: shop
-    descr: Describes a snall vise that is straightforward to make with
-        a milling machine.
+    descr: Describes a small vise made from 1 inch square bar stock.  It slips
+        into a pocket and is handy for small tasks around the shop and home.
     files:
         - LittleVise.odt*
         - LittleVise.pdf
@@ -1113,7 +1112,10 @@ lvise:
 
 lwtest:
     subdir: prog
-    descr: Lightweight python script testing framework.
+    descr: Lightweight python script testing framework based on some work by
+        Raymond Hettinger.  Python's unittest module is unfriendly to the
+        test/debug process because it intercepts the standard streams, which
+        doesn't let you use the python debugger to examine your code.
     files:
         - lwtest.odt*
         - lwtest.pdf
@@ -1122,12 +1124,13 @@ lwtest:
 
 manufy:
     subdir: prog
-    descr: Python script to convert text lines to have
-        double quotes and a newline at the end. This is useful to allow
-        you to quickly write manpages for C or C++ code. 
+    descr: Python script to convert text lines to have double quotes and 
+        a newline at the end. This is useful to allow you to quickly write
+        text manpages for C or C++ code. 
     files:
         - manufy.py
     srcdir: /pylib/pgm
+    todo:  Has a bug when used to process it's manpage output
 
 markup:
     subdir: misc
@@ -1139,10 +1142,11 @@ markup:
         - pictures/multiplier.png*
     srcdir: /doc
 
+#yy
 mass:
     subdir: shop
-    descr: Python script to calculate the volume and mass of a project constructed from various primitive geometrical
-        objects.
+    descr: Python script to calculate the volume and mass of a project
+        constructed from various primitive geometrical objects.
     files:
         - mass.bolt
         - mass.bucket
@@ -1581,6 +1585,7 @@ seg:
     files:
         - seg.py
     srcdir: /pylib/pgm
+    ignore:  Script isn't working yet
 
 seq:
     subdir: prog
@@ -1619,7 +1624,7 @@ shuffle:
 
 sig:
     subdir: prog
-    descr: Contains a python script to format floating point numbers
+    descr: A python module to format floating point numbers
         to a specified number of significant figures or round to a
         specified template.
     files:

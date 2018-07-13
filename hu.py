@@ -19,7 +19,6 @@ zip file so they can be emailed to the user.
 from __future__ import print_function
 from collections import defaultdict, OrderedDict
 from columnize import Columnize
-import color as c
 import getopt
 import os
 import shutil
@@ -50,10 +49,23 @@ from pdb import set_trace as xx
 # permissions and limitations under the License.
 #
 
+# Try to import the color.py module; if not available, the script
+# should still work (you'll just get uncolored output).
+try:
+    import xcolor as c
+    _have_color = True
+except ImportError:
+    # Make a dummy color object to swallow function calls
+    class Dummy:
+        def fg(self, *p, **kw): return ""
+        def normal(self, *p, **kw): return ""
+        def __getattr__(self, name): pass
+    c = Dummy()
+    _have_color = False
+
 if 0:
     import debug
     debug.SetDebugger()
-
 
 nl = "\n"
 email_address = "someonesdad1@gmail.com"
@@ -473,8 +485,9 @@ def List(projects, d):
         print("{:^{}s}".format("-"*len(s), w))
         for i in Columnize(active):
             print(i)
-        print("\n{}Blue{} means frozen".format(fz, no))
-        print("{}Red{} means stale".format(st, no))
+        if _have_color:
+            print("\n{}Blue{} means frozen".format(fz, no))
+            print("{}Red{} means stale".format(st, no))
 
 def BuildProjectZip(project_object):
     # Make a list of all the files without an ending asterisk in name
