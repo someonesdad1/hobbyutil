@@ -29,6 +29,14 @@ default_colors global variable to the default colors you use.
 These functions should work on both Windows and an environment that
 uses ANSI escape sequences (e.g., an xterm).
 
+The Decorate() object is a convenience; an instance of it will return the
+escape strings to set the console colors.  An example use would be
+
+    dec = Decorate()
+    print("Hello", dec.fg(dec.lred), " there", dec.normal(), sep="")
+
+which would print the word "there" in light red.
+
 The code for Windows console colors was taken from Andre Burgaud's work at
 http://www.burgaud.com/bring-colors-to-the-windows-console-with-python/,
 downloaded Wed 28 May 2014.
@@ -95,11 +103,10 @@ bash_is_win_console = os.environ.get("BASH_IS_WIN_CONSOLE", False)
 _win = True if (sys.platform == "win32") and bash_is_win_console else False
 
 __all__ = '''
-    black blue green cyan red magenta brown white gray lblue lgreen
-    lcyan lred lmagenta yellow lwhite
+    black blue  green  cyan  red  magenta  brown  white 
+    gray  lblue lgreen lcyan lred lmagenta yellow lwhite
 
     default_colors
-    DecodeColor
     normal
     fg
     SetStyle
@@ -110,15 +117,14 @@ if _win:
 
 # Foreground colors; shift left by 4 bits to get background color.
 (
-    black, blue, green, cyan, red, magenta, brown, white, gray, lblue,
-    lgreen, lcyan, lred, lmagenta, yellow, lwhite
+    black, blue,  green,  cyan,  red,  magenta,  brown,  white,
+    gray,  lblue, lgreen, lcyan, lred, lmagenta, yellow, lwhite
 ) = range(16)
 
 # Set the default_colors global variable to be the defaults for your system.
 default_colors = (white, black)
 
-# Dictionary to translate between color numbers/names and escape
-# sequence.
+# Dictionary to translate between color numbers/names and escape sequence.
 _cfg = {
     black    : "0;30",
     blue     : "0;34",
@@ -165,7 +171,7 @@ def _is_iterable(x):
     '''
     return _ii(x, Iterable) and not _ii(x, String)
 
-def DecodeColor(*c):
+def _DecodeColor(*c):
     '''Return a 1-byte integer that represents the foreground and
     background color.  c can be
         * An integer
@@ -188,55 +194,109 @@ def DecodeColor(*c):
         raise ValueError("Argument must be one or two integers")
     return color
 
-def GetNibbles(c):
+def _GetNibbles(c):
     assert 0 <= c < 256
     return (0x0f & c, (0xf0 & c) >> 4)
 
-def normal(*p):
+def normal(*p, **kw):
     '''If the argument is None, set the foreground and background
     colors to their default values.  Otherwise, use the argument to
     set the default colors.
     '''
+    ret_string = kw.setdefault("s", False)
     global default_colors
     if p:
-        one_byte_color = DecodeColor(*p)
-        default_colors = GetNibbles(one_byte_color)
+        one_byte_color = _DecodeColor(*p)
+        default_colors = _GetNibbles(one_byte_color)
     else:
-        fg(default_colors)
+        if ret_string:
+            return fg(default_colors, **kw)
+        else:
+            fg(default_colors, **kw)
 
 def fg(*p, **kw):
     '''Set the color.  p can be an integer or a tuple of two
     integers.  If it is an integer that is greater than 15, then it
     also contains the background color encoded in the high nibble.
     fgcolor can be a sequence of two integers of length two also.
-
+ 
     The keyword 'style' can be:
         normal
         italic
         underline
         blink
         reverse
+ 
+    If the keyword 's' is True, return a string containing the escape
+    codes rather than printing it.  Note this won't work if _win is True.
     '''
     style = kw.setdefault("style", None)
-    one_byte_color = DecodeColor(*p)
+    ret_string = kw.setdefault("s", False)
+    one_byte_color = _DecodeColor(*p)
     if _win:
         windll.kernel32.SetConsoleTextAttribute(_hstdout, one_byte_color)
     else:
         # Use ANSI escape sequences
-        cfg, cbg = GetNibbles(one_byte_color)
+        cfg, cbg = _GetNibbles(one_byte_color)
         f, b = _cfg[cfg], _cbg[cbg]
-        print("\x1b[%s;%s" % (f, b), end="")
+        s = "\x1b[%s;%s" % (f, b)
+        if not ret_string:
+            print(s, end="")
         if style is not None:
-            SetStyle(style)
+            if ret_string:
+                st = SetStyle(style, **kw)
+                return s + st
+            else:
+                SetStyle(style)
+        elif ret_string:
+            return s
 
-def SetStyle(s="normal"):
+def SetStyle(style, **kw):
+    '''If the keyword 's' is True, return a string containing the escape
+    codes rather than printing it.  Note this won't work if _win is True.
+    '''
+    ret_string = kw.setdefault("s", False)
     if _win:
         return
     st = {
         "normal" : 0, "bold" : 1, "italic" : 3, "underline" : 4,
         "blink" : 5, "reverse" : 7,
-    }[s]
-    print("\x1b[%sm" % st, end="")
+    }[style]
+    if ret_string:
+        return "\x1b[%sm" % st
+    else:
+        print("\x1b[%sm" % st, end="")
+
+class Decorate(object):
+    '''A convenience object that will return escape code strings.
+    '''
+    def __init__(self):
+        # Make colors an attribute
+        self.black = black
+        self.blue = blue
+        self.green = green
+        self.cyan = cyan
+        self.red = red
+        self.magenta = magenta
+        self.brown = brown
+        self.white = white
+        self.gray = gray
+        self.lblue = lblue
+        self.lgreen = lgreen
+        self.lcyan = lcyan
+        self.lred = lred
+        self.lmagenta = lmagenta
+        self.yellow = yellow
+        self.lwhite = lwhite
+    def fg(self, *p, **kw):
+        kw["s"] = True
+        return fg(*p, **kw)
+    def normal(self, *p, **kw):
+        kw["s"] = True
+        return normal(*p, **kw)
+    def SetStyle(self, style, **kw):
+        kw["s"] = True
+        return SetStyle(style, **kw)
 
 if __name__ == "__main__":
     # Display a table of the color combinations

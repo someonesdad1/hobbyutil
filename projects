@@ -1453,7 +1453,7 @@ rand:
         - [../columnize.py, columnize.py]
     srcdir: /pylib/pgm
 
-random_phrase
+random_phrase:
     subdir: util
     descr: A python script for generating random phrases of words.  Useful
         for generating pass phrases.

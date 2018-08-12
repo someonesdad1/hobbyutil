@@ -43,8 +43,9 @@ Link | Description
 [math/fseq.zip](math/fseq.zip) | Contains a python script fseq.py that provides general-purpose sequence generation (arithmetic, geometric, logarithmically-spaced, etc.).  The script also provides useful random number generation facilities for doing Monte Carlo calculations at the command line, along with CDFs and PDFs of some distributions.  Requires numpy.
 [math/gpaper.zip](math/gpaper.zip) | Provides some common graph papers in PDF files that print on ANSI A paper.
 [math/oo_math.zip](math/oo_math.zip) | Introduces the equation-writing capabilities of Open Office 2.0.  Includes a cheatsheet that you can modify.
-[math/parse_complex.py](math/parse_complex.py) | Parse complex numbers when they are written in the ways humans like to write them.
+[math/parse_complex.py](math/parse_complex.py) | Parse complex numbers when they are written in the ways humans like to write them.  The floating point type can be specified, which allows you to keep the full precision of the problem.
 [math/QuickMultDiv.pdf](math/QuickMultDiv.pdf) | Discussion of how to do multiplications and divisions by hand when you only need a specified number of significant figures in the answer.
+[math/rand.zip](math/rand.zip) | A pure python script for generating random numbers from various distributions to stdout.
 [math/root.zip](math/root.zip) | Pure-python root-finding methods such as bisection, Brent's method, Ridder's method, Newton-Raphson, and a general-purpose method by Jack Crenshaw that uses inverse parabolic interpolation.
 [math/rpath.zip](math/rpath.zip) | A python module for a rectilinear path object.  You supply it with a set of points and then you can interpolate to points on the path via a parameter.
 [math/scale.zip](math/scale.zip) | The scale.pdf file contains two sheets of paper with slide rule type scales on them. You may find it useful for simple technical calculations.
@@ -161,6 +162,7 @@ Link | Description
 [util/cnt.zip](util/cnt.zip) | Command-line utility to count the number of bytes in a file and present a histogram of the results.
 [util/color.py](util/color.py) | Python module to provide color printing to a console window. Should work on both Windows and Linux.
 [util/dedent.py](util/dedent.py) | Python function that will remove the common space characters from a set of text lines from files given on the command line or stdin.
+[util/dep.py](util/dep.py) | Script to display a python program's module dependencies.
 [util/ds.zip](util/ds.zip) | Contains python scripts to help you launch datasheets, manuals, and other documentation files from a command line prompt.  I use this script to lauch manuals and ebooks and it quickly finds the ones I want amongst thousands of files.
 [util/dup.py](util/dup.py) | Python script to find duplicated files in a directory tree.
 [util/ext.py](util/ext.py) | Python script to make a list of the extensions used in file names and their counts in the directories given on the command line.
@@ -176,6 +178,7 @@ Link | Description
 [util/mp.py](util/mp.py) | This is a macro processor that is a string substitution tool. You can also include arbitrary python code in your text files. Use mp.py -h to read the man page.
 [util/pdf.py](util/pdf.py) | This is a python script that can manipulate PDF files. It can concatenate a number of PDF files, select certain pages and write them to another PDF file, rotating pages, watermarking. etc. You'll also need to download the pyPdf library to use this script.
 [util/pfind.py](util/pfind.py) | Python script to find files and directories. Similar to the UNIX find (but not as powerful), but with a simpler syntax.
+[util/random_phrase.py](util/random_phrase.py) | A python script for generating random phrases of words.  Useful for generating pass phrases.
 [util/readability.zip](util/readability.zip) | Will calculate various readability indexes for text files, such as the Gunning Fog Index, the Flesch-Kinkaid Grade Level, etc.
 [util/scramble.zip](util/scramble.zip) | Contains a python script to scramble letters in words, leaving the first and last characters alone.
 [util/space.py](util/space.py) | See where the space is being consumed in a directory tree and where the biggest files are.
@@ -188,5 +191,5 @@ Link | Description
 [util/unx.py](util/unx.py) | Produces a list of files that are candidates for turning their execute bit permission off.  This is useful on Windows machines running cygwin to avoid a "sea of green" in an ls listing with colorizing on.
 [util/spc_to_underscore.py](util/spc_to_underscore.py) | Python script to replace all space characters in file names with underscores.
 
-Updated 17 Jul 2018 8:02:11 am
+Updated 12 Aug 2018 9:56:58 am
 

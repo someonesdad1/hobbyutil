@@ -161,6 +161,8 @@ def GetDiameter(arg, d):
         diam = float(eval(s))
     except Exception:
         Error("Can't evaluate '{}'".format(s))
+    if diam <= 0:
+        Error("Negative or zero diameter is meaningless.")
     unit = unit if unit else "inches"
     diam_inches = diam*u(unit)/u("inches")
     return arg, diam_inches

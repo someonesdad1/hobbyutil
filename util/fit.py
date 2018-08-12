@@ -22,6 +22,11 @@ from __future__ import print_function, division
 import sys
 import getopt
 
+from pdb import set_trace as xx
+if 1:
+    import debug
+    debug.SetDebugger()
+
 nl = "\n"
 
 # The abbr dictionary will contain abbreviations that should only get one
@@ -104,10 +109,10 @@ def Fit(string, columns=75, indent=0, eos_spaces=2,
         spaces.  If it ends with ':', append two spaces.
         '''
         if word[-1] == ".":
-            # Strip off leading nonalphnumerics.  This handles text like
+            # Strip off leading nonalphanumerics.  This handles text like
             # 'Mr. Smith' and won't allow two spaces to be put after Mr.
             prefix = ""
-            while not word[0].isalpha():
+            while word and not word[0].isalpha():
                 prefix += word[0]
                 word = word[1:]
             if word[:-1].lower() in abbreviations:
@@ -169,7 +174,7 @@ Options:
   -w columns
       Same as -c option.
 '''[:-1]
-        print(s.format(**locals()), file=sys.stderr)
+        print(s.format(**locals()))
         exit(status)
     def ParseCommandLine():
         try:

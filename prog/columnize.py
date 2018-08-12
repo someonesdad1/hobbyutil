@@ -1,6 +1,4 @@
 '''
-BUG:  esc keyword not working yet.  Check with 
-    ls --color=always | p columnize.py -e
 
 Function to turn a sequence into columns
 
@@ -47,7 +45,7 @@ def Columnize(seq, **kw):
     esc [True]      Strip out ANSI escape sequences when calculating string
                     lengths.  This allows you to display colored text in
                     columns.
-
+ 
     horiz   [False] If True, the sequence is listed from
                     left-to-right; the default is top-to-bottom.  The
                     "shape" of both outputs will be the same.
@@ -125,8 +123,12 @@ def Columnize(seq, **kw):
         raise ValueError("indent must be a string")
     align = d[align]
     if esc:
+        # Regular expression to recognized ANSI escape sequences
         r = re.compile(r"(\x9B|\x1B\[)[0-?]*[ -\/]*[@-~]")
         def Len(s):
+            '''Returns the length of a string s after removing the escape
+            sequences.
+            '''
             return len(r.sub("", s))
     else:
         Len = len
@@ -227,6 +229,11 @@ def Columnize(seq, **kw):
                 if not trunc and Len(item) > col_width:
                     msg = "'%s' too long for formatting" % item
                     raise ValueError(msg)
+                # Append spaces if Len is < col_width
+                if Len(item) < col_width:
+                    item += " "*(col_width - Len(item))
+                # Note truncation may damage ANSI sequences in some
+                # cases.
                 scol.append(item[:col_width] if trunc else item)
             cols.append(scol)
         # Get transpose of the just-constructed matrix
@@ -251,7 +258,6 @@ if __name__ == "__main__":
     import sys
     import getopt
     err = sys.stderr.write
-    out = sys.stdout.write
     nl = "\n"
     requested_columns = 0
     column_width = 0
@@ -260,7 +266,7 @@ if __name__ == "__main__":
     truncate = False
     def Usage(status=1):
         name = sys.argv[0]
-        out('''
+        print('''
 Usage:  %(name)s [options] [file1 ...]
   Prints in columns.  The number of columns is made a maximum to fit
   into the current screen width given in the COLUMNS environment
@@ -288,8 +294,7 @@ Options
     -t
         Truncate each string if needed to fit into the column width.
     -w n
-        Set the column width.
-'''[1:] % locals())
+        Set the column width.'''[1:] % locals())
         exit(status)
     def ParseCommandLine(d):
         d["-a"] = "left"        # Alignment
@@ -304,7 +309,7 @@ Options
             optlist, args = getopt.getopt(sys.argv[1:], "a:c:efhi:s:tw:")
         except getopt.GetoptError as str:
             msg, option = str
-            out(msg + nl)
+            print(msg)
             exit(1)
         for o, a in optlist:
             if o == "-a":
@@ -316,7 +321,6 @@ Options
                     exit(1)
             elif o == "-e":
                 d["-e"] = not d["-e"]
-                print("Warning:  -e option not working yet", file=sys.stderr)
             elif o == "-f":
                 d["-f"] = not d["-f"]
             elif o == "-h":
@@ -376,7 +380,7 @@ Options
             assert kw["col_width"] > 1, msg
             s = Columnize(lines, **kw)
         for i in s:
-            out(i + nl)
+            print(i)
         exit(0)
     d = {}
     files = ParseCommandLine(d)
@@ -406,4 +410,4 @@ Options
             }
         s = Columnize(lines, **kw)
         for i in s:
-            out(i + nl)
+            print(i)

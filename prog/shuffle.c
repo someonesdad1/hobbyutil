@@ -160,7 +160,7 @@ const double scale = 4294967296.0;  // double(2**32)
 
 // Structure for random number generation, file processing, and
 // program state (i.e., this structure contains global variables).
-struct {
+typedef struct {
     ulong * rn;         // Array of random numbers
     ulong num_rn;       // Number of random numbers
     byte * bytes;       // Buffer to store the bytes from the file
@@ -174,7 +174,9 @@ struct {
     ulong (*rnd)();     // Random number generator
     ulong randnum;      // Integer for linear congruential generator
     ulong rnd_count;    // Counter to use with rn array access
-} g;
+} RNG;
+
+RNG g;
 
 // I've included the MD5 code here to avoid having to have more than
 // one source code file.
@@ -589,7 +591,7 @@ void ReadFile(const char *filename, byte ** bytes, ulong * numbytes)
     *bytes = (byte *) malloc(*numbytes);
     if (! *bytes)
     {
-        fprintf(stderr, "Couldn't allocate %d bytes\n", *numbytes);
+        fprintf(stderr, "Couldn't allocate %lu bytes\n", *numbytes);
         exit(1);
     }
     // Seek back to start of file
@@ -602,7 +604,7 @@ void ReadFile(const char *filename, byte ** bytes, ulong * numbytes)
     bytes_read = fread(*bytes, 1, *numbytes, ifp);
     if (bytes_read != *numbytes)
     {
-        fprintf(stderr, "Expected %d bytes; read %d\n", *numbytes, bytes_read);
+        fprintf(stderr, "Expected %lu bytes; read %d\n", *numbytes, bytes_read);
         exit(1);
     }
     fclose(ifp);
@@ -663,7 +665,7 @@ void InitializeGenerator(void)
     if (! g.rn)
     {
         fprintf(stderr, 
-                "Couldn't allocate %d bytes for random number array\n",
+                "Couldn't allocate %lu bytes for random number array\n",
                 g.N);
         exit(1);
     }
@@ -772,7 +774,7 @@ void Shuffle(void)
         u = g.rnd()/scale;
         j = (ulong)(i*u);
         if (g.debug)
-            fprintf(stderr, "i = %d, j = %d, u = %f\n", i, j, u);
+            fprintf(stderr, "i = %lu, j = %lu, u = %f\n", i, j, u);
         // Swap bytes at positions i and j
         tmp = g.bytes[i];
         g.bytes[i] = g.bytes[j];
@@ -783,7 +785,7 @@ void Shuffle(void)
     bytes_written = fwrite(g.bytes, 1, g.N, ofp);
     if (bytes_written != g.N)
     {
-        fprintf(stderr, "Expected to write %d bytes; wrote %d to output\n", 
+        fprintf(stderr, "Expected to write %lu bytes; wrote %d to output\n", 
             g.N, bytes_written);
         exit(1);
     }
@@ -817,7 +819,7 @@ void Unshuffle(void)
         u = g.rnd()/scale;
         j = (ulong)(u*i);
         if (g.debug)
-            fprintf(stderr, "i = %d, j = %d, u = %f\n", i, j, u);
+            fprintf(stderr, "i = %lu, j = %lu, u = %f\n", i, j, u);
         // Swap bytes at positions i and j
         tmp = g.bytes[i];
         g.bytes[i] = g.bytes[j];
@@ -828,7 +830,7 @@ void Unshuffle(void)
     bytes_written = fwrite(g.bytes, 1, g.N, ofp);
     if (bytes_written != g.N)
     {
-        fprintf(stderr, "Expected to write %d bytes; wrote %d to output\n", 
+        fprintf(stderr, "Expected to write %lu bytes; wrote %d to output\n", 
             g.N, bytes_written);
         exit(1);
     }

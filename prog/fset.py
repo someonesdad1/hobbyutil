@@ -91,9 +91,9 @@ def ParseCommandLine(d):
         if opt[0] == "-i":
             r = re.compile(opt[1])
             d["-i"].append(r)
-        if opt[0] == "-s":
+        elif opt[0] == "-s":
             d["-s"] = False
-        if opt[0] == "-w":
+        elif opt[0] == "-w":
             d["-w"] = True
     if len(args) < 2:
         Usage()
@@ -101,10 +101,7 @@ def ParseCommandLine(d):
 
 def GetLines(op, files, d):
     def do_not_ignore(line, r):
-        mo = r.search(line)
-        if not mo:
-            return True
-        return False
+        return not r.search(line)
     lines1 = open(files[0]).readlines()
     lines2 = []
     if op == "el":

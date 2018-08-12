@@ -2,7 +2,8 @@
 Script to recursively descend through a directory hierarchy and write
 to stdout all the files that should not have their execute bit set.
 Files excluded are those that belong to certain directories such as
-.svn, *.exe, *.com, *.bat, and those whose first two bytes are #!.
+git, Mercurial, etc., executables such as *.exe, *.com, *.bat, and
+those whose first two bytes are #!.
  
 The intent is to allow you to pass the output to other programs,
 such as xargs.  Note:  for Windows, you'll want to use the -0 option,
@@ -24,9 +25,7 @@ import os
 import getopt
 import re
 
-debug = 0
 dbstream = sys.stderr
-out = sys.stdout.write
 nl = "\n"
 null = "\x00"
 
@@ -46,29 +45,23 @@ directories_to_ignore = {
     ".bzr" : 0,
 }
 
-def dbg(s, nonl=0):
-    if debug:
-        dbstream.write("+ " + s)
-        if not nonl:
-            dbstream.write(nl)
-
-if debug:
-    dbg("Debug on")
-
-# ----------------------------------------------------------------------
-
 def Usage():
-    print('''Usage:  %s [options] dir1 [dir2...]
-
+    print('''Usage:  {} [options] dir1 [dir2...]
   Prints names of all files under the indicated directories except
   for *.exe, *.com, and *.bat or if the file begins with #!.
 
   This is aimed at avoiding the "sea of green" on a cygwin system when
-  using ls, as most non-cygwin applications result in a file with
-  execute permissions.
+  using ls, as most non-cygwin applications write files with
+  execute permissions on.
 
   Note:  the command line objects can be either directories or
   files.
+
+  Example:  to turn off the execute bit on all files in the current
+  directory that aren't Windows executables or shell scripts, use the
+  command
+
+    python unx.py -0 . | xargs -0 chmod -x
 
 Options:
     -0      Append null characters after the file names.  This lets
@@ -76,7 +69,7 @@ Options:
     -d      Include dotted (hidden) directories
     -h      Print help
     -r      Descend directories recursively
-''' % program_name)
+'''.format(program_name))
     exit(1)
 
 def ProcessCommandLine():
@@ -91,16 +84,14 @@ def ProcessCommandLine():
         if opt[0] == "-0":
             global use_nulls
             use_nulls = 1
-        if opt[0] == "-d":
+        elif opt[0] == "-d":
             global ignore_dotted_directories
             ignore_dotted_directories = 0
-            dbg("Do not ignore dotted directories")
-        if opt[0] == "-h":
+        elif opt[0] == "-h":
             Usage()
-        if opt[0] == "-r":
+        elif opt[0] == "-r":
             global recursive
             recursive = 1
-            dbg("Recursive behavior")
     if len(args) == 0:
         return (".",)
     else:
@@ -122,12 +113,9 @@ def IgnoreDirectory(dirpath, dir):
         return 1
 
 def ProcessDirectory(dir):
-    dbg("Processing directory " + dir)
     if recursive:
-        dbg("Recursing on " + dir)
         for dirpath, dirnames, files in os.walk(dir):
             if IgnoreDirectory(dirpath, dir):
-                dbg("Ignoring directory " + dirpath)
                 continue
             for file in files:
                 ProcessFile(os.path.join(dirpath, file))
@@ -142,22 +130,20 @@ def ProcessObject(object):
     elif os.path.isfile(object):
         ProcessFile(object)
     else:
-        print("%s:  '%s' is not a file or directory" % (program_name, object))
+        print("'{}' is not a file or directory".format(object))
 
 def ProcessFile(file):
-    dbg("Processing file " + file)
     if ignore.match(file):
         return
     if GetFirstTwoBytes(file) == "#!":
         return
     file = file.replace("\\", "/")
     if use_nulls:
-        out(file + null)
+        sys.stdout.write(file + null)
     else:
-        out(file + nl)
+        print(file)
 
 if __name__ == "__main__":
     objects_to_process = ProcessCommandLine()
-    dbg("Objects to process:" + nl + "+   " + repr(objects_to_process))
     for object in objects_to_process:
         ProcessObject(object)
