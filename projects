@@ -464,6 +464,13 @@ density:
         - [../sig.py, sig.py]
     srcdir: /pylib/pgm
 
+dep:
+    subdir: util
+    descr: Script to display a python program's module dependencies.
+    files:
+        - dep.py
+    srcdir: /pylib/pgm
+
 diam:
     subdir: science
     descr: Plots of circles showing the relative mean diameters of
@@ -1150,7 +1157,6 @@ mass:
     files:
         - mass.bolt
         - mass.bucket
-        - mass.cat
         - mass.earth
         - mass.fishtank
         - mass.frame
@@ -1160,6 +1166,10 @@ mass:
         - mass.py
         - mass.simple
         - mass.test
+        - [../asme.py, asme.py]
+        - [../cmddecode.py, cmddecode.py]
+        - [../columnize.py, columnize.py]
+        - [../getnumber.py, getnumber.py]
         - [../sig.py, sig.py]
         - [../u.py, u.py]
     srcdir: /pylib/pgm
@@ -1325,17 +1335,19 @@ parts:
 
 pcmplx:
     subdir: math
-    descr: Parse complex numbers when they are written in the ways humans like to write them.
+    descr: Parse complex numbers when they are written in the ways humans
+        like to write them.  The floating point type can be specified, which 
+        allows you to keep the full precision of the problem.
     files:
         - parse_complex.py
     srcdir: /pylib
 
 pdf:
     subdir: util
-    descr: This is a python script that can manipulate PDF files. It can concatenate a 
-        number of PDF files, select certain pages and write them to another PDF
-        file, rotating pages, watermarking. etc. You'll also need to download the
-        pyPdf library to use this script.
+    descr: This is a python script that can manipulate PDF files. It can
+        concatenate a number of PDF files, select certain pages and write
+        them to another PDF file, rotating pages, watermarking. etc. You'll
+        also need to download the pyPdf library to use this script.
     files:
         - pdf.py
     srcdir: /pylib
@@ -1430,6 +1442,24 @@ qmd:
         - QuickMultDiv.odt*
         - QuickMultDiv.pdf
     srcdir: /math/Dinosaur_Arithmetic
+
+rand:
+    subdir: math
+    descr: A pure python script for generating random numbers from various
+        distributions to stdout.
+    files:
+        - rand.py
+        - [../sig.py, sig.py]
+        - [../columnize.py, columnize.py]
+    srcdir: /pylib/pgm
+
+random_phrase
+    subdir: util
+    descr: A python script for generating random phrases of words.  Useful
+        for generating pass phrases.
+    files:
+        - random_phrase.py
+    srcdir: /pylib/pgm
 
 react:
     subdir: elec
@@ -1758,7 +1788,7 @@ tree:
     subdir: util
     descr: Python script to print an ASCII representation of a directory
         tree.  It can optionally decorate the tree with each directory's
-        size in MBytes.
+        size in MBytes and highlight a regular expression in color.
     files:
         - tree.py
     srcdir: /pylib/pgm
@@ -1846,7 +1876,9 @@ units:
 unx:
     subdir: util
     descr: Produces a list of files that are candidates for turning
-        their execute bit permission off.
+        their execute bit permission off.  This is useful on Windows machines
+        running cygwin to avoid a "sea of green" in an ls listing with 
+        colorizing on.
     files:
         - unx.py
     srcdir: /pylib/pgm

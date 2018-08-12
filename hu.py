@@ -1,18 +1,22 @@
 '''
 
-This script is used to populate a repository with the files that I want to
-archive.  The relevant file information is in a text file that uses YAML
-syntax to describe the files, their source and destination names, and their
-containers.
+This script is used to populate a repository with the files that I want to archive.
+The relevant file information is in a text file that uses YAML syntax to describe
+the files, their source and destination names, and their containers.
 
-The first task is to verify all the source files exist on the hard disk.
-Then the script will identify missing or out-of-date destination files.
-The destination files will typically be a single PDF document or e.g. a
-collection of scripts and a PDF.  The PDF files are typically made from an
-Open Office document along with optional bitmap files, but these are not
-copied to the repository for space reasons.  A user can ask to have the
-source files and the -z option can be used to put the source files into a
-zip file so they can be emailed to the user.
+The first task is to verify all the source files exist on the hard disk.  Then the
+script will identify missing or out-of-date destination files.  The destination
+files will typically be a single PDF document or e.g. a collection of scripts and a
+PDF.  The PDF files are typically made from an Open Office document along with
+optional bitmap files, but these are not copied to the repository for space
+reasons.  A user can ask to have the source files and the -z option can be used to
+put the source files into a zip file so they can be emailed to the user.
+
+Editorial comment:  I chose to use YAML primarily because it allowed me to write
+strings without having to use double or single quotes to delimit them.  If you want
+to avoid the dependency on needing a YAML library, you can easily change the
+projects file to a python dictionary or use JSON in conjunction with python's json
+module.
 
 '''
 
@@ -63,7 +67,7 @@ except ImportError:
     c = Dummy()
     _have_color = False
 
-if 0:
+if 1:
     import debug
     debug.SetDebugger()
 
@@ -620,11 +624,10 @@ def BuildProjectPage(d):
             # The list of hyperlinks to projects and their descriptions
             for link, descr in project_container[category]:
                 lnk = link[1:link.find("]")]
+                sz = os.stat(lnk).st_size//1000
                 if 1:
-                    sz = os.stat(lnk).st_size//1000
                     hu.write("| `{} <{}>`_ ({})\n".format(lnk, lnk, sz))
                 else:
-                    sz = os.stat(lnk).st_size//1000
                     print(lnk, sz) #xx
                     hu.write("| `{} <{}>`_\n".format(lnk, lnk))
                 hu.write("|   {}\n".format(descr))

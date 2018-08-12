@@ -12,11 +12,11 @@ Electrical
 | `elec/bode.py <elec/bode.py>`_ (3)
 |   Generate a Bode plot with a python script (needs numpy and matplotlib).  You define the transfer function in a file passed on the command line.
 | `elec/CurrentSource.pdf <elec/CurrentSource.pdf>`_ (201)
-|   Describes how to make a battery-operated 1 ampere current source used to make low resistance measurements.
+|   How to make a battery-operated 1 ampere current source used to make low resistance measurements.
 | `elec/MeasuringESR.pdf <elec/MeasuringESR.pdf>`_ (185)
 |   Describes a technique of estimating a capacitor's ESR (equivalent series resistance) without having to buy a special meter.
 | `elec/hppn.zip <elec/hppn.zip>`_ (81)
-|   This is a compilation of various 8-digit HP part numbers translated into more identifiable numbers.  TTL IC SN74175N.  This list may be of use to those with old HP instruments that need to find a replacement part.
+|   This is a compilation of various 8-digit HP part numbers translated into more identifiable numbers.  This list may be of use to those with old HP instruments that need to find a replacement part.
 | `elec/impedance.py <elec/impedance.py>`_ (4)
 |   This python script will take a complex impedance in polar coordinates and print out the series and parallel models' values, reactance, dissipation factor, and quality factor.
 | `elec/ind.zip <elec/ind.zip>`_ (1213)
@@ -43,7 +43,7 @@ Engineering
 | `eng/eng_grid.py <eng/eng_grid.py>`_ (8)
 |   This python script will generate most any linear isotropic graph paper by creating a PostScript file.
 | `eng/iapws.zip <eng/iapws.zip>`_ (72)
-|   Contains C++ and python code that implements the IAPWS95 equations for the thermodynamic properties of water. See http://www.iapws.org/relguide/IAPWS-95.htm
+|   Contains C++ and python code that implements the IAPWS95 equations for the thermodynamic properties of water. See http://www.iapws.org.
 | `eng/flow.pdf <eng/flow.pdf>`_ (18)
 |   Nomograph for pipe flow.
 | `eng/pqs.zip <eng/pqs.zip>`_ (544)
@@ -54,7 +54,7 @@ Math
 ====
 
 | `math/AnalyticGeometry.pdf <math/AnalyticGeometry.pdf>`_ (4311)
-|   Contains formulas relating to analytic geometry and other math stuff I need to look up on a regular basis.  I'm looking for a new maintainer of this document.
+|   Contains formulas relating to analytic geometry and other math stuff I need to look up on a regular basis.
 | `math/BusinessCardMathTables.pdf <math/BusinessCardMathTables.pdf>`_ (524)
 |   A document containing small math tables that will print out to be about the size of a business card.
 | `math/Concise300.pdf <math/Concise300.pdf>`_ (503)
@@ -68,7 +68,7 @@ Math
 | `math/frange.zip <math/frange.zip>`_ (18)
 |   A python module that provides a floating point analog to range().  Doesn't suffer from the typical floating point problems seen in naive implementations.
 | `math/fseq.zip <math/fseq.zip>`_ (433)
-|   Contains a python script fseq.py that provides general-purpose sequence generation (arithmetic, geometric, logarithmically-spaced, etc.).  The script also provides useful random number generation facilities for doing Monte Carlo calculations at the command line, along with CDFs and PDFs of some distributions.
+|   Contains a python script fseq.py that provides general-purpose sequence generation (arithmetic, geometric, logarithmically-spaced, etc.).  The script also provides useful random number generation facilities for doing Monte Carlo calculations at the command line, along with CDFs and PDFs of some distributions.  Requires numpy.
 | `math/gpaper.zip <math/gpaper.zip>`_ (105)
 |   Provides some common graph papers in PDF files that print on ANSI A paper.
 | `math/oo_math.zip <math/oo_math.zip>`_ (268)
@@ -83,8 +83,6 @@ Math
 |   A python module for a rectilinear path object.  You supply it with a set of points and then you can interpolate to points on the path via a parameter.
 | `math/scale.zip <math/scale.zip>`_ (480)
 |   The scale.pdf file contains two sheets of paper with slide rule type scales on them. You may find it useful for simple technical calculations.
-| `math/seg.py <math/seg.py>`_ (15)
-|   Python script to calculate parameters of a circular segment. Translated from a program written by Marv Klotz.
 | `math/shorttbl.zip <math/shorttbl.zip>`_ (339)
 |   A set of tables of elementary math functions intended to print on half of an ANSI-A sized piece of paper.
 | `math/spiral.zip <math/spiral.zip>`_ (15)
@@ -124,7 +122,7 @@ Programming
 ===========
 
 | `prog/columnize.py <prog/columnize.py>`_ (15)
-|   Python script to columnize a sequence into columns.
+|   Python function to print a sequence in columns.  The order can be down (default) or across.
 | `prog/comb.py <prog/comb.py>`_ (3)
 |   A python script that will produce permutations and combinations of the lines in a file. Can be useful for generating test cases.
 | `prog/fset.py <prog/fset.py>`_ (5)
@@ -132,11 +130,11 @@ Programming
 | `prog/hg.zip <prog/hg.zip>`_ (44)
 |   Some python scripts that make it easier to work with Mercurial repositories.
 | `prog/license.zip <prog/license.zip>`_ (173)
-|   This is a python script that will allow you to change the license  you use in your source code files.
+|   This is a python script that will allow you to change the license you use in your source code files.
 | `prog/lwtest.zip <prog/lwtest.zip>`_ (142)
-|   Lightweight python script testing framework.
+|   Lightweight python script testing framework based on some work by Raymond Hettinger.  Python's unittest module is unfriendly to the test/debug process because it intercepts the standard streams, which doesn't let you use the python debugger to examine your code.
 | `prog/manufy.py <prog/manufy.py>`_ (2)
-|   Python script to convert text lines to have double quotes and a newline at the end. This is useful to allow you to quickly write manpages for C or C++ code.
+|   Python script to convert text lines to have double quotes and a newline at the end. This is useful to allow you to quickly write text manpages for C or C++ code.
 | `prog/PythonFromCalc.pdf <prog/PythonFromCalc.pdf>`_ (77)
 |   How to call python functions from Open Office Calc spreadsheets.
 | `prog/python.zip <prog/python.zip>`_ (537)
@@ -146,7 +144,7 @@ Programming
 | `prog/shuffle.c <prog/shuffle.c>`_ (30)
 |   C program to randomly shuffle the bytes of a file.
 | `prog/sig.zip <prog/sig.zip>`_ (217)
-|   Contains a python script to format floating point numbers to a specified number of significant figures or round to a specified template.
+|   A python module to format floating point numbers to a specified number of significant figures or round to a specified template.
 | `prog/stack.zip <prog/stack.zip>`_ (6)
 |   A python module that implements a basic stack.
 | `prog/sumbytes.cpp <prog/sumbytes.cpp>`_ (5)
@@ -175,7 +173,7 @@ Science
 | `science/diameters.pdf <science/diameters.pdf>`_ (3)
 |   Plots of circles showing the relative mean diameters of planets and moons in the solar system.
 | `science/diurnal_variations.pdf <science/diurnal_variations.pdf>`_ (2288)
-|   Shows a plot of the light from the sky measured with a cheap photodiode.  Simple experiment that would be fun do to with a child.
+|   Shows a plot of the light from the sky measured with a cheap photodiode.  This is a simple experiment that would be fun do to with a child.
 | `science/elements.zip <science/elements.zip>`_ (1348)
 |   Contains elements.pdf, a document that contains a periodic table of the elements, a plot of the vapor pressures of the elements, values of physical parameters sorted by value, and various physical parameters of the elements plotted as a function of atomic number.
 | `science/irr.py <science/irr.py>`_ (25)
@@ -200,7 +198,7 @@ Shop
 | `shop/ball.py <shop/ball.py>`_ (3)
 |   Python script to calculate steps to turn a ball on a lathe.
 | `shop/bar.zip <shop/bar.zip>`_ (127)
-|   Python script to print out a table of the masses of bar stock in different sizes.
+|   Python script to print out a table of the masses of bar stock.
 | `shop/bc.zip <shop/bc.zip>`_ (99)
 |   Contains a python script that will calculate the Cartesian coordinates of holes on a bolt circle.
 | `shop/bucket.zip <shop/bucket.zip>`_ (224)
@@ -216,17 +214,17 @@ Shop
 | `shop/MachinistClamp.pdf <shop/MachinistClamp.pdf>`_ (1450)
 |   Discusses machinist's parallel clamps, why they're useful, and how to make your own.
 | `shop/cove.zip <shop/cove.zip>`_ (131)
-|   Python script shows you how to cut a cove with your table saw.  Use this formula and method when it just has to be done correctly on a workpiece you can't mess up on.
+|   Python script shows you how to cut a cove with your table saw. Use this formula and method when it just has to be done correctly on a workpiece you can't mess up on.
 | `shop/cut.zip <shop/cut.zip>`_ (323)
 |   Python script that will calculate a solution to the one-dimensional cutting problem.  This problem appears when you have a set of raw materials and need to cut a stated set of workpieces from the stock.
 | `shop/Demagnetizer.pdf <shop/Demagnetizer.pdf>`_ (237)
-|   Describes a simple demagnetizing tool you can make from scrap materials.
+|   A simple demagnetizing tool made from scrap materials.
 | `shop/density.zip <shop/density.zip>`_ (375)
 |   Python script to display densities of various materials.
 | `shop/DitchPump_pub.pdf <shop/DitchPump_pub.pdf>`_ (3009)
 |   Comments and tips on using a ditch pump to water your lawn.
 | `shop/DraftingTriangleTip.pdf <shop/DraftingTriangleTip.pdf>`_ (100)
-|   This is a simple modification to a 30-60-90 drafting triangle that lets you use it to draw 45 degree angles.
+|   This is a simple modification to a 30-60-90 drafting triangle that lets you draw 45 degree angles.
 | `shop/drules.pdf <shop/drules.pdf>`_ (892)
 |   PDFs containing some drafting rules that I've always wanted. You can print them at full scale and glue them to a chunk of wood to make some handy scales.
 | `shop/fits.py <shop/fits.py>`_ (6)
@@ -244,8 +242,8 @@ Shop
 | `shop/HoseFitting.pdf <shop/HoseFitting.pdf>`_ (266)
 |   Here's an effective way to secure a hose to a hose fitting. It's better than anything I've found in a store.
 | `shop/LittleVise.pdf <shop/LittleVise.pdf>`_ (252)
-|   Describes a snall vise that is straightforward to make with a milling machine.
-| `shop/mass.zip <shop/mass.zip>`_ (491)
+|   Describes a small vise made from 1 inch square bar stock.  It slips into a pocket and is handy for small tasks around the shop and home.
+| `shop/mass.zip <shop/mass.zip>`_ (984)
 |   Python script to calculate the volume and mass of a project constructed from various primitive geometrical objects.
 | `shop/nozzle.pdf <shop/nozzle.pdf>`_ (425)
 |   Nice hose nozzle you can make if you have a lathe.
@@ -273,7 +271,7 @@ Utilities
 =========
 
 | `util/asc.py <util/asc.py>`_ (6)
-|   Python script to print out an ASCII character table in decimal, hex, or octal.
+|   Python script to print out an ASCII character table in decimal, hex, or octal.  Useful at a command line to see your terminal's encoding.
 | `util/bd.c <util/bd.c>`_ (21)
 |   Performs a comparison between binary files; differences are printed in hex dump format.
 | `util/bgrep.py <util/bgrep.py>`_ (6)
@@ -285,21 +283,25 @@ Utilities
 | `util/color.py <util/color.py>`_ (8)
 |   Python module to provide color printing to a console window. Should work on both Windows and Linux.
 | `util/dedent.py <util/dedent.py>`_ (1)
-|   Python script that will remove the common space characters from a set of text lines from files given on the command line or stdin.
+|   Python function that will remove the common space characters from a set of text lines from files given on the command line or stdin.
 | `util/ds.zip <util/ds.zip>`_ (124)
 |   Contains python scripts to help you launch datasheets, manuals, and other documentation files from a command line prompt.  I use this script to lauch manuals and ebooks and it quickly finds the ones I want amongst thousands of files.
+| `util/dup.py <util/dup.py>`_ (14)
+|   Python script to find duplicated files in a directory tree.
 | `util/ext.py <util/ext.py>`_ (8)
-|   Python script to make a list of the extensions used in file names in the directories given on the command line.
+|   Python script to make a list of the extensions used in file names and their counts in the directories given on the command line.
 | `util/fdiff.zip <util/fdiff.zip>`_ (46)
 |   Contains python scripts that can identify differences in two directory trees and perform updates as needed to synchronize these two trees.
 | `util/fit.py <util/fit.py>`_ (8)
 |   Provides a python function to fit a string of words into a given number of columns.
 | `util/goto.py <util/goto.py>`_ (12)
-|   Contains a sh-type shell function and a python script that let you navigate around to various directories from a shell command line. I've had a number of UNIX users tell me they couldn't live without this tool once they started using it.
+|   Contains a sh-type shell function and a python script that let you navigate around to various directories from a shell command line. A number of UNIX users have told me they couldn't live without this tool once they started using it.
 | `util/lib.zip <util/lib.zip>`_ (12)
 |   Python script command line tool to provide a facility for keeping snippets of code handy.
 | `util/lnk.py <util/lnk.py>`_ (2)
 |   Python script to list the files in two directory trees that are hard-linked together.  If you have GNU find, the -samefile option can be used to do this too.
+| `util/loo.zip <util/loo.zip>`_ (23)
+|   Python script that will print out the image files in Open Office documents.  Image files that are not at or below the same directory as the document file will be marked '[not relative]'. Missing files will be marked '[missing]'.  It is useful if you link image files into OO files.
 | `util/lookup.zip <util/lookup.zip>`_ (133)
 |   Package that contains a python script that can help you look up words in a word dictionary and use the information from WordNet to show synonyms, definitions, and types of words (e.g., adjectives, adverbs, nouns, and verbs).
 | `util/mk.py <util/mk.py>`_ (5)
@@ -327,15 +329,15 @@ Utilities
 | `util/html_tokens.py <util/html_tokens.py>`_ (1)
 |   Will produce a list of readable words from an HTML file, all in lower case, one per line. You could then run the list of words through a spell checker.
 | `util/tree.py <util/tree.py>`_ (5)
-|   Python script to print an ASCII representation of a directory tree.  It can optionally decorate the tree with each directory's size in MBytes.
+|   Python script to print an ASCII representation of a directory tree.  It can optionally decorate the tree with each directory's size in MBytes and highlight a regular expression in color.
 | `util/unicode.py <util/unicode.py>`_ (18)
 |   Python script to find Unicode characters.  You'll need to download the relevant files from the Unicode website.
 | `util/unx.py <util/unx.py>`_ (4)
-|   Produces a list of files that are candidates for turning their execute bit permission off.
+|   Produces a list of files that are candidates for turning their execute bit permission off.  This is useful on Windows machines running cygwin to avoid a "sea of green" in an ls listing with colorizing on.
 | `util/spc_to_underscore.py <util/spc_to_underscore.py>`_ (3)
 |   Python script to replace all space characters in file names with underscores.
 
 
 
-Updated 26 Jun 2018 7:23:29 am
+Updated 17 Jul 2018 8:02:11 am
 
