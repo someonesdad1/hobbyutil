@@ -467,6 +467,8 @@ density:
 dep:
     subdir: util
     descr: Script to display a python program's module dependencies.
+        The modules are classified by type.  It won't find *.pyc/*.pyo
+        files nor modules the imports depend on.
     files:
         - dep.py
     srcdir: /pylib/pgm
@@ -811,6 +813,14 @@ fset:
         - fset.py
     srcdir: /pylib/pgm
 
+func:
+    subdir: util
+    descr: Python script to list the functions and classes used in the
+        files given on the command line. 
+    files:
+        - func.py
+    srcdir: /pylib/pgm
+
 fuse:
     subdir: elec
     descr: Notes on using ATO automobile fuses as poor-man's shunts.
@@ -830,6 +840,19 @@ gblock:
         - gauge.cpp
         - [/pylib/pgm/gb.py, gb.py]
     srcdir: /shop/software/gauge_blocks
+
+getinput:
+    subdir: util
+    descr: A python module that gets input data in a variety of ways.  Gets
+        lines or tokens from a set of files or prompts the user for numbers
+        (the numbers can be restricted to an interval and can include
+        uncertainty or physical units).  The lines and token getters are
+        generators and can use functional programming tools.
+    files:
+        - getinput.py
+        - u.py
+        - columnize.py
+    srcdir: /pylib
 
 glendag:
     subdir: shop

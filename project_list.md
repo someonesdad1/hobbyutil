@@ -162,12 +162,14 @@ Link | Description
 [util/cnt.zip](util/cnt.zip) | Command-line utility to count the number of bytes in a file and present a histogram of the results.
 [util/color.py](util/color.py) | Python module to provide color printing to a console window. Should work on both Windows and Linux.
 [util/dedent.py](util/dedent.py) | Python function that will remove the common space characters from a set of text lines from files given on the command line or stdin.
-[util/dep.py](util/dep.py) | Script to display a python program's module dependencies.
+[util/dep.py](util/dep.py) | Script to display a python program's module dependencies. The modules are classified by type.  It won't find *.pyc/*.pyo files nor modules the imports depend on.
 [util/ds.zip](util/ds.zip) | Contains python scripts to help you launch datasheets, manuals, and other documentation files from a command line prompt.  I use this script to lauch manuals and ebooks and it quickly finds the ones I want amongst thousands of files.
 [util/dup.py](util/dup.py) | Python script to find duplicated files in a directory tree.
 [util/ext.py](util/ext.py) | Python script to make a list of the extensions used in file names and their counts in the directories given on the command line.
 [util/fdiff.zip](util/fdiff.zip) | Contains python scripts that can identify differences in two directory trees and perform updates as needed to synchronize these two trees.
 [util/fit.py](util/fit.py) | Provides a python function to fit a string of words into a given number of columns.
+[util/func.py](util/func.py) | Python script to list the functions and classes used in the files given on the command line.
+[util/getinput.zip](util/getinput.zip) | A python module that gets input data in a variety of ways.  Gets lines or tokens from a set of files or prompts the user for numbers (the numbers can be restricted to an interval and can include uncertainty or physical units).  The lines and token getters are generators and can use functional programming tools.
 [util/goto.py](util/goto.py) | Contains a sh-type shell function and a python script that let you navigate around to various directories from a shell command line. A number of UNIX users have told me they couldn't live without this tool once they started using it.
 [util/lib.zip](util/lib.zip) | Python script command line tool to provide a facility for keeping snippets of code handy.
 [util/lnk.py](util/lnk.py) | Python script to list the files in two directory trees that are hard-linked together.  If you have GNU find, the -samefile option can be used to do this too.
@@ -191,5 +193,5 @@ Link | Description
 [util/unx.py](util/unx.py) | Produces a list of files that are candidates for turning their execute bit permission off.  This is useful on Windows machines running cygwin to avoid a "sea of green" in an ls listing with colorizing on.
 [util/spc_to_underscore.py](util/spc_to_underscore.py) | Python script to replace all space characters in file names with underscores.
 
-Updated 12 Aug 2018 9:56:58 am
+Updated 3 Oct 2018 12:07:11 pm
 

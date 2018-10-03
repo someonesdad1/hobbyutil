@@ -79,7 +79,7 @@ Math
 |   Discussion of how to do multiplications and divisions by hand when you only need a specified number of significant figures in the answer.
 | `math/rand.zip <math/rand.zip>`_ (160)
 |   A pure python script for generating random numbers from various distributions to stdout.
-| `math/root.zip <math/root.zip>`_ (58)
+| `math/root.zip <math/root.zip>`_ (59)
 |   Pure-python root-finding methods such as bisection, Brent's method, Ridder's method, Newton-Raphson, and a general-purpose method by Jack Crenshaw that uses inverse parabolic interpolation.
 | `math/rpath.zip <math/rpath.zip>`_ (35)
 |   A python module for a rectilinear path object.  You supply it with a set of points and then you can interpolate to points on the path via a parameter.
@@ -168,7 +168,7 @@ Programming
 Science
 =======
 
-| `science/astro.zip <science/astro.zip>`_ (83)
+| `science/astro.zip <science/astro.zip>`_ (84)
 |   Collection of a few astronomical utilities, mostly derived from Meeus' books.
 | `science/chemical_names.pdf <science/chemical_names.pdf>`_ (207)
 |   A list of archaic chemical names with their modern equivalents and chemical formulas.
@@ -199,7 +199,7 @@ Shop
 
 | `shop/ball.py <shop/ball.py>`_ (3)
 |   Python script to calculate steps to turn a ball on a lathe.
-| `shop/bar.zip <shop/bar.zip>`_ (127)
+| `shop/bar.zip <shop/bar.zip>`_ (128)
 |   Python script to print out a table of the masses of bar stock.
 | `shop/bc.zip <shop/bc.zip>`_ (99)
 |   Contains a python script that will calculate the Cartesian coordinates of holes on a bolt circle.
@@ -209,9 +209,9 @@ Shop
 |   Discussion and use of old-style machinist calipers.
 | `shop/CartPlatform.pdf <shop/CartPlatform.pdf>`_ (1023)
 |   Simple platform for Harbor Freight garden cart.
-| `shop/chain.zip <shop/chain.zip>`_ (226)
+| `shop/chain.zip <shop/chain.zip>`_ (224)
 |   Python script to help with chain drilling holes and disks.
-| `shop/circ3.zip <shop/circ3.zip>`_ (200)
+| `shop/circ3.zip <shop/circ3.zip>`_ (198)
 |   Python script that calculates the radius/diameter of a circle that passes through three points.
 | `shop/MachinistClamp.pdf <shop/MachinistClamp.pdf>`_ (1450)
 |   Discusses machinist's parallel clamps, why they're useful, and how to make your own.
@@ -237,7 +237,7 @@ Shop
 |   A C++ program to print out combinations of gauge blocks that yield a desired composite length (the subset sum problem). Uses brute-force searching to find solutions.  Includes a python script that solves the same problem.
 | `shop/GlendaGuard.pdf <shop/GlendaGuard.pdf>`_ (417)
 |   Describes a simple concrete sprinkler guard that my wife designed and built.
-| `shop/hammer.pdf <shop/hammer.pdf>`_ (1274)
+| `shop/hammer.pdf <shop/hammer.pdf>`_ (1278)
 |   Discusses the common hammer types and making a new handle for one.
 | `shop/holes.zip <shop/holes.zip>`_ (333)
 |   Contains a python script that will help you lay out holes that are equally-spaced around a circle.
@@ -245,7 +245,7 @@ Shop
 |   Here's an effective way to secure a hose to a hose fitting. It's better than anything I've found in a store.
 | `shop/LittleVise.pdf <shop/LittleVise.pdf>`_ (250)
 |   Describes a small vise made from 1 inch square bar stock.  It slips into a pocket and is handy for small tasks around the shop and home.
-| `shop/mass.zip <shop/mass.zip>`_ (944)
+| `shop/mass.zip <shop/mass.zip>`_ (942)
 |   Python script to calculate the volume and mass of a project constructed from various primitive geometrical objects.
 | `shop/nozzle.pdf <shop/nozzle.pdf>`_ (452)
 |   Nice hose nozzle you can make if you have a lathe.
@@ -287,7 +287,7 @@ Utilities
 | `util/dedent.py <util/dedent.py>`_ (1)
 |   Python function that will remove the common space characters from a set of text lines from files given on the command line or stdin.
 | `util/dep.py <util/dep.py>`_ (9)
-|   Script to display a python program's module dependencies.
+|   Script to display a python program's module dependencies. The modules are classified by type.  It won't find *.pyc/*.pyo files nor modules the imports depend on.
 | `util/ds.zip <util/ds.zip>`_ (119)
 |   Contains python scripts to help you launch datasheets, manuals, and other documentation files from a command line prompt.  I use this script to lauch manuals and ebooks and it quickly finds the ones I want amongst thousands of files.
 | `util/dup.py <util/dup.py>`_ (14)
@@ -298,6 +298,10 @@ Utilities
 |   Contains python scripts that can identify differences in two directory trees and perform updates as needed to synchronize these two trees.
 | `util/fit.py <util/fit.py>`_ (8)
 |   Provides a python function to fit a string of words into a given number of columns.
+| `util/func.py <util/func.py>`_ (1)
+|   Python script to list the functions and classes used in the files given on the command line.
+| `util/getinput.zip <util/getinput.zip>`_ (115)
+|   A python module that gets input data in a variety of ways.  Gets lines or tokens from a set of files or prompts the user for numbers (the numbers can be restricted to an interval and can include uncertainty or physical units).  The lines and token getters are generators and can use functional programming tools.
 | `util/goto.py <util/goto.py>`_ (12)
 |   Contains a sh-type shell function and a python script that let you navigate around to various directories from a shell command line. A number of UNIX users have told me they couldn't live without this tool once they started using it.
 | `util/lib.zip <util/lib.zip>`_ (12)
@@ -345,5 +349,5 @@ Utilities
 
 
 
-Updated 12 Aug 2018 9:56:58 am
+Updated 3 Oct 2018 12:07:11 pm
 

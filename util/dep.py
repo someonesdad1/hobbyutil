@@ -3,14 +3,13 @@
 Prints out the python library dependencies of the python files given on the
 command line.  Currently, this script works with python 3.6 and 2.7.  
 
-IMPORTANT:  This script will not find *.pyc or *.pyo files that act as
+IMPORTANT:  This script will NOT find *.pyc or *.pyo files that act as
 modules.  It makes the assumption that all modules that are python code
 have the file suffix *.py.
 
 WARNING:  The imports are found by discovering the 'import' lines in the
 file, so the output does not indicate the other files the import lines may
-import.  If this interests you, one way to find it out is to insert a line
-in your script at the appropriate point that inspects sys.modules.
+import.
 
 Example output for a test script:
     a.py
@@ -33,12 +32,6 @@ Example output for a test script:
             lwtest
             sig
 
-----------------------------------------------------------------------
-TODO
-
-* The current method of giving the compiled modules is manually-generated.
-  Explore to see if an automated way can be found to do this.
-
 '''
   
 # Copyright (C) 2018 Don Peterson
@@ -57,7 +50,6 @@ import re
 import sys
 import sysconfig
 from collections import defaultdict
-from pdb import set_trace as xx 
 
 try:
     from importlib.util import find_spec
@@ -80,10 +72,24 @@ def Error(msg, status=1):
 
 def Usage(d):
     name = sys.argv[0]
+    stdlib_dir = sysconfig.get_paths()["stdlib"]
+    addon_dir = os.path.join(sysconfig.get_paths()["stdlib"],
+                             "site-packages")
     s = '''
 Usage:  {name} [options] [file1 ...]
   Determine the python module dependencies of the files given on the
-  command line.
+  command line.  IMPORTANT:  it will not find *.pyc or *.pyo files your
+  script may depend on, nor will it find the import files used by the files
+  it imports (for the latter, run your script and print out sys.modules).
+
+  WARNING:  because this script uses regular expressions for searching,
+  lines that look like import lines inside of a multiline string may result
+  in output even though there is no real dependency.
+
+  Standard library modules are in
+      {stdlib_dir}
+  Addon modules are in
+      {addon_dir}
 
 Options:
   -n        Show only the modules that can't be imported.  These are
@@ -121,8 +127,14 @@ def CanBeImported(module):
             return False
     elif version == "3.6":
         # This method doesn't actually import the file
-        s = find_spec(module)
-        return False if s is None else True
+        try:
+            s = find_spec(module)
+        except ModuleNotFoundError:
+            return False
+        except ImportError:
+            return False
+        else:
+            return False if s is None else True
     else:
         Error("{} is an unsupported version".format(version))
 
@@ -198,7 +210,7 @@ def GetModuleListing():
     return listing
 
 def Classify(modules):
-    '''Return a dictionary that classifies the module namess in the set
+    '''Return a dictionary that classifies the module names in the set
     modules.  Keys are
  
         stdlib      Python's standard library module

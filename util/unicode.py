@@ -70,6 +70,7 @@ nl = "\n"
 # Global variables you'll need to set
 pdf_dir = "/doc/unicode/pdf"            # Where PDFs are located
 launch = "/usr/bin/exo-open"            # Program to launch a file
+launch = "/usr/bin/cygstart"            # Program to launch a file
 
 # Common codepoints (in hex) to list with the -c option
 common = '''
@@ -114,6 +115,9 @@ Usage:  {name} [options] regexp [action]
   representing this character.  To use this feature, you'll have to
   download some PDF files from the Unicode website (see the
   documentation file unicode.pdf).
+
+  Note:  this script was written in 2014 and is based on the Unicode 
+  7 character set.  As of 8 Jun 2018, the latest Unicode version is 11.
 
 Example:
   Suppose you want the Unicode symbol for a steaming pile of poo.
