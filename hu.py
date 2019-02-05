@@ -34,7 +34,11 @@ import yaml
 import zipfile
 from textwrap import dedent
 from time import asctime, strftime
+
 from pdb import set_trace as xx
+if 1:
+    import debug
+    debug.SetDebugger()
 
 # Copyright (C) 2014 Don Peterson
 # Contact:  gmail.com@someonesdad1
@@ -67,7 +71,7 @@ except ImportError:
     c = Dummy()
     _have_color = False
 
-if 1:
+if 0:
     import debug
     debug.SetDebugger()
 
@@ -668,14 +672,14 @@ if __name__ == "__main__":
     MakeDirectories(d)
     cmd = projects[0]
     del projects[0]
-    if cmd == "build":
+    if cmd in "b bu bui buil build".split():
         if not projects:
             Usage(d)
         else:
             BuildZips(projects, d) if d["-z"] else Build(projects, d)
-    elif cmd == "list":
+    elif cmd in "l li lis list".split():
         List(projects, d)
-    elif cmd == "show":
+    elif cmd == "s sh sho show".split():
         Show(projects, d)
     else:
         Error("'%s' is an unrecognized command" % cmd)

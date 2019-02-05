@@ -40,12 +40,12 @@ Engineering
 
 | `eng/antifreeze.pdf <eng/antifreeze.pdf>`_ (1456)
 |   How to calculate how much antifreeze to add to an existing partially-filled radiator to get a desired concentration.  Also looks at the refractometer.
+| `eng/flow.pdf <eng/flow.pdf>`_ (18)
+|   Nomograph for pipe flow.
 | `eng/eng_grid.py <eng/eng_grid.py>`_ (8)
 |   This python script will generate most any linear isotropic graph paper by creating a PostScript file.
 | `eng/iapws.zip <eng/iapws.zip>`_ (72)
-|   Contains C++ and python code that implements the IAPWS95 equations for the thermodynamic properties of water. See http://www.iapws.org.
-| `eng/flow.pdf <eng/flow.pdf>`_ (18)
-|   Nomograph for pipe flow.
+|   Contains C++ and python code that implements the IAPWS95 equations for the thermodynamic properties of water.
 | `eng/pqs.zip <eng/pqs.zip>`_ (550)
 |   Python scripts to simulate a production process that is inspected by a measurement process with a significant measurement uncertainty.
 
@@ -57,7 +57,7 @@ Math
 |   Contains formulas relating to analytic geometry and other math stuff I need to look up on a regular basis.
 | `math/BusinessCardMathTables.pdf <math/BusinessCardMathTables.pdf>`_ (524)
 |   A document containing small math tables that will print out to be about the size of a business card.
-| `math/Concise300.pdf <math/Concise300.pdf>`_ (503)
+| `math/Concise300.pdf <math/Concise300.pdf>`_ (518)
 |   Discusses the Concise 300, a circular slide rule still in production in Japan.
 | `math/DinosaurArithmeticSmall.pdf <math/DinosaurArithmeticSmall.pdf>`_ (778)
 |   This document discusses doing calculations without using an electronic calculator.  It's useful for a technical person to know how to reason quantitatively when a calculator isn't handy.
@@ -114,6 +114,8 @@ Miscellaneous
 |   Contains a python script to calculate various things about paper to compare paper purchases.
 | `misc/paper_sizes.pdf <misc/paper_sizes.pdf>`_ (5)
 |   Shows a scale drawing of various ISO and US paper sizes.
+| `misc/pills.py <misc/pills.py>`_ (5)
+|   Calculate the dates you'll run out of prescription pills.
 | `misc/shaving.pdf <misc/shaving.pdf>`_ (92)
 |   Some thoughts on shaving your beard.
 | `misc/XmasTomatoes.pdf <misc/XmasTomatoes.pdf>`_ (343)
@@ -129,7 +131,7 @@ Programming
 |   A python script that will produce permutations and combinations of the lines in a file. Can be useful for generating test cases.
 | `prog/fset.py <prog/fset.py>`_ (5)
 |   Treat lines of files as a set. Allows you to look at the union, intersection, difference, etc. between the lines of various files.
-| `prog/hg.zip <prog/hg.zip>`_ (46)
+| `prog/hg.zip <prog/hg.zip>`_ (47)
 |   Some python scripts that make it easier to work with Mercurial repositories.
 | `prog/license.zip <prog/license.zip>`_ (175)
 |   This is a python script that will allow you to change the license you use in your source code files.
@@ -185,7 +187,7 @@ Science
 | `science/novas.py <science/novas.py>`_ (57)
 |   Translation into python of some C code from the US Naval Observatory (http://aa.usno.navy.mil/software/novas/novas_c/novasc_info.html).
 | `science/SolarSystemScaleModel.pdf <science/SolarSystemScaleModel.pdf>`_ (323)
-|   Python script that prints out the dimensions of a scaled solar system. You can use it to make a scale solar system in your yard or on your street.
+|   Python script that prints out the dimensions of a scaled solar system.  You can use it to make a scale solar system in your yard or on your street.
 | `science/SphericalShell.pdf <science/SphericalShell.pdf>`_ (156)
 |   Discusses gravitation and electrostatics inside a uniform spherical shell and why there is no force on a particle. Also looks at Henry Cavendish's elegant experiment in the 1700's showing that the exponent in Coulomb's Law is 2.
 | `science/u.zip <science/u.zip>`_ (355)
@@ -245,7 +247,7 @@ Shop
 |   Here's an effective way to secure a hose to a hose fitting. It's better than anything I've found in a store.
 | `shop/LittleVise.pdf <shop/LittleVise.pdf>`_ (250)
 |   Describes a small vise made from 1 inch square bar stock.  It slips into a pocket and is handy for small tasks around the shop and home.
-| `shop/mass.zip <shop/mass.zip>`_ (942)
+| `shop/mass.zip <shop/mass.zip>`_ (946)
 |   Python script to calculate the volume and mass of a project constructed from various primitive geometrical objects.
 | `shop/nozzle.pdf <shop/nozzle.pdf>`_ (452)
 |   Nice hose nozzle you can make if you have a lathe.
@@ -261,8 +263,8 @@ Shop
 |   How to build a simple device from scrap that will measure angles in the shop.
 | `shop/square.pdf <shop/square.pdf>`_ (36)
 |   How to use a carpenter's square to lay out angles from 1 degree to 44 degrees.
-| `shop/thd.zip <shop/thd.zip>`_ (65)
-|   Prints out various dimensions associated with threads per ASME B1.1-1989. If you machine threads on a lathe, you may find this program handy.
+| `shop/thd.zip <shop/thd.zip>`_ (66)
+|   Prints out various dimensions associated with threads per ASME B1.1-1989.  If you machine threads on a lathe, you may find this program handy.
 | `shop/weigh.pdf <shop/weigh.pdf>`_ (359)
 |   Demonstrates how I weighed our trailer with a lever. With a 12 foot long 4x4, I was able to measure 2500 pounds.
 | `shop/YankeePushDrill.pdf <shop/YankeePushDrill.pdf>`_ (766)
@@ -279,10 +281,10 @@ Utilities
 | `util/bgrep.py <util/bgrep.py>`_ (6)
 |   Python script to search for regular expressions and strings in binary files.
 | `util/bidict.zip <util/bidict.zip>`_ (7)
-|   Creates a dictionary object in python that lets you treat it in both directions as a mapping.  It's an example of a discrete bijective function.
+|   Creates a dictionary object in python that lets you treat it in both directions as a mapping.  It's an example of a discrete bijection.
 | `util/cnt.zip <util/cnt.zip>`_ (50)
 |   Command-line utility to count the number of bytes in a file and present a histogram of the results.
-| `util/color.py <util/color.py>`_ (10)
+| `util/color.py <util/color.py>`_ (11)
 |   Python module to provide color printing to a console window. Should work on both Windows and Linux.
 | `util/dedent.py <util/dedent.py>`_ (1)
 |   Python function that will remove the common space characters from a set of text lines from files given on the command line or stdin.
@@ -302,13 +304,13 @@ Utilities
 |   Python script to list the functions and classes used in the files given on the command line.
 | `util/getinput.zip <util/getinput.zip>`_ (115)
 |   A python module that gets input data in a variety of ways.  Gets lines or tokens from a set of files or prompts the user for numbers (the numbers can be restricted to an interval and can include uncertainty or physical units).  The lines and token getters are generators and can use functional programming tools.
-| `util/goto.py <util/goto.py>`_ (12)
-|   Contains a sh-type shell function and a python script that let you navigate around to various directories from a shell command line. A number of UNIX users have told me they couldn't live without this tool once they started using it.
+| `util/goto.zip <util/goto.zip>`_ (174)
+|   Used a python script and shell functions to launch project files and navigate to various directories from a command line.  A number of UNIX users have told me they couldn't live without this tool once they started using it.
 | `util/lib.zip <util/lib.zip>`_ (12)
 |   Python script command line tool to provide a facility for keeping snippets of code handy.
 | `util/lnk.py <util/lnk.py>`_ (2)
 |   Python script to list the files in two directory trees that are hard-linked together.  If you have GNU find, the -samefile option can be used to do this too.
-| `util/loo.zip <util/loo.zip>`_ (25)
+| `util/loo.zip <util/loo.zip>`_ (26)
 |   Python script that will print out the image files in Open Office documents.  Image files that are not at or below the same directory as the document file will be marked '[not relative]'. Missing files will be marked '[missing]'.  It is useful if you link image files into OO files.
 | `util/lookup.zip <util/lookup.zip>`_ (136)
 |   Package that contains a python script that can help you look up words in a word dictionary and use the information from WordNet to show synonyms, definitions, and types of words (e.g., adjectives, adverbs, nouns, and verbs).
@@ -332,8 +334,8 @@ Utilities
 |   See where the space is being consumed in a directory tree and where the biggest files are.
 | `util/split_cat.zip <util/split_cat.zip>`_ (5)
 |   Python scripts to split a file into chunks, print out SHA1 hashes of each chunk, and allow you to recombine the chunks later back into the original file.
-| `util/sz.zip <util/sz.zip>`_ (15)
-|   Python script to print out sizes of subdirectories.  The output is to 1 figure and is color-coded for quickly seeing where most of the storage space is being taken.
+| `util/sz.zip <util/sz.zip>`_ (16)
+|   Python script to print out sizes of subdirectories.  The output is to one significant figure and is color-coded for quickly seeing where most of the storage space is being taken.
 | `util/tlc.py <util/tlc.py>`_ (6)
 |   Python script to rename all files in a directory to lower or upper case.
 | `util/html_tokens.py <util/html_tokens.py>`_ (1)
@@ -349,5 +351,5 @@ Utilities
 
 
 
-Updated 3 Oct 2018 12:07:11 pm
+Updated 4 Feb 2019 4:25:47 pm
 

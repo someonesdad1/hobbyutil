@@ -24,9 +24,9 @@ Link | Description
 Link | Description
 --- | ---
 [eng/antifreeze.pdf](eng/antifreeze.pdf) | How to calculate how much antifreeze to add to an existing partially-filled radiator to get a desired concentration.  Also looks at the refractometer.
-[eng/eng_grid.py](eng/eng_grid.py) | This python script will generate most any linear isotropic graph paper by creating a PostScript file.
-[eng/iapws.zip](eng/iapws.zip) | Contains C++ and python code that implements the IAPWS95 equations for the thermodynamic properties of water. See http://www.iapws.org.
 [eng/flow.pdf](eng/flow.pdf) | Nomograph for pipe flow.
+[eng/eng_grid.py](eng/eng_grid.py) | This python script will generate most any linear isotropic graph paper by creating a PostScript file.
+[eng/iapws.zip](eng/iapws.zip) | Contains C++ and python code that implements the IAPWS95 equations for the thermodynamic properties of water.
 [eng/pqs.zip](eng/pqs.zip) | Python scripts to simulate a production process that is inspected by a measurement process with a significant measurement uncertainty.
 
 ## Math
@@ -66,6 +66,7 @@ Link | Description
 [misc/Mortgage.pdf](misc/Mortgage.pdf) | Gives a table that lets you estimate your mortgage's monthly payment.  Doesn't include taxes or insurance.
 [misc/paper.py](misc/paper.py) | Contains a python script to calculate various things about paper to compare paper purchases.
 [misc/paper_sizes.pdf](misc/paper_sizes.pdf) | Shows a scale drawing of various ISO and US paper sizes.
+[misc/pills.py](misc/pills.py) | Calculate the dates you'll run out of prescription pills.
 [misc/shaving.pdf](misc/shaving.pdf) | Some thoughts on shaving your beard.
 [misc/XmasTomatoes.pdf](misc/XmasTomatoes.pdf) | Using Christmas tree lights to keep tomato plants from freezing at night.
 
@@ -106,7 +107,7 @@ Link | Description
 [science/irr.py](science/irr.py) | Calculate irradiance over a wavelength band from a spectral irradiance data file.
 [science/mixture.py](science/mixture.py) | A python script to aid in mixture calculations. Adapted from a C program at http://www.myvirtualnetwork.com/mklotz/files/mixture.zip.
 [science/novas.py](science/novas.py) | Translation into python of some C code from the US Naval Observatory (http://aa.usno.navy.mil/software/novas/novas_c/novasc_info.html).
-[science/SolarSystemScaleModel.pdf](science/SolarSystemScaleModel.pdf) | Python script that prints out the dimensions of a scaled solar system. You can use it to make a scale solar system in your yard or on your street.
+[science/SolarSystemScaleModel.pdf](science/SolarSystemScaleModel.pdf) | Python script that prints out the dimensions of a scaled solar system.  You can use it to make a scale solar system in your yard or on your street.
 [science/SphericalShell.pdf](science/SphericalShell.pdf) | Discusses gravitation and electrostatics inside a uniform spherical shell and why there is no force on a particle. Also looks at Henry Cavendish's elegant experiment in the 1700's showing that the exponent in Coulomb's Law is 2.
 [science/u.zip](science/u.zip) | A lightweight python library module that provides conversion factors for various physical units.  An experienced scientist or engineer will be using it in a few minutes after seeing an example.
 [science/GNU_units.pdf](science/GNU_units.pdf) | A short blurb on the capabilities of the useful GNU units program.
@@ -147,7 +148,7 @@ Link | Description
 [shop/SawBuck.pdf](shop/SawBuck.pdf) | A simple and easy to make sawbuck that's made from eight identical pieces of 2x4.
 [shop/sine_sticks.pdf](shop/sine_sticks.pdf) | How to build a simple device from scrap that will measure angles in the shop.
 [shop/square.pdf](shop/square.pdf) | How to use a carpenter's square to lay out angles from 1 degree to 44 degrees.
-[shop/thd.zip](shop/thd.zip) | Prints out various dimensions associated with threads per ASME B1.1-1989. If you machine threads on a lathe, you may find this program handy.
+[shop/thd.zip](shop/thd.zip) | Prints out various dimensions associated with threads per ASME B1.1-1989.  If you machine threads on a lathe, you may find this program handy.
 [shop/weigh.pdf](shop/weigh.pdf) | Demonstrates how I weighed our trailer with a lever. With a 12 foot long 4x4, I was able to measure 2500 pounds.
 [shop/YankeePushDrill.pdf](shop/YankeePushDrill.pdf) | Discusses the Yankee screwdriver, a useful tool that has been in production for more than 100 years.
 
@@ -158,7 +159,7 @@ Link | Description
 [util/asc.py](util/asc.py) | Python script to print out an ASCII character table in decimal, hex, or octal.  Useful at a command line to see your terminal's encoding.
 [util/bd.c](util/bd.c) | Performs a comparison between binary files; differences are printed in hex dump format.
 [util/bgrep.py](util/bgrep.py) | Python script to search for regular expressions and strings in binary files.
-[util/bidict.zip](util/bidict.zip) | Creates a dictionary object in python that lets you treat it in both directions as a mapping.  It's an example of a discrete bijective function.
+[util/bidict.zip](util/bidict.zip) | Creates a dictionary object in python that lets you treat it in both directions as a mapping.  It's an example of a discrete bijection.
 [util/cnt.zip](util/cnt.zip) | Command-line utility to count the number of bytes in a file and present a histogram of the results.
 [util/color.py](util/color.py) | Python module to provide color printing to a console window. Should work on both Windows and Linux.
 [util/dedent.py](util/dedent.py) | Python function that will remove the common space characters from a set of text lines from files given on the command line or stdin.
@@ -170,7 +171,7 @@ Link | Description
 [util/fit.py](util/fit.py) | Provides a python function to fit a string of words into a given number of columns.
 [util/func.py](util/func.py) | Python script to list the functions and classes used in the files given on the command line.
 [util/getinput.zip](util/getinput.zip) | A python module that gets input data in a variety of ways.  Gets lines or tokens from a set of files or prompts the user for numbers (the numbers can be restricted to an interval and can include uncertainty or physical units).  The lines and token getters are generators and can use functional programming tools.
-[util/goto.py](util/goto.py) | Contains a sh-type shell function and a python script that let you navigate around to various directories from a shell command line. A number of UNIX users have told me they couldn't live without this tool once they started using it.
+[util/goto.zip](util/goto.zip) | Used a python script and shell functions to launch project files and navigate to various directories from a command line.  A number of UNIX users have told me they couldn't live without this tool once they started using it.
 [util/lib.zip](util/lib.zip) | Python script command line tool to provide a facility for keeping snippets of code handy.
 [util/lnk.py](util/lnk.py) | Python script to list the files in two directory trees that are hard-linked together.  If you have GNU find, the -samefile option can be used to do this too.
 [util/loo.zip](util/loo.zip) | Python script that will print out the image files in Open Office documents.  Image files that are not at or below the same directory as the document file will be marked '[not relative]'. Missing files will be marked '[missing]'.  It is useful if you link image files into OO files.
@@ -185,7 +186,7 @@ Link | Description
 [util/scramble.zip](util/scramble.zip) | Contains a python script to scramble letters in words, leaving the first and last characters alone.
 [util/space.py](util/space.py) | See where the space is being consumed in a directory tree and where the biggest files are.
 [util/split_cat.zip](util/split_cat.zip) | Python scripts to split a file into chunks, print out SHA1 hashes of each chunk, and allow you to recombine the chunks later back into the original file.
-[util/sz.zip](util/sz.zip) | Python script to print out sizes of subdirectories.  The output is to 1 figure and is color-coded for quickly seeing where most of the storage space is being taken.
+[util/sz.zip](util/sz.zip) | Python script to print out sizes of subdirectories.  The output is to one significant figure and is color-coded for quickly seeing where most of the storage space is being taken.
 [util/tlc.py](util/tlc.py) | Python script to rename all files in a directory to lower or upper case.
 [util/html_tokens.py](util/html_tokens.py) | Will produce a list of readable words from an HTML file, all in lower case, one per line. You could then run the list of words through a spell checker.
 [util/tree.py](util/tree.py) | Python script to print an ASCII representation of a directory tree.  It can optionally decorate the tree with each directory's size in MBytes and highlight a regular expression in color.
@@ -193,5 +194,5 @@ Link | Description
 [util/unx.py](util/unx.py) | Produces a list of files that are candidates for turning their execute bit permission off.  This is useful on Windows machines running cygwin to avoid a "sea of green" in an ls listing with colorizing on.
 [util/spc_to_underscore.py](util/spc_to_underscore.py) | Python script to replace all space characters in file names with underscores.
 
-Updated 3 Oct 2018 12:07:11 pm
+Updated 4 Feb 2019 4:25:47 pm
 

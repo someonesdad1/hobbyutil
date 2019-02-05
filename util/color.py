@@ -298,6 +298,14 @@ class Decorate(object):
         kw["s"] = True
         return SetStyle(style, **kw)
 
+def RegexpDecorate(regexp, text, matchobject, fg=yellow, bg=black):
+    '''Given a matchobject from a regular expression search, return the
+    string in text decorated with the necessary escape codes to print in
+    color to the console.
+    '''
+    #xx  Take PrintMatch and PrintMatches from pgm/pgrep.py.
+    
+
 if __name__ == "__main__":
     # Display a table of the color combinations
     names = {

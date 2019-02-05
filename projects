@@ -12,13 +12,62 @@
 #   files       Source files making up the project
 #   ignore    * If contains text, then the reason this project is ignored
 #   srcdir      Where to find source files
-#   frozen      Boolean to flag large packages (they'll need the -f option
+#   frozen    * Boolean to flag large packages (they'll need the -f option
 #               of the hu.py script to update)
 #
 # A * after a file name in files means it doesn't need to be included in the
 # distribution, but only when the package is constructed.  If there is only
 # one file not with a *, then it is the output; otherwise, a zipfile of the
 # files is constructed.
+
+# ----------------------------------------------------------------------
+# Under development
+
+fuse:
+    subdir: elec
+    descr: Notes on using ATO automobile fuses as poor-man's shunts.
+    files:
+        - fuse_as_shunt.odt*
+        - fuse_as_shunt.pdf
+    srcdir: /elec/projects/fuse_as_shunt
+    ignore:  Need to proof/edit.
+
+primes:
+    subdir: math
+    descr: Some python scripts that deal with primes, factoring, and
+        integer properties.
+    files:
+        - primes.py
+        - [pgm/int.py, int.py]
+        - [/tools/primes_fast.cpp, primes_fast.cpp]
+    srcdir: /pylib
+    ignore: Test under python 3.  Move files to /math.
+
+res:
+    subdir: elec
+    descr: Contains two tools that help you deal with resistors.
+    files:
+        - makefile
+        - resistor.cpp
+        - resistor.ods
+        - resistor.odt*
+        - resistor.pdf
+        - resistor_s.pdf
+        - resistor.test
+    srcdir: /elec/software/resistors
+    ignore: Limited interest
+
+seg:
+    subdir: math
+    descr: Python script to calculate parameters of a circular segment.
+        Translated from a program written by Marv Klotz.
+    files:
+        - seg.py
+    srcdir: /pylib/pgm
+    ignore:  Script isn't working yet
+
+# ----------------------------------------------------------------------
+# Production stuff
 
 ag:
     subdir: math
@@ -35,8 +84,8 @@ ag:
 antif:
     subdir: eng
     descr: How to calculate how much antifreeze to add to an existing
-        partially-filled radiator to get a desired concentration.  Also looks at 
-        the refractometer.
+        partially-filled radiator to get a desired concentration.  Also
+        looks at the refractometer.
     files:
         - antifreeze.odt*
         - antifreeze.pdf
@@ -144,7 +193,7 @@ bidict:
     subdir: util
     descr: Creates a dictionary object in python that lets you treat
         it in both directions as a mapping.  It's an example of a discrete
-        bijective function.
+        bijection.
     files: 
         - bidict.py
         - [test/bidict_test.py, bidict_test.py]
@@ -179,23 +228,13 @@ bode:
 bucket:
     subdir: shop
     descr: Shows how to calculate bucket volumes and mark volume calibration
-        marks on nearly any bucket.  Includes a python script that will do the
-        calculations for you.
+        marks on nearly any bucket.  Includes a python script that will do
+        the calculations for you.
     files:
         - bucket.py
         - bucket.odt*
         - bucket.pdf
     srcdir: /pylib/pgm
-
-c300:
-    subdir: math
-    descr: Discusses the Concise 300, a circular slide rule still in
-        production in Japan.
-    files:
-        - Concise300.odt*
-        - Concise300.pdf
-        - Concise/Concise_300.jpg*
-    srcdir: /math/SlideRules
 
 calipers:
     subdir: shop
@@ -361,6 +400,16 @@ comb:
         - comb.py
     srcdir: /pylib/pgm
 
+concise:
+    subdir: math
+    descr: Discusses the Concise 300, a circular slide rule still in
+        production in Japan.
+    files:
+        - Concise300.odt*
+        - Concise300.pdf
+        - Concise/Concise_300.jpg*
+    srcdir: /math/SlideRules
+
 cove:
     subdir: shop
     descr: Python script shows you how to cut a cove with your table saw.  
@@ -401,7 +450,7 @@ cs:
 #        collating all this stuff.
 #    files:
 #        - [C_snippets_Jan2011.zip, C_snippets.zip]
-#    ignore: 'Yes'
+#    ignore: yes
 #    srcdir: /p/pictures/hu.orig/other
 
 cut:
@@ -701,6 +750,13 @@ fits:
         - fits.py
     srcdir: /pylib/pgm
 
+flow:
+    subdir: eng
+    descr: Nomograph for pipe flow.
+    files:
+        - flow.pdf
+    srcdir: /science/nomographs
+
 fpen:
     subdir: misc
     descr: Discusses the care and feeding of fountain pens as writing
@@ -821,15 +877,6 @@ func:
         - func.py
     srcdir: /pylib/pgm
 
-fuse:
-    subdir: elec
-    descr: Notes on using ATO automobile fuses as poor-man's shunts.
-    files:
-        - fuse_as_shunt.odt*
-        - fuse_as_shunt.pdf
-    srcdir: /elec/projects/fuse_as_shunt
-    ignore:  Need to proof/edit.
-
 gblock:
     subdir: shop
     descr: A C++ program to print out combinations of gauge blocks
@@ -867,12 +914,14 @@ glendag:
 
 goto:
     subdir: util
-    descr: Contains a sh-type shell function and a python script that
-        let you navigate around to various directories from a shell command
-        line. A number of UNIX users have told me they couldn't live without
-        this tool once they started using it.
+    descr: Used a python script and shell functions to launch project files 
+        and navigate to various directories from a command line.  A number
+        of UNIX users have told me they couldn't live without this tool once
+        they started using it.
     files:
         - [_goto.py, goto.py]
+        - _goto.odt*
+        - [_goto.pdf, goto.pdf]
     srcdir: /pylib/pgm
 
 gpaper:
@@ -1031,7 +1080,6 @@ iapws:
     subdir: eng
     descr: Contains C++ and python code that implements the IAPWS95 
         equations for the thermodynamic properties of water.
-        See http://www.iapws.org.
     files:
         - iapws95.cpp
         - iapws95.h
@@ -1097,6 +1145,15 @@ lnk:
     files:
         - lnk.py
     srcdir: /pylib/pgm
+
+logicprobe:
+    subdir: elec
+    descr: Discusses the use of a logic probe.
+    files:
+        - logic_probe.pdf
+        - logic_probe.odt
+    srcdir: /elec/projects
+    frozen: yes
 
 loo:
     subdir: util
@@ -1260,8 +1317,8 @@ nozzle:
 
 oct:
     subdir: elec
-    descr: Build an Octopus, a handy electrical troubleshooting tool (you need an
-        oscilloscope).
+    descr: Build an Octopus, a handy electrical troubleshooting tool (you need
+        an oscilloscope).
     files:
         - Octopus_new.odt*
         - [Octopus_new.pdf, octopus.pdf]
@@ -1328,8 +1385,8 @@ out:
         - out.pdf
         - out.py
         - [test/out_test.py, out_test.py]
-    ignore:  Limited use, as the print() function does the same thing.
     srcdir: /pylib
+    ignore:  Limited use, as the print() function does the same thing.
 
 paper:
     subdir: misc
@@ -1372,7 +1429,7 @@ pdf:
         them to another PDF file, rotating pages, watermarking. etc. You'll
         also need to download the pyPdf library to use this script.
     files:
-        - pdf.py
+        - [pdf_.py, pdf.py]
     srcdir: /pylib
 
 pfind:
@@ -1383,12 +1440,12 @@ pfind:
         - pfind.py
     srcdir: /pylib/pgm
 
-pflow:
-    subdir: eng
-    descr: Nomograph for pipe flow.
+pills:
+    subdir: misc
+    descr: Calculate the dates you'll run out of prescription pills.
     files:
-        - flow.pdf
-    srcdir: /science/nomographs
+        - pills.py
+    srcdir: /pylib/pgm
 
 pipes:
     subdir: shop
@@ -1414,8 +1471,8 @@ posts:
 
 pqs:
     subdir: eng
-    descr: Python scripts to simulate a production process that is inspected by a 
-        measurement process with a significant measurement uncertainty.
+    descr: Python scripts to simulate a production process that is inspected
+        by a measurement process with a significant measurement uncertainty.
     files:
         - ProcessSimulator.odt*
         - ProcessSimulator.pdf
@@ -1432,17 +1489,6 @@ pqs:
         - pictures/good_meas_as_good.png
         - [/pylib/sig.py, sig.py]
     srcdir: /math/ProcessAnalyzer
-
-primes:
-    subdir: math
-    descr: Some python scripts that deal with primes, factoring, and
-        integer properties.
-    files:
-        - primes.py
-        - [pgm/int.py, int.py]
-        - [/tools/primes_fast.cpp, primes_fast.cpp]
-    ignore: Test under python 3.  Move files to /math.
-    srcdir: /pylib
 
 python:
     subdir: prog
@@ -1550,20 +1596,6 @@ refcards:
     srcdir: /shop/ReferenceCards
     frozen: yes
 
-res:
-    subdir: elec
-    descr: Contains two tools that help you deal with resistors.
-    files:
-        - makefile
-        - resistor.cpp
-        - resistor.ods
-        - resistor.odt*
-        - resistor.pdf
-        - resistor_s.pdf
-        - resistor.test
-    ignore: Limited interest
-    srcdir: /elec/software/resistors
-
 rms:
     subdir: elec
     descr: An article for hobbyists about making RMS electrical measurements.
@@ -1597,8 +1629,8 @@ ruler:
         It's easy to modify to get different ruler types.
     files:
         - ruler.py
-    ignore: Limited interest
     srcdir: /pylib/pgm
+    ignore: Limited interest
 
 sawbuck:
     subdir: shop
@@ -1613,8 +1645,9 @@ sawbuck:
 
 scale:
     subdir: math
-    descr: The scale.pdf file contains two sheets of paper with slide rule type
-        scales on them. You may find it useful for simple technical calculations.
+    descr: The scale.pdf file contains two sheets of paper with slide rule
+        type scales on them. You may find it useful for simple technical 
+        calculations.
     files:
         - scale.pdf
         - OnePageCalculator.odt*
@@ -1630,15 +1663,6 @@ scramble:
         - scramble.py
         - scramble.html
     srcdir: /pylib/pgm
-
-seg:
-    subdir: math
-    descr: Python script to calculate parameters of a circular segment.
-        Translated from a program written by Marv Klotz.
-    files:
-        - seg.py
-    srcdir: /pylib/pgm
-    ignore:  Script isn't working yet
 
 seq:
     subdir: prog
@@ -1698,8 +1722,9 @@ sinesticks:
 
 solar:
     subdir: science
-    descr: Python script that prints out the dimensions of a scaled solar system.
-        You can use it to make a scale solar system in your yard or on your street.
+    descr: Python script that prints out the dimensions of a scaled solar
+        system.  You can use it to make a scale solar system in your yard
+        or on your street.
     files:
         - SolarSystemScaleModel.odt*
         - SolarSystemScaleModel.pdf
@@ -1717,10 +1742,10 @@ space:
 
 sphshell:
     subdir: science
-    descr: Discusses gravitation and electrostatics inside a uniform spherical shell
-        and why there is no force on a particle. Also looks at Henry Cavendish's
-        elegant experiment in the 1700's showing that the exponent in Coulomb's
-        Law is 2.
+    descr: Discusses gravitation and electrostatics inside a uniform
+        spherical shell and why there is no force on a particle. Also 
+        looks at Henry Cavendish's elegant experiment in the 1700's showing
+        that the exponent in Coulomb's Law is 2.
     files:
         - SphericalShell.odt*
         - SphericalShell.pdf
@@ -1773,9 +1798,9 @@ sumbytes:
 
 sz:
     subdir: util
-    descr: Python script to print out sizes of subdirectories.  The output is to 1
-        figure and is color-coded for quickly seeing where most of the storage space
-        is being taken.
+    descr: Python script to print out sizes of subdirectories.  The output 
+        is to one significant figure and is color-coded for quickly seeing
+        where most of the storage space is being taken.
     files: 
         - sz.py
         - [../color.py, color.py]
@@ -1783,8 +1808,9 @@ sz:
 
 thd:
     subdir: shop
-    descr: Prints out various dimensions associated with threads per ASME B1.1-1989.
-        If you machine threads on a lathe, you may find this program handy.
+    descr: Prints out various dimensions associated with threads per ASME
+        B1.1-1989.  If you machine threads on a lathe, you may find this 
+        program handy.
     files:
         - thd.py
         - [../asme.py, asme.py]
@@ -1870,8 +1896,8 @@ ts:
 u:
     subdir: science
     descr: A lightweight python library module that provides conversion
-        factors for various physical units.  An experienced scientist or engineer
-        will be using it in a few minutes after seeing an example.
+        factors for various physical units.  An experienced scientist or
+        engineer will be using it in a few minutes after seeing an example.
     files:
         - u.odt*
         - u.pdf
@@ -1912,8 +1938,8 @@ url:
         page.
     files:
         - url.py
-    ignore: Windows only
     srcdir: /pylib/pgm
+    ignore: Windows only
 
 us:
     subdir: util
@@ -1934,8 +1960,8 @@ util:
 
 vs:
     subdir: elec
-    descr: Simple voltage standard you can make with one resistor, an IC that costs
-        about a buck, and three AA batteries.
+    descr: Simple voltage standard you can make with one resistor, an IC
+        that costs about a buck, and three AA batteries.
     files:
         - PortableVoltageStandard.odt*
         - PortableVoltageStandard.pdf
@@ -2028,8 +2054,8 @@ xref:
 
 xyz:
     subdir: math
-    descr: Python script that provides a mini-language to perform analytical geometry
-        calculations in 2 and 3 dimensions.
+    descr: Python script that provides a mini-language to perform analytical
+        geometry calculations in 2 and 3 dimensions.
     files:
         - xyz.py
         - [../geom_prim.py, geom_prim.py]

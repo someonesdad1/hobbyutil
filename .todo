@@ -7,6 +7,7 @@ Must
       want to use the item.
     * oct: Needs to be rather severely edited, as there's quite a bit of
       junk.
+    * hu.py:  If the keyword isn't matched, default to 'list'.
 
 Want
 ----
