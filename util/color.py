@@ -29,6 +29,29 @@ default_colors global variable to the default colors you use.
 These functions should work on both Windows and an environment that
 uses ANSI escape sequences (e.g., an xterm).
 
+PrintMatch()
+PrintMatches()
+
+    These two functions can be used to print color annotations of regular
+    expression matches in strings being printed to the console.  I find
+    PrintMatch() very helpful when developing a complicated regular
+    expression.  Here's an example of how I'd use it in a python script:
+
+    r = re.compile(r"<your regular expression here", re.S)
+
+    # Colorize where the regexp r matches in the file
+    s = open(file).read()
+    print("-"*70)
+    PrintMatch(s, r)
+    print("-"*70)
+    print()
+    # Show the group matches
+    mo = r.search(s)
+    if mo:
+        print("Groups:")
+        for i, g in enumerate(mo.groups()):
+            print("[{}]:  {}\n".format(i, g))
+
 The Decorate() object is a convenience; an instance of it will return the
 escape strings to set the console colors.  An example use would be
 
@@ -93,8 +116,6 @@ else:
     String = (str, unicode)
     Int = (int, long)
 
-_ii = isinstance
-
 # To use this under the old cygwin bash, which was derived from a Windows
 # console, you must define the environment variable BASH_IS_WIN_CONSOLE.
 # The new cygwin bash window is based on mintty and accepts ANSI escape
@@ -110,6 +131,10 @@ __all__ = '''
     normal
     fg
     SetStyle
+    Decorate
+    Style
+    PrintMatch
+    PrintMatches
 '''.replace("\n", " ").split()
 
 if _win:
@@ -169,7 +194,7 @@ _hstdout = windll.kernel32.GetStdHandle(STD_OUTPUT_HANDLE) if _win else None
 def _is_iterable(x):
     '''Return True if x is an iterable that isn't a string.
     '''
-    return _ii(x, Iterable) and not _ii(x, String)
+    return isinstance(x, Iterable) and not isinstance(x, String)
 
 def _DecodeColor(*c):
     '''Return a 1-byte integer that represents the foreground and
@@ -185,7 +210,7 @@ def _DecodeColor(*c):
                 raise ValueError("Must be a sequence of two integers")
             color = ((c[0][1] << 4) | c[0][0]) & 0xff
         else:
-            if not _ii(c[0], Int):
+            if not isinstance(c[0], Int):
                 raise ValueError("Argument must be an integer")
             color = c[0] & 0xff
     elif len(c) == 2:
@@ -202,6 +227,8 @@ def normal(*p, **kw):
     '''If the argument is None, set the foreground and background
     colors to their default values.  Otherwise, use the argument to
     set the default colors.
+
+    If keyword 's' is True, return a string instead of printing.
     '''
     ret_string = kw.setdefault("s", False)
     global default_colors
@@ -288,23 +315,94 @@ class Decorate(object):
         self.lmagenta = lmagenta
         self.yellow = yellow
         self.lwhite = lwhite
-    def fg(self, *p, **kw):
-        kw["s"] = True
-        return fg(*p, **kw)
-    def normal(self, *p, **kw):
-        kw["s"] = True
-        return normal(*p, **kw)
-    def SetStyle(self, style, **kw):
-        kw["s"] = True
-        return SetStyle(style, **kw)
+        self.kw = {"s": True}
+    def fg(self, *p):
+        return fg(*p, **self.kw)
+    def normal(self, *p):
+        return normal(*p, **self.kw)
+    def SetStyle(self, style):
+        return SetStyle(style, **self.kw)
 
-def RegexpDecorate(regexp, text, matchobject, fg=yellow, bg=black):
-    '''Given a matchobject from a regular expression search, return the
-    string in text decorated with the necessary escape codes to print in
-    color to the console.
+class Style(object):
+    '''Defines foreground and background colors and a particular text style
+    (such as bold, italic, etc.).  The class is intended to be a
+    convenience container for color information.  Note the escape codes are
+    always printed to stdout; use class Decorate if you want the strings
+    with the escape codes.
     '''
-    #xx  Take PrintMatch and PrintMatches from pgm/pgrep.py.
-    
+    def __init__(self, fg=default_colors[0], 
+                 bg=default_colors[1], style="normal"):
+        self.fg = fg
+        self.bg = bg
+        self.style = style
+    def set(self):
+        '''Print our escape codes to stdout.
+        '''
+        fg(self.fg, self.bg)
+        if self.style != "normal":
+            # This logic is used because the 'normal' style will undo any
+            # foreground color set.
+            SetStyle(self.style)
+    @classmethod
+    def clear(self):
+        '''Print the normal style escape codes to stdout.
+        '''
+        normal()
+
+def PrintMatch(text, regexp, style=Style(yellow, black)):
+    '''Print the indicated text in normal colors if there are no matches to
+    the regular expression.  If there are matches, print each of them in
+    the indicated style.  text can be a multiline string.
+    '''
+    def out(s):
+        print(s, end="")
+    mo = regexp.search(text)
+    if not mo:
+        normal()
+        print(text)
+        return
+    text = mo.string
+    while text:
+        style.clear()
+        out(text[:mo.start()])      # Print non-matching start stuff
+        style.set()
+        out(text[mo.start():mo.end()])  # Print the match in color
+        style.clear()
+        # Use the remaining substring
+        text = text[mo.end():]
+        mo = regexp.search(text)
+        if not mo:
+            out(text + "\n")
+            return
+
+def PrintMatches(line, regexps):
+    '''Given a line of text, search for regular expression matches given in
+    the sequence of regexps, which contain pairs of regular expressions and
+    Style objects, then print the line to stdout with the indicated styles.
+    '''
+    def out(s):
+        print(s, end="")
+    def GetShortestMatch(text):
+        '''Return (start, end, style) of the earliest match or (None, None,
+        None) if there were no matches.
+        '''
+        matches = []
+        for r, style in regexps:
+            mo = r.search(line)
+            if mo:
+                matches.append([mo.start(), mo.end(), style])
+        return sorted(matches)[0] if matches else (None, None, None)
+    while line:
+        start, end, style = GetShortestMatch(line)
+        if start is None:
+            out(line)           # No matches so print remainder
+            return
+        style.clear()
+        out(line[:start])       # Print non-matching start stuff
+        style.set()
+        out(line[start:end])    # Print match in chosen style
+        style.clear()
+        line = line[end:]       # Use the remaining substring
 
 if __name__ == "__main__":
     # Display a table of the color combinations

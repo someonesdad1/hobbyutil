@@ -84,7 +84,8 @@ Usage:  {name} [options] [file1 ...]
 
   WARNING:  because this script uses regular expressions for searching,
   lines that look like import lines inside of a multiline string may result
-  in output even though there is no real dependency.
+  in output even though there is no real dependency.  Similarly, an import
+  inside a false conditional will show as a dependency even though it isn't.
 
   Standard library modules are in
       {stdlib_dir}
@@ -154,9 +155,9 @@ def GetModuleListing():
         compiled = set('''
             array asyncio audioop binascii bisect bz2 cmath codecs crypt
             csv ctypes curses datetime dbm decimal fcntl grp hashlib heapq
-            json lzma math mmap multiprocessing parser pickle posix random
-            readline resource select socket sqlite3 ssl struct syslog
-            termios unicodedata zlib
+            itertools json lzma math mmap multiprocessing parser pickle
+            posix random readline resource select socket sqlite3 ssl struct
+            syslog termios unicodedata zlib
             '''.strip().replace("\n", " ").split())
     elif version == "2.7":
         compiled = set('''

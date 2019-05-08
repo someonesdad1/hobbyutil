@@ -149,3 +149,4 @@ if __name__ == "__main__":
     print()
     PrintDailyDoses(daily_doses)
     PrintDatesOut(daily_doses)
+    print("Edit data file /pylib/pgm/pills_remaining.data to update")

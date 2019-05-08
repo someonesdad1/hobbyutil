@@ -9,12 +9,15 @@ Link | Description
 [elec/bode.py](elec/bode.py) | Generate a Bode plot with a python script (needs numpy and matplotlib).  You define the transfer function in a file passed on the command line.
 [elec/CurrentSource.pdf](elec/CurrentSource.pdf) | How to make a battery-operated 1 ampere current source used to make low resistance measurements.
 [elec/MeasuringESR.pdf](elec/MeasuringESR.pdf) | Describes a technique of estimating a capacitor's ESR (equivalent series resistance) without having to buy a special meter.
+[elec/fuse_as_shunt.pdf](elec/fuse_as_shunt.pdf) | Notes on using ATO automobile fuses as poor-man's shunts.
 [elec/hppn.zip](elec/hppn.zip) | This is a compilation of various 8-digit HP part numbers translated into more identifiable numbers.  This list may be of use to those with old HP instruments that need to find a replacement part.
 [elec/impedance.py](elec/impedance.py) | This python script will take a complex impedance in polar coordinates and print out the series and parallel models' values, reactance, dissipation factor, and quality factor.
 [elec/ind.zip](elec/ind.zip) | Provides an Open Office spreadsheet that can calculate the inductance of common electrical structures.  Includes a PDF document describing the use and which gives references for the formulas used.
+[elec/logic_probe.pdf](elec/logic_probe.pdf) | Discusses the use of a logic probe.
 [elec/octopus.pdf](elec/octopus.pdf) | Build an Octopus, a handy electrical troubleshooting tool (you need an oscilloscope).
 [elec/PartsStorageMethods.pdf](elec/PartsStorageMethods.pdf) | Describes one way of storing lots of little electronic parts and how to find them quickly.
 [elec/react.zip](elec/react.zip) | Contains two reactance charts in PDF form along with a short file describing their use.
+[elec/res.zip](elec/res.zip) | Contains two tools that help you deal with resistors.
 [elec/RMS.pdf](elec/RMS.pdf) | An article for hobbyists about making RMS electrical measurements.
 [elec/PortableVoltageStandard.pdf](elec/PortableVoltageStandard.pdf) | Simple voltage standard you can make with one resistor, an IC that costs about a buck, and three AA batteries.
 [elec/wave.zip](elec/wave.zip) | Provides a python script (uses numpy and scipy) that lets you construct various waveforms used in engineering and science tasks.
@@ -44,6 +47,7 @@ Link | Description
 [math/gpaper.zip](math/gpaper.zip) | Provides some common graph papers in PDF files that print on ANSI A paper.
 [math/oo_math.zip](math/oo_math.zip) | Introduces the equation-writing capabilities of Open Office 2.0.  Includes a cheatsheet that you can modify.
 [math/parse_complex.py](math/parse_complex.py) | Parse complex numbers when they are written in the ways humans like to write them.  The floating point type can be specified, which allows you to keep the full precision of the problem.
+[math/primes.zip](math/primes.zip) | Some python scripts that deal with primes, factoring, and integer properties.
 [math/QuickMultDiv.pdf](math/QuickMultDiv.pdf) | Discussion of how to do multiplications and divisions by hand when you only need a specified number of significant figures in the answer.
 [math/rand.zip](math/rand.zip) | A pure python script for generating random numbers from various distributions to stdout.
 [math/root.zip](math/root.zip) | Pure-python root-finding methods such as bisection, Brent's method, Ridder's method, Newton-Raphson, and a general-purpose method by Jack Crenshaw that uses inverse parabolic interpolation.
@@ -62,12 +66,15 @@ Link | Description
 --- | ---
 [misc/Donor.pdf](misc/Donor.pdf) | Organ donation became an important topic for me after my granddaughter was killed.
 [misc/fountain_pen_primer.pdf](misc/fountain_pen_primer.pdf) | Discusses the care and feeding of fountain pens as writing tools.
+[misc/inflation.py](misc/inflation.py) | Calculate the effects of inflation on prices for the years 1914 to the present.  For example, $1 to purchase food in 1960 is equivalent to about $8.5 in 2018.
 [misc/Markup.pdf](misc/Markup.pdf) | Derives the equations for markup and profit used in business.
 [misc/Mortgage.pdf](misc/Mortgage.pdf) | Gives a table that lets you estimate your mortgage's monthly payment.  Doesn't include taxes or insurance.
 [misc/paper.py](misc/paper.py) | Contains a python script to calculate various things about paper to compare paper purchases.
 [misc/paper_sizes.pdf](misc/paper_sizes.pdf) | Shows a scale drawing of various ISO and US paper sizes.
 [misc/pills.py](misc/pills.py) | Calculate the dates you'll run out of prescription pills.
 [misc/shaving.pdf](misc/shaving.pdf) | Some thoughts on shaving your beard.
+[misc/tips1.pdf](misc/tips1.pdf) | Various tips I've found over the years.
+[misc/tips2.pdf](misc/tips2.pdf) | Various tips I've found over the years.
 [misc/XmasTomatoes.pdf](misc/XmasTomatoes.pdf) | Using Christmas tree lights to keep tomato plants from freezing at night.
 
 ## Programming
@@ -161,9 +168,9 @@ Link | Description
 [util/bgrep.py](util/bgrep.py) | Python script to search for regular expressions and strings in binary files.
 [util/bidict.zip](util/bidict.zip) | Creates a dictionary object in python that lets you treat it in both directions as a mapping.  It's an example of a discrete bijection.
 [util/cnt.zip](util/cnt.zip) | Command-line utility to count the number of bytes in a file and present a histogram of the results.
-[util/color.py](util/color.py) | Python module to provide color printing to a console window. Should work on both Windows and Linux.
+[util/color.py](util/color.py) | Python module to provide color printing to a console window. Should work on both Windows and Linux.  Includes functions to show regular expression matches in text printed to the console; these functions are helpful when you are developing complicated regular expressions.
 [util/dedent.py](util/dedent.py) | Python function that will remove the common space characters from a set of text lines from files given on the command line or stdin.
-[util/dep.py](util/dep.py) | Script to display a python program's module dependencies. The modules are classified by type.  It won't find *.pyc/*.pyo files nor modules the imports depend on.
+[util/dep.py](util/dep.py) | Script to display a python program's module dependencies. The modules are classified by type (standard library modules and user modules).  It won't find *.pyc/*.pyo files nor modules the imports depend on.  It uses regular expressions to find import lines in the script, so it may show lines that aren't true imports (e.g., an import line inside a conditional that's always false).
 [util/ds.zip](util/ds.zip) | Contains python scripts to help you launch datasheets, manuals, and other documentation files from a command line prompt.  I use this script to lauch manuals and ebooks and it quickly finds the ones I want amongst thousands of files.
 [util/dup.py](util/dup.py) | Python script to find duplicated files in a directory tree.
 [util/ext.py](util/ext.py) | Python script to make a list of the extensions used in file names and their counts in the directories given on the command line.
@@ -194,5 +201,5 @@ Link | Description
 [util/unx.py](util/unx.py) | Produces a list of files that are candidates for turning their execute bit permission off.  This is useful on Windows machines running cygwin to avoid a "sea of green" in an ls listing with colorizing on.
 [util/spc_to_underscore.py](util/spc_to_underscore.py) | Python script to replace all space characters in file names with underscores.
 
-Updated 4 Feb 2019 4:25:47 pm
+Updated 8 May 2019 9:11:32 am
 

@@ -55,6 +55,7 @@ import sys
 from operator import itemgetter
 import subprocess
 from ucd import ucd, pickle_file
+from columnize import Columnize
 from pdb import set_trace as xx
 if 0:
     import debug
@@ -110,6 +111,11 @@ Usage:  {name} [options] regexp [action]
   information.  If you want to enter a single digit number, preface it
   with '0'.
 
+  If the action argument is an expression and regexp looks like a single
+  character, print the character and that many following characters to the
+  screen in columnar form.  For example, '1f5f9 0xff' would print out the
+  ballot box with bold check and the 255 characters after this codepoint.
+
   The only action currently supported is 'o', which means to open the
   associated PDF file to let you look at a picture of a glyph
   representing this character.  To use this feature, you'll have to
@@ -117,7 +123,7 @@ Usage:  {name} [options] regexp [action]
   documentation file unicode.pdf).
 
   Note:  this script was written in 2014 and is based on the Unicode 
-  7 character set.  As of 8 Jun 2018, the latest Unicode version is 11.
+  7 character set.  As of March 2019, the latest Unicode version is 12.
 
 Example:
   Suppose you want the Unicode symbol for a steaming pile of poo.
@@ -139,7 +145,7 @@ Options:
             like 'face' will look like a hex number).
 
 Common Unicode characters:
-  ° Ω π θ · × ÷ √ μ α β ɣ δ Δ ɛ ϵ ϶ ν ξ ψ φ ϕ ζ λ ρ σ τ χ ω Γ Φ Ξ Λ
+  ° μ Ω π θ · × ÷ √ α β ɣ δ Δ ɛ ϵ ϶ ν ξ ψ φ ϕ ζ λ ρ σ τ χ ω Γ Φ Ξ Λ
   ∞ ∂ ∼ ∝ ± ∓ ∍ ∊ ∈ ∉ ∅ ∃ « » ∀ ∡ ∠ ∟ ∥ ∦ ℝ ℂ ℤ ℕ ℚ ℐ ℛ ⊙ ⊗ ⊕ ⊉ ⊈ ⊇ ⊆ ⊅ ⊄ ⊃ ⊂
   ≤ ≥ ≪ ≫ ≈ ≠ ≡ ≢ ≝ ≟ ∧ ∨ ∩ ∪ ∴ ⁻ ⁺ ¹ ² ³ ⁴ ⁵ ⁶ ⁷ ⁸ ⁹ ⁰ ⅛ ¼ ⅜ ½ ⅝ ¾ ⅞
 '''[1:-1]
@@ -509,7 +515,16 @@ if __name__ == "__main__":
             action = args[1]
         cp = Search(regexp, d)
         if cp is not None:
-            DumpCodepointData(cp)
             if action:
                 if action[0] == "o":
                     OpenPDF(regexp, d)
+                else:
+                    # Print the codepoint character and int(action)
+                    # following characters.
+                    s = []
+                    for i in range(cp, cp + eval(action) + 1):
+                        s.append("{:x} {}".format(i, chr(i)))
+                    for line in Columnize(s):
+                        print(line)
+            else:
+                DumpCodepointData(cp)

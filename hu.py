@@ -1,44 +1,26 @@
 '''
 
-This script is used to populate a repository with the files that I want to archive.
-The relevant file information is in a text file that uses YAML syntax to describe
-the files, their source and destination names, and their containers.
+This script is used to populate a repository with the files that I want to
+archive.  The relevant file information is in a text file that uses YAML
+syntax to describe the files, their source and destination names, and their
+containers.
 
-The first task is to verify all the source files exist on the hard disk.  Then the
-script will identify missing or out-of-date destination files.  The destination
-files will typically be a single PDF document or e.g. a collection of scripts and a
-PDF.  The PDF files are typically made from an Open Office document along with
-optional bitmap files, but these are not copied to the repository for space
-reasons.  A user can ask to have the source files and the -z option can be used to
-put the source files into a zip file so they can be emailed to the user.
+The first task is to verify all the source files exist on the hard disk.
+Then the script will identify missing or out-of-date destination files.
+The destination files will typically be a single PDF document or e.g. a
+collection of scripts and a PDF.  The PDF files are typically made from an
+Open Office document along with optional bitmap files, but these are not
+copied to the repository for space reasons.  A user can ask to have the
+source files and the -z option can be used to put the source files into a
+zip file so they can be emailed to the user.
 
-Editorial comment:  I chose to use YAML primarily because it allowed me to write
-strings without having to use double or single quotes to delimit them.  If you want
-to avoid the dependency on needing a YAML library, you can easily change the
-projects file to a python dictionary or use JSON in conjunction with python's json
-module.
+Editorial comment:  I chose to use YAML primarily because it allowed me to
+write strings without having to use double or single quotes to delimit
+them.  If you want to avoid the dependency on needing a YAML library, you
+can easily change the projects file to a python dictionary or use JSON in
+conjunction with python's json module.
 
 '''
-
-from __future__ import print_function
-from collections import defaultdict, OrderedDict
-from columnize import Columnize
-import getopt
-import os
-import shutil
-import subprocess
-import sys
-import textwrap
-import traceback as TB
-import yaml
-import zipfile
-from textwrap import dedent
-from time import asctime, strftime
-
-from pdb import set_trace as xx
-if 1:
-    import debug
-    debug.SetDebugger()
 
 # Copyright (C) 2014 Don Peterson
 # Contact:  gmail.com@someonesdad1
@@ -57,10 +39,30 @@ if 1:
 # permissions and limitations under the License.
 #
 
+from __future__ import print_function
+from collections import defaultdict, OrderedDict
+from columnize import Columnize
+import getopt
+import os
+import shutil
+import subprocess
+import sys
+import textwrap
+import traceback as TB
+import yaml
+import zipfile
+from textwrap import dedent
+from time import asctime, strftime
+
+from pdb import set_trace as xx
+if 0:
+    import debug
+    debug.SetDebugger()
+
 # Try to import the color.py module; if not available, the script
 # should still work (you'll just get uncolored output).
 try:
-    import xcolor as c
+    import color as c
     _have_color = True
 except ImportError:
     # Make a dummy color object to swallow function calls
@@ -68,12 +70,9 @@ except ImportError:
         def fg(self, *p, **kw): return ""
         def normal(self, *p, **kw): return ""
         def __getattr__(self, name): pass
+        def set(self): pass
     c = Dummy()
     _have_color = False
-
-if 0:
-    import debug
-    debug.SetDebugger()
 
 nl = "\n"
 email_address = "someonesdad1@gmail.com"

@@ -23,40 +23,6 @@
 # ----------------------------------------------------------------------
 # Under development
 
-fuse:
-    subdir: elec
-    descr: Notes on using ATO automobile fuses as poor-man's shunts.
-    files:
-        - fuse_as_shunt.odt*
-        - fuse_as_shunt.pdf
-    srcdir: /elec/projects/fuse_as_shunt
-    ignore:  Need to proof/edit.
-
-primes:
-    subdir: math
-    descr: Some python scripts that deal with primes, factoring, and
-        integer properties.
-    files:
-        - primes.py
-        - [pgm/int.py, int.py]
-        - [/tools/primes_fast.cpp, primes_fast.cpp]
-    srcdir: /pylib
-    ignore: Test under python 3.  Move files to /math.
-
-res:
-    subdir: elec
-    descr: Contains two tools that help you deal with resistors.
-    files:
-        - makefile
-        - resistor.cpp
-        - resistor.ods
-        - resistor.odt*
-        - resistor.pdf
-        - resistor_s.pdf
-        - resistor.test
-    srcdir: /elec/software/resistors
-    ignore: Limited interest
-
 seg:
     subdir: math
     descr: Python script to calculate parameters of a circular segment.
@@ -379,7 +345,10 @@ cnt:
 color:
     subdir: util
     descr: Python module to provide color printing to a console window.
-        Should work on both Windows and Linux.
+        Should work on both Windows and Linux.  Includes functions to show
+        regular expression matches in text printed to the console; these
+        functions are helpful when you are developing complicated regular
+        expressions.
     files:
         - color.py
     srcdir: /pylib
@@ -516,8 +485,11 @@ density:
 dep:
     subdir: util
     descr: Script to display a python program's module dependencies.
-        The modules are classified by type.  It won't find *.pyc/*.pyo
-        files nor modules the imports depend on.
+        The modules are classified by type (standard library modules and
+        user modules).  It won't find *.pyc/*.pyo files nor modules the
+        imports depend on.  It uses regular expressions to find import
+        lines in the script, so it may show lines that aren't true imports
+        (e.g., an import line inside a conditional that's always false).
     files:
         - dep.py
     srcdir: /pylib/pgm
@@ -877,6 +849,14 @@ func:
         - func.py
     srcdir: /pylib/pgm
 
+fuse:
+    subdir: elec
+    descr: Notes on using ATO automobile fuses as poor-man's shunts.
+    files:
+        - fuse_as_shunt.odt*
+        - fuse_as_shunt.pdf
+    srcdir: /elec/projects/fuse_as_shunt
+
 gblock:
     subdir: shop
     descr: A C++ program to print out combinations of gauge blocks
@@ -1111,6 +1091,15 @@ ind:
     srcdir: /elec/software/coil_inductance
     frozen: yes
 
+inflation:
+    subdir: misc
+    descr: Calculate the effects of inflation on prices for the years
+        1914 to the present.  For example, $1 to purchase food in 1960
+        is equivalent to about $8.5 in 2018.
+    files:
+        - inflation.py
+    srcdir: /pylib/pgm
+
 irr:
     subdir: science
     descr: Calculate irradiance over a wavelength band from a spectral
@@ -1151,8 +1140,8 @@ logicprobe:
     descr: Discusses the use of a logic probe.
     files:
         - logic_probe.pdf
-        - logic_probe.odt
-    srcdir: /elec/projects
+        - logic_probe.odt*
+    srcdir: /elec/projects/logic_probe
     frozen: yes
 
 loo:
@@ -1490,6 +1479,16 @@ pqs:
         - [/pylib/sig.py, sig.py]
     srcdir: /math/ProcessAnalyzer
 
+primes:
+    subdir: math
+    descr: Some python scripts that deal with primes, factoring, and
+        integer properties.
+    files:
+        - primes.py
+        - [pgm/int.py, int.py]
+        - [/tools/primes_fast.cpp, primes_fast.cpp]
+    srcdir: /pylib
+
 python:
     subdir: prog
     descr: Discusses why learning the python programming language might be a 
@@ -1596,6 +1595,17 @@ refcards:
     srcdir: /shop/ReferenceCards
     frozen: yes
 
+res:
+    subdir: elec
+    descr: Contains two tools that help you deal with resistors.
+    files:
+        - makefile
+        - resistor.cpp
+        - resistor.odt*
+        - resistor.pdf
+        - resistor.test
+    srcdir: /elec/software/resistors
+
 rms:
     subdir: elec
     descr: An article for hobbyists about making RMS electrical measurements.
@@ -1620,6 +1630,8 @@ rpath:
         on the path via a parameter.
     files:
         - path.py
+        - path.odt*
+        - path.pdf
         - [test/path_test.py, path_test.py]
     srcdir: /pylib
 
@@ -1815,6 +1827,24 @@ thd:
         - thd.py
         - [../asme.py, asme.py]
     srcdir: /pylib/pgm
+
+tips1:
+    subdir: misc
+    descr: Various tips I've found over the years.
+    files:
+        - tips1.pdf
+        - tips1.odt*
+    srcdir: /doc
+    frozen: yes
+
+tips2:
+    subdir: misc
+    descr: Various tips I've found over the years.
+    files:
+        - tips2.pdf
+        - tips2.odt*
+    srcdir: /doc
+    frozen: yes
 
 tlc:
     subdir: util
