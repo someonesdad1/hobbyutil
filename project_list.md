@@ -74,7 +74,6 @@ Link | Description
 [misc/pills.py](misc/pills.py) | Calculate the dates you'll run out of prescription pills.
 [misc/shaving.pdf](misc/shaving.pdf) | Some thoughts on shaving your beard.
 [misc/tips1.pdf](misc/tips1.pdf) | Various tips I've found over the years.
-[misc/tips2.pdf](misc/tips2.pdf) | Various tips I've found over the years.
 [misc/XmasTomatoes.pdf](misc/XmasTomatoes.pdf) | Using Christmas tree lights to keep tomato plants from freezing at night.
 
 ## Programming
@@ -201,5 +200,5 @@ Link | Description
 [util/unx.py](util/unx.py) | Produces a list of files that are candidates for turning their execute bit permission off.  This is useful on Windows machines running cygwin to avoid a "sea of green" in an ls listing with colorizing on.
 [util/spc_to_underscore.py](util/spc_to_underscore.py) | Python script to replace all space characters in file names with underscores.
 
-Updated 8 May 2019 9:11:32 am
+Updated 8 May 2019 9:17:18 am
 

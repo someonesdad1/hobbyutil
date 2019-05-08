@@ -130,8 +130,6 @@ Miscellaneous
 |   Some thoughts on shaving your beard.
 | `misc/tips1.pdf <misc/tips1.pdf>`_ (7576)
 |   Various tips I've found over the years.
-| `misc/tips2.pdf <misc/tips2.pdf>`_ (13720)
-|   Various tips I've found over the years.
 | `misc/XmasTomatoes.pdf <misc/XmasTomatoes.pdf>`_ (343)
 |   Using Christmas tree lights to keep tomato plants from freezing at night.
 
@@ -365,5 +363,5 @@ Utilities
 
 
 
-Updated 8 May 2019 9:11:32 am
+Updated 8 May 2019 9:17:18 am
 

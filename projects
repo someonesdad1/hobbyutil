@@ -1845,6 +1845,7 @@ tips2:
         - tips2.odt*
     srcdir: /doc
     frozen: yes
+    ignore: yes
 
 tlc:
     subdir: util
