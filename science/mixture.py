@@ -108,8 +108,6 @@ and the volume is
 
     V = V_a + V_b
 
-i
-
 Note that this formulation is an approximation; real solutions sometimes
 don't satisfy the above assumptions.  Example:  ethanol and water mixed
 together will have a lower volume than their component sum because the

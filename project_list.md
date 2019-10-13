@@ -51,8 +51,9 @@ Link | Description
 [math/QuickMultDiv.pdf](math/QuickMultDiv.pdf) | Discussion of how to do multiplications and divisions by hand when you only need a specified number of significant figures in the answer.
 [math/rand.zip](math/rand.zip) | A pure python script for generating random numbers from various distributions to stdout.
 [math/root.zip](math/root.zip) | Pure-python root-finding methods such as bisection, Brent's method, Ridder's method, Newton-Raphson, and a general-purpose method by Jack Crenshaw that uses inverse parabolic interpolation.
-[math/rpath.zip](math/rpath.zip) | A python module for a rectilinear path object.  You supply it with a set of points and then you can interpolate to points on the path via a parameter.
+[math/rpath.zip](math/rpath.zip) | A python module for modeling rectilinear path object in n-dimensional spaces.  You supply it with a set of points and then you can interpolate to points on the path via a parameter. You can do things like calculate line integrals and complex path integrals.
 [math/scale.zip](math/scale.zip) | The scale.pdf file contains two sheets of paper with slide rule type scales on them. You may find it useful for simple technical calculations.
+[math/seq.zip](math/seq.zip) | Python script to send various arithmetical progressions to stdout.  Handles integers, floating point, and fractions.
 [math/shorttbl.zip](math/shorttbl.zip) | A set of tables of elementary math functions intended to print on half of an ANSI-A sized piece of paper.
 [math/spiral.zip](math/spiral.zip) | Python scripts that deal with spirals.
 [math/tri.zip](math/tri.zip) | Python script to solve triangles.
@@ -89,7 +90,6 @@ Link | Description
 [prog/manufy.py](prog/manufy.py) | Python script to convert text lines to have double quotes and a newline at the end. This is useful to allow you to quickly write text manpages for C or C++ code.
 [prog/PythonFromCalc.pdf](prog/PythonFromCalc.pdf) | How to call python functions from Open Office Calc spreadsheets.
 [prog/python.zip](prog/python.zip) | Discusses why learning the python programming language might be a good thing for technical folks.
-[prog/seq.zip](prog/seq.zip) | Python script to send various arithmetical progressions to stdout.  Handles integers, floating point, and fractions.
 [prog/shuffle.c](prog/shuffle.c) | C program to randomly shuffle the bytes of a file.
 [prog/sig.zip](prog/sig.zip) | A python module to format floating point numbers to a specified number of significant figures or round to a specified template.
 [prog/stack.zip](prog/stack.zip) | A python module that implements a basic stack.
@@ -99,7 +99,7 @@ Link | Description
 [prog/wordnum.zip](prog/wordnum.zip) | A python script that can convert back and forth between numbers and their word forms.  Handles short and long scales, ordinals, integers, floats (normal and exponential notation), and fractions.  Easy interface through an object's function call; wordnum(36) gives 'thirty six'; wordnum('thirty six') returns the integer 36.  Tested on python 2.7.6 and 3.4.0.
 [prog/wrap.zip](prog/wrap.zip) | Two python scripts to wrap and unwrap text files.
 [prog/xor.zip](prog/xor.zip) | C++ program to XOR a data file and key file together to encrypt a file.
-[prog/xref.cpp](prog/xref.cpp) | A C++ console program that will cross reference the tokens in a set of files -- each token will be listed in alphabetical order with the file it occurs in along with the line numbers it's found on.
+[prog/xref.zip](prog/xref.zip) | A program that will cross reference the tokens in a set of files -- each token will be listed in alphabetical order with the file it occurs in along with the line numbers it's found on. A C++ program and a python script (you'll need version 3.7, but you can hack on it a bit to get it to run with earlier python 3 versions) are included that do the same things.
 
 ## Science
 
@@ -169,7 +169,7 @@ Link | Description
 [util/cnt.zip](util/cnt.zip) | Command-line utility to count the number of bytes in a file and present a histogram of the results.
 [util/color.py](util/color.py) | Python module to provide color printing to a console window. Should work on both Windows and Linux.  Includes functions to show regular expression matches in text printed to the console; these functions are helpful when you are developing complicated regular expressions.
 [util/dedent.py](util/dedent.py) | Python function that will remove the common space characters from a set of text lines from files given on the command line or stdin.
-[util/dep.py](util/dep.py) | Script to display a python program's module dependencies. The modules are classified by type (standard library modules and user modules).  It won't find *.pyc/*.pyo files nor modules the imports depend on.  It uses regular expressions to find import lines in the script, so it may show lines that aren't true imports (e.g., an import line inside a conditional that's always false).
+[util/dep.py](util/dep.py) | Script to display a python program's module dependencies. The modules are classified by type (standard library modules and user modules).  It won't find .pyc/.pyo files nor modules the imports depend on.  It uses regular expressions to find import lines in the script, so it may show lines that aren't true imports (e.g., an import line inside a conditional that's always false).
 [util/ds.zip](util/ds.zip) | Contains python scripts to help you launch datasheets, manuals, and other documentation files from a command line prompt.  I use this script to lauch manuals and ebooks and it quickly finds the ones I want amongst thousands of files.
 [util/dup.py](util/dup.py) | Python script to find duplicated files in a directory tree.
 [util/ext.py](util/ext.py) | Python script to make a list of the extensions used in file names and their counts in the directories given on the command line.
@@ -200,5 +200,5 @@ Link | Description
 [util/unx.py](util/unx.py) | Produces a list of files that are candidates for turning their execute bit permission off.  This is useful on Windows machines running cygwin to avoid a "sea of green" in an ls listing with colorizing on.
 [util/spc_to_underscore.py](util/spc_to_underscore.py) | Python script to replace all space characters in file names with underscores.
 
-Updated 8 May 2019 9:17:18 am
+Updated 13 Oct 2019 8:49:49 am
 

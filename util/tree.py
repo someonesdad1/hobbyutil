@@ -18,8 +18,9 @@ for the directory you pass in on the command line.
 '''
 
 # TODO
-#   * Add colorization in the tree printout for version control directories
-#     and regexp searches using one or more -g options.
+#   * Add color coding for directories/files/links.
+#   * Fix sorting order by sorting, then searching each line for the
+#     regexp.  The escape sequences mess up the sorting.
 
 # Copyright (C) 2005 Don Peterson
 # Contact:  gmail.com@someonesdad1
@@ -78,6 +79,7 @@ version_control = set((".bzr", ".git", ".hg", ".svn", "RCS"))
 
 def Usage(d, status=1):
     name = sys.argv[0]
+    spc = d["-n"]
     char = d["-l"]
     size = d["-t"]
     s = '''Usage:  {name} [options] dir [dir2...]
@@ -90,7 +92,7 @@ Options:
   -g r    Search for regular expression r in directory names and color 
           highlight it.
   -i      Ignore case in -g regular expressions.
-  -n n    Number of spaces to indent levels.
+  -n n    Number of spaces to indent levels. [{spc}]
   -s      Decorate each directory with the size of its files in MB.
           The separation character is a tab.
   -t n    Threshold size is n MB (default {size}).  Directories with a total size
@@ -181,8 +183,8 @@ def Visit(mydirlist, dirname, files, d):
     if sys.platform in set(("win32", "cygwin")):
         dirname = dirname.replace("\\", "/")
     if d["-g"] is not None:
-        # Color highlight the regexp by adding escape sequences
-        #if "ove" in dirname: xx() #xx
+        # Color highlight the regexp by adding escape sequences.
+        # TODO Note this causes the sort order to get messed up.
         if d["-i"]:
             r = re.compile(d["-g"], re.I)
         else:

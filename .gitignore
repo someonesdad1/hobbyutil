@@ -6,10 +6,12 @@ tags
 *.bak
 clean
 mk
+log
+old_hu_projects
 
-# Ignore any Open Office, Word, or bitmap files.  This is done to avoid populating
-# the repository with source stuff.  Users are alerted that they can request the
-# source files by email if they wish.
+# Ignore any Open Office, Word, or bitmap files.  This is done to avoid
+# populating the repository with source stuff.  Users are alerted that
+# they can request the source files by email if they wish.
 *.odt
 *.odg
 *.ods
@@ -19,3 +21,4 @@ mk
 *.jpg
 *.tiff
 *.bmp
+

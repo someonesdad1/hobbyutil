@@ -2,8 +2,6 @@
 File finding utility (similar to UNIX find).  It's not especially
 fast, but the usage is more convenient than find and the output is
 colorized to see the matches.
-
-Run the script with no arguments to get a help message.
 '''
 
 # Copyright (C) 2008, 2012 Don Peterson
@@ -21,14 +19,24 @@ import getopt
 import os
 import fnmatch
 import subprocess
+import textwrap
 from collections import OrderedDict as odict
-import color as c
+# Try to import the color.py module; if not available, the script
+# should still work (you'll just get uncolored output).
+try:
+    import color as C
+except ImportError:
+    # Make a dummy color object to swallow function calls
+    class Dummy:
+        def fg(self, *p, **kw): pass
+        def normal(self, *p, **kw): pass
+        def __getattr__(self, name): pass
+    C = Dummy()
 from pdb import set_trace as xx
 if 0:
     import debug
     debug.SetDebugger()
 
-out = sys.stdout.write
 nl = "\n"
 
 # If you're using cygwin, set the following variable to point to the
@@ -36,12 +44,6 @@ nl = "\n"
 # This tool allows UNIX-style path conversions so that command line
 # directory arguments like /home/myname work correctly.
 cygwin = "c:/cygwin/bin/cygpath.exe"
-
-# If you have some version control system directories you'd rather
-# ignore, create a regexp for them and add a suitable command line
-# option.
-rcs = re.compile("/RCS$|/RCS")
-hg = re.compile("/.hg$|/.hg/")
 
 # The following variable, if True, causes a leading './' to be removed
 # from found files and directories.  This shortens things up a bit.
@@ -65,9 +67,9 @@ rm_dir_tag = False
 
 (black, blue, green, cyan, red, magenta, brown, white, gray, lblue,
  lgreen, lcyan, lred, lmagenta, yellow, lwhite) = (
-    c.black, c.blue, c.green, c.cyan, c.red, c.magenta, c.brown,
-    c.white, c.gray, c.lblue, c.lgreen, c.lcyan, c.lred, c.lmagenta,
-    c.yellow, c.lwhite)
+    C.black, C.blue, C.green, C.cyan, C.red, C.magenta, C.brown,
+    C.white, C.gray, C.lblue, C.lgreen, C.lcyan, C.lred, C.lmagenta,
+    C.yellow, C.lwhite)
 
 c_norm = (white, black)  # Color when finished
 c_plain = (white, black)
@@ -93,196 +95,256 @@ elif colorstyle == 5:
     c_dir = (lred, black)
     c_match = (black, yellow)
 
-# Glob patterns for source code files
-source_code_files = [
-    "*.a",
-    "*.asm",
-    "*.awk",
-    "*.bas",
-    "*.bash",
-    "*.bcc",
-    "*.bsh",
-    "*.c",
-    "*.c++",
-    "*.cc",
-    "*.cgi",
-    "*.cob",
-    "*.cobol",
-    "*.cpp",
-    "*.cxx",
-    "*.dtd",
-    "*.f",
-    "*.f90",
-    "*.h",
-    "*.hh",
-    "*.hxx",
-    "*.java",
-    "*.js",
-    "*.ksh",
-    "*.lisp",
-    "*.lua",
-    "*.m4",
-    "*.mac",
-    "*.mp",
-    "*.pas",
-    "*.perl",
-    "*.php",
-    "*.pl",
-    "*.py",
-    "*.rb",
-    "*.rst",
-    "*.sed",
-    "*.sh",
-    "*.sql",
-    "*.src",
-    "*.tcl",
-    "*.vim",
-    "*.xml",
-    "*.zsh",
-    "[Mm]akefile",
-    "*.f95",
-    "*.tk",
-    "*.csh",
-    "*.v",
-    "*.ada",
-    "*.jav",
-    "*.c__",
-    "*.d",
-    "*.f77",
-    "*.lex",
-    "*.yacc",
-]
+if 1:
+    # Glob patterns for source code files
+    def GetSet(data, extra=None):
+        s = ["*." + i for i in data.replace("\n", " ").split()]
+        t = list(sorted(list(set(s))))
+        if extra is not None:
+            t.extend(extra)
+        return t
+    # An extensive list of file extensions
+    # From https://www.file-extensions.org/filetype/extension/name/source-code-and-script-files
+    data_long = '''
+        11 19 4ge 4gl 4pk 4th 89x 8xk a a2w a2x a3c a3x a51 a5r a66 a86
+        a8s aah aar abap abl abs acgi acm action actionscript actproj
+        actx acu ad2 ada aem aep afb agc agi ago ags ahk ahtml aia aidl
+        aiml airi ajm akp aks akt alan alg alx aml amos amw an ane
+        anjuta apb apg aplt app appcache applescript applet appxmanifest
+        appxsym appxupload aps apt arb armx arnoldc aro arq arscript art
+        arxml ary as as3 asax asbx asc ascx asf ash asi asic asm asmx
+        asp asproj aspx ass asta astx asz atmn atomsvc atp ats au3
+        autoplay autosave avc ave avsi awd awk axb axd axe axs b b24 b2d
+        ba_ bal bas bash bat bax bb bbc bbf bcc bcf bcp bdh bdsproj bdt
+        beam bet beta bgm bhs bi bin_ bml bmo bms borland bp bpo bpr bps
+        bpt brml brs brx bs2 bsc bsh bsm bsml bsv bte btproj btq
+        bufferedimage build builder buildpath bur bxb bxl bxml bxp bzs c
+        c# c++ c-- c3p c86 c__ cal cap capfile cas cb cba cbl cbp cbs cc
+        ccbjs ccp ccproj ccs ccxml cd cel cfi cfm cfml cfo cfs cg cgi
+        cgvp cgx chd chef chh ck ckm cl cla class classdiagram classpath
+        clips clj cljs clm clojure clp cls clw cmake cml cms cnt cob
+        cobol cod coffee cola com_ command common con configure
+        confluence cord cos coverage coveragexml cp cpb cphd cplist cpp
+        cpr cprr cpz cr cr2 creole cs csb csc csdproj csh cshrc csi
+        csm csml cson csp cspkg csproj csx ctl ctp cu cuh cuo cx cxe cxl
+        cxs cxx cya d d2j d4 daemonscript datasource dba dbg dbmdl dbml
+        dbo dbp dbpro dbproj dcf dcr dd ddp deb defi dep depend derp dev
+        devpak dfb dfd dfm dg dgml dgsl dht dhtml dia dic diff din dist
+        dlg dmb dmc dml dms do dob docstates dor dot dpd dpk dpr dproj
+        dqy drc dro ds dsa dsb dsd dse dso dsp dsq dsr dsym dt dtd dtml
+        dto dts dtx dvb dwarf dwp dwt dxl e eaf ebc ebm ebs ebs2 ebuild
+        ebx ecore ecorediag edml eek egg-info ejs ekm el elc eld ema
+        enml entitlements epl eqn es ev3p ew ex exe_ exp exsd exu exv
+        exw eze ezg f f03 f40 f77 f90 f95 faces factorypath fas fasl fbp
+        fbp6 fbz6 fcg fcgi fcmacro fdo fdt ff fgb fil fmb fmt fmx for
+        form fountain fpc fpi frj frs frt fs fsb fscr fsf fsi fsproj fsx
+        ftn fuc fus fwactionb fwx fxcproj fxh fxl fxml fzs g1m galaxy
+        gbl gc3 gch gcl gcode gdg geany gek gemfile generictest genmodel
+        geojson gfa gfe ghc ghp git gla glade gld gls gml gnt go gobj
+        goc gp gradle graphml graphmlz greenfoot groovy grxml gs gsb gsc
+        gsk gss gst gus gv gvy gxl gyp gypi h h2o h6h h__ haml has hay
+        hbm hbs hbx hbz hc hcw hdf hei hh hhh hic history hkp hla hlsl
+        hms hoic hom hpf hpp hrh hrl hs hsc hse hsm ht4 htc htd htm
+        html5 htr hx hxa hxml hxp hxproj hxx hydra i iap ice idb ide idl
+        idle ig ii ijs ik il ilk image iml imp inc ino inp ins install
+        io ipb ipch ipf ipp ipr ips irb irbrc irc irobo is isa iss
+        isu itcl itmx iwb ix3 ixx j j3d jacl jad jade jak jardesc jav
+        java javajet jbi jbp jcl jcm jcs jcw jdp jetinc jex jgc jgs ji
+        jks jl jlc jmk jml jpage jpd jpx js jsa jsb jsc jscript
+        jsdtscope jse jsf jsfl jsh json jsonp jsp jss jsx jsxinc jtb ju
+        judo jug kbs kcl kd ked kex kit kix kl3 kml kmt kodu komodo kon
+        kpl ksc ksh kst kt kts kumac kv kx l lamp lap lasso lba lbi lbj
+        lds ldz less lex lhs lib licenses licx liquid lisp litcoffee lml
+        lmp lmv lng lnk lnp lnx lo loc login lol lols lp lpr lpx lrf lrs
+        ls1 ls3proj lsh lsp lss lst lsxtproj lua luac lub luca lxk m m2r
+        m3 m4 m4x m51 m6m mab mac magik mak make makefile maki mako maml
+        map mash master mat matlab mb mbam mbas mbs mbtemmplate mc mcml
+        mcp mcr mdex mdf mdp mec mediawiki mel mex mf mfa mfcribbon-ms
+        mfl mfps mg mhl mhm mi mingw mingw32 mk mkb mke ml mli mln mls
+        mlsxml mlv mlx mly mm mmb mmbas mmch mmh mmjs mnd mo moc mod
+        module mom mpm mpx mq4 mq5 mqt mrc mrd mrl mrm mrs ms msc mscr
+        msdl msh1 msh1xml msh2 msh2xml msha msil msl msm msp mss mst
+        msvc mtp mvba mvpl mw mwp mx mxe myapp mzp napj nas nbin nbk ncb
+        ncx neko nes netboot nhs nk nlc nls nmk nnb nokogiri npi npl nrs
+        nse nsi nspj nt nunit nupkg nvi nxc o ob2 obj obr ocb ocr odc
+        odh odl ogl ogr ogs ogx okm oks opl oplm oppo opv opx oqy orl
+        osas osg ow owd owl owx ox p p4a p5 p6 pag par param pas pawn pb
+        pba pbi pbl pbp pbq pbxproj pc pcd pch pd pdb pdl pdml pdo pem
+        perl pf0 pf1 pf2 pf3 pf4 pf?  pfa pfx pgm pgml ph phl php php1
+        php2 php3 php4 php5 php6 phpproj phps phpt phs phtml pickle pika
+        pike pjt pjx pkb pkh pl pl1 pl5 pl6 pl7 plac playground plc pli
+        plog pls plx pm pm5 pm6 pmod pmp pnproj po poc pod poix policy
+        pom pp pp1 ppa ppam ppml ppo pql pr7 prg pri prl pro proto ps1
+        ps2 ps2xml psc1 psc2 psd1 psf psl psm1 psml pspscript psu ptl
+        ptx ptxml pwo pxd pxml qac qdl qlc
+        qlm qpf qry qs qsc qvs qxm r rake rakefile rb rbf rbp rbs rbt
+        rbw rbx rc rc2 rc3 rcc rdf rdoc re reb rej res resjson resources
+        resx rex rexx rfs rfx rgs rh rhtml rkt rml rmn rnw rob robo ror
+        rpg rpj rpo rpp rpprj rpres rprofile rproj rptproj 
+        rqb rqc rqy rrc rrh rs rsl rsm rsp rss rtml rts rub rule run rvb
+        rvt rws rxs s s2s s43 s4e s5d saas sal sami sas sasf sass sax sb
+        sbh sbml sbr sbs sc sca scala scar scb sce sci scm sconstruct
+        scp scpt scptd scr script scriptterminology scs scss sct scz
+        sdef sdi sdl sdsb seam ser ses sfl sfm sfx sh shfb shfbproj shit
+        simba simple sit sjc sjs skp sl slackbuild slim sln slogt sltng
+        sm sma smali sml smm smw smx snapx snippet sno snp spr spt spx
+        sqlproj sqo src srz ss ssc ssi ssml ssq stl stm sts styl sus svc
+        svn-base svo swg swift swt sxs sxt sxv synw-proj syp t tab tag
+        targets tatxtt tcl tcsh tcx tcz tdo tea tec texinfo text textile
+        tgml thml thor thtml ti tik tikz tiprogram tk tkp tla tld tlh
+        tli tmf tmh tmo toml tpl tplt tpm tpr tql tra trig triple-s trt
+        tru ts0 tsc tsq tst ttcn ttinclude ttl tur twig txl txml txx tzs
+        ucb udf uem uih uit uix ulp ump usi usp uvproj uvprojx v v3s v4e
+        vala vap vb vba vbe vbg vbhtml vbi vbp vbproj vbs vbscript vbw
+        vbx vc vc15 vc5 vc6 vc7 vce vcp vcproj vcxproj vd vddproj vdm
+        vdp vdproj vgc vic vim vip viw vjp vls vlx vpc vpi vpl vps vrp
+        vsixmanifest vsmacros vsprops vssscc vstemplate vtm vup vxml w
+        wam was wax wbc wbf wbs wbt wch wcm wdi wdk wdl wdproj wdw wfs
+        wiki win32manifest wis wli wml wmlc wmls wmlsc wmw wod wpj wpk
+        wpm ws wsc wscript wsd wsdd wsdl wsf wsh wspd wxi wxl wxs wzs x
+        xaml xamlx xap xba xbap xbd xbl xblr xbs xcl xcodeproj xcp xda
+        xfm xhtm xib xig xin xjb xje xl xla xlm xlm_ xlv xme xml xml-log
+        xmla xn xnf xojo_binary_project xoml xpb xpdl xpgt xproj xql xqr
+        xr xrc xsc xsd xsl xslt xsql xtxt xui xul xv2 xys yajl yaml ywl
+        yxx yyp z zbi zcode zero zfd zh_tw zpd zpk zpl zrx zs zsc zsh
+        zts zws'''
+    source_code_files_long = GetSet(data_long, extra=["[Mm]akefile"])
+    data_short = '''
+        a asm awk bas bash bat bsh c c++ cc cpp cxx f f77
+        f90 f95 gcode h hh hxx ino jav java json ksh
+        l lex lib m m4 mk pas perl php pl rb
+        re sh tcl tex tk vim yacc yaml
+    '''
+    source_code_files = GetSet(data_short, extra=["[Mm]akefile"])
 
 # Glob patterns for documentation files
-documentation_files = [
-    "*.doc", "*.odg", "*.ods", "*.odt", "*.pdf", "*.xls",
-]
+documentation_files = GetSet("doc odg ods odt pdf xls")
 
 # Glob patterns for picture files
-picture_files = [
-    "*.bmp", "*.clp", "*.dib", "*.emf", "*.eps", "*.gif", "*.img",
-    "*.jpeg", "*.jpg", "*.pbm", "*.pcx", "*.pgm", "*.png", "*.ppm",
-    "*.ps", "*.psd", "*.psp", "*.pspimage", "*.raw", "*.tga", "*.tif",
-    "*.tiff", "*.wmf", "*.xbm", "*.xpm",
-]
+picture_files = GetSet('''
+    bmp clp dib emf eps gif img jpeg jpg pbm pcx pgm png ppm ps psd psp
+    pspimage raw tga tif tiff wmf xbm xpm''')
 
-class Swallow():  # Swallow calls to color module when color output is off
-    def fg(self, *p, **kw):
-        pass
+# Names of version control directories
+version_control = "git hg RCS".split()
 
 def Usage(d, status=2):
     d["name"] = os.path.split(sys.argv[0])[1]
     d["-s"] = "Don't sort" if d["-s"] else "Sort"
     d["-c"] = "Color" if not d["-c"] else "Don't color"
-    out('''Usage:  {name} [options] regex [dir1 [dir2...]]
-  Finds files using python regular expressions.  If no directories are
-  given on the command line, searches at and below the current
-  directory.  Mercurial, git, RCS, and hidden directories are not
-  searched by default.
-
-Options:
-  -C str    Globbing pattern separation string (defaults to space)
-  -D        Show documentation files
-  -G        Show git hidden directories and files
-  -L        Follow directory soft links (defaults to False)
-  -M        Show Mercurial hidden directories and files
-  -P        Show picture files
-  -R        Show RCS directories and files
-  -S        Show source code files
-  -c        {-c} code the output
-  -d        Show directories only
-  -f        Show files only
-  -h        Show hidden files/directories that begin with '.'
-  -i        Case-sensitive search
-  -l n      Limit depth to n levels
-  -m patt   Show only files that match glob pattern (can be multiples)
-  -p        Show python files
-  -r        Not recursive; search indicated directories only
-  -s        {-s} the output directories and files
-  -x patt   Ignore files that match glob pattern (can be multiples)
-
-Note:  
-    regex on the command line is a python regular expression defined by
-    the re module.  The globbing patterns in the -m and -x options are
-    the standard file globbing patterns in pythons glob module.  The -m
-    and -x options can contain spaces if you define a different
-    separation string with the -C option
-
-Examples:
-  * Find all python scripts at and below the current directory:
-        python {name} -p .
-  * Find files at and below the current directory containing
-    the string "rational" (case-insensitive search) excluding *.bak and
-    *.o:
-        python {name} -f -x "*.bak *.o" rational
-  * Find any directories named TMP (case-sensitive search) in or below
-    the current directory, but exclude any with 'cygwin' in the name:
-        python {name} -d -i -x "*cygwin*" TMP
-  * Find all documentation and source code files starting with 't' in
-    the directory foo
-        python {name} -DS /t foo
-    Note this will also find such files in directories that begin with
-    't' also.
-'''.format(**d))
+    usage = r'''
+    Usage:  {name} [options] regex [dir1 [dir2...]]
+      Finds files using python regular expressions.  If no directories are
+      given on the command line, searches at and below the current
+      directory.
+ 
+    Options:
+      -C str    Globbing pattern separation string (defaults to space)
+      -D        Show documentation files
+      -L        Follow directory soft links (defaults to False)
+      -P        Show picture files
+      -S        Show source code files excluding python
+      --S       Same as -S, but use long list of source code file extensions
+      -c        {-c} code the output
+      -d        Show directories only
+      -e glob   Show only files that match glob pattern (can be multiples)
+      -f        Show files only
+      -h        Show hidden files/directories that begin with '.'
+      -i        Case-sensitive search
+      -l n      Limit recursion depth to n levels
+      -p        Show python files
+      -r        Not recursive; search indicated directories only
+      -s        {-s} the output directories and files
+      -x glob   Ignore files that match glob pattern (can be multiples)
+      -V        Include revision control directories
+      --git         Include git directories only
+      --hg          Include Mercurial directories only
+      --rcs         Include RCS directories only
+ 
+    Note:  
+      regex on the command line is a python regular expression.
+      Globbing patterns in the -e and -x options are the standard file
+      globbing patterns in python's glob module.  The -e and -x options
+      can contain spaces if you define a different separation string
+      with the -C option
+ 
+    Examples:
+      - Find all python scripts at and below the current directory:
+              python {name} -p 
+      - Find files at and below the current directory containing the string
+        "rational" (case-insensitive search) excluding *.bak and *.o:
+              python {name} -C "," -f -x "*.bak,*.o" rational
+      - Find any directories named TMP (case-sensitive search) in or below
+        the current directory, but exclude any with 'cygwin' in the name:
+              python {name} -d -i -x "*cygwin*" TMP
+      - Find all documentation and source code files starting with 't' in
+          the directory foo
+              python {name} -DS /t foo
+          This will also find files in directories that begin with 't' also.
+      - Delete backup files at and below .; the '-u' for invoking python
+        causes unbuffered output, allowing xargs use:
+              python -u {name} -f bak\$ | xargs rm
+        Omit the 'rm' to have xargs echo what will be removed.
+    '''[1:].rstrip()
+    print(textwrap.dedent(usage).format(**d))
     exit(status)
 
 def ParseCommandLine(d):
     d["-C"] = " "       # Separation string for glob patterns
     d["-D"] = False     # Print documentation files
     d["-L"] = False     # Follow directory soft links
-    d["-M"] = False     # Show Mercurial hidden directories
     d["-P"] = False     # Print picture files
-    d["-R"] = False     # Show RCS directories
     d["-S"] = False     # Print source code files
     d["-c"] = False     # Color code the output
     d["-d"] = False     # Show directories only
     d["-f"] = False     # Show files only
     d["-h"] = False     # Show hidden files/directories
     d["-i"] = False     # Case-sensitive search
-    d["-m"] = []        # Only list files with these glob patterns
+    d["-e"] = []        # Only list files with these glob patterns
     d["-l"] = -1        # Limit to this number of levels (-1 is no limit)
     d["-p"] = False     # Show python files
     d["-r"] = False     # Don't recurse into directories
     d["-s"] = False     # Sort the output directories and files
     d["-x"] = []        # Ignore files with these glob patterns
+    d["-V"] = []        # Revision control directories to include
     if len(sys.argv) < 2:
         Usage(d)
     try:
-        optlist, args = getopt.getopt(sys.argv[1:], "aC:DLMPRScdfhim:l:prsx:")
+        optlist, args = getopt.getopt(
+                sys.argv[1:], 
+                "C:DLPScde:fhil:prsVx:",
+                longopts="S git hg rcs".split()
+        )
     except getopt.GetoptError as str:
         msg, option = str
-        out(msg + nl)
+        print(msg)
         exit(1)
     for opt in optlist:
         if opt[0] == "-C":
             d["-C"] = opt[1]
         elif opt[0] == "-D":
             d["-D"] = True
-            d["-m"] += documentation_files
+            d["-e"] += documentation_files
         elif opt[0] == "-h":
             d["-h"] = True
         elif opt[0] == "-i":
             d["-i"] = True
         elif opt[0] == "-L":
             d["-L"] = not d["-L"]
-        elif opt[0] == "-M":
-            d["-M"] = not d["-M"]
         elif opt[0] == "-P":
             d["-P"] = True
-            d["-m"] += picture_files
-        elif opt[0] == "-R":
-            d["-R"] = not d["-R"]
+            d["-e"] += picture_files
         elif opt[0] == "-S":
             d["-S"] = True
-            d["-m"] += source_code_files
+            d["-e"] += source_code_files
         elif opt[0] == "-c":
             d["-c"] = not d["-c"]
         elif opt[0] == "-d":
             d["-d"] = not d["-d"]
         elif opt[0] == "-f":
             d["-f"] = not d["-f"]
-        elif opt[0] == "-m":
-            d["-m"] += opt[1].split(d["-C"])
+        elif opt[0] == "-e":
+            d["-e"] += opt[1].split(d["-C"])
         elif opt[0] == "-l":
             n = int(opt[1])
             if n < 0:
@@ -290,14 +352,30 @@ def ParseCommandLine(d):
             d["-l"] = n
         elif opt[0] == "-p":
             d["-p"] = not d["-p"]
-            d["-m"] += ["*.py"]
+            d["-e"] += ["*.py"]
         elif opt[0] == "-r":
             d["-r"] = not d["-r"]
         elif opt[0] == "-s":
             d["-s"] = not d["-s"]
+        elif opt[0] == "-V":
+            d["-h"] = True
+            d["-V"] = version_control
         elif opt[0] == "-x":
             s, c = opt[1], d["-C"]
             d["-x"] += opt[1].split(d["-C"])
+        # Long options
+        elif opt[0] == "--S":
+            d["-S"] = True
+            d["-e"] += source_code_files_long
+        elif opt[0] == "--hg":
+            d["-h"] = True
+            d["-V"] += ["hg"]
+        elif opt[0] == "--git":
+            d["-h"] = True
+            d["-V"] += ["git"]
+        elif opt[0] == "--rcs":
+            d["-h"] = True
+            d["-V"] += ["RCS"]
     if len(args) < 1:
         Usage(d)
     if d["-i"]:
@@ -309,6 +387,8 @@ def ParseCommandLine(d):
         args = ["."]
     # Store search information in order it was found
     d["search"] = odict()
+    # Normalize -V option
+    d["-V"] = list(sorted(list(set(d["-V"]))))
     return args
 
 def Normalize(x):
@@ -359,9 +439,9 @@ def Ignored(s, d):
 
 def Included(s, d):
     '''s is a file name.  If s matches any of the glob patterns in
-    d["-m"], return True.
+    d["-e"], return True.
     '''
-    for pattern in d["-m"]:
+    for pattern in d["-e"]:
         if d["-i"]:
             if fnmatchcase(s, pattern):
                 return True
@@ -370,20 +450,27 @@ def Included(s, d):
                 return True
     return False
 
+def FG(arg):
+    '''This calls C.fg(), but only if d["-c"] is True.  This avoids
+    having escape sequences sent to stdout.
+    '''
+    if d["-c"]:
+        C.fg(arg)
+
 def PrintMatch(s, d, start, end, isdir=False):
     '''For the match in s, print things out in the appropriate colors.
     '''
     if isdir:
-        c.fg(c_dir)
+        FG(c_dir)
     else:
-        c.fg(c_plain)
-    out(s[:start])
-    c.fg(c_match)
-    out(s[start:end])
+        FG(c_plain)
+    print(s[:start], end="")
+    FG(c_match)
+    print(s[start:end], end="")
     if isdir:
-        c.fg(c_dir)
+        FG(c_dir)
     else:
-        c.fg(c_plain)
+        FG(c_plain)
 
 def PrintMatches(s, d, isdir=False):
     '''Print the string s and show the matches in appropriate
@@ -394,9 +481,9 @@ def PrintMatches(s, d, isdir=False):
     if d["-f"] and not d["-d"]:
         # Files only -- don't print any matches in directory
         dir, file = os.path.split(s)
-        out(dir)
+        print(dir, end="")
         if dir and dir[:-1] != "/":
-            out("/")
+            print("/", end="")
         s = file
     while s:
         if isdir and s[-1] == "/":
@@ -410,18 +497,18 @@ def PrintMatches(s, d, isdir=False):
             # If the last character is a '/', we'll print it in color
             # to make it easier to see directories.
             if s[-1] == "/":
-                out(s[:-1])
-                c.fg(c_dir)
-                out("/")
+                print(s[:-1], end="")
+                FG(c_dir)
+                print("/", end="")
             else:
                 try:
-                    out(s)
+                    print(s, end="")
                 except IOError:
                     # Caused by broken pipe error when used with less
                     exit(0)
             s = ""
-    c.fg(c_plain)
-    out(nl)
+    FG(c_plain)
+    print(nl, end="")
 
 def PrintReport(d):
     '''Note we'll put a '/' after directories to flag them as such.
@@ -437,7 +524,7 @@ def PrintReport(d):
                 dirs.append(i)
             else:
                 files.append(i)
-        c.fg(c_plain)
+        FG(c_plain)
         dirs.sort()
         files.sort()
         if not d["-d"] and not d["-f"]:
@@ -459,7 +546,7 @@ def PrintReport(d):
             if (d["-f"] and D[i]) or (d["-d"] and not D[i]):
                 continue
             PrintMatches(i + "/" if D[i] else i, d, isdir=D[i])
-    c.fg(c_norm)
+    FG(c_norm)
 
 def Join(root, name, d, isdir=False):
     '''Join the given root directory and the file name and store
@@ -473,17 +560,28 @@ def Join(root, name, d, isdir=False):
     is_included = Included(name, d) or Included(root, d)
     if is_ignored:
         return
-    if d["-m"] and not is_included:
+    if d["-e"] and not is_included:
         return
     root, name = Normalize(root), Normalize(name)
-    if not d["-R"]:     # Ignore RCS directories
-        mo = rcs.search(root)
-        if mo or name == "RCS":
-            return
-    if not d["-M"]:     # Ignore Mercurial directories
-        mo = hg.search(root)
-        if mo or name == ".hg":
-            return
+    if d["-V"]:         # Ignore version control directories
+        # git
+        if "git" not in d["-V"]:
+            r = re.compile("/.git$|/.git/")
+            mo = r.search(root)
+            if mo or name == ".git":
+                return
+        # Mercurial
+        if "hg" not in d["-V"]:
+            r = re.compile("/.hg$|/.hg/")
+            mo = r.search(root)
+            if mo or name == ".hg":
+                return
+        # RCS
+        if "RCS" not in d["-V"]:
+            r = re.compile("/RCS$|/RCS/")
+            mo = r.search(root)
+            if mo or name == "RCS":
+                return
     # Check if we're too many levels deep.  We do this by counting '/'
     # characters.  If root starts with '.', then that's the number of
     # levels deep; otherwise, subtract 1.  Note if isdir is True, then
@@ -538,8 +636,6 @@ def Find(dir, d):
 if __name__ == "__main__":
     d = {}  # Settings dictionary
     directories = ParseCommandLine(d)
-    if not d["-c"]:
-        c = Swallow()
     for dir in directories:
         # Following needed on cygwin
         #if dir and dir[0] == "/":

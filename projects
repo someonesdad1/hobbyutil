@@ -486,7 +486,7 @@ dep:
     subdir: util
     descr: Script to display a python program's module dependencies.
         The modules are classified by type (standard library modules and
-        user modules).  It won't find *.pyc/*.pyo files nor modules the
+        user modules).  It won't find .pyc/.pyo files nor modules the
         imports depend on.  It uses regular expressions to find import
         lines in the script, so it may show lines that aren't true imports
         (e.g., an import line inside a conditional that's always false).
@@ -1625,9 +1625,11 @@ root:
 
 rpath:
     subdir: math
-    descr: A python module for a rectilinear path object.  You supply
-        it with a set of points and then you can interpolate to points
-        on the path via a parameter.
+    descr: A python module for modeling rectilinear path object in
+        n-dimensional spaces.  You supply it with a set of points and
+        then you can interpolate to points on the path via a parameter.
+        You can do things like calculate line integrals and complex path
+        integrals.
     files:
         - path.py
         - path.odt*
@@ -1677,7 +1679,7 @@ scramble:
     srcdir: /pylib/pgm
 
 seq:
-    subdir: prog
+    subdir: math
     descr: Python script to send various arithmetical progressions
         to stdout.  Handles integers, floating point, and fractions.
     files:
@@ -2075,12 +2077,17 @@ xor:
 
 xref:
     subdir: prog
-    descr: A C++ console program that will cross reference the tokens
-        in a set of files -- each token will be listed in alphabetical
-        order with the file it occurs in along with the line numbers
-        it's found on.
+    descr: A program that will cross reference the tokens in a set of
+        files -- each token will be listed in alphabetical order with
+        the file it occurs in along with the line numbers it's found on.
+        A C++ program and a python script (you'll need version 3.7, but
+        you can hack on it a bit to get it to run with earlier python 3
+        versions) are included that do the same things.
+
     files:
         - xref.cpp
+        - [/pylib/pgm/xref.py, xref.py]
+        - [/pylib/pgm/xref.readme, xref.readme]
     srcdir: /tools/xref
 
 xyz:

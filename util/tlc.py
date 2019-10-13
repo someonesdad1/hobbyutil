@@ -117,7 +117,7 @@ def ParseCommandLine(d):
     if len(sys.argv) < 2:
         Usage(d)
     try:
-        opts, args = getopt.getopt(sys.argv[1:], "deux")
+        opts, args = getopt.getopt(sys.argv[1:], "deuxX")
     except getopt.GetoptError as e:
         print(str(e))
         exit(1)

@@ -1,12 +1,11 @@
 # vim: noet
 
-p = project_list
-t = tutorial
 r = /usr/local/bin/rst2html.py
 
-all:  $p.html $t.html
+all:  project_list.html tutorial.html
 
-$p.html:  $p.rst
-	$r $< >$@
-$t.html:  $t.rst
+project_list.html:  project_list.rst
+	$r $< $>
+
+tutorial.html:  tutorial.rst
 	$r $< >$@

@@ -79,20 +79,22 @@ Math
 |   Provides some common graph papers in PDF files that print on ANSI A paper.
 | `math/oo_math.zip <math/oo_math.zip>`_ (268)
 |   Introduces the equation-writing capabilities of Open Office 2.0.  Includes a cheatsheet that you can modify.
-| `math/parse_complex.py <math/parse_complex.py>`_ (5)
+| `math/parse_complex.py <math/parse_complex.py>`_ (7)
 |   Parse complex numbers when they are written in the ways humans like to write them.  The floating point type can be specified, which allows you to keep the full precision of the problem.
 | `math/primes.zip <math/primes.zip>`_ (20)
 |   Some python scripts that deal with primes, factoring, and integer properties.
 | `math/QuickMultDiv.pdf <math/QuickMultDiv.pdf>`_ (111)
 |   Discussion of how to do multiplications and divisions by hand when you only need a specified number of significant figures in the answer.
-| `math/rand.zip <math/rand.zip>`_ (160)
+| `math/rand.zip <math/rand.zip>`_ (161)
 |   A pure python script for generating random numbers from various distributions to stdout.
 | `math/root.zip <math/root.zip>`_ (59)
 |   Pure-python root-finding methods such as bisection, Brent's method, Ridder's method, Newton-Raphson, and a general-purpose method by Jack Crenshaw that uses inverse parabolic interpolation.
 | `math/rpath.zip <math/rpath.zip>`_ (275)
-|   A python module for a rectilinear path object.  You supply it with a set of points and then you can interpolate to points on the path via a parameter.
+|   A python module for modeling rectilinear path object in n-dimensional spaces.  You supply it with a set of points and then you can interpolate to points on the path via a parameter. You can do things like calculate line integrals and complex path integrals.
 | `math/scale.zip <math/scale.zip>`_ (480)
 |   The scale.pdf file contains two sheets of paper with slide rule type scales on them. You may find it useful for simple technical calculations.
+| `math/seq.zip <math/seq.zip>`_ (19)
+|   Python script to send various arithmetical progressions to stdout.  Handles integers, floating point, and fractions.
 | `math/shorttbl.zip <math/shorttbl.zip>`_ (370)
 |   A set of tables of elementary math functions intended to print on half of an ANSI-A sized piece of paper.
 | `math/spiral.zip <math/spiral.zip>`_ (15)
@@ -143,11 +145,11 @@ Programming
 |   A python script that will produce permutations and combinations of the lines in a file. Can be useful for generating test cases.
 | `prog/fset.py <prog/fset.py>`_ (5)
 |   Treat lines of files as a set. Allows you to look at the union, intersection, difference, etc. between the lines of various files.
-| `prog/hg.zip <prog/hg.zip>`_ (50)
+| `prog/hg.zip <prog/hg.zip>`_ (51)
 |   Some python scripts that make it easier to work with Mercurial repositories.
-| `prog/license.zip <prog/license.zip>`_ (178)
+| `prog/license.zip <prog/license.zip>`_ (179)
 |   This is a python script that will allow you to change the license you use in your source code files.
-| `prog/lwtest.zip <prog/lwtest.zip>`_ (142)
+| `prog/lwtest.zip <prog/lwtest.zip>`_ (188)
 |   Lightweight python script testing framework based on some work by Raymond Hettinger.  Python's unittest module is unfriendly to the test/debug process because it intercepts the standard streams, which doesn't let you use the python debugger to examine your code.
 | `prog/manufy.py <prog/manufy.py>`_ (2)
 |   Python script to convert text lines to have double quotes and a newline at the end. This is useful to allow you to quickly write text manpages for C or C++ code.
@@ -155,8 +157,6 @@ Programming
 |   How to call python functions from Open Office Calc spreadsheets.
 | `prog/python.zip <prog/python.zip>`_ (537)
 |   Discusses why learning the python programming language might be a good thing for technical folks.
-| `prog/seq.zip <prog/seq.zip>`_ (18)
-|   Python script to send various arithmetical progressions to stdout.  Handles integers, floating point, and fractions.
 | `prog/shuffle.c <prog/shuffle.c>`_ (30)
 |   C program to randomly shuffle the bytes of a file.
 | `prog/sig.zip <prog/sig.zip>`_ (333)
@@ -167,7 +167,7 @@ Programming
 |   A short C++ program that will read all the bytes from the files given on the command line and compute various statistics from them.
 | `prog/ts.zip <prog/ts.zip>`_ (144)
 |   The ts.py script provides facilities for text substitution in text files.  It has only 3 basic commands (define a substitution, turn  the output on/off, and include a file) and the ability to include blocks of python code in the text file.  Though it's relatively simple to use, it can provide a fair bit of power.
-| `prog/util.zip <prog/util.zip>`_ (103)
+| `prog/util.zip <prog/util.zip>`_ (108)
 |   Contains a number of miscellaneous python functions I've written and collected from the web.
 | `prog/wordnum.zip <prog/wordnum.zip>`_ (27)
 |   A python script that can convert back and forth between numbers and their word forms.  Handles short and long scales, ordinals, integers, floats (normal and exponential notation), and fractions.  Easy interface through an object's function call; wordnum(36) gives 'thirty six'; wordnum('thirty six') returns the integer 36.  Tested on python 2.7.6 and 3.4.0.
@@ -175,8 +175,8 @@ Programming
 |   Two python scripts to wrap and unwrap text files.
 | `prog/xor.zip <prog/xor.zip>`_ (210)
 |   C++ program to XOR a data file and key file together to encrypt a file.
-| `prog/xref.cpp <prog/xref.cpp>`_ (43)
-|   A C++ console program that will cross reference the tokens in a set of files -- each token will be listed in alphabetical order with the file it occurs in along with the line numbers it's found on.
+| `prog/xref.zip <prog/xref.zip>`_ (67)
+|   A program that will cross reference the tokens in a set of files -- each token will be listed in alphabetical order with the file it occurs in along with the line numbers it's found on. A C++ program and a python script (you'll need version 3.7, but you can hack on it a bit to get it to run with earlier python 3 versions) are included that do the same things.
 
 
 Science
@@ -202,7 +202,7 @@ Science
 |   Python script that prints out the dimensions of a scaled solar system.  You can use it to make a scale solar system in your yard or on your street.
 | `science/SphericalShell.pdf <science/SphericalShell.pdf>`_ (156)
 |   Discusses gravitation and electrostatics inside a uniform spherical shell and why there is no force on a particle. Also looks at Henry Cavendish's elegant experiment in the 1700's showing that the exponent in Coulomb's Law is 2.
-| `science/u.zip <science/u.zip>`_ (355)
+| `science/u.zip <science/u.zip>`_ (353)
 |   A lightweight python library module that provides conversion factors for various physical units.  An experienced scientist or engineer will be using it in a few minutes after seeing an example.
 | `science/GNU_units.pdf <science/GNU_units.pdf>`_ (168)
 |   A short blurb on the capabilities of the useful GNU units program.
@@ -223,7 +223,7 @@ Shop
 |   Discussion and use of old-style machinist calipers.
 | `shop/CartPlatform.pdf <shop/CartPlatform.pdf>`_ (1023)
 |   Simple platform for Harbor Freight garden cart.
-| `shop/chain.zip <shop/chain.zip>`_ (224)
+| `shop/chain.zip <shop/chain.zip>`_ (225)
 |   Python script to help with chain drilling holes and disks.
 | `shop/circ3.zip <shop/circ3.zip>`_ (198)
 |   Python script that calculates the radius/diameter of a circle that passes through three points.
@@ -235,7 +235,7 @@ Shop
 |   Python script that will calculate a solution to the one-dimensional cutting problem.  This problem appears when you have a set of raw materials and need to cut a stated set of workpieces from the stock.
 | `shop/Demagnetizer.pdf <shop/Demagnetizer.pdf>`_ (237)
 |   A simple demagnetizing tool made from scrap materials.
-| `shop/density.zip <shop/density.zip>`_ (484)
+| `shop/density.zip <shop/density.zip>`_ (485)
 |   Python script to display densities of various materials.
 | `shop/DitchPump_pub.pdf <shop/DitchPump_pub.pdf>`_ (3124)
 |   Comments and tips on using a ditch pump to water your lawn.
@@ -253,19 +253,19 @@ Shop
 |   Describes a simple concrete sprinkler guard that my wife designed and built.
 | `shop/hammer.pdf <shop/hammer.pdf>`_ (1288)
 |   Discusses the common hammer types and making a new handle for one.
-| `shop/holes.zip <shop/holes.zip>`_ (333)
+| `shop/holes.zip <shop/holes.zip>`_ (403)
 |   Contains a python script that will help you lay out holes that are equally-spaced around a circle.
-| `shop/HoseFitting.pdf <shop/HoseFitting.pdf>`_ (282)
+| `shop/HoseFitting.pdf <shop/HoseFitting.pdf>`_ (283)
 |   Here's an effective way to secure a hose to a hose fitting. It's better than anything I've found in a store.
 | `shop/LittleVise.pdf <shop/LittleVise.pdf>`_ (250)
 |   Describes a small vise made from 1 inch square bar stock.  It slips into a pocket and is handy for small tasks around the shop and home.
-| `shop/mass.zip <shop/mass.zip>`_ (946)
+| `shop/mass.zip <shop/mass.zip>`_ (947)
 |   Python script to calculate the volume and mass of a project constructed from various primitive geometrical objects.
 | `shop/nozzle.pdf <shop/nozzle.pdf>`_ (452)
 |   Nice hose nozzle you can make if you have a lathe.
 | `shop/pipes.pdf <shop/pipes.pdf>`_ (171)
 |   Derivation of a formula that can be used to make a template for cutting the end of a pipe so that it can be welded to another pipe.
-| `shop/PullingFencePosts.pdf <shop/PullingFencePosts.pdf>`_ (353)
+| `shop/PullingFencePosts.pdf <shop/PullingFencePosts.pdf>`_ (354)
 |   Using a class 2 lever can be a surprisingly effective way to pull fence posts out of the ground.
 | `shop/refcards.zip <shop/refcards.zip>`_ (1793)
 |   Contains some reference cards that will print out on 4 by 6 inch cards. I find these handy to keep in my drafting materials box when I'm doing design work at a drafting board.
@@ -296,13 +296,13 @@ Utilities
 |   Creates a dictionary object in python that lets you treat it in both directions as a mapping.  It's an example of a discrete bijection.
 | `util/cnt.zip <util/cnt.zip>`_ (50)
 |   Command-line utility to count the number of bytes in a file and present a histogram of the results.
-| `util/color.py <util/color.py>`_ (14)
+| `util/color.py <util/color.py>`_ (15)
 |   Python module to provide color printing to a console window. Should work on both Windows and Linux.  Includes functions to show regular expression matches in text printed to the console; these functions are helpful when you are developing complicated regular expressions.
 | `util/dedent.py <util/dedent.py>`_ (1)
 |   Python function that will remove the common space characters from a set of text lines from files given on the command line or stdin.
 | `util/dep.py <util/dep.py>`_ (9)
-|   Script to display a python program's module dependencies. The modules are classified by type (standard library modules and user modules).  It won't find *.pyc/*.pyo files nor modules the imports depend on.  It uses regular expressions to find import lines in the script, so it may show lines that aren't true imports (e.g., an import line inside a conditional that's always false).
-| `util/ds.zip <util/ds.zip>`_ (123)
+|   Script to display a python program's module dependencies. The modules are classified by type (standard library modules and user modules).  It won't find .pyc/.pyo files nor modules the imports depend on.  It uses regular expressions to find import lines in the script, so it may show lines that aren't true imports (e.g., an import line inside a conditional that's always false).
+| `util/ds.zip <util/ds.zip>`_ (124)
 |   Contains python scripts to help you launch datasheets, manuals, and other documentation files from a command line prompt.  I use this script to lauch manuals and ebooks and it quickly finds the ones I want amongst thousands of files.
 | `util/dup.py <util/dup.py>`_ (14)
 |   Python script to find duplicated files in a directory tree.
@@ -322,9 +322,9 @@ Utilities
 |   Python script command line tool to provide a facility for keeping snippets of code handy.
 | `util/lnk.py <util/lnk.py>`_ (2)
 |   Python script to list the files in two directory trees that are hard-linked together.  If you have GNU find, the -samefile option can be used to do this too.
-| `util/loo.zip <util/loo.zip>`_ (29)
+| `util/loo.zip <util/loo.zip>`_ (30)
 |   Python script that will print out the image files in Open Office documents.  Image files that are not at or below the same directory as the document file will be marked '[not relative]'. Missing files will be marked '[missing]'.  It is useful if you link image files into OO files.
-| `util/lookup.zip <util/lookup.zip>`_ (140)
+| `util/lookup.zip <util/lookup.zip>`_ (141)
 |   Package that contains a python script that can help you look up words in a word dictionary and use the information from WordNet to show synonyms, definitions, and types of words (e.g., adjectives, adverbs, nouns, and verbs).
 | `util/mk.py <util/mk.py>`_ (5)
 |   Python script that is invoked with a file that contains lines of file pairs and a recipe.  When the first file is newer than the second, the recipe is executed.
@@ -334,7 +334,7 @@ Utilities
 |   This is a macro processor that is a string substitution tool. You can also include arbitrary python code in your text files. Use mp.py -h to read the man page.
 | `util/pdf.py <util/pdf.py>`_ (17)
 |   This is a python script that can manipulate PDF files. It can concatenate a number of PDF files, select certain pages and write them to another PDF file, rotating pages, watermarking. etc. You'll also need to download the pyPdf library to use this script.
-| `util/pfind.py <util/pfind.py>`_ (17)
+| `util/pfind.py <util/pfind.py>`_ (26)
 |   Python script to find files and directories. Similar to the UNIX find (but not as powerful), but with a simpler syntax.
 | `util/random_phrase.py <util/random_phrase.py>`_ (41)
 |   A python script for generating random phrases of words.  Useful for generating pass phrases.
@@ -346,7 +346,7 @@ Utilities
 |   See where the space is being consumed in a directory tree and where the biggest files are.
 | `util/split_cat.zip <util/split_cat.zip>`_ (5)
 |   Python scripts to split a file into chunks, print out SHA1 hashes of each chunk, and allow you to recombine the chunks later back into the original file.
-| `util/sz.zip <util/sz.zip>`_ (19)
+| `util/sz.zip <util/sz.zip>`_ (20)
 |   Python script to print out sizes of subdirectories.  The output is to one significant figure and is color-coded for quickly seeing where most of the storage space is being taken.
 | `util/tlc.py <util/tlc.py>`_ (6)
 |   Python script to rename all files in a directory to lower or upper case.
@@ -363,5 +363,5 @@ Utilities
 
 
 
-Updated 8 May 2019 9:17:18 am
+Updated 13 Oct 2019 8:49:49 am
 

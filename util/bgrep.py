@@ -2,18 +2,6 @@
 Search for a pattern in a binary file.  If located, the offset(s)
 will be printed out.
 
-Examples (assumes bash-like command line and program aliased to bgrep):
-
-    bgrep -s "\\d+" file
-        Show all numbers and their offsets in the file.
-    bgrep -s "0x[\\dA-Fa-f]+" file
-        Show all hexadecimal numbers and their offsets in the file.
-    bgrep "\\r\\n" file
-        Show the offsets of the carriage return/linefeed pairs.
-    bgrep -s "\\d{1,2}/\\d{1,2}/\\d\\d" file
-        Show the offsets of all dates in the file of the form
-        n1/n1/n2 where n1's are one or two digits numbers and n2
-        is a two digit number.
 '''
 
 # Copyright (C) 2009 Don Peterson
@@ -65,6 +53,18 @@ Some python regular expression special characters:
     \w      Any alphanumeric character
     \W      Any non-alphanumeric character
     \Z      Matches only at the end of the string
+
+Examples (assumes bash-like command line and program aliased to bgrep):
+    bgrep -s "\\d+" file
+        Show all numbers and their offsets in the file.
+    bgrep -s "0x[\\dA-Fa-f]+" file
+        Show all hexadecimal numbers and their offsets in the file.
+    bgrep "\\r\\n" file
+        Show the offsets of the carriage return/linefeed pairs.
+    bgrep -s "\\d{1,2}/\\d{1,2}/\\d\\d" file
+        Show the offsets of all dates in the file of the form
+        n1/n1/n2 where n1's are one or two digits numbers and n2
+        is a two digit number.
 ''' % sys.argv[0]
 
 def Usage():
@@ -193,12 +193,11 @@ def ConvertToBinary(pattern):
         s += chr(d[pattern[i]]*16 + d[pattern[i+1]])
     return s
 
-def main():
+if __name__ == "__main__":
     args = ParseCommandLine()
     pattern = args[0]
     if hex_to_binary:
         pattern = ConvertToBinary(pattern)
-        global plain_text
         plain_text = True
     if len(args) == 1:
         string = sys.stdin.read()
@@ -214,4 +213,3 @@ def main():
             else:
                 PrintOffsets(string, file, offsets, match_objects)
 
-main()

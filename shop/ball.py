@@ -75,8 +75,8 @@ def Usage(status=1):
     path, name = os.path.split(sys.argv[0])
     print('''
 Usage:  {name} OD num_steps
-  Print a table to cut a spherical shape on the lathe.  Dimensions are
-  given in inches and mm.
+  Print a table to cut a spherical shape on the lathe of diameter OD in 
+  inches.  Output dimensions are given in inches and mm.
 '''[1:-1].format(**locals()))
     exit(status)
 
@@ -95,7 +95,7 @@ def ParseCommandLine(d):
         Usage()
     return args
 
-def main():
+if __name__ == "__main__": 
     d = {}  # Options dictionary
     args = ParseCommandLine(d)
     D = float(args[0])
@@ -120,4 +120,3 @@ def main():
         print(f % y, end="")
         print(fm % (in2mm*y))
 
-main()

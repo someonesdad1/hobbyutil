@@ -26,6 +26,10 @@ to their normal values.  Call with arguments the same as fg() to
 define the normal foreground and background colors.  Set the
 default_colors global variable to the default colors you use.
 
+A ColorContext instance is useful as a context manager to ensure that 
+you have normal colors enabled when your script exits.  See the example
+at the end of the file.
+
 These functions should work on both Windows and an environment that
 uses ANSI escape sequences (e.g., an xterm).
 
@@ -104,7 +108,7 @@ except ImportError:
 from __future__ import print_function
 import os
 import sys
-from collections import Iterable
+from collections.abc import Iterable
 from itertools import combinations, permutations
 from pdb import set_trace as xx
 
@@ -349,6 +353,27 @@ class Style(object):
         '''
         normal()
 
+class ColorContext:
+    '''Context manager to ensure the screen colors are reset to desired
+    values when the manager exits.
+    '''
+    def __init__(self, foreground=None, background=None):
+        '''If foreground and background are None, the default colors are
+        used.
+        '''
+        self.foreground = foreground
+        self.background = background
+    def __enter__(self):
+        pass
+    def __exit__(self, type, value, traceback):
+        if self.foreground is None and self.background is None:
+            normal()
+        if self.foreground is None:
+            f = default_colors[0]
+        if self.background is None:
+            b = default_colors[1]
+        fg(f, b)
+
 def PrintMatch(text, regexp, style=Style(yellow, black)):
     '''Print the indicated text in normal colors if there are no matches to
     the regular expression.  If there are matches, print each of them in
@@ -461,3 +486,10 @@ if __name__ == "__main__":
         print(" ", end="")
     fg(white)
     print()
+
+    print("Demo of ColorContext object:")
+    with ColorContext():
+        s = Style(fg=yellow, style="italic")
+        s.set()
+        print("  In yellow italics")
+    print("  Back to normal")

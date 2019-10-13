@@ -61,7 +61,8 @@ except ImportError:
 # Only support tested versions (used 3.6.1 and 2.7.6 on cygwin)
 v = sys.version_info
 version = "{}.{}".format(v.major, v.minor)
-if version not in ("3.6", "2.7"):
+py3 = "3.7 3.6 3.5".split()
+if version not in py3 + ["2.7"]:
     print("{}:  Python {} is an unsupported version".format(sys.argv[0],
             version))
     exit(1)
@@ -126,7 +127,7 @@ def CanBeImported(module):
             return True
         except ImportError:
             return False
-    elif version == "3.6":
+    elif version in py3:
         # This method doesn't actually import the file
         try:
             s = find_spec(module)
@@ -151,7 +152,7 @@ def GetModuleListing():
     # compiled:  Note:  these are manually-built lists.  If you want to
     # support another python version, look at the DLLs in
     # /usr/lib/pythonX.X/lib-dynload.
-    if version == "3.6":
+    if version in py3:
         compiled = set('''
             array asyncio audioop binascii bisect bz2 cmath codecs crypt
             csv ctypes curses datetime dbm decimal fcntl grp hashlib heapq
@@ -186,7 +187,7 @@ def GetModuleListing():
     files.add("sys")  # Must manually add
     listing["stdlib"] = files
     # addons
-    if version == "3.6":
+    if version in py3:
         dir, files = sysconfig.get_paths()["platlib"], set()
         os.chdir(dir)
         for i in glob("*"):

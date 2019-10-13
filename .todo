@@ -12,6 +12,10 @@ Must
 Want
 ----
 
+    * The generated web page for the project should contain a date to let
+      the viewer see the last time the project was updated.  This could be
+      done by giving the key file in the list a '+' character to flag that
+      its timestamp should be gotten.
     * manufy.py doesn't work correctly when it's -h output is manufy'd:  the
       newlines in the quoted lines should be changed to double backslashes.
     * seg.py isn't working yet.
