@@ -4,6 +4,11 @@
 
 Integer after link is file size in bytes divided by 1000
 
+Note:  Unless otherwise noted, the python scripts are written to run
+with python 3.  If the script contains a line like ``from __future__
+import print_function, division``, then it is probable that it will also
+run under python 2.7.
+
 Electrical
 ==========
 
@@ -23,7 +28,7 @@ Electrical
 |   This python script will take a complex impedance in polar coordinates and print out the series and parallel models' values, reactance, dissipation factor, and quality factor.
 | `elec/ind.zip <elec/ind.zip>`_ (1213)
 |   Provides an Open Office spreadsheet that can calculate the inductance of common electrical structures.  Includes a PDF document describing the use and which gives references for the formulas used.
-| `elec/logic_probe.pdf <elec/logic_probe.pdf>`_ (3512)
+| `elec/logic_probe.pdf <elec/logic_probe.pdf>`_ (4258)
 |   Discusses the use of a logic probe.
 | `elec/octopus.pdf <elec/octopus.pdf>`_ (3055)
 |   Build an Octopus, a handy electrical troubleshooting tool (you need an oscilloscope).
@@ -158,7 +163,7 @@ Programming
 | `prog/python.zip <prog/python.zip>`_ (537)
 |   Discusses why learning the python programming language might be a good thing for technical folks.
 | `prog/shuffle.c <prog/shuffle.c>`_ (30)
-|   C program to randomly shuffle the bytes of a file.
+|   C program to randomly shuffle the bytes of a file.  It reads all the bytes of a file into memory, so it cannot be used on arbitrarily large files.
 | `prog/sig.zip <prog/sig.zip>`_ (333)
 |   A python module to format floating point numbers to a specified number of significant figures or round to a specified template.
 | `prog/stack.zip <prog/stack.zip>`_ (6)
@@ -293,7 +298,7 @@ Utilities
 | `util/bgrep.py <util/bgrep.py>`_ (6)
 |   Python script to search for regular expressions and strings in binary files.
 | `util/bidict.zip <util/bidict.zip>`_ (7)
-|   Creates a dictionary object in python that lets you treat it in both directions as a mapping.  It's an example of a discrete bijection.
+|   Creates a dictionary object in python that lets you treat it in both directions as a mapping.
 | `util/cnt.zip <util/cnt.zip>`_ (50)
 |   Command-line utility to count the number of bytes in a file and present a histogram of the results.
 | `util/color.py <util/color.py>`_ (15)
@@ -303,7 +308,7 @@ Utilities
 | `util/dep.py <util/dep.py>`_ (9)
 |   Script to display a python program's module dependencies. The modules are classified by type (standard library modules and user modules).  It won't find .pyc/.pyo files nor modules the imports depend on.  It uses regular expressions to find import lines in the script, so it may show lines that aren't true imports (e.g., an import line inside a conditional that's always false).
 | `util/ds.zip <util/ds.zip>`_ (124)
-|   Contains python scripts to help you launch datasheets, manuals, and other documentation files from a command line prompt.  I use this script to lauch manuals and ebooks and it quickly finds the ones I want amongst thousands of files.
+|   Contains python scripts to help you launch datasheets, manuals, and other documentation files from a command line prompt.  I use this script to launch manuals and ebooks and it quickly finds the ones I want amongst thousands of files.
 | `util/dup.py <util/dup.py>`_ (14)
 |   Python script to find duplicated files in a directory tree.
 | `util/ext.py <util/ext.py>`_ (8)
@@ -328,7 +333,9 @@ Utilities
 |   Package that contains a python script that can help you look up words in a word dictionary and use the information from WordNet to show synonyms, definitions, and types of words (e.g., adjectives, adverbs, nouns, and verbs).
 | `util/mk.py <util/mk.py>`_ (5)
 |   Python script that is invoked with a file that contains lines of file pairs and a recipe.  When the first file is newer than the second, the recipe is executed.
-| `util/mod.py <util/mod.py>`_ (14)
+| `util/mkfile.py <util/mkfile.py>`_ (5)
+|   Python script to make files of a given size.  The -u option constructs allegedly cryptographically-secure random bytes using python's os.urandom() function; on my older computer, it takes about 3 seconds to construct a 1 GByte file of random bytes.
+| `util/mod.py <util/mod.py>`_ (13)
 |   Python script to recursively find files that have changed within a specified time period.
 | `util/mp.py <util/mp.py>`_ (24)
 |   This is a macro processor that is a string substitution tool. You can also include arbitrary python code in your text files. Use mp.py -h to read the man page.
@@ -363,5 +370,5 @@ Utilities
 
 
 
-Updated 13 Oct 2019 8:49:49 am
+Updated 17 Oct 2019 9:57:25 am
 

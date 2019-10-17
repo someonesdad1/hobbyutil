@@ -3,12 +3,16 @@
 Shuffle the bytes of a file in a reversible fashion.  See Usage() for
 how to use.
 
+If you have a source of truly random bytes (e.g., a large file bytes
+produced by a properly vetted physical process), then this file used as
+a seed file will scramble a file in a cryptographically secure way.
+
 Note that there's no way a 32 bit linear congruential random number
 generator is capable of providing all the permutations of a file of
-reasonable size.  The period of the generator is at best 2**32 and
-thus be capable of only providing on the order of 1e9 different
-permutations.  A file of one million bytes will have about 1e5565709
-possible permutations.
+reasonable size.  The period of the generator is at best 2**32 and it is
+capable of only providing on the order of 1e9 different permutations.  A
+file of one million bytes will have about 1e5565709 possible
+permutations.
 
 If you wish to perform some simple testing, test on small files with
 known contents.  For example, I create a file named 'a' that contains
@@ -32,15 +36,6 @@ and you'll find the output file c has the same bytes as the original
 file 'a'.  This demonstrates the process is reversible.
 
 Also perform the same tests using the -f option.
-
-Note:  if you're a programmer, you may be annoyed by my coding style
-of cramming everything together.  This is done so that I can use } or
-{ in vi to quickly shift between functions.  I also like to see as
-many lines possible on the screen; this habit comes from writing
-python programs, which tend to be quite readable.  Finally, a
-syntax-coloring editor makes this compressed vertical form more
-palatable, as the coloring of the comments can break up the code into
-phrases, which is usually done with vertical whitespace.
 
 ----------------------------------------------------------------------
 Algorithm
@@ -635,7 +630,7 @@ void InitializeGenerator(void)
     /* Set the function pointer g.rnd to the random number generator
     to use.  If the -f option was used, then the user supplied a file
     whose bytes will (circularly) supply the random bytes.  If no file
-    was given, the random numbers will be computer from a linear
+    was given, the random numbers will be computed from a linear
     congruential generator (LCG).  
     
     For the LCG, we'll hash the seed command line string using the MD5

@@ -37,6 +37,7 @@ def Error(msg, status=1):
 
 def Usage(d, status=1):
     name = sys.argv[0]
+    st = d["-s"]
     s = '''
 Usage:  {name} [options] [mkfile]
   Monitors the files given on the separate lines of the text file
@@ -46,7 +47,7 @@ Usage:  {name} [options] [mkfile]
       # This is a comment
       src, dest, cmd
   where src is the name of the source file, dest is the name of the
-  destination file, and cmd is command list to execute when src is
+  destination file, and cmd is a command list to execute when src is
   newer than dest.  cmd can be a list of commands separated by ';'
   characters.
 
@@ -65,7 +66,7 @@ Options
   -n    Echo the commands that would be executed but don't call
         them.
   -s t  Sleep time t in s between checking file times.  t can be a
-        floating point number.
+        floating point number.  Default is {st} seconds.
 '''[1:-1]
     print(s.format(**locals()))
     sys.exit(status)
@@ -113,8 +114,8 @@ def GetLines(filename, d):
             continue
         fields = [i.strip() for i in s.split(",", 2)]
         if len(fields) != 3:
-            msg = '''Improper number of fields on line %d:
-  '%s\'''' % (linenum + 1, line)
+            msg = """Improper number of fields on line %d:
+  '%s'""" % (linenum + 1, line)
             Error(msg)
         # Parse the commands
         fields[2] = tuple([i.strip() for i in fields[2].split(";")])

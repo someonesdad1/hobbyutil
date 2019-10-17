@@ -90,7 +90,7 @@ Link | Description
 [prog/manufy.py](prog/manufy.py) | Python script to convert text lines to have double quotes and a newline at the end. This is useful to allow you to quickly write text manpages for C or C++ code.
 [prog/PythonFromCalc.pdf](prog/PythonFromCalc.pdf) | How to call python functions from Open Office Calc spreadsheets.
 [prog/python.zip](prog/python.zip) | Discusses why learning the python programming language might be a good thing for technical folks.
-[prog/shuffle.c](prog/shuffle.c) | C program to randomly shuffle the bytes of a file.
+[prog/shuffle.c](prog/shuffle.c) | C program to randomly shuffle the bytes of a file.  It reads all the bytes of a file into memory, so it cannot be used on arbitrarily large files.
 [prog/sig.zip](prog/sig.zip) | A python module to format floating point numbers to a specified number of significant figures or round to a specified template.
 [prog/stack.zip](prog/stack.zip) | A python module that implements a basic stack.
 [prog/sumbytes.cpp](prog/sumbytes.cpp) | A short C++ program that will read all the bytes from the files given on the command line and compute various statistics from them.
@@ -165,12 +165,12 @@ Link | Description
 [util/asc.py](util/asc.py) | Python script to print out an ASCII character table in decimal, hex, or octal.  Useful at a command line to see your terminal's encoding.
 [util/bd.c](util/bd.c) | Performs a comparison between binary files; differences are printed in hex dump format.
 [util/bgrep.py](util/bgrep.py) | Python script to search for regular expressions and strings in binary files.
-[util/bidict.zip](util/bidict.zip) | Creates a dictionary object in python that lets you treat it in both directions as a mapping.  It's an example of a discrete bijection.
+[util/bidict.zip](util/bidict.zip) | Creates a dictionary object in python that lets you treat it in both directions as a mapping.
 [util/cnt.zip](util/cnt.zip) | Command-line utility to count the number of bytes in a file and present a histogram of the results.
 [util/color.py](util/color.py) | Python module to provide color printing to a console window. Should work on both Windows and Linux.  Includes functions to show regular expression matches in text printed to the console; these functions are helpful when you are developing complicated regular expressions.
 [util/dedent.py](util/dedent.py) | Python function that will remove the common space characters from a set of text lines from files given on the command line or stdin.
 [util/dep.py](util/dep.py) | Script to display a python program's module dependencies. The modules are classified by type (standard library modules and user modules).  It won't find .pyc/.pyo files nor modules the imports depend on.  It uses regular expressions to find import lines in the script, so it may show lines that aren't true imports (e.g., an import line inside a conditional that's always false).
-[util/ds.zip](util/ds.zip) | Contains python scripts to help you launch datasheets, manuals, and other documentation files from a command line prompt.  I use this script to lauch manuals and ebooks and it quickly finds the ones I want amongst thousands of files.
+[util/ds.zip](util/ds.zip) | Contains python scripts to help you launch datasheets, manuals, and other documentation files from a command line prompt.  I use this script to launch manuals and ebooks and it quickly finds the ones I want amongst thousands of files.
 [util/dup.py](util/dup.py) | Python script to find duplicated files in a directory tree.
 [util/ext.py](util/ext.py) | Python script to make a list of the extensions used in file names and their counts in the directories given on the command line.
 [util/fdiff.zip](util/fdiff.zip) | Contains python scripts that can identify differences in two directory trees and perform updates as needed to synchronize these two trees.
@@ -183,6 +183,7 @@ Link | Description
 [util/loo.zip](util/loo.zip) | Python script that will print out the image files in Open Office documents.  Image files that are not at or below the same directory as the document file will be marked '[not relative]'. Missing files will be marked '[missing]'.  It is useful if you link image files into OO files.
 [util/lookup.zip](util/lookup.zip) | Package that contains a python script that can help you look up words in a word dictionary and use the information from WordNet to show synonyms, definitions, and types of words (e.g., adjectives, adverbs, nouns, and verbs).
 [util/mk.py](util/mk.py) | Python script that is invoked with a file that contains lines of file pairs and a recipe.  When the first file is newer than the second, the recipe is executed.
+[util/mkfile.py](util/mkfile.py) | Python script to make files of a given size.  The -u option constructs allegedly cryptographically-secure random bytes using python's os.urandom() function; on my older computer, it takes about 3 seconds to construct a 1 GByte file of random bytes.
 [util/mod.py](util/mod.py) | Python script to recursively find files that have changed within a specified time period.
 [util/mp.py](util/mp.py) | This is a macro processor that is a string substitution tool. You can also include arbitrary python code in your text files. Use mp.py -h to read the man page.
 [util/pdf.py](util/pdf.py) | This is a python script that can manipulate PDF files. It can concatenate a number of PDF files, select certain pages and write them to another PDF file, rotating pages, watermarking. etc. You'll also need to download the pyPdf library to use this script.
@@ -200,5 +201,5 @@ Link | Description
 [util/unx.py](util/unx.py) | Produces a list of files that are candidates for turning their execute bit permission off.  This is useful on Windows machines running cygwin to avoid a "sea of green" in an ls listing with colorizing on.
 [util/spc_to_underscore.py](util/spc_to_underscore.py) | Python script to replace all space characters in file names with underscores.
 
-Updated 13 Oct 2019 8:49:49 am
+Updated 17 Oct 2019 9:57:25 am
 

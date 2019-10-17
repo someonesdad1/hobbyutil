@@ -50,7 +50,7 @@ Usage:  {name} dir1 [dir2...]
   Display duplicate files in directories.  In the output, 1: means
   dir1, 2: means dir2, etc.  Mercurial, git, and hidden
   directories/files and zero-length files are ignored by default.
-  Color can be used to show lager file sizes in bytes (via ANSI escape
+  Color can be used to show larger file sizes in bytes (via ANSI escape
   codes) to alert you to opportunities to get back some disk space.
 
   Hard links are reported (turn off with -L); use -l to have soft

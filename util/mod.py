@@ -1,32 +1,37 @@
 '''
 Finds files modified within a specified time frame.
-----------------------------------------------------------------------
-TODO:
+
+  TODO:
  
-* There are numerous searches that one might like to make:
- 
-    - Find files that last changed at the date D +/- t.  Let the
-      date be defined in various ways:
-        - Jan8,2015-3:10:14
-        - 8Jan2015-3:10:14
-        - 8Jan2015-3:10:14
-        - 20150108-3:10:14
-        - 1/8/15-3:10:14
-        - 1/8/2015-3:10:14
-    - The last two forms need an option to let you use D/M/Y if you
-      wish.
-    - The above form using a hyphen might not be desired because
-      you'd want to use it to indicate an interval.  For example,
-      you could specify the time parameter as '8Jan2015-16Jan2015'
-      to designate an interval.
- 
-* Look at man stat for some other info to use.  atime is last
-  access, mtime is last mod time, ctime is last owner/group/perm
-  change on UNIX (creation time on Windows).
- 
-  - Thus there might be two searches:  modification time and access
-    time.
-  - Use -s option with letter:  a, c, or m
+    * The -l option should use color instead of spacing to print out 
+      the ages.  Currently, a long filename can cause inconveniently
+      long lines that are hard to read.  Or add the -L option to use
+      color.
+
+    * There are numerous searches that one might like to make:
+    
+        - Find files that last changed at the date D +/- t.  Let the
+        date be defined in various ways:
+            - Jan8,2015-3:10:14
+            - 8Jan2015-3:10:14
+            - 8Jan2015-3:10:14
+            - 20150108-3:10:14
+            - 1/8/15-3:10:14
+            - 1/8/2015-3:10:14
+        - The last two forms need an option to let you use D/M/Y if you
+        wish.
+        - The above form using a hyphen might not be desired because
+        you'd want to use it to indicate an interval.  For example,
+        you could specify the time parameter as '8Jan2015-16Jan2015'
+        to designate an interval.
+    
+    * Look at man stat for some other info to use.  atime is last
+    access, mtime is last mod time, ctime is last owner/group/perm
+    change on UNIX (creation time on Windows).
+    
+    - Thus there might be two searches:  modification time and access
+        time.
+    - Use -s option with letter:  a, c, or m
  
 '''
 # Copyright (C) 2011, 2016 Don Peterson
@@ -45,7 +50,7 @@ import getopt
 import time
 import re
 from sig import sig
-from pprint import pprint as pp
+from pdb import set_trace as xx 
 
 # The color.py module is used to get color output when the -D option is
 # used, but it's not required.
@@ -68,39 +73,23 @@ C = color
 manual = '''
 Usage:  {name} [options] [age [dir [dir2...]]]
   Recursively print out changed files younger than the given age in the
-  indicated directories (defaults to current directory).  age is a
-  number with an optional letter suffix (defaults to 1d):
+  indicated directories.  age is a number with an optional letter suffix:
       s   seconds       M   minutes         h   hours
       w   weeks         m   months          y   years
-      d   days [default]                    i   infinity
+      d   days [default]                    
   age can contain a hyphen specifying a time interval to which the
   printed files must belong (example: '1y-2y' means the file changed
   between 1 and 2 years ago).
-{verbose}
-Options
-    -c  Include commonly-named files
-    -D  Turn debug printing on
-    -H  Verbose help
-    -h  This help
-    -l  Decorate output with time since last change
-    -m  Include ignored directories (repositories, etc.)
-    -n  Show files that have not changed
-    -p  Ignore picture files
-    -r  Do not recurse
-    -t  Sort the output names by age (most-recently changed last)
-    -w  Make names case insensitive (for Windows)
-    -x regexp    Ignore files that match regexp (more than one -x OK)
-'''.strip()
 
-manual_extra = '''
+  i represents an infinite time in the past.
+
   Certain files and directories are ignored (see the default containers
-  in the ParseCommandLine() function).  For example, the common source
-  code control repository directories such as .hg, .git, and .bzr are
-  ignored.
+  in the ParseCommandLine() function).  For example, the common version
+  control repository directories such as .hg, .git, and .bzr are ignored.
 
-  The -l option causes the file's age to be appended; note that the
-  indentation is a function of the time unit used:  the farther to the
-  right it is, the older the file is.
+  The -l option causes the file's age to be appended.  The indentation
+  is a function of the time unit used:  the farther to the right it is,
+  the older the file is.
 
 Examples (doc is the directory to search):
 
@@ -114,23 +103,25 @@ Examples (doc is the directory to search):
             {short_name} 1w-i doc      or       {short_name} i-1w doc
     * Find files that didn't change more than 1 week ago:
             {short_name} -n 1w-i doc
-'''
 
-details = '''
-Details
-  The primary use case for the {short_name} script is to help me find
-  files that I have recently worked on.  With tens of thousands of my
-  non-system files in thousands of directories (30+ years of saving
-  data), it can be hard to remember where something is that I recently
-  worked on.  But if I can pin down the date I did the work, then this
-  script is useful in presenting me with a list of files that changed
-  during that time. 
-  
-  For more fine-grained searches, use find(1).'''
+Options
+    -c  Include commonly-named files
+    -D  Turn debug printing on (see how files/directories are processed)
+    -h  This help
+    -l  Decorate output with time since last change
+    -m  Include ignored directories (repositories, etc.)
+    -n  Show files that have not changed
+    -p  Ignore picture files
+    -r  Do not recurse
+    -t  Sort the output names by age (most-recently changed last)
+    -w  Make names case insensitive (for Windows)
+    -x regexp    Ignore files that match regexp (more than one -x OK)
+'''.strip()
+
+default_time = "1w"
 
 def ParseCommandLine(d):
     d["-c"] = False
-    d["-H"] = False
     d["-l"] = False
     d["-m"] = False
     d["-n"] = False
@@ -149,7 +140,7 @@ def ParseCommandLine(d):
         .jpg .pbm .pct .pgm .pic .png .ppm .ps .psp .pspframe .pspimage
         .pspshape .psptube .svg .tif .tiff .tub .xbm .xpm
     '''.replace(nl, " ").split()))
-    # Regular expressions for common files that should be ignored.
+    # Regular expressions for common files that should be ignored
     d["common_files"] = set((
         re.compile(r"^\.vi$", re.I),
         re.compile(r"^\.z$", re.I),
@@ -163,7 +154,7 @@ def ParseCommandLine(d):
         re.compile(r"^.*\.obj$", re.I),
     ))
     try:
-        optlist, args = getopt.getopt(sys.argv[1:], "cDHhlmnprtx:")
+        optlist, args = getopt.getopt(sys.argv[1:], "cDhlmnprtx:")
     except getopt.GetoptError as e:
         print(str(e))
         sys.exit(1)
@@ -172,9 +163,6 @@ def ParseCommandLine(d):
             d["-c"] = not d["-c"]
         elif o == "-D":
             d["dbg"] = True
-        elif o == "-H":
-            d["-H"] = True
-            Usage(d, 0)
         elif o == "-h":
             Usage(d, 0)
         elif o == "-l":
@@ -193,8 +181,12 @@ def ParseCommandLine(d):
             d["-w"] = not d["-w"]
         elif o == "-x":
             d["-x"].append(a)
-    if len(args) == 0:
-        args = ["1d", "."]  # Default age and directory
+    if not args:
+        if 0:
+            args = [default_time, "."]  # Default age and directory
+        else:
+            # Don't allow a default so usage is seen with no args
+            Usage(d, 0)
     elif len(args) == 1:
         args.append(".")    # Default directory
     # Compile any regular expressions
@@ -207,8 +199,11 @@ def ParseCommandLine(d):
     if d["dbg"]:     # Debug print the settings
         fg = C.lmagenta
         Dbg("Settings:", fg=fg)
-        for key in sorted("dbg -n now -t -w -m -H -p -l -x -r -c".split()):
-            Dbg("  {} =".format(key), d[key], fg=fg)
+        for key in sorted("dbg -n now -t -w -m -p -l -x -r -c".split()):
+            if key == "now":
+                Dbg("  {} =".format(key), d[key], "s since 1 Jan 1970", fg=fg)
+            else:
+                Dbg("  {} =".format(key), d[key], fg=fg)
     return args
 
 def Error(msg, status=1):
@@ -218,9 +213,8 @@ def Error(msg, status=1):
 def Usage(d, status=1):
     name = sys.argv[0]
     short_name = os.path.split(name)[1]
-    verbose = manual_extra.format(**locals()) if d["-H"] else ""
+    dt = default_time
     print(manual.format(**locals()))
-    print(details.format(**locals()))
     exit(status)
 
 def GetTime(age):

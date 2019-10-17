@@ -378,10 +378,14 @@ ul.auto-toc {
 </ul>
 </div>
 <p>Integer after link is file size in bytes divided by 1000</p>
+<p>Note:  Unless otherwise noted, the python scripts are written to run
+with python 3.  If the script contains a line like <tt class="docutils literal">from __future__
+import print_function, division</tt>, then it is probable that it will also
+run under python 2.7.</p>
 <div class="section" id="electrical">
 <h1><a class="toc-backref" href="#id1">Electrical</a></h1>
 <div class="line-block">
-<div class="line"><a class="reference external" href="elec/BNC_connector_power.pdf">elec/BNC_connector_power.pdf</a> (1644)</div>
+<div class="line"><a class="reference external" href="elec/BNC_connector_power.pdf">elec/BNC_connector_power.pdf</a> (1645)</div>
 <div class="line-block">
 <div class="line">Gives some experimental data about using RF coax cables with BNC connectors for DC and low-frequency power.</div>
 </div>
@@ -397,6 +401,10 @@ ul.auto-toc {
 <div class="line-block">
 <div class="line">Describes a technique of estimating a capacitor's ESR (equivalent series resistance) without having to buy a special meter.</div>
 </div>
+<div class="line"><a class="reference external" href="elec/fuse_as_shunt.pdf">elec/fuse_as_shunt.pdf</a> (486)</div>
+<div class="line-block">
+<div class="line">Notes on using ATO automobile fuses as poor-man's shunts.</div>
+</div>
 <div class="line"><a class="reference external" href="elec/hppn.zip">elec/hppn.zip</a> (81)</div>
 <div class="line-block">
 <div class="line">This is a compilation of various 8-digit HP part numbers translated into more identifiable numbers.  This list may be of use to those with old HP instruments that need to find a replacement part.</div>
@@ -409,6 +417,10 @@ ul.auto-toc {
 <div class="line-block">
 <div class="line">Provides an Open Office spreadsheet that can calculate the inductance of common electrical structures.  Includes a PDF document describing the use and which gives references for the formulas used.</div>
 </div>
+<div class="line"><a class="reference external" href="elec/logic_probe.pdf">elec/logic_probe.pdf</a> (3512)</div>
+<div class="line-block">
+<div class="line">Discusses the use of a logic probe.</div>
+</div>
 <div class="line"><a class="reference external" href="elec/octopus.pdf">elec/octopus.pdf</a> (3055)</div>
 <div class="line-block">
 <div class="line">Build an Octopus, a handy electrical troubleshooting tool (you need an oscilloscope).</div>
@@ -420,6 +432,10 @@ ul.auto-toc {
 <div class="line"><a class="reference external" href="elec/react.zip">elec/react.zip</a> (90)</div>
 <div class="line-block">
 <div class="line">Contains two reactance charts in PDF form along with a short file describing their use.</div>
+</div>
+<div class="line"><a class="reference external" href="elec/res.zip">elec/res.zip</a> (364)</div>
+<div class="line-block">
+<div class="line">Contains two tools that help you deal with resistors.</div>
 </div>
 <div class="line"><a class="reference external" href="elec/RMS.pdf">elec/RMS.pdf</a> (133)</div>
 <div class="line-block">
@@ -438,9 +454,13 @@ ul.auto-toc {
 <div class="section" id="engineering">
 <h1><a class="toc-backref" href="#id2">Engineering</a></h1>
 <div class="line-block">
-<div class="line"><a class="reference external" href="eng/antifreeze.pdf">eng/antifreeze.pdf</a> (1456)</div>
+<div class="line"><a class="reference external" href="eng/antifreeze.pdf">eng/antifreeze.pdf</a> (1389)</div>
 <div class="line-block">
 <div class="line">How to calculate how much antifreeze to add to an existing partially-filled radiator to get a desired concentration.  Also looks at the refractometer.</div>
+</div>
+<div class="line"><a class="reference external" href="eng/flow.pdf">eng/flow.pdf</a> (18)</div>
+<div class="line-block">
+<div class="line">Nomograph for pipe flow.</div>
 </div>
 <div class="line"><a class="reference external" href="eng/eng_grid.py">eng/eng_grid.py</a> (8)</div>
 <div class="line-block">
@@ -448,11 +468,7 @@ ul.auto-toc {
 </div>
 <div class="line"><a class="reference external" href="eng/iapws.zip">eng/iapws.zip</a> (72)</div>
 <div class="line-block">
-<div class="line">Contains C++ and python code that implements the IAPWS95 equations for the thermodynamic properties of water. See <a class="reference external" href="http://www.iapws.org">http://www.iapws.org</a>.</div>
-</div>
-<div class="line"><a class="reference external" href="eng/flow.pdf">eng/flow.pdf</a> (18)</div>
-<div class="line-block">
-<div class="line">Nomograph for pipe flow.</div>
+<div class="line">Contains C++ and python code that implements the IAPWS95 equations for the thermodynamic properties of water.</div>
 </div>
 <div class="line"><a class="reference external" href="eng/pqs.zip">eng/pqs.zip</a> (550)</div>
 <div class="line-block">
@@ -471,7 +487,7 @@ ul.auto-toc {
 <div class="line-block">
 <div class="line">A document containing small math tables that will print out to be about the size of a business card.</div>
 </div>
-<div class="line"><a class="reference external" href="math/Concise300.pdf">math/Concise300.pdf</a> (503)</div>
+<div class="line"><a class="reference external" href="math/Concise300.pdf">math/Concise300.pdf</a> (518)</div>
 <div class="line-block">
 <div class="line">Discusses the Concise 300, a circular slide rule still in production in Japan.</div>
 </div>
@@ -503,15 +519,19 @@ ul.auto-toc {
 <div class="line-block">
 <div class="line">Introduces the equation-writing capabilities of Open Office 2.0.  Includes a cheatsheet that you can modify.</div>
 </div>
-<div class="line"><a class="reference external" href="math/parse_complex.py">math/parse_complex.py</a> (5)</div>
+<div class="line"><a class="reference external" href="math/parse_complex.py">math/parse_complex.py</a> (7)</div>
 <div class="line-block">
 <div class="line">Parse complex numbers when they are written in the ways humans like to write them.  The floating point type can be specified, which allows you to keep the full precision of the problem.</div>
+</div>
+<div class="line"><a class="reference external" href="math/primes.zip">math/primes.zip</a> (20)</div>
+<div class="line-block">
+<div class="line">Some python scripts that deal with primes, factoring, and integer properties.</div>
 </div>
 <div class="line"><a class="reference external" href="math/QuickMultDiv.pdf">math/QuickMultDiv.pdf</a> (111)</div>
 <div class="line-block">
 <div class="line">Discussion of how to do multiplications and divisions by hand when you only need a specified number of significant figures in the answer.</div>
 </div>
-<div class="line"><a class="reference external" href="math/rand.zip">math/rand.zip</a> (160)</div>
+<div class="line"><a class="reference external" href="math/rand.zip">math/rand.zip</a> (161)</div>
 <div class="line-block">
 <div class="line">A pure python script for generating random numbers from various distributions to stdout.</div>
 </div>
@@ -519,13 +539,17 @@ ul.auto-toc {
 <div class="line-block">
 <div class="line">Pure-python root-finding methods such as bisection, Brent's method, Ridder's method, Newton-Raphson, and a general-purpose method by Jack Crenshaw that uses inverse parabolic interpolation.</div>
 </div>
-<div class="line"><a class="reference external" href="math/rpath.zip">math/rpath.zip</a> (35)</div>
+<div class="line"><a class="reference external" href="math/rpath.zip">math/rpath.zip</a> (275)</div>
 <div class="line-block">
-<div class="line">A python module for a rectilinear path object.  You supply it with a set of points and then you can interpolate to points on the path via a parameter.</div>
+<div class="line">A python module for modeling rectilinear path object in n-dimensional spaces.  You supply it with a set of points and then you can interpolate to points on the path via a parameter. You can do things like calculate line integrals and complex path integrals.</div>
 </div>
 <div class="line"><a class="reference external" href="math/scale.zip">math/scale.zip</a> (480)</div>
 <div class="line-block">
 <div class="line">The scale.pdf file contains two sheets of paper with slide rule type scales on them. You may find it useful for simple technical calculations.</div>
+</div>
+<div class="line"><a class="reference external" href="math/seq.zip">math/seq.zip</a> (19)</div>
+<div class="line-block">
+<div class="line">Python script to send various arithmetical progressions to stdout.  Handles integers, floating point, and fractions.</div>
 </div>
 <div class="line"><a class="reference external" href="math/shorttbl.zip">math/shorttbl.zip</a> (370)</div>
 <div class="line-block">
@@ -560,9 +584,13 @@ ul.auto-toc {
 <div class="line-block">
 <div class="line">Organ donation became an important topic for me after my granddaughter was killed.</div>
 </div>
-<div class="line"><a class="reference external" href="misc/fountain_pen_primer.pdf">misc/fountain_pen_primer.pdf</a> (3771)</div>
+<div class="line"><a class="reference external" href="misc/fountain_pen_primer.pdf">misc/fountain_pen_primer.pdf</a> (1841)</div>
 <div class="line-block">
 <div class="line">Discusses the care and feeding of fountain pens as writing tools.</div>
+</div>
+<div class="line"><a class="reference external" href="misc/inflation.py">misc/inflation.py</a> (16)</div>
+<div class="line-block">
+<div class="line">Calculate the effects of inflation on prices for the years 1914 to the present.  For example, $1 to purchase food in 1960 is equivalent to about $8.5 in 2018.</div>
 </div>
 <div class="line"><a class="reference external" href="misc/Markup.pdf">misc/Markup.pdf</a> (170)</div>
 <div class="line-block">
@@ -580,9 +608,17 @@ ul.auto-toc {
 <div class="line-block">
 <div class="line">Shows a scale drawing of various ISO and US paper sizes.</div>
 </div>
+<div class="line"><a class="reference external" href="misc/pills.py">misc/pills.py</a> (5)</div>
+<div class="line-block">
+<div class="line">Calculate the dates you'll run out of prescription pills.</div>
+</div>
 <div class="line"><a class="reference external" href="misc/shaving.pdf">misc/shaving.pdf</a> (92)</div>
 <div class="line-block">
 <div class="line">Some thoughts on shaving your beard.</div>
+</div>
+<div class="line"><a class="reference external" href="misc/tips1.pdf">misc/tips1.pdf</a> (7576)</div>
+<div class="line-block">
+<div class="line">Various tips I've found over the years.</div>
 </div>
 <div class="line"><a class="reference external" href="misc/XmasTomatoes.pdf">misc/XmasTomatoes.pdf</a> (343)</div>
 <div class="line-block">
@@ -605,15 +641,15 @@ ul.auto-toc {
 <div class="line-block">
 <div class="line">Treat lines of files as a set. Allows you to look at the union, intersection, difference, etc. between the lines of various files.</div>
 </div>
-<div class="line"><a class="reference external" href="prog/hg.zip">prog/hg.zip</a> (46)</div>
+<div class="line"><a class="reference external" href="prog/hg.zip">prog/hg.zip</a> (51)</div>
 <div class="line-block">
 <div class="line">Some python scripts that make it easier to work with Mercurial repositories.</div>
 </div>
-<div class="line"><a class="reference external" href="prog/license.zip">prog/license.zip</a> (175)</div>
+<div class="line"><a class="reference external" href="prog/license.zip">prog/license.zip</a> (179)</div>
 <div class="line-block">
 <div class="line">This is a python script that will allow you to change the license you use in your source code files.</div>
 </div>
-<div class="line"><a class="reference external" href="prog/lwtest.zip">prog/lwtest.zip</a> (142)</div>
+<div class="line"><a class="reference external" href="prog/lwtest.zip">prog/lwtest.zip</a> (188)</div>
 <div class="line-block">
 <div class="line">Lightweight python script testing framework based on some work by Raymond Hettinger.  Python's unittest module is unfriendly to the test/debug process because it intercepts the standard streams, which doesn't let you use the python debugger to examine your code.</div>
 </div>
@@ -628,10 +664,6 @@ ul.auto-toc {
 <div class="line"><a class="reference external" href="prog/python.zip">prog/python.zip</a> (537)</div>
 <div class="line-block">
 <div class="line">Discusses why learning the python programming language might be a good thing for technical folks.</div>
-</div>
-<div class="line"><a class="reference external" href="prog/seq.zip">prog/seq.zip</a> (18)</div>
-<div class="line-block">
-<div class="line">Python script to send various arithmetical progressions to stdout.  Handles integers, floating point, and fractions.</div>
 </div>
 <div class="line"><a class="reference external" href="prog/shuffle.c">prog/shuffle.c</a> (30)</div>
 <div class="line-block">
@@ -653,7 +685,7 @@ ul.auto-toc {
 <div class="line-block">
 <div class="line">The ts.py script provides facilities for text substitution in text files.  It has only 3 basic commands (define a substitution, turn  the output on/off, and include a file) and the ability to include blocks of python code in the text file.  Though it's relatively simple to use, it can provide a fair bit of power.</div>
 </div>
-<div class="line"><a class="reference external" href="prog/util.zip">prog/util.zip</a> (98)</div>
+<div class="line"><a class="reference external" href="prog/util.zip">prog/util.zip</a> (108)</div>
 <div class="line-block">
 <div class="line">Contains a number of miscellaneous python functions I've written and collected from the web.</div>
 </div>
@@ -669,9 +701,9 @@ ul.auto-toc {
 <div class="line-block">
 <div class="line">C++ program to XOR a data file and key file together to encrypt a file.</div>
 </div>
-<div class="line"><a class="reference external" href="prog/xref.cpp">prog/xref.cpp</a> (43)</div>
+<div class="line"><a class="reference external" href="prog/xref.zip">prog/xref.zip</a> (67)</div>
 <div class="line-block">
-<div class="line">A C++ console program that will cross reference the tokens in a set of files -- each token will be listed in alphabetical order with the file it occurs in along with the line numbers it's found on.</div>
+<div class="line">A program that will cross reference the tokens in a set of files -- each token will be listed in alphabetical order with the file it occurs in along with the line numbers it's found on. A C++ program and a python script (you'll need version 3.7, but you can hack on it a bit to get it to run with earlier python 3 versions) are included that do the same things.</div>
 </div>
 </div>
 </div>
@@ -694,7 +726,7 @@ ul.auto-toc {
 <div class="line-block">
 <div class="line">Shows a plot of the light from the sky measured with a cheap photodiode.  This is a simple experiment that would be fun do to with a child.</div>
 </div>
-<div class="line"><a class="reference external" href="science/elements.zip">science/elements.zip</a> (1348)</div>
+<div class="line"><a class="reference external" href="science/elements.zip">science/elements.zip</a> (1349)</div>
 <div class="line-block">
 <div class="line">Contains elements.pdf, a document that contains a periodic table of the elements, a plot of the vapor pressures of the elements, values of physical parameters sorted by value, and various physical parameters of the elements plotted as a function of atomic number.</div>
 </div>
@@ -712,13 +744,13 @@ ul.auto-toc {
 </div>
 <div class="line"><a class="reference external" href="science/SolarSystemScaleModel.pdf">science/SolarSystemScaleModel.pdf</a> (323)</div>
 <div class="line-block">
-<div class="line">Python script that prints out the dimensions of a scaled solar system. You can use it to make a scale solar system in your yard or on your street.</div>
+<div class="line">Python script that prints out the dimensions of a scaled solar system.  You can use it to make a scale solar system in your yard or on your street.</div>
 </div>
 <div class="line"><a class="reference external" href="science/SphericalShell.pdf">science/SphericalShell.pdf</a> (156)</div>
 <div class="line-block">
 <div class="line">Discusses gravitation and electrostatics inside a uniform spherical shell and why there is no force on a particle. Also looks at Henry Cavendish's elegant experiment in the 1700's showing that the exponent in Coulomb's Law is 2.</div>
 </div>
-<div class="line"><a class="reference external" href="science/u.zip">science/u.zip</a> (355)</div>
+<div class="line"><a class="reference external" href="science/u.zip">science/u.zip</a> (353)</div>
 <div class="line-block">
 <div class="line">A lightweight python library module that provides conversion factors for various physical units.  An experienced scientist or engineer will be using it in a few minutes after seeing an example.</div>
 </div>
@@ -747,7 +779,7 @@ ul.auto-toc {
 <div class="line-block">
 <div class="line">Shows how to calculate bucket volumes and mark volume calibration marks on nearly any bucket.  Includes a python script that will do the calculations for you.</div>
 </div>
-<div class="line"><a class="reference external" href="shop/Calipers.pdf">shop/Calipers.pdf</a> (2990)</div>
+<div class="line"><a class="reference external" href="shop/Calipers.pdf">shop/Calipers.pdf</a> (6665)</div>
 <div class="line-block">
 <div class="line">Discussion and use of old-style machinist calipers.</div>
 </div>
@@ -755,7 +787,7 @@ ul.auto-toc {
 <div class="line-block">
 <div class="line">Simple platform for Harbor Freight garden cart.</div>
 </div>
-<div class="line"><a class="reference external" href="shop/chain.zip">shop/chain.zip</a> (224)</div>
+<div class="line"><a class="reference external" href="shop/chain.zip">shop/chain.zip</a> (225)</div>
 <div class="line-block">
 <div class="line">Python script to help with chain drilling holes and disks.</div>
 </div>
@@ -779,11 +811,11 @@ ul.auto-toc {
 <div class="line-block">
 <div class="line">A simple demagnetizing tool made from scrap materials.</div>
 </div>
-<div class="line"><a class="reference external" href="shop/density.zip">shop/density.zip</a> (484)</div>
+<div class="line"><a class="reference external" href="shop/density.zip">shop/density.zip</a> (485)</div>
 <div class="line-block">
 <div class="line">Python script to display densities of various materials.</div>
 </div>
-<div class="line"><a class="reference external" href="shop/DitchPump_pub.pdf">shop/DitchPump_pub.pdf</a> (3009)</div>
+<div class="line"><a class="reference external" href="shop/DitchPump_pub.pdf">shop/DitchPump_pub.pdf</a> (3124)</div>
 <div class="line-block">
 <div class="line">Comments and tips on using a ditch pump to water your lawn.</div>
 </div>
@@ -811,15 +843,15 @@ ul.auto-toc {
 <div class="line-block">
 <div class="line">Describes a simple concrete sprinkler guard that my wife designed and built.</div>
 </div>
-<div class="line"><a class="reference external" href="shop/hammer.pdf">shop/hammer.pdf</a> (1278)</div>
+<div class="line"><a class="reference external" href="shop/hammer.pdf">shop/hammer.pdf</a> (1288)</div>
 <div class="line-block">
 <div class="line">Discusses the common hammer types and making a new handle for one.</div>
 </div>
-<div class="line"><a class="reference external" href="shop/holes.zip">shop/holes.zip</a> (333)</div>
+<div class="line"><a class="reference external" href="shop/holes.zip">shop/holes.zip</a> (403)</div>
 <div class="line-block">
 <div class="line">Contains a python script that will help you lay out holes that are equally-spaced around a circle.</div>
 </div>
-<div class="line"><a class="reference external" href="shop/HoseFitting.pdf">shop/HoseFitting.pdf</a> (282)</div>
+<div class="line"><a class="reference external" href="shop/HoseFitting.pdf">shop/HoseFitting.pdf</a> (283)</div>
 <div class="line-block">
 <div class="line">Here's an effective way to secure a hose to a hose fitting. It's better than anything I've found in a store.</div>
 </div>
@@ -827,7 +859,7 @@ ul.auto-toc {
 <div class="line-block">
 <div class="line">Describes a small vise made from 1 inch square bar stock.  It slips into a pocket and is handy for small tasks around the shop and home.</div>
 </div>
-<div class="line"><a class="reference external" href="shop/mass.zip">shop/mass.zip</a> (942)</div>
+<div class="line"><a class="reference external" href="shop/mass.zip">shop/mass.zip</a> (947)</div>
 <div class="line-block">
 <div class="line">Python script to calculate the volume and mass of a project constructed from various primitive geometrical objects.</div>
 </div>
@@ -839,11 +871,11 @@ ul.auto-toc {
 <div class="line-block">
 <div class="line">Derivation of a formula that can be used to make a template for cutting the end of a pipe so that it can be welded to another pipe.</div>
 </div>
-<div class="line"><a class="reference external" href="shop/PullingFencePosts.pdf">shop/PullingFencePosts.pdf</a> (353)</div>
+<div class="line"><a class="reference external" href="shop/PullingFencePosts.pdf">shop/PullingFencePosts.pdf</a> (354)</div>
 <div class="line-block">
 <div class="line">Using a class 2 lever can be a surprisingly effective way to pull fence posts out of the ground.</div>
 </div>
-<div class="line"><a class="reference external" href="shop/refcards.zip">shop/refcards.zip</a> (1790)</div>
+<div class="line"><a class="reference external" href="shop/refcards.zip">shop/refcards.zip</a> (1793)</div>
 <div class="line-block">
 <div class="line">Contains some reference cards that will print out on 4 by 6 inch cards. I find these handy to keep in my drafting materials box when I'm doing design work at a drafting board.</div>
 </div>
@@ -859,9 +891,9 @@ ul.auto-toc {
 <div class="line-block">
 <div class="line">How to use a carpenter's square to lay out angles from 1 degree to 44 degrees.</div>
 </div>
-<div class="line"><a class="reference external" href="shop/thd.zip">shop/thd.zip</a> (65)</div>
+<div class="line"><a class="reference external" href="shop/thd.zip">shop/thd.zip</a> (66)</div>
 <div class="line-block">
-<div class="line">Prints out various dimensions associated with threads per ASME B1.1-1989. If you machine threads on a lathe, you may find this program handy.</div>
+<div class="line">Prints out various dimensions associated with threads per ASME B1.1-1989.  If you machine threads on a lathe, you may find this program handy.</div>
 </div>
 <div class="line"><a class="reference external" href="shop/weigh.pdf">shop/weigh.pdf</a> (359)</div>
 <div class="line-block">
@@ -890,15 +922,15 @@ ul.auto-toc {
 </div>
 <div class="line"><a class="reference external" href="util/bidict.zip">util/bidict.zip</a> (7)</div>
 <div class="line-block">
-<div class="line">Creates a dictionary object in python that lets you treat it in both directions as a mapping.  It's an example of a discrete bijective function.</div>
+<div class="line">Creates a dictionary object in python that lets you treat it in both directions as a mapping.</div>
 </div>
 <div class="line"><a class="reference external" href="util/cnt.zip">util/cnt.zip</a> (50)</div>
 <div class="line-block">
 <div class="line">Command-line utility to count the number of bytes in a file and present a histogram of the results.</div>
 </div>
-<div class="line"><a class="reference external" href="util/color.py">util/color.py</a> (10)</div>
+<div class="line"><a class="reference external" href="util/color.py">util/color.py</a> (15)</div>
 <div class="line-block">
-<div class="line">Python module to provide color printing to a console window. Should work on both Windows and Linux.</div>
+<div class="line">Python module to provide color printing to a console window. Should work on both Windows and Linux.  Includes functions to show regular expression matches in text printed to the console; these functions are helpful when you are developing complicated regular expressions.</div>
 </div>
 <div class="line"><a class="reference external" href="util/dedent.py">util/dedent.py</a> (1)</div>
 <div class="line-block">
@@ -906,11 +938,11 @@ ul.auto-toc {
 </div>
 <div class="line"><a class="reference external" href="util/dep.py">util/dep.py</a> (9)</div>
 <div class="line-block">
-<div class="line">Script to display a python program's module dependencies. The modules are classified by type.  It won't find <em>.pyc/</em>.pyo files nor modules the imports depend on.</div>
+<div class="line">Script to display a python program's module dependencies. The modules are classified by type (standard library modules and user modules).  It won't find .pyc/.pyo files nor modules the imports depend on.  It uses regular expressions to find import lines in the script, so it may show lines that aren't true imports (e.g., an import line inside a conditional that's always false).</div>
 </div>
-<div class="line"><a class="reference external" href="util/ds.zip">util/ds.zip</a> (119)</div>
+<div class="line"><a class="reference external" href="util/ds.zip">util/ds.zip</a> (124)</div>
 <div class="line-block">
-<div class="line">Contains python scripts to help you launch datasheets, manuals, and other documentation files from a command line prompt.  I use this script to lauch manuals and ebooks and it quickly finds the ones I want amongst thousands of files.</div>
+<div class="line">Contains python scripts to help you launch datasheets, manuals, and other documentation files from a command line prompt.  I use this script to launch manuals and ebooks and it quickly finds the ones I want amongst thousands of files.</div>
 </div>
 <div class="line"><a class="reference external" href="util/dup.py">util/dup.py</a> (14)</div>
 <div class="line-block">
@@ -936,9 +968,9 @@ ul.auto-toc {
 <div class="line-block">
 <div class="line">A python module that gets input data in a variety of ways.  Gets lines or tokens from a set of files or prompts the user for numbers (the numbers can be restricted to an interval and can include uncertainty or physical units).  The lines and token getters are generators and can use functional programming tools.</div>
 </div>
-<div class="line"><a class="reference external" href="util/goto.py">util/goto.py</a> (12)</div>
+<div class="line"><a class="reference external" href="util/goto.zip">util/goto.zip</a> (174)</div>
 <div class="line-block">
-<div class="line">Contains a sh-type shell function and a python script that let you navigate around to various directories from a shell command line. A number of UNIX users have told me they couldn't live without this tool once they started using it.</div>
+<div class="line">Used a python script and shell functions to launch project files and navigate to various directories from a command line.  A number of UNIX users have told me they couldn't live without this tool once they started using it.</div>
 </div>
 <div class="line"><a class="reference external" href="util/lib.zip">util/lib.zip</a> (12)</div>
 <div class="line-block">
@@ -948,11 +980,11 @@ ul.auto-toc {
 <div class="line-block">
 <div class="line">Python script to list the files in two directory trees that are hard-linked together.  If you have GNU find, the -samefile option can be used to do this too.</div>
 </div>
-<div class="line"><a class="reference external" href="util/loo.zip">util/loo.zip</a> (25)</div>
+<div class="line"><a class="reference external" href="util/loo.zip">util/loo.zip</a> (30)</div>
 <div class="line-block">
 <div class="line">Python script that will print out the image files in Open Office documents.  Image files that are not at or below the same directory as the document file will be marked '[not relative]'. Missing files will be marked '[missing]'.  It is useful if you link image files into OO files.</div>
 </div>
-<div class="line"><a class="reference external" href="util/lookup.zip">util/lookup.zip</a> (136)</div>
+<div class="line"><a class="reference external" href="util/lookup.zip">util/lookup.zip</a> (141)</div>
 <div class="line-block">
 <div class="line">Package that contains a python script that can help you look up words in a word dictionary and use the information from WordNet to show synonyms, definitions, and types of words (e.g., adjectives, adverbs, nouns, and verbs).</div>
 </div>
@@ -960,7 +992,7 @@ ul.auto-toc {
 <div class="line-block">
 <div class="line">Python script that is invoked with a file that contains lines of file pairs and a recipe.  When the first file is newer than the second, the recipe is executed.</div>
 </div>
-<div class="line"><a class="reference external" href="util/mod.py">util/mod.py</a> (14)</div>
+<div class="line"><a class="reference external" href="util/mod.py">util/mod.py</a> (13)</div>
 <div class="line-block">
 <div class="line">Python script to recursively find files that have changed within a specified time period.</div>
 </div>
@@ -972,7 +1004,7 @@ ul.auto-toc {
 <div class="line-block">
 <div class="line">This is a python script that can manipulate PDF files. It can concatenate a number of PDF files, select certain pages and write them to another PDF file, rotating pages, watermarking. etc. You'll also need to download the pyPdf library to use this script.</div>
 </div>
-<div class="line"><a class="reference external" href="util/pfind.py">util/pfind.py</a> (17)</div>
+<div class="line"><a class="reference external" href="util/pfind.py">util/pfind.py</a> (26)</div>
 <div class="line-block">
 <div class="line">Python script to find files and directories. Similar to the UNIX find (but not as powerful), but with a simpler syntax.</div>
 </div>
@@ -980,7 +1012,7 @@ ul.auto-toc {
 <div class="line-block">
 <div class="line">A python script for generating random phrases of words.  Useful for generating pass phrases.</div>
 </div>
-<div class="line"><a class="reference external" href="util/readability.zip">util/readability.zip</a> (4542)</div>
+<div class="line"><a class="reference external" href="util/readability.zip">util/readability.zip</a> (4541)</div>
 <div class="line-block">
 <div class="line">Will calculate various readability indexes for text files, such as the Gunning Fog Index, the Flesch-Kinkaid Grade Level, etc.</div>
 </div>
@@ -996,9 +1028,9 @@ ul.auto-toc {
 <div class="line-block">
 <div class="line">Python scripts to split a file into chunks, print out SHA1 hashes of each chunk, and allow you to recombine the chunks later back into the original file.</div>
 </div>
-<div class="line"><a class="reference external" href="util/sz.zip">util/sz.zip</a> (15)</div>
+<div class="line"><a class="reference external" href="util/sz.zip">util/sz.zip</a> (20)</div>
 <div class="line-block">
-<div class="line">Python script to print out sizes of subdirectories.  The output is to 1 figure and is color-coded for quickly seeing where most of the storage space is being taken.</div>
+<div class="line">Python script to print out sizes of subdirectories.  The output is to one significant figure and is color-coded for quickly seeing where most of the storage space is being taken.</div>
 </div>
 <div class="line"><a class="reference external" href="util/tlc.py">util/tlc.py</a> (6)</div>
 <div class="line-block">
@@ -1012,7 +1044,7 @@ ul.auto-toc {
 <div class="line-block">
 <div class="line">Python script to print an ASCII representation of a directory tree.  It can optionally decorate the tree with each directory's size in MBytes and highlight a regular expression in color.</div>
 </div>
-<div class="line"><a class="reference external" href="util/unicode.py">util/unicode.py</a> (18)</div>
+<div class="line"><a class="reference external" href="util/unicode.py">util/unicode.py</a> (19)</div>
 <div class="line-block">
 <div class="line">Python script to find Unicode characters.  You'll need to download the relevant files from the Unicode website.</div>
 </div>
@@ -1025,7 +1057,7 @@ ul.auto-toc {
 <div class="line">Python script to replace all space characters in file names with underscores.</div>
 </div>
 </div>
-<p>Updated 3 Oct 2018 12:07:11 pm</p>
+<p>Updated 14 Oct 2019 11:08:59 pm</p>
 </div>
 </div>
 </body>

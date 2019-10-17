@@ -158,8 +158,7 @@ bgrep:
 bidict:
     subdir: util
     descr: Creates a dictionary object in python that lets you treat
-        it in both directions as a mapping.  It's an example of a discrete
-        bijection.
+        it in both directions as a mapping.
     files: 
         - bidict.py
         - [test/bidict_test.py, bidict_test.py]
@@ -600,7 +599,7 @@ ds:
     subdir: util
     descr: Contains python scripts to help you launch datasheets, manuals,
         and other documentation files from a command line prompt.  I
-        use this script to lauch manuals and ebooks and it quickly
+        use this script to launch manuals and ebooks and it quickly
         finds the ones I want amongst thousands of files.
     files:
         - ds.py
@@ -1142,7 +1141,6 @@ logicprobe:
         - logic_probe.pdf
         - logic_probe.odt*
     srcdir: /elec/projects/logic_probe
-    frozen: yes
 
 loo:
     subdir: util
@@ -1258,6 +1256,17 @@ mk:
         file is newer than the second, the recipe is executed. 
     files:
         - mk.py
+    srcdir: /pylib/pgm
+
+mkfile:
+    subdir: util
+    descr: Python script to make files of a given size.  The -u option
+        constructs allegedly cryptographically-secure random bytes
+        using python's os.urandom() function; on my older computer, 
+        it takes about 3 seconds to construct a 1 GByte file of 
+        random bytes.
+    files:
+        - mkfile.py
     srcdir: /pylib/pgm
 
 mod:
@@ -1708,7 +1717,9 @@ shorttbl:
 
 shuffle:
     subdir: prog
-    descr: C program to randomly shuffle the bytes of a file.
+    descr: C program to randomly shuffle the bytes of a file.  It
+        reads all the bytes of a file into memory, so it cannot be used 
+        on arbitrarily large files.
     files:
         - shuffle.c
     srcdir: /tools/shuffle
