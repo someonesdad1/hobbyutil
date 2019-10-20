@@ -407,7 +407,7 @@ run under python 2.7.</p>
 </div>
 <div class="line"><a class="reference external" href="elec/hppn.zip">elec/hppn.zip</a> (81)</div>
 <div class="line-block">
-<div class="line">This is a compilation of various 8-digit HP part numbers translated into more identifiable numbers.  This list may be of use to those with old HP instruments that need to find a replacement part.</div>
+<div class="line">This is a compilation of various 8-digit HP part numbers translated into conventional industry part numbers.  This list may be of use to those with old HP instruments that need to find a replacement part.</div>
 </div>
 <div class="line"><a class="reference external" href="elec/impedance.py">elec/impedance.py</a> (4)</div>
 <div class="line-block">
@@ -417,7 +417,7 @@ run under python 2.7.</p>
 <div class="line-block">
 <div class="line">Provides an Open Office spreadsheet that can calculate the inductance of common electrical structures.  Includes a PDF document describing the use and which gives references for the formulas used.</div>
 </div>
-<div class="line"><a class="reference external" href="elec/logic_probe.pdf">elec/logic_probe.pdf</a> (3512)</div>
+<div class="line"><a class="reference external" href="elec/logic_probe.pdf">elec/logic_probe.pdf</a> (4258)</div>
 <div class="line-block">
 <div class="line">Discusses the use of a logic probe.</div>
 </div>
@@ -667,7 +667,7 @@ run under python 2.7.</p>
 </div>
 <div class="line"><a class="reference external" href="prog/shuffle.c">prog/shuffle.c</a> (30)</div>
 <div class="line-block">
-<div class="line">C program to randomly shuffle the bytes of a file.</div>
+<div class="line">C program to randomly shuffle the bytes of a file.  It reads all the bytes of a file into memory, so it cannot be used on arbitrarily large files.</div>
 </div>
 <div class="line"><a class="reference external" href="prog/sig.zip">prog/sig.zip</a> (333)</div>
 <div class="line-block">
@@ -926,7 +926,7 @@ run under python 2.7.</p>
 </div>
 <div class="line"><a class="reference external" href="util/cnt.zip">util/cnt.zip</a> (50)</div>
 <div class="line-block">
-<div class="line">Command-line utility to count the number of bytes in a file and present a histogram of the results.</div>
+<div class="line">cnt.py is a command line utility to count the number of bytes in the file arguments and present a histogram of the results.  Processes files on the order of 10 MB/s.  cnt.c is a C program that is roughly 10% faster on large files, but less flexible in the output reporting.</div>
 </div>
 <div class="line"><a class="reference external" href="util/color.py">util/color.py</a> (15)</div>
 <div class="line-block">
@@ -991,6 +991,10 @@ run under python 2.7.</p>
 <div class="line"><a class="reference external" href="util/mk.py">util/mk.py</a> (5)</div>
 <div class="line-block">
 <div class="line">Python script that is invoked with a file that contains lines of file pairs and a recipe.  When the first file is newer than the second, the recipe is executed.</div>
+</div>
+<div class="line"><a class="reference external" href="util/mkfile.py">util/mkfile.py</a> (4)</div>
+<div class="line-block">
+<div class="line">Python script to make files of a given size.  The -u and -t options construct allegedly cryptographically-secure random bytes.  On my older computer, it takes a few seconds to construct a 1 GB file of random bytes.</div>
 </div>
 <div class="line"><a class="reference external" href="util/mod.py">util/mod.py</a> (13)</div>
 <div class="line-block">
@@ -1057,7 +1061,7 @@ run under python 2.7.</p>
 <div class="line">Python script to replace all space characters in file names with underscores.</div>
 </div>
 </div>
-<p>Updated 14 Oct 2019 11:08:59 pm</p>
+<p>Updated 19 Oct 2019 9:44:10 pm</p>
 </div>
 </div>
 </body>
