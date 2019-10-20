@@ -332,13 +332,17 @@ clamps:
 
 cnt:
     subdir: util
-    descr: Command-line utility to count the number of bytes in a file
-        and present a histogram of the results.
+    descr: cnt.py is a command line utility to count the number of bytes in
+        the file arguments and present a histogram of the results.  Processes
+        files on the order of 10 MB/s.  cnt.c is a C program that is
+        roughly 10% faster on large files, but less flexible in the
+        output reporting.
     files:
         - cnt.py
+        - [/tools/misc/cnt_new.c, cnt.c]
         - cnt.readme
         - [../fpformat.py, fpformat.py]
-        - pager.py
+        - [../columnize.py, columnize.py]
     srcdir: /pylib/pgm
 
 color:
@@ -1046,7 +1050,7 @@ hose:
 hppn:
     subdir: elec
     descr: This is a compilation of various 8-digit HP part numbers
-        translated into more identifiable numbers.  This list may
+        translated into conventional industry part numbers.  This list may
         be of use to those with old HP instruments that need to find a
         replacement part.
     files:
@@ -1260,11 +1264,10 @@ mk:
 
 mkfile:
     subdir: util
-    descr: Python script to make files of a given size.  The -u option
-        constructs allegedly cryptographically-secure random bytes
-        using python's os.urandom() function; on my older computer, 
-        it takes about 3 seconds to construct a 1 GByte file of 
-        random bytes.
+    descr: Python script to make files of a given size.  The -u and -t
+        options construct allegedly cryptographically-secure random
+        bytes.  On my older computer, it takes a few seconds to
+        construct a 1 GB file of random bytes.
     files:
         - mkfile.py
     srcdir: /pylib/pgm

@@ -10,7 +10,7 @@ Link | Description
 [elec/CurrentSource.pdf](elec/CurrentSource.pdf) | How to make a battery-operated 1 ampere current source used to make low resistance measurements.
 [elec/MeasuringESR.pdf](elec/MeasuringESR.pdf) | Describes a technique of estimating a capacitor's ESR (equivalent series resistance) without having to buy a special meter.
 [elec/fuse_as_shunt.pdf](elec/fuse_as_shunt.pdf) | Notes on using ATO automobile fuses as poor-man's shunts.
-[elec/hppn.zip](elec/hppn.zip) | This is a compilation of various 8-digit HP part numbers translated into more identifiable numbers.  This list may be of use to those with old HP instruments that need to find a replacement part.
+[elec/hppn.zip](elec/hppn.zip) | This is a compilation of various 8-digit HP part numbers translated into conventional industry part numbers.  This list may be of use to those with old HP instruments that need to find a replacement part.
 [elec/impedance.py](elec/impedance.py) | This python script will take a complex impedance in polar coordinates and print out the series and parallel models' values, reactance, dissipation factor, and quality factor.
 [elec/ind.zip](elec/ind.zip) | Provides an Open Office spreadsheet that can calculate the inductance of common electrical structures.  Includes a PDF document describing the use and which gives references for the formulas used.
 [elec/logic_probe.pdf](elec/logic_probe.pdf) | Discusses the use of a logic probe.
@@ -166,7 +166,7 @@ Link | Description
 [util/bd.c](util/bd.c) | Performs a comparison between binary files; differences are printed in hex dump format.
 [util/bgrep.py](util/bgrep.py) | Python script to search for regular expressions and strings in binary files.
 [util/bidict.zip](util/bidict.zip) | Creates a dictionary object in python that lets you treat it in both directions as a mapping.
-[util/cnt.zip](util/cnt.zip) | Command-line utility to count the number of bytes in a file and present a histogram of the results.
+[util/cnt.zip](util/cnt.zip) | cnt.py is a command line utility to count the number of bytes in the file arguments and present a histogram of the results.  Processes files on the order of 10 MB/s.  cnt.c is a C program that is roughly 10% faster on large files, but less flexible in the output reporting.
 [util/color.py](util/color.py) | Python module to provide color printing to a console window. Should work on both Windows and Linux.  Includes functions to show regular expression matches in text printed to the console; these functions are helpful when you are developing complicated regular expressions.
 [util/dedent.py](util/dedent.py) | Python function that will remove the common space characters from a set of text lines from files given on the command line or stdin.
 [util/dep.py](util/dep.py) | Script to display a python program's module dependencies. The modules are classified by type (standard library modules and user modules).  It won't find .pyc/.pyo files nor modules the imports depend on.  It uses regular expressions to find import lines in the script, so it may show lines that aren't true imports (e.g., an import line inside a conditional that's always false).
@@ -183,7 +183,7 @@ Link | Description
 [util/loo.zip](util/loo.zip) | Python script that will print out the image files in Open Office documents.  Image files that are not at or below the same directory as the document file will be marked '[not relative]'. Missing files will be marked '[missing]'.  It is useful if you link image files into OO files.
 [util/lookup.zip](util/lookup.zip) | Package that contains a python script that can help you look up words in a word dictionary and use the information from WordNet to show synonyms, definitions, and types of words (e.g., adjectives, adverbs, nouns, and verbs).
 [util/mk.py](util/mk.py) | Python script that is invoked with a file that contains lines of file pairs and a recipe.  When the first file is newer than the second, the recipe is executed.
-[util/mkfile.py](util/mkfile.py) | Python script to make files of a given size.  The -u option constructs allegedly cryptographically-secure random bytes using python's os.urandom() function; on my older computer, it takes about 3 seconds to construct a 1 GByte file of random bytes.
+[util/mkfile.py](util/mkfile.py) | Python script to make files of a given size.  The -u and -t options construct allegedly cryptographically-secure random bytes.  On my older computer, it takes a few seconds to construct a 1 GB file of random bytes.
 [util/mod.py](util/mod.py) | Python script to recursively find files that have changed within a specified time period.
 [util/mp.py](util/mp.py) | This is a macro processor that is a string substitution tool. You can also include arbitrary python code in your text files. Use mp.py -h to read the man page.
 [util/pdf.py](util/pdf.py) | This is a python script that can manipulate PDF files. It can concatenate a number of PDF files, select certain pages and write them to another PDF file, rotating pages, watermarking. etc. You'll also need to download the pyPdf library to use this script.
@@ -201,5 +201,5 @@ Link | Description
 [util/unx.py](util/unx.py) | Produces a list of files that are candidates for turning their execute bit permission off.  This is useful on Windows machines running cygwin to avoid a "sea of green" in an ls listing with colorizing on.
 [util/spc_to_underscore.py](util/spc_to_underscore.py) | Python script to replace all space characters in file names with underscores.
 
-Updated 17 Oct 2019 9:57:25 am
+Updated 19 Oct 2019 9:44:10 pm
 

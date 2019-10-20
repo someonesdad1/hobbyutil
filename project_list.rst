@@ -23,7 +23,7 @@ Electrical
 | `elec/fuse_as_shunt.pdf <elec/fuse_as_shunt.pdf>`_ (486)
 |   Notes on using ATO automobile fuses as poor-man's shunts.
 | `elec/hppn.zip <elec/hppn.zip>`_ (81)
-|   This is a compilation of various 8-digit HP part numbers translated into more identifiable numbers.  This list may be of use to those with old HP instruments that need to find a replacement part.
+|   This is a compilation of various 8-digit HP part numbers translated into conventional industry part numbers.  This list may be of use to those with old HP instruments that need to find a replacement part.
 | `elec/impedance.py <elec/impedance.py>`_ (4)
 |   This python script will take a complex impedance in polar coordinates and print out the series and parallel models' values, reactance, dissipation factor, and quality factor.
 | `elec/ind.zip <elec/ind.zip>`_ (1213)
@@ -300,7 +300,7 @@ Utilities
 | `util/bidict.zip <util/bidict.zip>`_ (7)
 |   Creates a dictionary object in python that lets you treat it in both directions as a mapping.
 | `util/cnt.zip <util/cnt.zip>`_ (50)
-|   Command-line utility to count the number of bytes in a file and present a histogram of the results.
+|   cnt.py is a command line utility to count the number of bytes in the file arguments and present a histogram of the results.  Processes files on the order of 10 MB/s.  cnt.c is a C program that is roughly 10% faster on large files, but less flexible in the output reporting.
 | `util/color.py <util/color.py>`_ (15)
 |   Python module to provide color printing to a console window. Should work on both Windows and Linux.  Includes functions to show regular expression matches in text printed to the console; these functions are helpful when you are developing complicated regular expressions.
 | `util/dedent.py <util/dedent.py>`_ (1)
@@ -333,8 +333,8 @@ Utilities
 |   Package that contains a python script that can help you look up words in a word dictionary and use the information from WordNet to show synonyms, definitions, and types of words (e.g., adjectives, adverbs, nouns, and verbs).
 | `util/mk.py <util/mk.py>`_ (5)
 |   Python script that is invoked with a file that contains lines of file pairs and a recipe.  When the first file is newer than the second, the recipe is executed.
-| `util/mkfile.py <util/mkfile.py>`_ (5)
-|   Python script to make files of a given size.  The -u option constructs allegedly cryptographically-secure random bytes using python's os.urandom() function; on my older computer, it takes about 3 seconds to construct a 1 GByte file of random bytes.
+| `util/mkfile.py <util/mkfile.py>`_ (4)
+|   Python script to make files of a given size.  The -u and -t options construct allegedly cryptographically-secure random bytes.  On my older computer, it takes a few seconds to construct a 1 GB file of random bytes.
 | `util/mod.py <util/mod.py>`_ (13)
 |   Python script to recursively find files that have changed within a specified time period.
 | `util/mp.py <util/mp.py>`_ (24)
@@ -370,5 +370,5 @@ Utilities
 
 
 
-Updated 17 Oct 2019 9:57:25 am
+Updated 19 Oct 2019 9:44:10 pm
 
