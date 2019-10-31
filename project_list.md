@@ -92,7 +92,7 @@ Link | Description
 [prog/python.zip](prog/python.zip) | Discusses why learning the python programming language might be a good thing for technical folks.
 [prog/shuffle.c](prog/shuffle.c) | C program to randomly shuffle the bytes of a file.  It reads all the bytes of a file into memory, so it cannot be used on arbitrarily large files.
 [prog/sig.zip](prog/sig.zip) | A python module to format floating point numbers to a specified number of significant figures or round to a specified template.
-[prog/stack.zip](prog/stack.zip) | A python module that implements a basic stack.
+[prog/stack.zip](prog/stack.zip) | A python module that implements a thread-safe and process-safe basic stack.  Works on python 2.7 and 3 (copy() only works on python 3.5 or later).
 [prog/sumbytes.cpp](prog/sumbytes.cpp) | A short C++ program that will read all the bytes from the files given on the command line and compute various statistics from them.
 [prog/ts.zip](prog/ts.zip) | The ts.py script provides facilities for text substitution in text files.  It has only 3 basic commands (define a substitution, turn  the output on/off, and include a file) and the ability to include blocks of python code in the text file.  Though it's relatively simple to use, it can provide a fair bit of power.
 [prog/util.zip](prog/util.zip) | Contains a number of miscellaneous python functions I've written and collected from the web.
@@ -201,5 +201,5 @@ Link | Description
 [util/unx.py](util/unx.py) | Produces a list of files that are candidates for turning their execute bit permission off.  This is useful on Windows machines running cygwin to avoid a "sea of green" in an ls listing with colorizing on.
 [util/spc_to_underscore.py](util/spc_to_underscore.py) | Python script to replace all space characters in file names with underscores.
 
-Updated 19 Oct 2019 9:44:10 pm
+Updated 30 Oct 2019 10:25:09 pm
 

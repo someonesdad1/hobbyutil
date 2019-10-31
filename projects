@@ -1809,7 +1809,9 @@ square:
 
 stack:
     subdir: prog
-    descr: A python module that implements a basic stack.
+    descr: A python module that implements a thread-safe and
+        process-safe basic stack.  Works on python 2.7 and 3 
+        (copy() only works on python 3.5 or later).
     files:
         - stack.py
         - [test/stack_test.py, stack_test.py]

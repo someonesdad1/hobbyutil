@@ -2,12 +2,12 @@
 
 .. contents:: Table of Contents
 
-Integer after link is file size in bytes divided by 1000
+Integer after link is file size in units of 1000 bytes.
 
-Note:  Unless otherwise noted, the python scripts are written to run
-with python 3.  If the script contains a line like ``from __future__
-import print_function, division``, then it is probable that it will also
-run under python 2.7.
+Unless otherwise noted, the python scripts are written to run with
+python 3.6 or later.  If the script contains a line like ``from
+__future__ ...``, then it is possible that it will also run under python
+2.7.
 
 Electrical
 ==========
@@ -166,8 +166,8 @@ Programming
 |   C program to randomly shuffle the bytes of a file.  It reads all the bytes of a file into memory, so it cannot be used on arbitrarily large files.
 | `prog/sig.zip <prog/sig.zip>`_ (333)
 |   A python module to format floating point numbers to a specified number of significant figures or round to a specified template.
-| `prog/stack.zip <prog/stack.zip>`_ (6)
-|   A python module that implements a basic stack.
+| `prog/stack.zip <prog/stack.zip>`_ (5)
+|   A python module that implements a thread-safe and process-safe basic stack.  Works on python 2.7 and 3 (copy() only works on python 3.5 or later).
 | `prog/sumbytes.cpp <prog/sumbytes.cpp>`_ (5)
 |   A short C++ program that will read all the bytes from the files given on the command line and compute various statistics from them.
 | `prog/ts.zip <prog/ts.zip>`_ (144)
@@ -370,5 +370,5 @@ Utilities
 
 
 
-Updated 19 Oct 2019 9:44:10 pm
+Updated 30 Oct 2019 10:25:09 pm
 

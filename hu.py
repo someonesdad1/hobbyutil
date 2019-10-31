@@ -618,12 +618,12 @@ def BuildProjectPage(d):
         hu.write("`Home <https://someonesdad1.github.io/hobbyutil/>`_" + nl*2)
         # Table of contents
         hu.write(".. contents:: Table of Contents" + nl*2)
-        hu.write('''Integer after link is file size in bytes divided by 1000
+        hu.write('''Integer after link is file size in units of 1000 bytes.
 
-Note:  Unless otherwise noted, the python scripts are written to run
-with python 3.  If the script contains a line like ``from __future__
-import print_function, division``, then it is probable that it will also
-run under python 2.7.
+Unless otherwise noted, the python scripts are written to run with
+python 3.6 or later.  If the script contains a line like ``from
+__future__ ...``, then it is possible that it will also run under python
+2.7.
 
 ''')
         for category in project_container:
