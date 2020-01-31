@@ -21,6 +21,10 @@
 # files is constructed.
 
 # ----------------------------------------------------------------------
+# TODO:
+#   - Add chop.py
+
+# ----------------------------------------------------------------------
 # Under development
 
 seg:
@@ -708,6 +712,10 @@ fdiff:
         - [../pgm/dirset.py, dirset.py]
         - ddiff.readme
     srcdir: /pylib/other
+    ignore: This tool is out of date and doesn't work correctly under
+        python 3.  Though it was handy when I developed it in the late
+        1990's, it's superseded by graphical tools like WinMerge.  I
+        don't see it being meaningful to update it.
 
 fit:
     subdir: util
@@ -1848,7 +1856,7 @@ thd:
 
 tips1:
     subdir: misc
-    descr: Various tips I've found over the years.
+    descr: DIY/shop tips.
     files:
         - tips1.pdf
         - tips1.odt*
@@ -1857,10 +1865,20 @@ tips1:
 
 tips2:
     subdir: misc
-    descr: Various tips I've found over the years.
+    descr: DIY/shop tips.
     files:
         - tips2.pdf
         - tips2.odt*
+    srcdir: /doc
+    frozen: yes
+    ignore: yes
+
+tips3:
+    subdir: misc
+    descr: DIY/shop tips.
+    files:
+        - tips3.pdf
+        - tips3.odt*
     srcdir: /doc
     frozen: yes
     ignore: yes
@@ -1871,6 +1889,17 @@ tlc:
         or upper case.
     files:
         - tlc.py
+    srcdir: /pylib/pgm
+
+tmbr:
+    subdir: shop
+    descr: Python script that searches an index for words of interest
+        in Lautard's "The Machinist Bedside Reader" series.  The script
+        can also generate a concordance.
+    files:
+        - tmbr.py
+        - tmbr_data.py
+        - [../columnize.py, columnize.py] 
     srcdir: /pylib/pgm
 
 tokens:
@@ -1957,7 +1986,11 @@ u:
 uni:
     subdir: util
     descr: Python script to find Unicode characters.  You'll need to download
-        the relevant files from the Unicode website.
+        the relevant files from the Unicode website.  This script was
+        written in 2014 and I based it on the information from The
+        Unicode 7 standard; version 12 is current in 2019 and it's on my
+        todo list to upgrade this script.  Yet I still use this script
+        every day when working on my computer.
     files:
         - unicode.py
     srcdir: /pylib/pgm

@@ -74,7 +74,7 @@ Link | Description
 [misc/paper_sizes.pdf](misc/paper_sizes.pdf) | Shows a scale drawing of various ISO and US paper sizes.
 [misc/pills.py](misc/pills.py) | Calculate the dates you'll run out of prescription pills.
 [misc/shaving.pdf](misc/shaving.pdf) | Some thoughts on shaving your beard.
-[misc/tips1.pdf](misc/tips1.pdf) | Various tips I've found over the years.
+[misc/tips1.pdf](misc/tips1.pdf) | DIY/shop tips.
 [misc/XmasTomatoes.pdf](misc/XmasTomatoes.pdf) | Using Christmas tree lights to keep tomato plants from freezing at night.
 
 ## Programming
@@ -155,6 +155,7 @@ Link | Description
 [shop/sine_sticks.pdf](shop/sine_sticks.pdf) | How to build a simple device from scrap that will measure angles in the shop.
 [shop/square.pdf](shop/square.pdf) | How to use a carpenter's square to lay out angles from 1 degree to 44 degrees.
 [shop/thd.zip](shop/thd.zip) | Prints out various dimensions associated with threads per ASME B1.1-1989.  If you machine threads on a lathe, you may find this program handy.
+[shop/tmbr.zip](shop/tmbr.zip) | Python script that searches an index for words of interest in Lautard's "The Machinist Bedside Reader" series.  The script can also generate a concordance.
 [shop/weigh.pdf](shop/weigh.pdf) | Demonstrates how I weighed our trailer with a lever. With a 12 foot long 4x4, I was able to measure 2500 pounds.
 [shop/YankeePushDrill.pdf](shop/YankeePushDrill.pdf) | Discusses the Yankee screwdriver, a useful tool that has been in production for more than 100 years.
 
@@ -173,7 +174,6 @@ Link | Description
 [util/ds.zip](util/ds.zip) | Contains python scripts to help you launch datasheets, manuals, and other documentation files from a command line prompt.  I use this script to launch manuals and ebooks and it quickly finds the ones I want amongst thousands of files.
 [util/dup.py](util/dup.py) | Python script to find duplicated files in a directory tree.
 [util/ext.py](util/ext.py) | Python script to make a list of the extensions used in file names and their counts in the directories given on the command line.
-[util/fdiff.zip](util/fdiff.zip) | Contains python scripts that can identify differences in two directory trees and perform updates as needed to synchronize these two trees.
 [util/fit.py](util/fit.py) | Provides a python function to fit a string of words into a given number of columns.
 [util/func.py](util/func.py) | Python script to list the functions and classes used in the files given on the command line.
 [util/getinput.zip](util/getinput.zip) | A python module that gets input data in a variety of ways.  Gets lines or tokens from a set of files or prompts the user for numbers (the numbers can be restricted to an interval and can include uncertainty or physical units).  The lines and token getters are generators and can use functional programming tools.
@@ -197,9 +197,9 @@ Link | Description
 [util/tlc.py](util/tlc.py) | Python script to rename all files in a directory to lower or upper case.
 [util/html_tokens.py](util/html_tokens.py) | Will produce a list of readable words from an HTML file, all in lower case, one per line. You could then run the list of words through a spell checker.
 [util/tree.py](util/tree.py) | Python script to print an ASCII representation of a directory tree.  It can optionally decorate the tree with each directory's size in MBytes and highlight a regular expression in color.
-[util/unicode.py](util/unicode.py) | Python script to find Unicode characters.  You'll need to download the relevant files from the Unicode website.
+[util/unicode.py](util/unicode.py) | Python script to find Unicode characters.  You'll need to download the relevant files from the Unicode website.  This script was written in 2014 and I based it on the information from The Unicode 7 standard; version 12 is current in 2019 and it's on my todo list to upgrade this script.  Yet I still use this script every day when working on my computer.
 [util/unx.py](util/unx.py) | Produces a list of files that are candidates for turning their execute bit permission off.  This is useful on Windows machines running cygwin to avoid a "sea of green" in an ls listing with colorizing on.
 [util/spc_to_underscore.py](util/spc_to_underscore.py) | Python script to replace all space characters in file names with underscores.
 
-Updated 30 Oct 2019 10:25:09 pm
+Updated 31 Jan 2020 1:51:20 pm
 
