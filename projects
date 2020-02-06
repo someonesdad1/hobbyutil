@@ -1862,6 +1862,7 @@ tips1:
         - tips1.odt*
     srcdir: /doc
     frozen: yes
+    ignore: yes
 
 tips2:
     subdir: misc
