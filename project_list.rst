@@ -135,8 +135,6 @@ Miscellaneous
 |   Calculate the dates you'll run out of prescription pills.
 | `misc/shaving.pdf <misc/shaving.pdf>`_ (92)
 |   Some thoughts on shaving your beard.
-| `misc/tips1.pdf <misc/tips1.pdf>`_ (7576)
-|   DIY/shop tips.
 | `misc/XmasTomatoes.pdf <misc/XmasTomatoes.pdf>`_ (343)
 |   Using Christmas tree lights to keep tomato plants from freezing at night.
 
@@ -262,6 +260,8 @@ Shop
 |   Contains a python script that will help you lay out holes that are equally-spaced around a circle.
 | `shop/HoseFitting.pdf <shop/HoseFitting.pdf>`_ (283)
 |   Here's an effective way to secure a hose to a hose fitting. It's better than anything I've found in a store.
+| `shop/hsm.zip <shop/hsm.zip>`_ (170)
+|   This python script searches metalworking titles for regular expressions.  Contains the indexes from Village Press and Joe Landau's index from 2000.
 | `shop/LittleVise.pdf <shop/LittleVise.pdf>`_ (250)
 |   Describes a small vise made from 1 inch square bar stock.  It slips into a pocket and is handy for small tasks around the shop and home.
 | `shop/mass.zip <shop/mass.zip>`_ (947)
@@ -282,3 +282,93 @@ Shop
 |   How to use a carpenter's square to lay out angles from 1 degree to 44 degrees.
 | `shop/thd.zip <shop/thd.zip>`_ (66)
 |   Prints out various dimensions associated with threads per ASME B1.1-1989.  If you machine threads on a lathe, you may find this program handy.
+| `shop/tmbr.zip <shop/tmbr.zip>`_ (226)
+|   Python script that searches an index for words of interest in Lautard's "The Machinist Bedside Reader" series.  The script can also generate a concordance.
+| `shop/weigh.pdf <shop/weigh.pdf>`_ (359)
+|   Demonstrates how I weighed our trailer with a lever. With a 12 foot long 4x4, I was able to measure 2500 pounds.
+| `shop/YankeePushDrill.pdf <shop/YankeePushDrill.pdf>`_ (766)
+|   Discusses the Yankee screwdriver, a useful tool that has been in production for more than 100 years.
+
+
+Utilities
+=========
+
+| `util/asc.py <util/asc.py>`_ (4)
+|   Python script to print out an ASCII character table in decimal, hex, or octal.  Useful at a command line to see your terminal's encoding.
+| `util/bd.c <util/bd.c>`_ (21)
+|   Performs a comparison between binary files; differences are printed in hex dump format.
+| `util/bgrep.py <util/bgrep.py>`_ (6)
+|   Python script to search for regular expressions and strings in binary files.
+| `util/bidict.zip <util/bidict.zip>`_ (7)
+|   Creates a dictionary object in python that lets you treat it in both directions as a mapping.
+| `util/cnt.zip <util/cnt.zip>`_ (50)
+|   cnt.py is a command line utility to count the number of bytes in the file arguments and present a histogram of the results.  Processes files on the order of 10 MB/s.  cnt.c is a C program that is roughly 10% faster on large files, but less flexible in the output reporting.
+| `util/color.py <util/color.py>`_ (15)
+|   Python module to provide color printing to a console window. Should work on both Windows and Linux.  Includes functions to show regular expression matches in text printed to the console; these functions are helpful when you are developing complicated regular expressions.
+| `util/dedent.py <util/dedent.py>`_ (1)
+|   Python function that will remove the common space characters from a set of text lines from files given on the command line or stdin.
+| `util/dep.py <util/dep.py>`_ (9)
+|   Script to display a python program's module dependencies. The modules are classified by type (standard library modules and user modules).  It won't find .pyc/.pyo files nor modules the imports depend on.  It uses regular expressions to find import lines in the script, so it may show lines that aren't true imports (e.g., an import line inside a conditional that's always false).
+| `util/ds.zip <util/ds.zip>`_ (124)
+|   Contains python scripts to help you launch datasheets, manuals, and other documentation files from a command line prompt.  I use this script to launch manuals and ebooks and it quickly finds the ones I want amongst thousands of files.
+| `util/dup.py <util/dup.py>`_ (14)
+|   Python script to find duplicated files in a directory tree.
+| `util/ext.py <util/ext.py>`_ (8)
+|   Python script to make a list of the extensions used in file names and their counts in the directories given on the command line.
+| `util/fit.py <util/fit.py>`_ (8)
+|   Provides a python function to fit a string of words into a given number of columns.
+| `util/func.py <util/func.py>`_ (1)
+|   Python script to list the functions and classes used in the files given on the command line.
+| `util/getinput.zip <util/getinput.zip>`_ (115)
+|   A python module that gets input data in a variety of ways.  Gets lines or tokens from a set of files or prompts the user for numbers (the numbers can be restricted to an interval and can include uncertainty or physical units).  The lines and token getters are generators and can use functional programming tools.
+| `util/goto.zip <util/goto.zip>`_ (174)
+|   Used a python script and shell functions to launch project files and navigate to various directories from a command line.  A number of UNIX users have told me they couldn't live without this tool once they started using it.
+| `util/lib.zip <util/lib.zip>`_ (12)
+|   Python script command line tool to provide a facility for keeping snippets of code handy.
+| `util/lnk.py <util/lnk.py>`_ (2)
+|   Python script to list the files in two directory trees that are hard-linked together.  If you have GNU find, the -samefile option can be used to do this too.
+| `util/loo.zip <util/loo.zip>`_ (30)
+|   Python script that will print out the image files in Open Office documents.  Image files that are not at or below the same directory as the document file will be marked '[not relative]'. Missing files will be marked '[missing]'.  It is useful if you link image files into OO files.
+| `util/lookup.zip <util/lookup.zip>`_ (141)
+|   Package that contains a python script that can help you look up words in a word dictionary and use the information from WordNet to show synonyms, definitions, and types of words (e.g., adjectives, adverbs, nouns, and verbs).
+| `util/mk.py <util/mk.py>`_ (5)
+|   Python script that is invoked with a file that contains lines of file pairs and a recipe.  When the first file is newer than the second, the recipe is executed.
+| `util/mkfile.py <util/mkfile.py>`_ (4)
+|   Python script to make files of a given size.  The -u and -t options construct allegedly cryptographically-secure random bytes.  On my older computer, it takes a few seconds to construct a 1 GB file of random bytes.
+| `util/mod.py <util/mod.py>`_ (13)
+|   Python script to recursively find files that have changed within a specified time period.
+| `util/mp.py <util/mp.py>`_ (24)
+|   This is a macro processor that is a string substitution tool. You can also include arbitrary python code in your text files. Use mp.py -h to read the man page.
+| `util/pdf.py <util/pdf.py>`_ (17)
+|   This is a python script that can manipulate PDF files. It can concatenate a number of PDF files, select certain pages and write them to another PDF file, rotating pages, watermarking. etc. You'll also need to download the pyPdf library to use this script.
+| `util/pfind.py <util/pfind.py>`_ (26)
+|   Python script to find files and directories. Similar to the UNIX find (but not as powerful), but with a simpler syntax.
+| `util/random_phrase.py <util/random_phrase.py>`_ (41)
+|   A python script for generating random phrases of words.  Useful for generating pass phrases.
+| `util/readability.zip <util/readability.zip>`_ (4541)
+|   Will calculate various readability indexes for text files, such as the Gunning Fog Index, the Flesch-Kinkaid Grade Level, etc.
+| `util/scramble.zip <util/scramble.zip>`_ (7)
+|   Contains a python script to scramble letters in words, leaving the first and last characters alone.
+| `util/space.py <util/space.py>`_ (7)
+|   See where the space is being consumed in a directory tree and where the biggest files are.
+| `util/split_cat.zip <util/split_cat.zip>`_ (5)
+|   Python scripts to split a file into chunks, print out SHA1 hashes of each chunk, and allow you to recombine the chunks later back into the original file.
+| `util/sz.zip <util/sz.zip>`_ (20)
+|   Python script to print out sizes of subdirectories.  The output is to one significant figure and is color-coded for quickly seeing where most of the storage space is being taken.
+| `util/tlc.py <util/tlc.py>`_ (6)
+|   Python script to rename all files in a directory to lower or upper case.
+| `util/html_tokens.py <util/html_tokens.py>`_ (1)
+|   Will produce a list of readable words from an HTML file, all in lower case, one per line. You could then run the list of words through a spell checker.
+| `util/tree.py <util/tree.py>`_ (8)
+|   Python script to print an ASCII representation of a directory tree.  It can optionally decorate the tree with each directory's size in MBytes and highlight a regular expression in color.
+| `util/unicode.py <util/unicode.py>`_ (19)
+|   Python script to find Unicode characters.  You'll need to download the relevant files from the Unicode website.  This script was written in 2014 and I based it on the information from The Unicode 7 standard; version 12 is current in 2019 and it's on my todo list to upgrade this script.  Yet I still use this script every day when working on my computer.
+| `util/unx.py <util/unx.py>`_ (4)
+|   Produces a list of files that are candidates for turning their execute bit permission off.  This is useful on Windows machines running cygwin to avoid a "sea of green" in an ls listing with colorizing on.
+| `util/spc_to_underscore.py <util/spc_to_underscore.py>`_ (3)
+|   Python script to replace all space characters in file names with underscores.
+
+
+
+Updated 22 Feb 2020 8:30:51 am
+

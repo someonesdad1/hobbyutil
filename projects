@@ -1067,6 +1067,15 @@ hppn:
         - hp_parts
     srcdir: /elec/hp
 
+hsm:
+    subdir: shop
+    descr: This python script searches metalworking titles for regular
+        expressions.  Contains the indexes from Village Press and Joe
+        Landau's index from 2000.
+    files:
+        - hsm.zip
+    srcdir: /pylib/pgm
+
 iapws:
     subdir: eng
     descr: Contains C++ and python code that implements the IAPWS95 
@@ -1890,17 +1899,6 @@ tlc:
         or upper case.
     files:
         - tlc.py
-    srcdir: /pylib/pgm
-
-tmbr:
-    subdir: shop
-    descr: Python script that searches an index for words of interest
-        in Lautard's "The Machinist Bedside Reader" series.  The script
-        can also generate a concordance.
-    files:
-        - tmbr.py
-        - tmbr_data.py
-        - [../columnize.py, columnize.py] 
     srcdir: /pylib/pgm
 
 tokens:

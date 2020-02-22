@@ -74,7 +74,6 @@ Link | Description
 [misc/paper_sizes.pdf](misc/paper_sizes.pdf) | Shows a scale drawing of various ISO and US paper sizes.
 [misc/pills.py](misc/pills.py) | Calculate the dates you'll run out of prescription pills.
 [misc/shaving.pdf](misc/shaving.pdf) | Some thoughts on shaving your beard.
-[misc/tips1.pdf](misc/tips1.pdf) | DIY/shop tips.
 [misc/XmasTomatoes.pdf](misc/XmasTomatoes.pdf) | Using Christmas tree lights to keep tomato plants from freezing at night.
 
 ## Programming
@@ -145,6 +144,7 @@ Link | Description
 [shop/hammer.pdf](shop/hammer.pdf) | Discusses the common hammer types and making a new handle for one.
 [shop/holes.zip](shop/holes.zip) | Contains a python script that will help you lay out holes that are equally-spaced around a circle.
 [shop/HoseFitting.pdf](shop/HoseFitting.pdf) | Here's an effective way to secure a hose to a hose fitting. It's better than anything I've found in a store.
+[shop/hsm.zip](shop/hsm.zip) | This python script searches metalworking titles for regular expressions.  Contains the indexes from Village Press and Joe Landau's index from 2000.
 [shop/LittleVise.pdf](shop/LittleVise.pdf) | Describes a small vise made from 1 inch square bar stock.  It slips into a pocket and is handy for small tasks around the shop and home.
 [shop/mass.zip](shop/mass.zip) | Python script to calculate the volume and mass of a project constructed from various primitive geometrical objects.
 [shop/nozzle.pdf](shop/nozzle.pdf) | Nice hose nozzle you can make if you have a lathe.
@@ -201,5 +201,5 @@ Link | Description
 [util/unx.py](util/unx.py) | Produces a list of files that are candidates for turning their execute bit permission off.  This is useful on Windows machines running cygwin to avoid a "sea of green" in an ls listing with colorizing on.
 [util/spc_to_underscore.py](util/spc_to_underscore.py) | Python script to replace all space characters in file names with underscores.
 
-Updated 31 Jan 2020 1:51:20 pm
+Updated 22 Feb 2020 8:30:51 am
 
