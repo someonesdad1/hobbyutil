@@ -1,3 +1,24 @@
+Notes Sat 22 Feb 2020 08:59:04 AM
+
+    It's a bit clunky having a python script do the work.  I'd like to
+    reflect on constructing a makefile to build the desired packages, as
+    that's its forte.  The hu script does keep from updating the large
+    packages unless it's done manually and that's a desired behavior,
+    but a auxiliary script can do that.
+
+    The makefile would automatically keep everything up to date when run
+    and identify problems.  What gets checked into get and pushed to the
+    server is a secondary task.
+
+    A value-add of the hu.py script is the projects file contains all
+    the files that make up a project; these would be used if anyone ever
+    wanted the "source" package.  However, this hasn't been needed at
+    all, so can probably be done manually if it's ever needed.  The
+    simple test I did with the makefile showed that it's easy to
+    construct the targets and maintain them.
+
+----------------------------------------------------------------------
+
 Must
 ----
 

@@ -155,7 +155,6 @@ Link | Description
 [shop/sine_sticks.pdf](shop/sine_sticks.pdf) | How to build a simple device from scrap that will measure angles in the shop.
 [shop/square.pdf](shop/square.pdf) | How to use a carpenter's square to lay out angles from 1 degree to 44 degrees.
 [shop/thd.zip](shop/thd.zip) | Prints out various dimensions associated with threads per ASME B1.1-1989.  If you machine threads on a lathe, you may find this program handy.
-[shop/tmbr.zip](shop/tmbr.zip) | Python script that searches an index for words of interest in Lautard's "The Machinist Bedside Reader" series.  The script can also generate a concordance.
 [shop/weigh.pdf](shop/weigh.pdf) | Demonstrates how I weighed our trailer with a lever. With a 12 foot long 4x4, I was able to measure 2500 pounds.
 [shop/YankeePushDrill.pdf](shop/YankeePushDrill.pdf) | Discusses the Yankee screwdriver, a useful tool that has been in production for more than 100 years.
 
@@ -201,5 +200,5 @@ Link | Description
 [util/unx.py](util/unx.py) | Produces a list of files that are candidates for turning their execute bit permission off.  This is useful on Windows machines running cygwin to avoid a "sea of green" in an ls listing with colorizing on.
 [util/spc_to_underscore.py](util/spc_to_underscore.py) | Python script to replace all space characters in file names with underscores.
 
-Updated 22 Feb 2020 8:30:51 am
+Updated 22 Feb 2020 8:38:00 am
 

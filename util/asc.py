@@ -15,40 +15,19 @@ from __future__ import print_function
 import sys
 import getopt
 from columnize import Columnize
+from textwrap import dedent
 from os import environ
 from pdb import set_trace as xx 
 
-nl = "\n"
-decimal = False
-octal = False
-binary = False
-Binary = False
-offset = 0
-
-column_width = 9
-number_of_columns = 8
-
-manual = '''Usage: {name} [options] [offset [numchars]]
-Prints ASCII character set starting at the indicated offset for the
-indicated number of characters (default 0x100).  Options:
-    -B    Print the 256 binary characters
-    -b    Print a binary listing
-    -d    Print in decimal
-    -h    Print this help
-    -l    Print the lower 128 characters
-    -o    Print octal characters
-    -u    Print the upper 128 characters
-    -x    Print in hex (default)
-offset and numchars can be expressions.  Prefix hex numbers with '0x' and
-octal numbers with '0b'.
-
-Example:
-    {name} 0x10a8*2
-
-  will print a table of characters starting at 0x2150.  These are Unicode
-  fractions symbols such as 1/7, 1/9, 1/10, etc. and a variety of arrows
-  and math symbols.
-'''[:-1]
+class Global: pass
+g = Global()
+g.decimal = False
+g.octal = False
+g.binary = False
+g.Binary = False
+g.offset = 0
+g.column_width = 9
+g.number_of_columns = 8
 
 def Error(msg, status=1):
     print(msg, file=sys.stderr)
@@ -56,7 +35,26 @@ def Error(msg, status=1):
 
 def Usage():
     name = sys.argv[0]
-    print(manual.format(**locals()))
+    print(dedent(f'''
+    Usage: {name} [options] [offset [numchars]]
+      Prints the ASCII/Unicode character set starting at the indicated offset 
+      for the indicated number of characters (default 0x100).  Options:
+        -B    Print the 256 binary characters
+        -b    Print a binary listing
+        -d    Print in decimal
+        -h    Print this help
+        -l    Print the lower 128 characters
+        -o    Print octal characters
+        -u    Print the upper 128 characters
+        -x    Print in hex (default)
+      offset and numchars can be expressions.  Prefix hex numbers with '0x' and
+      octal numbers with '0b'.
+    
+    Example:
+         {name} 0x10a8*2
+      will print a table of characters starting at 0x2150.  These are Unicode
+      fractions symbols such as 1/7, 1/9, 1/10, etc. and a variety of arrows
+      and math symbols.'''[1:]))
     exit(1)
 
 def Integer(s):
@@ -73,7 +71,7 @@ def Integer(s):
     return int(s, base)
 
 def ParseCommandLine():
-    global Binary, binary, decimal, octal, offset
+    #global Binary, binary, decimal, octal, offset
     try:
         optlist, args = getopt.getopt(sys.argv[1:], "Bbdhloux")
     except getopt.GetoptError as st:
@@ -83,25 +81,25 @@ def ParseCommandLine():
     lower, upper = 0, 256
     for opt in optlist:
         if opt[0] == "-B":
-            Binary = True
+            g.Binary = True
         elif opt[0] == "-b":
-            binary = True
+            g.binary = True
         elif opt[0] == "-d":
-            decimal = True
+            g.decimal = True
         elif opt[0] == "-h":
             Usage()
         elif opt[0] == "-l":
             lower, upper = 0, 128
         elif opt[0] == "-o":
-            octal = True
+            g.octal = True
         elif opt[0] == "-u":
             lower, upper = 128, 256
         elif opt[0] == "-x":
-            Binary = binary = decimal = octal = False
+            g.Binary = g.binary = g.decimal = g.octal = False
     # Get codepoint if present
     if args:
         try:
-            offset = min(max(0, eval(args[0])), 0x10ffff)
+            g.offset = min(max(0, eval(args[0])), 0x10ffff)
         except Exception:
             Error("'{}' is not a valid integer for offset".format(args[0]))
         if offset < 0:
@@ -115,13 +113,13 @@ def ParseCommandLine():
     return lower, upper
 
 def PrintBinary():
-    for i in range(0x100):
-        c = i + offset
-        print(str(c) + " " + chr(c))
+    for i in range(lower, upper):
+        c = i + g.offset
+        print(f"{c:3d} 0x{c:02x} 0o{c:03o} 0b{c:08b} {chr(c)}")
 
 def PrintBinaryListing():
     for i in range(0x100):
-        c = i + offset
+        c = i + g.offset
         print(chr(c))
     print()
 
@@ -131,26 +129,25 @@ def PrintTable(fmt, lower, upper):
             "dc3", "dc4", "nak", "syn", "etb", "can", "em", "sub", "esc",
             "fs", "gs", "rs", "us", "sp",)
     s = []
-    L = len(fmt.format(0, ctrl[0]))
     for i in range(lower, upper):
-        c = i + offset
+        c = i + g.offset
         if c <= ord(" "):
             t = fmt.format(c, ctrl[c])
         else:
             t = fmt.format(c, chr(c))
         s.append(t)
-    for i in Columnize(s, col_width=column_width, columns=number_of_columns):
+    for i in Columnize(s, col_width=g.column_width, columns=g.number_of_columns):
         print(i)
 
 if __name__ == "__main__": 
     lower, upper = ParseCommandLine()
-    if decimal:
+    if g.decimal:
         PrintTable("{:03d} {:3s}", lower, upper)
-    elif octal:
+    elif g.octal:
         PrintTable("{:03o} {:3s}", lower, upper)
-    elif binary:
+    elif g.binary:
         PrintBinary()
-    elif Binary:
+    elif g.Binary:
         PrintBinaryListing()
     else:
         PrintTable("{:02x} {:3s}", lower, upper)

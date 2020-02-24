@@ -282,8 +282,6 @@ Shop
 |   How to use a carpenter's square to lay out angles from 1 degree to 44 degrees.
 | `shop/thd.zip <shop/thd.zip>`_ (66)
 |   Prints out various dimensions associated with threads per ASME B1.1-1989.  If you machine threads on a lathe, you may find this program handy.
-| `shop/tmbr.zip <shop/tmbr.zip>`_ (226)
-|   Python script that searches an index for words of interest in Lautard's "The Machinist Bedside Reader" series.  The script can also generate a concordance.
 | `shop/weigh.pdf <shop/weigh.pdf>`_ (359)
 |   Demonstrates how I weighed our trailer with a lever. With a 12 foot long 4x4, I was able to measure 2500 pounds.
 | `shop/YankeePushDrill.pdf <shop/YankeePushDrill.pdf>`_ (766)
@@ -370,5 +368,5 @@ Utilities
 
 
 
-Updated 22 Feb 2020 8:30:51 am
+Updated 22 Feb 2020 8:38:00 am
 

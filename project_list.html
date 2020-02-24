@@ -374,6 +374,7 @@ ul.auto-toc {
 <li><a class="reference internal" href="#programming" id="id5">Programming</a></li>
 <li><a class="reference internal" href="#science" id="id6">Science</a></li>
 <li><a class="reference internal" href="#shop" id="id7">Shop</a></li>
+<li><a class="reference internal" href="#utilities" id="id8">Utilities</a></li>
 </ul>
 </div>
 <p>Integer after link is file size in units of 1000 bytes.</p>
@@ -615,10 +616,6 @@ __future__ ...</tt>, then it is possible that it will also run under python
 <div class="line-block">
 <div class="line">Some thoughts on shaving your beard.</div>
 </div>
-<div class="line"><a class="reference external" href="misc/tips1.pdf">misc/tips1.pdf</a> (7576)</div>
-<div class="line-block">
-<div class="line">DIY/shop tips.</div>
-</div>
 <div class="line"><a class="reference external" href="misc/XmasTomatoes.pdf">misc/XmasTomatoes.pdf</a> (343)</div>
 <div class="line-block">
 <div class="line">Using Christmas tree lights to keep tomato plants from freezing at night.</div>
@@ -854,6 +851,10 @@ __future__ ...</tt>, then it is possible that it will also run under python
 <div class="line-block">
 <div class="line">Here's an effective way to secure a hose to a hose fitting. It's better than anything I've found in a store.</div>
 </div>
+<div class="line"><a class="reference external" href="shop/hsm.zip">shop/hsm.zip</a> (170)</div>
+<div class="line-block">
+<div class="line">This python script searches metalworking titles for regular expressions.  Contains the indexes from Village Press and Joe Landau's index from 2000.</div>
+</div>
 <div class="line"><a class="reference external" href="shop/LittleVise.pdf">shop/LittleVise.pdf</a> (250)</div>
 <div class="line-block">
 <div class="line">Describes a small vise made from 1 inch square bar stock.  It slips into a pocket and is handy for small tasks around the shop and home.</div>
@@ -894,7 +895,169 @@ __future__ ...</tt>, then it is possible that it will also run under python
 <div class="line-block">
 <div class="line">Prints out various dimensions associated with threads per ASME B1.1-1989.  If you machine threads on a lathe, you may find this program handy.</div>
 </div>
+<div class="line"><a class="reference external" href="shop/weigh.pdf">shop/weigh.pdf</a> (359)</div>
+<div class="line-block">
+<div class="line">Demonstrates how I weighed our trailer with a lever. With a 12 foot long 4x4, I was able to measure 2500 pounds.</div>
 </div>
+<div class="line"><a class="reference external" href="shop/YankeePushDrill.pdf">shop/YankeePushDrill.pdf</a> (766)</div>
+<div class="line-block">
+<div class="line">Discusses the Yankee screwdriver, a useful tool that has been in production for more than 100 years.</div>
+</div>
+</div>
+</div>
+<div class="section" id="utilities">
+<h1><a class="toc-backref" href="#id8">Utilities</a></h1>
+<div class="line-block">
+<div class="line"><a class="reference external" href="util/asc.py">util/asc.py</a> (4)</div>
+<div class="line-block">
+<div class="line">Python script to print out an ASCII character table in decimal, hex, or octal.  Useful at a command line to see your terminal's encoding.</div>
+</div>
+<div class="line"><a class="reference external" href="util/bd.c">util/bd.c</a> (21)</div>
+<div class="line-block">
+<div class="line">Performs a comparison between binary files; differences are printed in hex dump format.</div>
+</div>
+<div class="line"><a class="reference external" href="util/bgrep.py">util/bgrep.py</a> (6)</div>
+<div class="line-block">
+<div class="line">Python script to search for regular expressions and strings in binary files.</div>
+</div>
+<div class="line"><a class="reference external" href="util/bidict.zip">util/bidict.zip</a> (7)</div>
+<div class="line-block">
+<div class="line">Creates a dictionary object in python that lets you treat it in both directions as a mapping.</div>
+</div>
+<div class="line"><a class="reference external" href="util/cnt.zip">util/cnt.zip</a> (50)</div>
+<div class="line-block">
+<div class="line">cnt.py is a command line utility to count the number of bytes in the file arguments and present a histogram of the results.  Processes files on the order of 10 MB/s.  cnt.c is a C program that is roughly 10% faster on large files, but less flexible in the output reporting.</div>
+</div>
+<div class="line"><a class="reference external" href="util/color.py">util/color.py</a> (15)</div>
+<div class="line-block">
+<div class="line">Python module to provide color printing to a console window. Should work on both Windows and Linux.  Includes functions to show regular expression matches in text printed to the console; these functions are helpful when you are developing complicated regular expressions.</div>
+</div>
+<div class="line"><a class="reference external" href="util/dedent.py">util/dedent.py</a> (1)</div>
+<div class="line-block">
+<div class="line">Python function that will remove the common space characters from a set of text lines from files given on the command line or stdin.</div>
+</div>
+<div class="line"><a class="reference external" href="util/dep.py">util/dep.py</a> (9)</div>
+<div class="line-block">
+<div class="line">Script to display a python program's module dependencies. The modules are classified by type (standard library modules and user modules).  It won't find .pyc/.pyo files nor modules the imports depend on.  It uses regular expressions to find import lines in the script, so it may show lines that aren't true imports (e.g., an import line inside a conditional that's always false).</div>
+</div>
+<div class="line"><a class="reference external" href="util/ds.zip">util/ds.zip</a> (124)</div>
+<div class="line-block">
+<div class="line">Contains python scripts to help you launch datasheets, manuals, and other documentation files from a command line prompt.  I use this script to launch manuals and ebooks and it quickly finds the ones I want amongst thousands of files.</div>
+</div>
+<div class="line"><a class="reference external" href="util/dup.py">util/dup.py</a> (14)</div>
+<div class="line-block">
+<div class="line">Python script to find duplicated files in a directory tree.</div>
+</div>
+<div class="line"><a class="reference external" href="util/ext.py">util/ext.py</a> (8)</div>
+<div class="line-block">
+<div class="line">Python script to make a list of the extensions used in file names and their counts in the directories given on the command line.</div>
+</div>
+<div class="line"><a class="reference external" href="util/fit.py">util/fit.py</a> (8)</div>
+<div class="line-block">
+<div class="line">Provides a python function to fit a string of words into a given number of columns.</div>
+</div>
+<div class="line"><a class="reference external" href="util/func.py">util/func.py</a> (1)</div>
+<div class="line-block">
+<div class="line">Python script to list the functions and classes used in the files given on the command line.</div>
+</div>
+<div class="line"><a class="reference external" href="util/getinput.zip">util/getinput.zip</a> (115)</div>
+<div class="line-block">
+<div class="line">A python module that gets input data in a variety of ways.  Gets lines or tokens from a set of files or prompts the user for numbers (the numbers can be restricted to an interval and can include uncertainty or physical units).  The lines and token getters are generators and can use functional programming tools.</div>
+</div>
+<div class="line"><a class="reference external" href="util/goto.zip">util/goto.zip</a> (174)</div>
+<div class="line-block">
+<div class="line">Used a python script and shell functions to launch project files and navigate to various directories from a command line.  A number of UNIX users have told me they couldn't live without this tool once they started using it.</div>
+</div>
+<div class="line"><a class="reference external" href="util/lib.zip">util/lib.zip</a> (12)</div>
+<div class="line-block">
+<div class="line">Python script command line tool to provide a facility for keeping snippets of code handy.</div>
+</div>
+<div class="line"><a class="reference external" href="util/lnk.py">util/lnk.py</a> (2)</div>
+<div class="line-block">
+<div class="line">Python script to list the files in two directory trees that are hard-linked together.  If you have GNU find, the -samefile option can be used to do this too.</div>
+</div>
+<div class="line"><a class="reference external" href="util/loo.zip">util/loo.zip</a> (30)</div>
+<div class="line-block">
+<div class="line">Python script that will print out the image files in Open Office documents.  Image files that are not at or below the same directory as the document file will be marked '[not relative]'. Missing files will be marked '[missing]'.  It is useful if you link image files into OO files.</div>
+</div>
+<div class="line"><a class="reference external" href="util/lookup.zip">util/lookup.zip</a> (141)</div>
+<div class="line-block">
+<div class="line">Package that contains a python script that can help you look up words in a word dictionary and use the information from WordNet to show synonyms, definitions, and types of words (e.g., adjectives, adverbs, nouns, and verbs).</div>
+</div>
+<div class="line"><a class="reference external" href="util/mk.py">util/mk.py</a> (5)</div>
+<div class="line-block">
+<div class="line">Python script that is invoked with a file that contains lines of file pairs and a recipe.  When the first file is newer than the second, the recipe is executed.</div>
+</div>
+<div class="line"><a class="reference external" href="util/mkfile.py">util/mkfile.py</a> (4)</div>
+<div class="line-block">
+<div class="line">Python script to make files of a given size.  The -u and -t options construct allegedly cryptographically-secure random bytes.  On my older computer, it takes a few seconds to construct a 1 GB file of random bytes.</div>
+</div>
+<div class="line"><a class="reference external" href="util/mod.py">util/mod.py</a> (13)</div>
+<div class="line-block">
+<div class="line">Python script to recursively find files that have changed within a specified time period.</div>
+</div>
+<div class="line"><a class="reference external" href="util/mp.py">util/mp.py</a> (24)</div>
+<div class="line-block">
+<div class="line">This is a macro processor that is a string substitution tool. You can also include arbitrary python code in your text files. Use mp.py -h to read the man page.</div>
+</div>
+<div class="line"><a class="reference external" href="util/pdf.py">util/pdf.py</a> (17)</div>
+<div class="line-block">
+<div class="line">This is a python script that can manipulate PDF files. It can concatenate a number of PDF files, select certain pages and write them to another PDF file, rotating pages, watermarking. etc. You'll also need to download the pyPdf library to use this script.</div>
+</div>
+<div class="line"><a class="reference external" href="util/pfind.py">util/pfind.py</a> (26)</div>
+<div class="line-block">
+<div class="line">Python script to find files and directories. Similar to the UNIX find (but not as powerful), but with a simpler syntax.</div>
+</div>
+<div class="line"><a class="reference external" href="util/random_phrase.py">util/random_phrase.py</a> (41)</div>
+<div class="line-block">
+<div class="line">A python script for generating random phrases of words.  Useful for generating pass phrases.</div>
+</div>
+<div class="line"><a class="reference external" href="util/readability.zip">util/readability.zip</a> (4541)</div>
+<div class="line-block">
+<div class="line">Will calculate various readability indexes for text files, such as the Gunning Fog Index, the Flesch-Kinkaid Grade Level, etc.</div>
+</div>
+<div class="line"><a class="reference external" href="util/scramble.zip">util/scramble.zip</a> (7)</div>
+<div class="line-block">
+<div class="line">Contains a python script to scramble letters in words, leaving the first and last characters alone.</div>
+</div>
+<div class="line"><a class="reference external" href="util/space.py">util/space.py</a> (7)</div>
+<div class="line-block">
+<div class="line">See where the space is being consumed in a directory tree and where the biggest files are.</div>
+</div>
+<div class="line"><a class="reference external" href="util/split_cat.zip">util/split_cat.zip</a> (5)</div>
+<div class="line-block">
+<div class="line">Python scripts to split a file into chunks, print out SHA1 hashes of each chunk, and allow you to recombine the chunks later back into the original file.</div>
+</div>
+<div class="line"><a class="reference external" href="util/sz.zip">util/sz.zip</a> (20)</div>
+<div class="line-block">
+<div class="line">Python script to print out sizes of subdirectories.  The output is to one significant figure and is color-coded for quickly seeing where most of the storage space is being taken.</div>
+</div>
+<div class="line"><a class="reference external" href="util/tlc.py">util/tlc.py</a> (6)</div>
+<div class="line-block">
+<div class="line">Python script to rename all files in a directory to lower or upper case.</div>
+</div>
+<div class="line"><a class="reference external" href="util/html_tokens.py">util/html_tokens.py</a> (1)</div>
+<div class="line-block">
+<div class="line">Will produce a list of readable words from an HTML file, all in lower case, one per line. You could then run the list of words through a spell checker.</div>
+</div>
+<div class="line"><a class="reference external" href="util/tree.py">util/tree.py</a> (8)</div>
+<div class="line-block">
+<div class="line">Python script to print an ASCII representation of a directory tree.  It can optionally decorate the tree with each directory's size in MBytes and highlight a regular expression in color.</div>
+</div>
+<div class="line"><a class="reference external" href="util/unicode.py">util/unicode.py</a> (19)</div>
+<div class="line-block">
+<div class="line">Python script to find Unicode characters.  You'll need to download the relevant files from the Unicode website.  This script was written in 2014 and I based it on the information from The Unicode 7 standard; version 12 is current in 2019 and it's on my todo list to upgrade this script.  Yet I still use this script every day when working on my computer.</div>
+</div>
+<div class="line"><a class="reference external" href="util/unx.py">util/unx.py</a> (4)</div>
+<div class="line-block">
+<div class="line">Produces a list of files that are candidates for turning their execute bit permission off.  This is useful on Windows machines running cygwin to avoid a &quot;sea of green&quot; in an ls listing with colorizing on.</div>
+</div>
+<div class="line"><a class="reference external" href="util/spc_to_underscore.py">util/spc_to_underscore.py</a> (3)</div>
+<div class="line-block">
+<div class="line">Python script to replace all space characters in file names with underscores.</div>
+</div>
+</div>
+<p>Updated 22 Feb 2020 8:38:00 am</p>
 </div>
 </div>
 </body>
