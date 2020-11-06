@@ -1,22 +1,6 @@
 '''
 Given a measured impedance in polar coordinates, prints out the
 associated parameters that can be calculated.
- 
-Example:
-    python imp.py 16.024k 82.80
-
-results in:
-
-    Impedance(1.000 kHz) = 16.024k ohms @ 82.80 deg
-      Rs = 2.008 kohm (= ESR)
-      Rp = 127.9 kohm
-      X  = 15.90 kohm
-      Cs = -10.01 nF
-      Cp = -9.854 nF
-      Ls = 2.530 H
-      Lp = 2.571 H
-      Q  = 7.916
-      D  = 0.1263
 '''
 
 # Copyright (C) 2014 Don Peterson
@@ -27,8 +11,9 @@ results in:
 # See http://opensource.org/licenses/OSL-3.0.
 #
 
-from __future__ import print_function, division
-import sys, os, getopt
+import getopt
+import os
+import sys
 from math import tan, sin, cos, pi, isinf
 from sig import sig
 from fpformat import FPFormat
@@ -41,7 +26,7 @@ def Error(msg, status=1):
 
 def Usage(d, status=1):
     name = sys.argv[0]
-    s = '''
+    s = f'''
 Usage:  {name} [options] Z theta
   Given a measured impedance with magnitude Z in ohms and phase angle
   theta in degrees, prints out the associated parameters.  You can use
@@ -50,17 +35,16 @@ Usage:  {name} [options] Z theta
  
 Options
     -d digits
-        Use the indicated number of significant digits for output.
-        Defaults to 4.
+        Use the indicated number of significant digits for output.  [{d["-d"]}]
     -f freq_Hz
-        Specify measurement frequency in Hz.  Defaults to 1k.  You can
-        use a cuddled SI prefix after the number.
+        Specify measurement frequency in Hz.  You can use a cuddled SI 
+        prefix after the number.  [{d["-f"]} Hz]
 '''[1:-1]
     print(s.format(**locals()))
     sys.exit(status)
 
 def ParseCommandLine(d):
-    d["-d"] = 4     # Number of significant digits
+    d["-d"] = 3     # Number of significant digits
     d["-f"] = 1000  # Measurement frequency in Hz
     if len(sys.argv) < 2:
         Usage(d)
@@ -139,25 +123,56 @@ if __name__ == "__main__":
     # Print report
     E = fp.engsi
     fr = E(d["-f"]) + "Hz"
-    print("Impedance(%s) =" % fr, z, "ohms @", theta_d, "deg")
-    X = Z*sin(theta)
-    sgn = "-" if X < 0 else "+"
-    print("  Rs = ", E(Rs), "ohm = ESR", sep="")
-    print("  Rp = ", E(Rp), "ohm", sep="")
-    print("  X  = ", E(X),  "ohm", sep="")
-    if isinf(Cs):
-        print("  Cs = inf")
+    if 0:
+        # Old method for python 2.7 and later
+        print("Impedance(%s) =" % fr, z, "ohms @", theta_d, "deg")
+        X = Z*sin(theta)
+        print("  Rs = ", E(Rs), "ohm = ESR", sep="")
+        print("  Rp = ", E(Rp), "ohm", sep="")
+        print("  X  = ", E(X),  "ohm", sep="")
+        if isinf(Cs):
+            print("  Cs = inf")
+        else:
+            print("  Cs = ", E(Cs), "F", sep="")
+        print("  Cp = ", E(Cp), "F", sep="")
+        print("  Ls = ", E(Ls), "H", sep="")
+        if isinf(Lp):
+            print("  Lp = inf")
+        else:
+            print("  Lp = ", E(Lp), "H", sep="")
+        if isinstance(Q, float):
+            print("  Q  =", sig(Q))
+            print("  D  =", sig(D))
+        else:
+            print("  Q  =", Q)
+            print("  D  =", D)
     else:
-        print("  Cs = ", E(Cs), "F", sep="")
-    print("  Cp = ", E(Cp), "F", sep="")
-    print("  Ls = ", E(Ls), "H", sep="")
-    if isinf(Lp):
-        print("  Lp = inf")
-    else:
-        print("  Lp = ", E(Lp), "H", sep="")
-    if isinstance(Q, float):
-        print("  Q  =", sig(Q))
-        print("  D  =", sig(D))
-    else:
-        print("  Q  =", Q)
-        print("  D  =", D)
+        # Use f-strings
+        o = "Ω"
+        Rs = f"{E(Rs)}{o}"
+        Rp = f"{E(Rp)}{o}"
+        X = E(Z*sin(theta)) + o
+        if isinf(Cs):
+            Cs = f"∞ F"
+        else:
+            Cs = f"{E(Cs)}F"
+        Cp = f"{E(Cp)}F"
+        Ls = f"{E(Ls)}H"
+        if isinf(Lp):
+            Lp = "∞ H"
+        else:
+            Lp = f"{E(Lp)}H"
+        Q = f"{sig(Q)}"
+        D = f"{sig(D)}"
+        n = 12
+        print(f'''
+Impedance({fr}) = {z}Ω @ {theta_d}°
+  {Rs:>{n}s}    Rs = Equivalent series resistance
+  {Rp:>{n}s}    Rp = Equivalent parallel resistance
+  {X :>{n}s}    X  = Reactance
+  {Cs:>{n}s}    Cs = Equivalent series capacitance
+  {Cp:>{n}s}    Cp = Equivalent parallel capacitance
+  {Ls:>{n}s}    Ls = Equivalent series inductance
+  {Lp:>{n}s}    Lp = Equivalent parallel inductance
+  {Q :>{n}s}    Q  = Quality factor
+  {D :>{n}s}    D  = Dissipation factor'''[1:])

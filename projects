@@ -576,8 +576,7 @@ dmath:
 
 donor:
     subdir: misc
-    descr: Organ donation became an important topic for me after my 
-        granddaughter was killed.
+    descr: Why I have organ donor checked on my driver's license.
     files:
         - Donor.odt*
         - Donor.pdf
@@ -1389,6 +1388,15 @@ oopy:
         - PythonFromCalc.odt*
         - PythonFromCalc.pdf
     srcdir: /doc
+
+oring:
+    subdir: shop
+    descr: Utility to find/show o-ring sizes on-hand.
+    files:
+        - oring.py
+        - [../getnumber.py, getnumber.py]
+        - [../sig.py, sig.py]
+    srcdir: /pgm/py
 
 out:
     subdir: prog
