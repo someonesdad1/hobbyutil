@@ -52,7 +52,7 @@ logic_probe.pdf: $e/projects/logic_probe/logic_probe.pdf
 MeasuringESR.pdf: $e/Articles/MeasuringESR.pdf
 	cp $^ $@
 
-octopus.pdf: $e/projects/octopus/Octopus_new.pdf
+octopus.pdf: $e/projects/octopus/Octopus_Jul2012.pdf
 	cp $^ $@
 
 PartsStorageMethods.pdf: $e/projects/PartsStorageMethods.pdf
