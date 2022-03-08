@@ -2,7 +2,10 @@ hobbyutil
 =========
 
 Click [here](./project_list.html) to go to the projects page to read their
-descriptions and download them.  
+descriptions and download them.
+[plib](https://github.com/someonesdad1/plib) contains python modules and
+scripts I've written and may contain more up-to-date stuff than this
+project.
 
 This repository is for projects and documents I've developed over the
 years for my various hobbies.  Each project is a link which you can

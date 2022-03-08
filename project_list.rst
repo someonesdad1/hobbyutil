@@ -2,12 +2,11 @@
 
 .. contents:: Table of Contents
 
-Integer after link is file size in units of 1000 bytes.
+The integer after the link is the file size in units of 1000 bytes.
 
 Unless otherwise noted, the python scripts are written to run with
 python 3.6 or later.  If the script contains a line like ``from
-__future__ ...``, then it is possible that it will also run under python
-2.7.
+__future__ ...``, then it may also run under python 2.7.
 
 Electrical
 ==========
@@ -368,5 +367,5 @@ Utilities
 
 
 
-Updated 22 Feb 2020 8:38:00 am
+Updated 11 Jun 2021 12:27:28 PM
 

@@ -16,6 +16,10 @@ all: html basic
 basic: util/asc.py shop/bucket.zip science/astro.zip
 html:  project_list.html tutorial.html
 
+
+project_list.html: project_list.rst
+tutorial.html:  tutorial.rst
+
 #----------------------------------------------------------------------
 # Experimental stuff to test the idea of converting hu.py to a plain makefile
 #   $@ is file name of target rule
@@ -43,7 +47,7 @@ science/astro.zip: $p/meeus.py $p/julian.py $p/kepler.py $p/test/meeus_test.py \
 
 rst = /usr/local/bin/rst2html.py
 
-*.html:  *.rst
+%.html:  %.rst
 	${rst} $< >$@
 
 # vim: noet

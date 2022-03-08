@@ -113,9 +113,7 @@ def Plot(file, d):
     ylabel("Phase, degrees")
     show()
 
-def main():
+if __name__ == "__main__": 
     d = {}   # Options dictionary
     args = ParseCommandLine(d)
     Plot(args[0], d)
-
-main()
