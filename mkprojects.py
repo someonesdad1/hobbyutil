@@ -204,8 +204,20 @@ def GetProject():
         state = GetState(line)
         if state != prev_state:
             # Need to output accumulated data
+            s = " "*8
+            u = s + " "*4
             if descr:
-                print('\n'.join(descr))
+                print(f"{s}'descr': ", end="")
+                if len(descr) == 1:
+                    print(f"{descr[0]!r},")
+                else:
+                    print()
+                    while descr:
+                        i = descr.pop(0)
+                        print(f"{u}{i!r}", end="")
+                        print(",") if not descr else print()
+                    for i in descr:
+                        print(f"{u}{i!r}")
                 descr = []
             elif ignore:
                 print('\n'.join(ignore))
