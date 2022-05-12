@@ -14,6 +14,8 @@ hobbyutil ToDo list
         - Consider moving much of this stuff to plib, as this helps to
           centralize all my stuff over time.
 - Want
+    - The git repository is 100 MB
+        - Look at eliminating much of the stuff
     - The generated web page for the project should contain a date to let
       the viewer see the last time the project was updated.  This could be
       done by giving the key file in the list a '+' character to flag that

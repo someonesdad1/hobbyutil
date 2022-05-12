@@ -1,5 +1,15 @@
 '''
-Temporary script to convert projects to projects.py
+
+TODO
+    - Convert multiline strings to use """...""" form.  These can then have
+      the common leading whitespace removed by dedent() and are trivially
+      converted to the requisite markup. 
+
+--------------------------------------------------------------------------------
+Python script to convert the projects file to projects.py.  This is on the
+branch 'eliminate_yaml' and will mean that the hobbyutil projects'
+information is kept up to date in a python dictionary, so reading the data
+in will be fast and the reading code can check types and data.
 
 Each project has the following attributes (* means optional):
     - subdir:str    Location in hu directory tree
@@ -170,6 +180,20 @@ def GetState(line):
         return State.todo
     else:
         return state
+def PrintItem(name, item):
+    '''Print the dict item with key name and sequence item's strings.
+    '''
+    s = " "*8
+    u = s + " "*4
+    print(f"{s}{name!r}: ", end="")
+    if len(item) == 1:
+        print(f"{item[0]!r},")
+    else:
+        print()
+        while item:
+            i = item.pop(0)
+            print(f"{u}{i!r}", end="")
+            print(",") if not item else print()
 def GetProject():
     '''Build a dict
     '''
@@ -204,29 +228,18 @@ def GetProject():
         state = GetState(line)
         if state != prev_state:
             # Need to output accumulated data
-            s = " "*8
-            u = s + " "*4
             if descr:
-                print(f"{s}'descr': ", end="")
-                if len(descr) == 1:
-                    print(f"{descr[0]!r},")
-                else:
-                    print()
-                    while descr:
-                        i = descr.pop(0)
-                        print(f"{u}{i!r}", end="")
-                        print(",") if not descr else print()
-                    for i in descr:
-                        print(f"{u}{i!r}")
+                PrintItem("descr", descr)
                 descr = []
             elif ignore:
-                print('\n'.join(ignore))
+                PrintItem("ignore", ignore)
                 ignore = []
             elif todo:
-                print('\n'.join(todo))
+                PrintItem("todo", todo)
                 todo = []
             elif files:
-                print('\n'.join(files))
+                # xx Need different function to generate tuple of strings
+                PrintItem("files", files)
                 files = []
         if state == State.header:
             Error(f"Cannot be header state after line {line!r}")        
@@ -239,15 +252,26 @@ def GetProject():
             else:
                 descr += [line]
         elif state == State.files:
-            pass
+            # xx need function to generate file list
+            if not line.startswith("files:"):
+                files.append(line)
         elif state == State.srcdir:
-            pass
+            _, dir = line.split()
+            print(f"{' '*8}'srcdir': {dir!r},")
         elif state == State.ignore:
-            pass
+            if line.startswith("ignore: "):
+                ignore = [line[8:]]
+            else:
+                ignore += [line]
         elif state == State.frozen:
-            pass
+            _, val = line.split()
+            s = "True" if val.strip() == "yes" else "False"
+            print(f"{' '*8}'frozen': {s},")
         elif state == State.todo:
-            pass
+            if line.startswith("todo: "):
+                todo = [line[5:]]
+            else:
+                todo += [line]
         elif state == State.done:
             Error(f"Cannot be done state here")        
 
