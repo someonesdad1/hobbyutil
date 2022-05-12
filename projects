@@ -19,6 +19,16 @@
 # distribution, but only when the package is constructed.  If there is only
 # one file not with a *, then it is the output; otherwise, a zipfile of the
 # files is constructed.
+#
+#   Example:  calipers project:  Calipers.odt* means it is not needed for
+#   the project content for the web page, as the only file for this project
+#   is the PDF.  However, all the files with *'s are needed to build the
+#   PDF file and are what you'd give to someone who wanted the complete
+#   source to the PDF file.
+#
+# A file given as a two-file list of strings [a, b] is where the file a is
+# the actual location of the source file on the disk and b is the location
+# it should wind up in the hobbyutil's project's directory.
 
 # ----------------------------------------------------------------------
 # TODO:
@@ -622,7 +632,7 @@ dupfile:
     subdir: util
     descr: Python script to find duplicated files in a directory tree.
     files:
-       - dup.py
+        - dup.py
     srcdir: /pylib/pgm
 
 ef:
@@ -1224,7 +1234,7 @@ manufy:
     files:
         - manufy.py
     srcdir: /pylib/pgm
-    todo:  Has a bug when used to process it's manpage output
+    todo:  Has a bug when used to process its manpage output
 
 markup:
     subdir: misc

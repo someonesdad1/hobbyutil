@@ -1,13 +1,12 @@
-?
-.z
-.vi
-tags
-*.swp
 *.bak
+*.swp
+.vi
+.z
 clean
-mk
 log
+mk
 old_hu_projects
+tags
 
 # Ignore any Open Office, Word, or bitmap files.  This is done to avoid
 # populating the repository with source stuff.  Users are alerted that

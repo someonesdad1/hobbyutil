@@ -1,9 +1,31 @@
 '''
+ 
+- ToDo
+    - Eliminate dependency on yaml
+        - Convert projects to projects.py.  Then hu.py just reads in an
+          already constructed dictionary and validates the data.
+            - All paths will be pathlib.Path objects
+        - This allows the use of variables, easing problems like changing
+          /pylib to /plib.
+            - This also obviates the need for e.g. ts.py support
+    - This newer architecture might make it unnecessary to switch to
+      makefile construction
+    - Once running again, update the web page
+    - Color:  this could be used to advantage for
+        - Listings
+        - Verbose display of processing like ts.py
 
+--------------------------------------------------------------------------------
 This script is used to populate a repository with the files that I want to
 archive.  The relevant file information is in a text file that uses YAML
 syntax to describe the files, their source and destination names, and their
 containers.
+
+    I chose to use YAML because it allowed me to write strings without
+    having to use quotes to delimit them.  If you want to avoid the
+    dependency on needing a YAML library, you can change the projects file
+    to a python dictionary or use JSON in conjunction with python's json
+    module.
 
 The first task is to verify all the source files exist on the hard disk.
 Then the script will identify missing or out-of-date destination files.
@@ -14,11 +36,6 @@ copied to the repository for space reasons.  A user can ask to have the
 source files and the -z option can be used to put the source files into a
 zip file so they can be emailed to the user.
 
-Editorial comment:  I chose to use YAML primarily because it allowed me to
-write strings without having to use double or single quotes to delimit
-them.  If you want to avoid the dependency on needing a YAML library, you
-can easily change the projects file to a python dictionary or use JSON in
-conjunction with python's json module.
 
 '''
 
@@ -360,7 +377,8 @@ def ReadProjectData(d):
     '''
     global data, output_directories
     # Read the YAML syntax into a dictionary
-    data = yaml.load(open(yamlfile, "r"))
+    s = open(yamlfile, "r").read()
+    data = yaml.load(s)
     # Check each project's entries
     for project in data:
         project_data = data[project]
