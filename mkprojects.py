@@ -38,145 +38,30 @@ go into a zipfile.
 '''
 from get import GetLines
 from collections import deque
-from color import TRM as t
 import re
 import enum
 from pdb import set_trace as xx 
 from lwtest import run, raises, assert_equal, Assert
 
-t.always = True
 dbg = False
-
-def Index(line, show=False):
-    '''Match to the regexps to categorize the line's type and return the
-    string matched.  If show is True, decorate the line to stdout.  Note
-    we exit on a bad line. 
-
-    Return (line_id, str_match) where line_id is a string identifying the
-    field type and str_match is the string data that was matched.
-
-    Returned line_id strings are
-        projectname
-        filelist
-        subdir
-        descr
-        file
-        srcdir
-        ignore
-        frozen
-        todo
-        empty
-        strcont     (string continuation)
-    '''
-    matched = False
-    for r, c in (
-            (rprogjectname, t.pr), 
-            (rfile, t.file),
-            (rsub, t.sub),
-            (rdescr, t.descr),
-            (rfiles, t.files),
-            (rsrc, t.src),
-            (rign, t.ign),
-            (rfrz, t.frz),
-            (rtodo, t.todo),
-            (rempty, None),
-            (rstr, t.str),
-        ):
-        mo = r.match(line)
-        if mo and mo.groups():
-            s = mo.groups()[0]
-            if s:
-                t.print(f"{c}{s}")
-                matched = True
-                break
-    if not matched:
-        print(f"Bad line:  {line!r}")
-        exit(1)
-    return
-
-    if rprogjectname.match(line):
-        t.print(f"{t.pr}{line}")
-    elif rfile.match(line):
-        t.print(f"{t.file}{line}")
-    elif rsub.match(line):
-        t.print(f"{t.sub}{line}")
-    elif rdescr.match(line):
-        t.print(f"{t.descr}{line}")
-    elif rfiles.match(line):
-        t.print(f"{t.files}{line}")
-    elif rsrc.match(line):
-        t.print(f"{t.src}{line}")
-    elif rign.match(line):
-        t.print(f"{t.ign}{line}")
-    elif rfrz.match(line):
-        t.print(f"{t.frz}{line}")
-    elif rtodo.match(line):
-        t.print(f"{t.todo}{line}")
-    elif rstr.match(line):
-        t.print(f"{t.str}{line}")
-    elif rempty.match(line):
-        pass
-    else:
-        t.print(f"{t.bad}'Bad' line:  {line!r}")
-        exit(1)
-def GetRegexps():
-    global rprogjectname, rfile, rsub, rdescr, rfiles, rsrc, rign
-    global rfrz, rtodo, rempty, rstr
-    # Regex for project name
-    rprogjectname = re.compile(r"^([a-z0-9_]*): *$")
-    t.pr = t("purl")
-    # Regex for a file
-    rfile = re.compile(r"^ {8}- (.*)$")
-    t.file = t("grn")
-    # Regex for 'subdir:'
-    rsub = re.compile(r"^ {4}subdir: (.*)$")
-    t.sub = t("ornl")
-    # Regex for 'descr:'
-    rdescr = re.compile(r"^ {4}descr: (.*)$")
-    t.descr = t("magl")
-    # Regex for 'files:'
-    rfiles = re.compile(r"^ {4}files: (.*)$")
-    t.files = t("yell")
-    # Regex for 'srcdir:'
-    rsrc = re.compile(r"^ {4}srcdir: (.*)$")
-    t.src = t("trq")
-    # Regex for 'ignore:'
-    rign = re.compile(r"^ {4}ignore: (.*)$")
-    t.ign = t("lip")
-    # Regex for 'frozen:'
-    rfrz = re.compile(r"^ {4}frozen: (.*)$")
-    t.frz = t("cynl")
-    # Regex for 'todo:'
-    rtodo = re.compile(r"^ {4}todo: (.*)$")
-    t.todo = t("yell", "redl")
-    # Regex for empty lines
-    rempty = re.compile(r"^\s*$")
-    # Regex for string continuation lines
-    rstr = re.compile(r" {8}(.*)$")
-    t.str = t("brn")
-    # For 'bad' lines
-    t.bad = t("blk", "yell")
-
-def PrintProject(project):
-    '''project is a list of this project's lines'''
 
 def Error(*msg, status=1):
     print(*msg, file=sys.stderr)
     exit(status)
 def GetState(line):
-    if line.startswith("subdir"):
+    if line.startswith("subdir:"):
         return State.subdir
-    elif line.startswith("descr"):
+    elif line.startswith("descr:"):
         return State.descr
-    elif line.startswith("files"):
+    elif line.startswith("files:"):
         return State.files
-    elif line.startswith("srcdir"):
+    elif line.startswith("srcdir:"):
         return State.srcdir
-    elif line.startswith("ignore"):
+    elif line.startswith("ignore:"):
         return State.ignore
-    elif line.startswith("frozen"):
+    elif line.startswith("frozen:"):
         return State.frozen
-    elif line.startswith("todo"):
+    elif line.startswith("todo:"):
         return State.todo
     else:
         return state
@@ -192,23 +77,54 @@ def PrintItem(name, item):
         print()
         while item:
             i = item.pop(0)
-            print(f"{u}{i!r}", end="")
+            # Note we add a space character to the end of each string.
+            # This ensures they won't be run together words in the output.
+            # Since the ultimate output will be html, the extra whitespace
+            # isn't significant.
+            print(f"{u}{i + ' '!r}", end="")
             print(",") if not item else print()
-def GetProject():
-    '''Build a dict
+def PrintFiles(name, item):
+    '''Print the dict item with key name and a tuple of item's elements.
+    Each line can be either a string representing a file name or a list of
+    two strings, representing two file names.
     '''
+    s, u = " "*8, " "*16
+    print(f"{s}{name!r}: ", end="")
+    nop = lambda x: None
+    if len(item) == 1:
+        print(f"[{item[0]!r}],")
+    else:
+        print("[")
+        while item:
+            i = item.pop(0)
+            if i.startswith("- ["):
+                i = i[3:-1]
+                file1, file2 = [j.strip() for j in i.split(",")]
+                print(f"{u}[{file1!r}, {file2!r}],")
+            else:
+                Assert(i.startswith("- "))
+                i = i[2:]
+                print(f"{u}{i!r},")
+            print(f"{u}],") if not item else nop(0)
+def MakeDict():
+    'Build the output dict for the current project'
     global state
-    rpn = re.compile(r"^([a-z0-9_]*): *$")
-    line = lines.popleft()
-    mo = rpn.match(line)
-    assert(mo)
-    name = mo.groups()[0]
+    if 1:
+        # The first line must be a project name followed by a colon
+        rpn = re.compile(r"^([a-z0-9_]*): *$")
+        line = lines.popleft()
+        mo = rpn.match(line)
+        assert(mo)
+        name = mo.groups()[0]
     Assert(state == State.header)
+    # Output the dict key
     print(f"    {name!r}: {{")
+    # Containers for strings
     descr = []
     ignore = []
     todo = []
     files = []
+    # This is basically a state machine to process the project's lines
     while True:
         line = lines.popleft()
         if not lines:   # Last line read
@@ -238,8 +154,7 @@ def GetProject():
                 PrintItem("todo", todo)
                 todo = []
             elif files:
-                # xx Need different function to generate tuple of strings
-                PrintItem("files", files)
+                PrintFiles("files", files)
                 files = []
         if state == State.header:
             Error(f"Cannot be header state after line {line!r}")        
@@ -252,7 +167,6 @@ def GetProject():
             else:
                 descr += [line]
         elif state == State.files:
-            # xx need function to generate file list
             if not line.startswith("files:"):
                 files.append(line)
         elif state == State.srcdir:
@@ -292,5 +206,4 @@ if __name__ == "__main__":
     lines = deque(GetLines("projects", script=True, nonl=True))
     print("projects = {")
     while lines:
-        project = GetProject()
-        PrintProject(project)
+        MakeDict()

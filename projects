@@ -2149,7 +2149,6 @@ xref:
         A C++ program and a python script (you'll need version 3.7, but
         you can hack on it a bit to get it to run with earlier python 3
         versions) are included that do the same things.
-
     files:
         - xref.cpp
         - [/pylib/pgm/xref.py, xref.py]
