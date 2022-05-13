@@ -2,7 +2,6 @@ hobbyutil ToDo list
 
 - Current task
     - Convert projects to projects.py
-    - Eliminate use of yaml
 
 - Must
     - Many of the scripts are things in /plib/pgm

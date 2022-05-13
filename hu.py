@@ -57,6 +57,7 @@ if 1:   # Header
         from color import Color, TRM as t
         from columnize import Columnize
         from wrap import wrap, dedent
+        import projects
         if 0:
             import debug
             debug.SetDebugger()
@@ -156,7 +157,7 @@ if 1:   # Header
         For the files, if there's only one filename, then the source and
         destination filenames are the same.
         '''
-        data = None
+        data = projects.projects
 if 1:   # Classes
     class Project(object):
         '''Contain the project's information and provide the requisite
@@ -207,14 +208,28 @@ if 1:   # Classes
             non_asterisked_files = self.GetDestinationFiles()
             if len(non_asterisked_files) == 1:
                 # It's a single file
-                SRC, DEST = non_asterisked_files[0]
-                srctime = os.stat(Join(self.srcdir, SRC)).st_mtime
-                try:
-                    desttime = os.stat(Join(self.subdir, DEST)).st_mtime
-                except FileNotFoundError:
-                    return True
-                if srctime > desttime:
-                    return True
+                if 0:
+                    SRC, DEST = non_asterisked_files[0]
+                    srctime = os.stat(Join(self.srcdir, SRC)).st_mtime
+                    try:
+                        desttime = os.stat(Join(self.subdir, DEST)).st_mtime
+                    except FileNotFoundError:
+                        return True
+                    if srctime > desttime:
+                        return True
+                else:
+                    # Use more modern pathlib stuff
+                    SRC, DEST = non_asterisked_files[0]
+                    src = P(self.srcdir)
+                    src = src/SRC
+                    srctime = src.stat().st_mtime
+                    try:
+                        dest = P(self.subdir)/DEST
+                        desttime = dest.stat().st_mtime
+                    except FileNotFoundError:
+                        return True
+                    if srctime > desttime:
+                        return True
             else:
                 # It's a zip file
                 zip = Join(self.subdir, self.name) + ".zip"
@@ -330,19 +345,10 @@ if 1:   # Utility
         c.normal()
 if 1:   # Core functionality
     def ReadProjectData(d):
-        '''Get data and update it to ensure all records are present.  The
-        input data is in YAML format.  After finishing, data is a dictionary
-        keyed by project name; the values are the Project objects.
- 
-        Note:  I chose to use the YAML syntax because it is easier to edit than
-        e.g. using regular python code to define a dictionary.  JSON could have
-        been used (and has a python parser in the standard library), but it
-        wouldn't look much different than regular python code.
+        '''The global variable data contains a dictionary keyed by project
+        name.  This function reads that data in and validates it.
         '''
         global data, output_directories
-        # Read the YAML syntax into a dictionary
-        s = open(yamlfile, "r").read()
-        data = yaml.load(s)
         # Check each project's entries
         for project in data:
             project_data = data[project]
@@ -362,6 +368,7 @@ if 1:   # Core functionality
             project_data["files"] = files
             output_directories.add(project_data["subdir"])
             data[project] = Project(project, project_data)
+        "Got to here in new rewrite"
     def RemoveAsterisk(s):
         '''Remove a trailing * from a string.
         '''

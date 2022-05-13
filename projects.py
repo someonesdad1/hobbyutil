@@ -1,7 +1,13 @@
 # This file was constructed by the mkprojects.py python script on
-# 12 May 2022 Thu 6:10:00 pm.
+# 12 May 2022 Thu 6:10:00 pm.  It has since been edited and is now being
+# used for the project, so the mkprojects.py script should not be used
+# anymore.
 
 from wrap import dedent
+from pathlib import Path as P
+
+plib = "/plib"
+pgm = f"{plib}/pgm"
 
 projects = {
     'seg': {
@@ -10,8 +16,10 @@ projects = {
             Python script to calculate parameters of a circular segment.
             Translated from a program written by Marv Klotz.
             '''),
-        'files': ['- seg.py'],
-        'srcdir': '/pylib/pgm',
+        'files': [
+                'seg.py'
+                ],
+        'srcdir': pgm,
         },
     'ag': {
         'subdir': 'math',
@@ -69,8 +77,10 @@ projects = {
             hex, or octal.  Useful at a command line to see your terminal's
             encoding.
             '''),
-        'files': ['- asc.py'],
-        'srcdir': '/pylib/pgm',
+        'files': [
+                'asc.py',
+                ],
+        'srcdir': pgm,
         },
     'astro': {
         'subdir': 'science',
@@ -87,13 +97,15 @@ projects = {
                 ['test/kepler_test.py', 'kepler_test.py'],
                 ['pgm/moon.py', 'moon.py'],
                 ],
-        'srcdir': '/pylib',
+        'srcdir': plib,
         },
     'ball': {
         'subdir': 'shop',
         'descr': 'Python script to calculate steps to turn a ball on a lathe.',
-        'files': ['- ball.py'],
-        'srcdir': '/pylib/pgm',
+        'files': [
+                'ball.py',
+                ],
+        'srcdir': pgm,
         },
     'bar': {
         'subdir': 'shop',
@@ -104,7 +116,7 @@ projects = {
                 ['../sig.py', 'sig.py'],
                 ['../columnize.py', 'columnize.py'],
                 ],
-        'srcdir': '/pylib/pgm',
+        'srcdir': pgm,
         },
     'bc': {
         'subdir': 'shop',
@@ -116,7 +128,7 @@ projects = {
                 'bc.py',
                 ['../sig.py', 'sig.py'],
                 ],
-        'srcdir': '/pylib/pgm',
+        'srcdir': pgm,
         },
     'bcmt': {
         'subdir': 'math',
@@ -139,8 +151,10 @@ projects = {
             Performs a comparison between binary files; differences
             are printed in hex dump format.
             '''),
-        'files': ['- bd.c'],
-        'srcdir': '/tools/misc',
+        'files': [
+                'bd.c',
+                ],
+        'srcdir': '/projects/tools/0keep/misc',
         },
     'bgrep': {
         'subdir': 'util',
@@ -148,8 +162,10 @@ projects = {
             Python script to search for regular expressions and strings
             in binary files.
             '''),
-        'files': ['- bgrep.py'],
-        'srcdir': '/pylib/pgm',
+        'files': [
+                'bgrep.py',
+                ],
+        'srcdir': pgm,
         },
     'bidict': {
         'subdir': 'util',
@@ -161,7 +177,7 @@ projects = {
                 'bidict.py',
                 ['test/bidict_test.py', 'bidict_test.py'],
                 ],
-        'srcdir': '/pylib',
+        'srcdir': plib,
         },
     'bnc': {
         'subdir': 'elec',
@@ -190,8 +206,10 @@ projects = {
             matplotlib).  You define the transfer function in a file
             passed on the command line.
             '''),
-        'files': ['- bode.py'],
-        'srcdir': '/pylib/pgm',
+        'files': [
+                'bode.py',
+                ],
+        'srcdir': pgm,
         },
     'bucket': {
         'subdir': 'shop',
@@ -205,7 +223,7 @@ projects = {
                 'bucket.odt*',
                 'bucket.pdf',
                 ],
-        'srcdir': '/pylib/pgm',
+        'srcdir': pgm,
         },
     'calipers': {
         'subdir': 'shop',
@@ -253,7 +271,7 @@ projects = {
                 ['../getnumber.py', 'getnumber.py'],
                 ['../sig.py', 'sig.py'],
                 ],
-        'srcdir': '/pylib/pgm',
+        'srcdir': pgm,
         },
     'cheat': {
         'subdir': 'shop',
@@ -318,7 +336,7 @@ projects = {
                 'circ3.pdf',
                 ['../sig.py', 'sig.py'],
                 ],
-        'srcdir': '/pylib/pgm',
+        'srcdir': pgm,
         },
     'clamps': {
         'subdir': 'shop',
@@ -366,7 +384,7 @@ projects = {
                 ['../fpformat.py', 'fpformat.py'],
                 ['../columnize.py', 'columnize.py'],
                 ],
-        'srcdir': '/pylib/pgm',
+        'srcdir': pgm,
         },
     'color': {
         'subdir': 'util',
@@ -377,8 +395,10 @@ projects = {
             functions are helpful when you are developing complicated regular
             expressions.
             '''),
-        'files': ['- color.py'],
-        'srcdir': '/pylib',
+        'files': [
+                'color.py',
+                ],
+        'srcdir': plib,
         },
     'columnize': {
         'subdir': 'prog',
@@ -386,8 +406,10 @@ projects = {
             Python function to print a sequence in columns.  The order can be
             down (default) or across.
             '''),
-        'files': ['- columnize.py'],
-        'srcdir': '/pylib',
+        'files': [
+                'columnize.py',
+                ],
+        'srcdir': plib,
         },
     'comb': {
         'subdir': 'prog',
@@ -395,8 +417,10 @@ projects = {
             A python script that will produce permutations and combinations
             of the lines in a file. Can be useful for generating test cases.
             '''),
-        'files': ['- comb.py'],
-        'srcdir': '/pylib/pgm',
+        'files': [
+                'comb.py',
+                ],
+        'srcdir': pgm,
         },
     'concise': {
         'subdir': 'math',
@@ -423,7 +447,19 @@ projects = {
                 'cove.pdf',
                 'cove.py',
                 ],
-        'srcdir': '/pylib/pgm',
+        'srcdir': pgm,
+        },
+    'cpi': {
+        'subdir': 'misc',
+        'descr': dedent('''
+            Calculate the effects of inflation on prices for the years 1914
+            to the present using the consumer price index.  For example, $1
+            to purchase food in 1960 is equivalent to about $8.5 in 2018.
+            '''),
+        'files': [
+                'cpi.py',
+                ],
+        'srcdir': pgm,
         },
     'cs': {
         'subdir': 'elec',
@@ -454,7 +490,7 @@ projects = {
                 ['../odict.py', 'odict.py'],
                 ['../sig.py', 'sig.py'],
                 ],
-        'srcdir': '/pylib/pgm',
+        'srcdir': pgm,
         },
     'dbm': {
         'subdir': 'elec',
@@ -470,16 +506,6 @@ projects = {
                 ],
         'ignore': 'Limited interest',
         'srcdir': '/elec/spreadsheets',
-        },
-    'dedent': {
-        'subdir': 'util',
-        'descr': dedent('''
-            Python function that will remove the common space characters
-            from a set of text lines from files given on the command line
-            or stdin.
-            '''),
-        'files': ['- dedent.py'],
-        'srcdir': '/pylib/pgm',
         },
     'demag': {
         'subdir': 'shop',
@@ -506,7 +532,7 @@ projects = {
                 'density.py',
                 ['../sig.py', 'sig.py'],
                 ],
-        'srcdir': '/pylib/pgm',
+        'srcdir': pgm,
         },
     'dep': {
         'subdir': 'util',
@@ -518,8 +544,10 @@ projects = {
             lines in the script, so it may show lines that aren't true imports
             (e.g., an import line inside a conditional that's always false).
             '''),
-        'files': ['- dep.py'],
-        'srcdir': '/pylib/pgm',
+        'files': [
+                'dep.py',
+                ],
+        'srcdir': pgm,
         },
     'diam': {
         'subdir': 'science',
@@ -527,7 +555,9 @@ projects = {
             Plots of circles showing the relative mean diameters of
             planets and moons in the solar system.
             '''),
-        'files': ['- diameters.pdf'],
+        'files': [
+                'diameters.pdf'
+                ],
         'srcdir': '/science/astronomy/diameters',
         },
     'dino': {
@@ -635,7 +665,9 @@ projects = {
             You can print them at full scale and glue them to a chunk of
             wood to make some handy scales.
             '''),
-        'files': ['- drules.pdf'],
+        'files': [
+                'drules.pdf',
+                ],
         'srcdir': '/shop/drafting_rules',
         },
     'ds': {
@@ -655,13 +687,15 @@ projects = {
                 ['../../tools/app.cpp', 'app.cpp'],
                 ['../color.py', 'color.py'],
                 ],
-        'srcdir': '/pylib/pgm',
+        'srcdir': pgm,
         },
     'dupfile': {
         'subdir': 'util',
         'descr': 'Python script to find duplicated files in a directory tree.',
-        'files': ['- dup.py'],
-        'srcdir': '/pylib/pgm',
+        'files': [
+                'dup.py',
+                ],
+        'srcdir': pgm,
         },
     'ef': {
         'subdir': 'math',
@@ -745,8 +779,10 @@ projects = {
             in file names and their counts in the directories given on the
             command line.
             '''),
-        'files': ['- ext.py'],
-        'srcdir': '/pylib/pgm',
+        'files': [
+                'ext.py',
+                ],
+        'srcdir': pgm,
         },
     'fdiff': {
         'subdir': 'util',
@@ -763,28 +799,23 @@ projects = {
                 ],
         'srcdir': '/pylib/other',
         },
-    'fit': {
-        'subdir': 'util',
-        'descr': dedent('''
-            Provides a python function to fit a string of words into
-            a given number of columns.
-            '''),
-        'files': ['- fit.py'],
-        'srcdir': '/pylib/pgm',
-        },
     'fits': {
         'subdir': 'shop',
         'descr': dedent('''
             Python script to calculate the required shaft or hole size
             given a basic dimension of a shaft or hole.
             '''),
-        'files': ['- fits.py'],
-        'srcdir': '/pylib/pgm',
+        'files': [
+                'fits.py',
+                ],
+        'srcdir': pgm,
         },
     'flow': {
         'subdir': 'eng',
         'descr': 'Nomograph for pipe flow.',
-        'files': ['- flow.pdf'],
+        'files': [
+                'flow.pdf',
+                ],
         'srcdir': '/science/nomographs',
         },
     'fpen': {
@@ -853,9 +884,11 @@ projects = {
             to a  real number.  If you download the mpmath library, you can
             calculate to arbitrary precision.
             '''),
-        'files': ['- frac.py'],
+        'files': [
+                'frac.py',
+                ],
         'ignore': 'Limited interest since Fractions module introduced',
-        'srcdir': '/pylib/pgm',
+        'srcdir': pgm,
         },
     'frange': {
         'subdir': 'math',
@@ -868,7 +901,7 @@ projects = {
                 ['../frange.py', 'frange.py'],
                 ['../test/frange_test.py', 'frange_test.py'],
                 ],
-        'srcdir': '/pylib/pgm',
+        'srcdir': pgm,
         },
     'frustum': {
         'subdir': 'shop',
@@ -900,7 +933,7 @@ projects = {
                 ['../cmddecode.py', 'cmddecode.py'],
                 'pictures/sampling_wor.png*',
                 ],
-        'srcdir': '/pylib/pgm',
+        'srcdir': pgm,
         },
     'fset': {
         'subdir': 'prog',
@@ -909,17 +942,10 @@ projects = {
             union, intersection, difference, etc. between the lines of
             various files.
             '''),
-        'files': ['- fset.py'],
-        'srcdir': '/pylib/pgm',
-        },
-    'func': {
-        'subdir': 'util',
-        'descr': dedent('''
-            Python script to list the functions and classes used in the
-            files given on the command line.
-            '''),
-        'files': ['- func.py'],
-        'srcdir': '/pylib/pgm',
+        'files': [
+                'fset.py',
+                ],
+        'srcdir': pgm,
         },
     'fuse': {
         'subdir': 'elec',
@@ -940,25 +966,9 @@ projects = {
             '''),
         'files': [
                 'gauge.cpp',
-                ['/pylib/pgm/gb.py', 'gb.py'],
+                ['/plib/pgm/gb.py', 'gb.py'],
                 ],
         'srcdir': '/shop/software/gauge_blocks',
-        },
-    'getinput': {
-        'subdir': 'util',
-        'descr': dedent('''
-            A python module that gets input data in a variety of ways.  Gets
-            lines or tokens from a set of files or prompts the user for numbers
-            (the numbers can be restricted to an interval and can include
-            uncertainty or physical units).  The lines and token getters are
-            generators and can use functional programming tools.
-            '''),
-        'files': [
-                'getinput.py',
-                'u.py',
-                'columnize.py',
-                ],
-        'srcdir': '/pylib',
         },
     'glendag': {
         'subdir': 'shop',
@@ -987,7 +997,7 @@ projects = {
                 '_goto.odt*',
                 ['_goto.pdf', 'goto.pdf'],
                 ],
-        'srcdir': '/pylib/pgm',
+        'srcdir': pgm,
         },
     'gpaper': {
         'subdir': 'math',
@@ -1005,15 +1015,6 @@ projects = {
                 'quarter_inch_A.pdf',
                 ],
         'srcdir': '/doc/graph_paper',
-        },
-    'grid': {
-        'subdir': 'eng',
-        'descr': dedent('''
-            This python script will generate most any linear isotropic
-            graph paper by creating a PostScript file.
-            '''),
-        'files': ['- eng_grid.py'],
-        'srcdir': '/pylib/pgm',
         },
     'hammer': {
         'subdir': 'shop',
@@ -1102,21 +1103,6 @@ projects = {
         'ignore': 'Low interest',
         'srcdir': '/help',
         },
-    'hg': {
-        'subdir': 'prog',
-        'descr': dedent('''
-            Some python scripts that make it easier to work with Mercurial
-            repositories.
-            '''),
-        'files': [
-                'delta.py',
-                'fhg.py',
-                'hgs.py',
-                'hg.readme',
-                ['../color.py', 'color.py'],
-                ],
-        'srcdir': '/pylib/pgm',
-        },
     'holes': {
         'subdir': 'shop',
         'descr': dedent('''
@@ -1131,7 +1117,7 @@ projects = {
                 'pictures/drill_layout.png*',
                 ['../sig.py', 'sig.py'],
                 ],
-        'srcdir': '/pylib/pgm',
+        'srcdir': pgm,
         },
     'hose': {
         'subdir': 'shop',
@@ -1168,8 +1154,10 @@ projects = {
             expressions.  Contains the indexes from Village Press and Joe
             Landau's index from 2000.
             '''),
-        'files': ['- hsm.zip'],
-        'srcdir': '/pylib/pgm',
+        'files': [  
+                'hsm.zip',
+                ],
+        'srcdir': pgm,
         },
     'iapws': {
         'subdir': 'eng',
@@ -1192,8 +1180,10 @@ projects = {
             coordinates and print out the series and parallel models' values,
             reactance, dissipation factor, and quality factor.
             '''),
-        'files': ['- impedance.py'],
-        'srcdir': '/pylib/pgm',
+        'files': [
+                'impedance.py',
+                ],
+        'srcdir': pgm,
         },
     'ind': {
         'subdir': 'elec',
@@ -1213,25 +1203,6 @@ projects = {
         'srcdir': '/elec/software/coil_inductance',
         'frozen': True,
         },
-    'inflation': {
-        'subdir': 'misc',
-        'descr': dedent('''
-            Calculate the effects of inflation on prices for the years
-            1914 to the present.  For example, $1 to purchase food in 1960
-            is equivalent to about $8.5 in 2018.
-            '''),
-        'files': ['- inflation.py'],
-        'srcdir': '/pylib/pgm',
-        },
-    'irr': {
-        'subdir': 'science',
-        'descr': dedent('''
-            Calculate irradiance over a wavelength band from a spectral
-            irradiance data file.
-            '''),
-        'files': ['- irr.py'],
-        'srcdir': '/pylib/pgm',
-        },
     'lib': {
         'subdir': 'util',
         'descr': dedent('''
@@ -1242,7 +1213,7 @@ projects = {
                 'lib.py',
                 ['lib.dat.sample', 'lib.dat'],
                 ],
-        'srcdir': '/pylib/pgm',
+        'srcdir': pgm,
         },
     'license': {
         'subdir': 'prog',
@@ -1254,7 +1225,7 @@ projects = {
                 'license.py',
                 'color.py',
                 ],
-        'srcdir': '/pylib',
+        'srcdir': plib,
         },
     'lnk': {
         'subdir': 'util',
@@ -1263,8 +1234,10 @@ projects = {
             hard-linked together.  If you have GNU find, the -samefile option
             can be used to do this too.
             '''),
-        'files': ['- lnk.py'],
-        'srcdir': '/pylib/pgm',
+        'files': [
+                'lnk.py',
+                ],
+        'srcdir': pgm,
         },
     'logicprobe': {
         'subdir': 'elec',
@@ -1288,29 +1261,29 @@ projects = {
                 'loo.py',
                 'color.py',
                 ],
-        'srcdir': '/pylib',
+        'srcdir': plib,
         },
-    'lookup': {
-        'subdir': 'util',
-        'descr': dedent('''
-            Package that contains a python script that can help you
-            look up words in a word dictionary and use the information
-            from WordNet to show synonyms, definitions, and types of words
-            (e.g., adjectives, adverbs, nouns, and verbs).
-            '''),
-        'files': [
-                'lookup.py',
-                'mkwords.py',
-                'simple.py',
-                'wrap.py',
-                ['/pylib/pgm/words.odt*', 'words.odt*'],
-                'words.pdf',
-                'makefile',
-                ['/pylib/pgm/pictures/lookup_results.png*', 'pictures/lookup_results.png*'],
-                ['../../../color.py', 'color.py'],
-                ],
-        'srcdir': '/pylib/types_of_words/WordNet/lookup',
-        },
+#    'lookup': {
+#        'subdir': 'util',
+#        'descr': dedent('''
+#            Package that contains a python script that can help you
+#            look up words in a word dictionary and use the information
+#            from WordNet to show synonyms, definitions, and types of words
+#            (e.g., adjectives, adverbs, nouns, and verbs).
+#            '''),
+#        'files': [
+#                'lookup.py',
+#                'mkwords.py',
+#                'simple.py',
+#                'wrap.py',
+#                ['/pylib/pgm/words.odt*', 'words.odt*'],
+#                'words.pdf',
+#                'makefile',
+#                ['/pylib/pgm/pictures/lookup_results.png*', 'pictures/lookup_results.png*'],
+#                ['../../../color.py', 'color.py'],
+#                ],
+#        'srcdir': '/pylib/types_of_words/WordNet/lookup',
+#        },
     'lvise': {
         'subdir': 'shop',
         'descr': dedent('''
@@ -1337,9 +1310,9 @@ projects = {
         'files': [
                 'lwtest.odt*',
                 'lwtest.pdf',
-                'lwtest.py',
+                ['test/lwtest_test.py', 'lwtest_test.py'],
                 ],
-        'srcdir': '/pylib',
+        'srcdir': plib,
         },
     'manufy': {
         'subdir': 'prog',
@@ -1348,8 +1321,10 @@ projects = {
             a newline at the end. This is useful to allow you to quickly write
             text manpages for C or C++ code.
             '''),
-        'files': ['- manufy.py'],
-        'srcdir': '/pylib/pgm',
+        'files': [
+                'manufy.py',
+                ],
+        'srcdir': pgm,
         },
     'markup': {
         'subdir': 'misc',
@@ -1387,7 +1362,7 @@ projects = {
                 ['../sig.py', 'sig.py'],
                 ['../u.py', 'u.py'],
                 ],
-        'srcdir': '/pylib/pgm',
+        'srcdir': pgm,
         },
     'mixture': {
         'subdir': 'science',
@@ -1395,8 +1370,10 @@ projects = {
             A python script to aid in mixture calculations. Adapted
             from a C program at http://www.myvirtualnetwork.com/mklotz/files/mixture.zip.
             '''),
-        'files': ['- mixture.py'],
-        'srcdir': '/pylib/pgm',
+        'files': [
+                'mixture.py',
+                ],
+        'srcdir': pgm,
         },
     'mk': {
         'subdir': 'util',
@@ -1405,8 +1382,10 @@ projects = {
             contains lines of file pairs and a recipe.  When the first
             file is newer than the second, the recipe is executed.
             '''),
-        'files': ['- mk.py'],
-        'srcdir': '/pylib/pgm',
+        'files': [
+                'mk.py',
+                ],
+        'srcdir': pgm,
         },
     'mkfile': {
         'subdir': 'util',
@@ -1416,8 +1395,10 @@ projects = {
             bytes.  On my older computer, it takes a few seconds to
             construct a 1 GB file of random bytes.
             '''),
-        'files': ['- mkfile.py'],
-        'srcdir': '/pylib/pgm',
+        'files': [
+                'mkfile.py',
+                ],
+        'srcdir': pgm,
         },
     'mod': {
         'subdir': 'util',
@@ -1425,8 +1406,10 @@ projects = {
             Python script to recursively find files that have changed
             within a specified time period.
             '''),
-        'files': ['- mod.py'],
-        'srcdir': '/pylib/pgm',
+        'files': [
+                'mod.py',
+                ],
+        'srcdir': pgm,
         },
     'mortgage': {
         'subdir': 'misc',
@@ -1447,8 +1430,10 @@ projects = {
             tool. You can also include arbitrary python code in your text
             files. Use mp.py -h to read the man page.
             '''),
-        'files': ['- mp.py'],
-        'srcdir': '/pylib/pgm',
+        'files': [
+                'mp.py',
+                ],
+        'srcdir': pgm,
         },
     'novas': {
         'subdir': 'science',
@@ -1456,8 +1441,10 @@ projects = {
             Translation into python of some C code from the US Naval
             Observatory (http://aa.usno.navy.mil/software/novas/novas_c/novasc_info.html).
             '''),
-        'files': ['- novas.py'],
-        'srcdir': '/pylib',
+        'files': [
+                'novas.py',
+                ],
+        'srcdir': plib,
         },
     'nozzle': {
         'subdir': 'shop',
@@ -1511,7 +1498,7 @@ projects = {
                 'odict.py',
                 ['test/odict_test.py', 'odict_test.py'],
                 ],
-        'srcdir': '/pylib',
+        'srcdir': plib,
         },
     'oo_math': {
         'subdir': 'math',
@@ -1546,32 +1533,34 @@ projects = {
                 ],
         'srcdir': '/pgm/py',
         },
-    'out': {
-        'subdir': 'prog',
-        'descr': dedent('''
-            Contains a python module that provides a utility object
-            for printing string representations of objects to a stream.  I've
-            used something like this for years and it's a good tool to
-            replace the print command/function, which causes a bit of friction
-            between python 2 and 3 code.  This module has been tested with
-            both python 2 and 3.
-            '''),
-        'files': [
-                'out.odt*',
-                'out.pdf',
-                'out.py',
-                ['test/out_test.py', 'out_test.py'],
-                ],
-        'srcdir': '/pylib',
-        },
+#    'out': {
+#        'subdir': 'prog',
+#        'descr': dedent('''
+#            Contains a python module that provides a utility object
+#            for printing string representations of objects to a stream.  I've
+#            used something like this for years and it's a good tool to
+#            replace the print command/function, which causes a bit of friction
+#            between python 2 and 3 code.  This module has been tested with
+#            both python 2 and 3.
+#            '''),
+#        'files': [
+#                'out.odt*',
+#                'out.pdf',
+#                'out.py',
+#                ['test/out_test.py', 'out_test.py'],
+#                ],
+#        'srcdir': plib,
+#        },
     'paper': {
         'subdir': 'misc',
         'descr': dedent('''
             Contains a python script to calculate various things about
             paper to compare paper purchases.
             '''),
-        'files': ['- paper.py'],
-        'srcdir': '/pylib/pgm',
+        'files': [
+                'paper.py',
+                ],
+        'srcdir': pgm,
         },
     'papersz': {
         'subdir': 'misc',
@@ -1580,7 +1569,7 @@ projects = {
                 'paper_sizes.py*',
                 'paper_sizes.pdf',
                 ],
-        'srcdir': '/pylib/pgm',
+        'srcdir': pgm,
         },
     'parts': {
         'subdir': 'elec',
@@ -1594,16 +1583,18 @@ projects = {
                 ],
         'srcdir': '/elec/projects',
         },
-    'pcmplx': {
-        'subdir': 'math',
-        'descr': dedent('''
-            Parse complex numbers when they are written in the ways humans
-            like to write them.  The floating point type can be specified, which
-            allows you to keep the full precision of the problem.
-            '''),
-        'files': ['- parse_complex.py'],
-        'srcdir': '/pylib',
-        },
+#    'pcmplx': {
+#        'subdir': 'math',
+#        'descr': dedent('''
+#            Parse complex numbers when they are written in the ways humans
+#            like to write them.  The floating point type can be specified, which
+#            allows you to keep the full precision of the problem.
+#            '''),
+#        'files': [
+#                'parse_complex.py',
+#                ],
+#        'srcdir': plib,
+#        },
     'pdf': {
         'subdir': 'util',
         'descr': dedent('''
@@ -1613,7 +1604,7 @@ projects = {
             also need to download the pyPdf library to use this script.
             '''),
         'files': ['- [pdf_.py, pdf.py]'],
-        'srcdir': '/pylib',
+        'srcdir': plib,
         },
     'pfind': {
         'subdir': 'util',
@@ -1621,14 +1612,18 @@ projects = {
             Python script to find files and directories. Similar to
             the UNIX find (but not as powerful), but with a simpler syntax.
             '''),
-        'files': ['- pfind.py'],
-        'srcdir': '/pylib/pgm',
+        'files': [
+                'pfind.py',
+                ],
+        'srcdir': pgm,
         },
     'pills': {
         'subdir': 'misc',
         'descr': "Calculate the dates you'll run out of prescription pills.",
-        'files': ['- pills.py'],
-        'srcdir': '/pylib/pgm',
+        'files': [
+                'pills.py',
+                ],
+        'srcdir': pgm,
         },
     'pipes': {
         'subdir': 'shop',
@@ -1693,7 +1688,7 @@ projects = {
                 ['pgm/int.py', 'int.py'],
                 ['/tools/primes_fast.cpp', 'primes_fast.cpp'],
                 ],
-        'srcdir': '/pylib',
+        'srcdir': plib,
         },
     'python': {
         'subdir': 'prog',
@@ -1708,7 +1703,7 @@ projects = {
                 ['pgm/resistor.py', 'resistor.py'],
                 'frange.py',
                 ],
-        'srcdir': '/pylib',
+        'srcdir': plib,
         },
     'qmd': {
         'subdir': 'math',
@@ -1734,7 +1729,7 @@ projects = {
                 ['../sig.py', 'sig.py'],
                 ['../columnize.py', 'columnize.py'],
                 ],
-        'srcdir': '/pylib/pgm',
+        'srcdir': pgm,
         },
     'random_phrase': {
         'subdir': 'util',
@@ -1742,8 +1737,10 @@ projects = {
             A python script for generating random phrases of words.  Useful
             for generating pass phrases.
             '''),
-        'files': ['- random_phrase.py'],
-        'srcdir': '/pylib/pgm',
+        'files': [
+                'random_phrase.py',
+                ],
+        'srcdir': pgm,
         },
     'react': {
         'subdir': 'elec',
@@ -1772,7 +1769,7 @@ projects = {
                 'readability.readme',
                 'words_syllables.py',
                 ],
-        'srcdir': '/pylib/pgm',
+        'srcdir': pgm,
         'frozen': True,
         },
     'refcards': {
@@ -1849,7 +1846,7 @@ projects = {
                 'root.py',
                 ['test/root_test.py', 'root_test.py'],
                 ],
-        'srcdir': '/pylib',
+        'srcdir': plib,
         },
     'rpath': {
         'subdir': 'math',
@@ -1866,7 +1863,7 @@ projects = {
                 'path.pdf',
                 ['test/path_test.py', 'path_test.py'],
                 ],
-        'srcdir': '/pylib',
+        'srcdir': plib,
         },
     'ruler': {
         'subdir': 'util',
@@ -1874,8 +1871,10 @@ projects = {
             For console windows; prints a variety of rulers to stdout.
             It's easy to modify to get different ruler types.
             '''),
-        'files': ['- ruler.py'],
-        'srcdir': '/pylib/pgm',
+        'files': [
+                'ruler.py',
+                ],
+        'srcdir': pgm,
         },
     'sawbuck': {
         'subdir': 'shop',
@@ -1916,7 +1915,7 @@ projects = {
                 'scramble.py',
                 'scramble.html',
                 ],
-        'srcdir': '/pylib/pgm',
+        'srcdir': pgm,
         },
     'seq': {
         'subdir': 'math',
@@ -1928,7 +1927,7 @@ projects = {
                 ['pgm/seq.py', 'seq.py'],
                 'frange.py',
                 ],
-        'srcdir': '/pylib',
+        'srcdir': plib,
         },
     'shave': {
         'subdir': 'misc',
@@ -1960,7 +1959,9 @@ projects = {
             reads all the bytes of a file into memory, so it cannot be used
             on arbitrarily large files.
             '''),
-        'files': ['- shuffle.c'],
+        'files': [
+                'shuffle.c',
+                ],
         'srcdir': '/tools/shuffle',
         },
     'sig': {
@@ -1976,7 +1977,7 @@ projects = {
                 'sig.pdf',
                 ['test/sig_test.py', 'sig_test.py'],
                 ],
-        'srcdir': '/pylib',
+        'srcdir': plib,
         },
     'sinesticks': {
         'subdir': 'shop',
@@ -2011,8 +2012,10 @@ projects = {
             See where the space is being consumed in a directory tree and where the
             biggest files are.
             '''),
-        'files': ['- space.py'],
-        'srcdir': '/pylib/pgm',
+        'files': [
+                'space.py',
+                ],
+        'srcdir': pgm,
         },
     'sphshell': {
         'subdir': 'science',
@@ -2036,7 +2039,7 @@ projects = {
                 'archimedean.py',
                 ['test/archimedean_test.py', 'archimedean_test.py'],
                 ],
-        'srcdir': '/pylib',
+        'srcdir': plib,
         },
     'split_cat': {
         'subdir': 'util',
@@ -2049,7 +2052,7 @@ projects = {
                 'split.py',
                 'cat.py',
                 ],
-        'srcdir': '/pylib/pgm',
+        'srcdir': pgm,
         },
     'square': {
         'subdir': 'shop',
@@ -2074,7 +2077,7 @@ projects = {
                 'stack.py',
                 ['test/stack_test.py', 'stack_test.py'],
                 ],
-        'srcdir': '/pylib',
+        'srcdir': plib,
         },
     'sumbytes': {
         'subdir': 'prog',
@@ -2083,7 +2086,9 @@ projects = {
             files given on the command line and compute various statistics
             from them.
             '''),
-        'files': ['- sumbytes.cpp'],
+        'files': [
+                'sumbytes.cpp',
+                ],
         'srcdir': '/tools',
         },
     'sz': {
@@ -2097,7 +2102,7 @@ projects = {
                 'sz.py',
                 ['../color.py', 'color.py'],
                 ],
-        'srcdir': '/pylib/pgm',
+        'srcdir': pgm,
         },
     'thd': {
         'subdir': 'shop',
@@ -2110,7 +2115,7 @@ projects = {
                 'thd.py',
                 ['../asme.py', 'asme.py'],
                 ],
-        'srcdir': '/pylib/pgm',
+        'srcdir': pgm,
         },
     'tips1': {
         'subdir': 'misc',
@@ -2148,8 +2153,10 @@ projects = {
             Python script to rename all files in a directory to lower
             or upper case.
             '''),
-        'files': ['- tlc.py'],
-        'srcdir': '/pylib/pgm',
+        'files': [
+                'tlc.py',
+                ],
+        'srcdir': pgm,
         },
     'tokens': {
         'subdir': 'util',
@@ -2158,8 +2165,10 @@ projects = {
             all in lower case, one per line. You could then run the list
             of words through a spell checker.
             '''),
-        'files': ['- html_tokens.py'],
-        'srcdir': '/pylib/pgm',
+        'files': [
+                'html_tokens.py',
+                ],
+        'srcdir': pgm,
         },
     'tree': {
         'subdir': 'util',
@@ -2168,8 +2177,10 @@ projects = {
             tree.  It can optionally decorate the tree with each directory's
             size in MBytes and highlight a regular expression in color.
             '''),
-        'files': ['- tree.py'],
-        'srcdir': '/pylib/pgm',
+        'files': [
+                'tree.py',
+                ],
+        'srcdir': pgm,
         },
     'tri': {
         'subdir': 'math',
@@ -2180,7 +2191,7 @@ projects = {
                 'tri.pdf',
                 ['../sig.py', 'sig.py'],
                 ],
-        'srcdir': '/pylib/pgm',
+        'srcdir': pgm,
         },
     'trigd': {
         'subdir': 'math',
@@ -2245,7 +2256,7 @@ projects = {
                 'u.py',
                 ['test/u_test.py', 'u_test.py'],
                 ],
-        'srcdir': '/pylib',
+        'srcdir': plib,
         },
     'uni': {
         'subdir': 'util',
@@ -2257,8 +2268,10 @@ projects = {
             todo list to upgrade this script.  Yet I still use this script
             every day when working on my computer.
             '''),
-        'files': ['- unicode.py'],
-        'srcdir': '/pylib/pgm',
+        'files': [
+                'unicode.py',
+                ],
+        'srcdir': pgm,
         },
     'units': {
         'subdir': 'science',
@@ -2280,8 +2293,10 @@ projects = {
             running cygwin to avoid a "sea of green" in an ls listing with
             colorizing on.
             '''),
-        'files': ['- unx.py'],
-        'srcdir': '/pylib/pgm',
+        'files': [
+                'unx.py',
+                ],
+        'srcdir': pgm,
         },
     'url': {
         'subdir': 'util',
@@ -2289,8 +2304,10 @@ projects = {
             Python script that will interpret a URL from a Google search
             page.
             '''),
-        'files': ['- url.py'],
-        'srcdir': '/pylib/pgm',
+        'files': [
+                'url.py',
+                ],
+        'srcdir': pgm,
         },
     'us': {
         'subdir': 'util',
@@ -2298,8 +2315,10 @@ projects = {
             Python script to replace all space characters in file names
             with underscores.
             '''),
-        'files': ['- spc_to_underscore.py'],
-        'srcdir': '/pylib/pgm',
+        'files': [
+                'spc_to_underscore.py',
+                ],
+        'srcdir': pgm,
         },
     'util': {
         'subdir': 'prog',
@@ -2311,7 +2330,7 @@ projects = {
                 'util.py',
                 ['test/util_test.py', 'util_test.py'],
                 ],
-        'srcdir': '/pylib',
+        'srcdir': plib,
         },
     'vs': {
         'subdir': 'elec',
@@ -2346,7 +2365,7 @@ projects = {
                 'pictures/waveform_modulation.png*',
                 'pictures/waveform_mw.png*',
                 ],
-        'srcdir': '/pylib/pgm',
+        'srcdir': pgm,
         },
     'weigh': {
         'subdir': 'shop',
@@ -2376,7 +2395,7 @@ projects = {
                 'wordnum.py',
                 ['test/wordnum_test.py', 'wordnum_test.py'],
                 ],
-        'srcdir': '/pylib',
+        'srcdir': plib,
         },
     'wrap': {
         'subdir': 'prog',
@@ -2385,7 +2404,7 @@ projects = {
                 'wrap.py',
                 'unwrap.py',
                 ],
-        'srcdir': '/pylib/pgm',
+        'srcdir': pgm,
         },
     'xmastom': {
         'subdir': 'misc',
@@ -2452,7 +2471,7 @@ projects = {
                 'xyz.sphere',
                 'xyz.splice',
                 ],
-        'srcdir': '/pylib/pgm',
+        'srcdir': pgm,
         },
     'yankee': {
         'subdir': 'shop',
