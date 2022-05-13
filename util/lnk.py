@@ -82,7 +82,7 @@ def GetInodes(dir, D):
         d[inode].append(ap.replace("\\", "/"))
     return d
 
-def main():
+if __name__ == "__main__": 
     d = {}  # Options dictionary
     dir1, dir2 = ParseCommandLine(d)
     d1 = GetInodes(dir1, d)
@@ -93,5 +93,3 @@ def main():
             print("inode = %d = 0x%x" % (i, i))
             print("    %s" % ', '.join(d1[i]))
             print("    %s" % ', '.join(d2[i]))
-
-main()

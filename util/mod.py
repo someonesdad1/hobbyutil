@@ -1,5 +1,5 @@
 '''
-Finds files modified within a specified time frame.
+Finds files modified within a specified time frame
 
   TODO:
  
@@ -34,98 +34,103 @@ Finds files modified within a specified time frame.
     - Use -s option with letter:  a, c, or m
  
 '''
-# Copyright (C) 2011, 2016 Don Peterson
-# Contact:  gmail.com@someonesdad1
- 
-#
-# Licensed under the Open Software License version 3.0.
-# See http://opensource.org/licenses/OSL-3.0.
-#
- 
-from __future__ import print_function, division
-import sys
-import os
-import os.path
-import getopt
-import time
-import re
-from sig import sig
-from pdb import set_trace as xx 
-
-# The color.py module is used to get color output when the -D option is
-# used, but it's not required.
-try:
-    import color
-    _have_color = True
-except ImportError:
-    # Make a dummy color object to swallow function calls
-    class Dummy:
-        def fg(self, *p, **kw):
-            pass
-        def normal(self, *p, **kw):
-            pass
-        def __getattr__(self, name):
-            pass
-    color = Dummy()
-    _have_color = False
-C = color
-
-manual = '''
-Usage:  {name} [options] [age [dir [dir2...]]]
-  Recursively print out changed files younger than the given age in the
-  indicated directories.  age is a number with an optional letter suffix:
-      s   seconds       M   minutes         h   hours
-      w   weeks         m   months          y   years
-      d   days [default]                    
-  age can contain a hyphen specifying a time interval to which the
-  printed files must belong (example: '1y-2y' means the file changed
-  between 1 and 2 years ago).
-
-  i represents an infinite time in the past.
-
-  Certain files and directories are ignored (see the default containers
-  in the ParseCommandLine() function).  For example, the common version
-  control repository directories such as .hg, .git, and .bzr are ignored.
-
-  The -l option causes the file's age to be appended.  The indentation
-  is a function of the time unit used:  the farther to the right it is,
-  the older the file is.
-
-Examples (doc is the directory to search):
-
-    * Find all files:
-            {short_name} i doc
-    * Find files that changed in the last week:
-            {short_name} 1w doc
-    * Find files that changed between one and two weeks ago:
-            {short_name} 1w-2w doc     or       {short_name} 2w-1w doc
-    * Find files that changed more than 1 week ago:
-            {short_name} 1w-i doc      or       {short_name} i-1w doc
-    * Find files that didn't change more than 1 week ago:
-            {short_name} -n 1w-i doc
-
-Options
-    -c  Include commonly-named files
-    -D  Turn debug printing on (see how files/directories are processed)
-    -h  This help
-    -l  Decorate output with time since last change
-    -m  Include ignored directories (repositories, etc.)
-    -n  Show files that have not changed
-    -p  Ignore picture files
-    -r  Do not recurse
-    -t  Sort the output names by age (most-recently changed last)
-    -w  Make names case insensitive (for Windows)
-    -x regexp    Ignore files that match regexp (more than one -x OK)
-'''.strip()
-
-default_time = "1w"
-
+if 1:  # Copyright, license
+    # These "trigger strings" can be managed with trigger.py
+    #∞copyright∞# Copyright (C) 2011, 2016 Don Peterson #∞copyright∞#
+    #∞contact∞# gmail.com@someonesdad1 #∞contact∞#
+    #∞license∞#
+    #   Licensed under the Open Software License version 3.0.
+    #   See http://opensource.org/licenses/OSL-3.0.
+    #∞license∞#
+    #∞what∞#
+    # Finds files modified within a specified time frame
+    #∞what∞#
+    #∞test∞# #∞test∞#
+    pass
+if 1:   # Imports
+    import sys
+    import os
+    import os.path
+    import getopt
+    import time
+    import re
+    from pdb import set_trace as xx 
+if 1:   # Custom imports
+    from wrap import dedent
+    from sig import sig
+    # The color.py module is used to get color output when the -D option is
+    # used, but it's not required.
+    try:
+        import color
+        _have_color = True
+    except ImportError:
+        # Make a dummy color object to swallow function calls
+        class Dummy:
+            def fg(self, *p, **kw):
+                pass
+            def normal(self, *p, **kw):
+                pass
+            def __getattr__(self, name):
+                pass
+        color = Dummy()
+        _have_color = False
+if 1:   # Global variables
+    C = color
+    short_name = "mod.py"
+    manual = dedent(f'''
+    Usage:  {sys.argv[0]} [options] [age [dir [dir2...]]]
+      Recursively print out changed files younger than the given age in the
+      indicated directories.  age is a number with an optional letter suffix:
+          s   seconds       M   minutes         h   hours
+          w   weeks         m   months          y   years
+          d   days [default]                    
+      age can contain a hyphen specifying a time interval to which the
+      printed files must belong (example: '1y-2y' means the file changed
+      between 1 and 2 years ago).
+    
+      i represents an infinite time in the past.
+    
+      Certain files and directories are ignored (see the default containers
+      in the ParseCommandLine() function).  For example, the common version
+      control repository directories such as .hg, .git, and .bzr are ignored.
+    
+      The -l option causes the file's age to be appended.  The indentation
+      is a function of the time unit used:  the farther to the right it is,
+      the older the file is.
+    
+    Examples (mydir is the mydirectory to search):
+    
+        * Find all files:
+                {short_name} i mydir
+        * Find files that changed in the last week:
+                {short_name} 1w mydir
+        * Find files that changed between one and two weeks ago:
+                {short_name} 1w-2w mydir     or       {short_name} 2w-1w mydir
+        * Find files that changed more than 1 week ago:
+                {short_name} 1w-i mydir      or       {short_name} i-1w mydir
+        * Find files that didn't change more than 1 week ago:
+                {short_name} -n 1w-i mydir
+    
+    Options
+        -c  Include commonly-named files (.vi, *.pyc, etc.)
+        -D  Turn debug printing on (see how files/directories are processed)
+        -h  This help
+        -l  Decorate output with time since last change
+        -m  Include ignored directories (repositories, etc.)
+        -n  Show files that have not changed
+        -p  Do not ignore picture files
+        -r  Do not recurse
+        -t  Sort the output names by age (most-recently changed last)
+        -w  Make names case insensitive (for Windows)
+        -x regexp    Ignore files that match regexp (more than one -x OK)
+    ''')
+    default_time = "1w"
 def ParseCommandLine(d):
     d["-c"] = False
     d["-l"] = False
     d["-m"] = False
     d["-n"] = False
-    d["-p"] = False
+    d["-p"] = True
     d["-r"] = False
     d["-t"] = False
     d["-w"] = False
@@ -134,12 +139,12 @@ def ParseCommandLine(d):
     # Edit the following containers as needed
     d["directories_to_ignore"] = set(('''
         .hg .git .bzr .cache .mozilla __pycache__ .local tmp-donp-linux
-    '''.replace(nl, " ").split()))
+    '''.split()))
     d["picture_extensions"] = set(('''
         .bmp .dib .emf .eps .gif .ipc .ipk .j2c .j2k .jif .jp2 .jpeg
         .jpg .pbm .pct .pgm .pic .png .ppm .ps .psp .pspframe .pspimage
         .pspshape .psptube .svg .tif .tiff .tub .xbm .xpm
-    '''.replace(nl, " ").split()))
+    '''.split()))
     # Regular expressions for common files that should be ignored
     d["common_files"] = set((
         re.compile(r"^\.vi$", re.I),
@@ -159,26 +164,10 @@ def ParseCommandLine(d):
         print(str(e))
         sys.exit(1)
     for o, a in optlist:
-        if o == "-c":
-            d["-c"] = not d["-c"]
-        elif o == "-D":
-            d["dbg"] = True
-        elif o == "-h":
+        if o[1] in "cDlmnprtw":
+            d[o] = not d[o]
+        if o == "-h":
             Usage(d, 0)
-        elif o == "-l":
-            d["-l"] = not d["-l"]
-        elif o == "-m":
-            d["-m"] = not d["-m"]
-        elif o == "-n":
-            d["-n"] = not d["-n"]
-        elif o == "-p":
-            d["-p"] = not d["-p"]
-        elif o == "-r":
-            d["-r"] = not d["-r"]
-        elif o == "-t":
-            d["-t"] = not d["-t"]
-        elif o == "-w":
-            d["-w"] = not d["-w"]
         elif o == "-x":
             d["-x"].append(a)
     if not args:
@@ -205,18 +194,15 @@ def ParseCommandLine(d):
             else:
                 Dbg("  {} =".format(key), d[key], fg=fg)
     return args
-
 def Error(msg, status=1):
     print(msg, file=sys.stderr)
     exit(status)
-
 def Usage(d, status=1):
     name = sys.argv[0]
     short_name = os.path.split(name)[1]
     dt = default_time
     print(manual.format(**locals()))
     exit(status)
-
 def GetTime(age):
     '''age is a string representing a number (integer or floating point)
     with an optional letter suffix or a time interval separated by a
@@ -277,7 +263,6 @@ def GetTime(age):
         return (start, end) if start <= end else (end, start)
     else:
         return (Translate(age),)
-
 def ShouldBeIgnored(name, d):
     '''Check against the to-be-ignored regular expressions.
     '''
@@ -285,7 +270,6 @@ def ShouldBeIgnored(name, d):
         if regexp.match(name):
             return True
     return False
-
 def IgnoreThisFile(file, d):
     '''If the indicated file is a picture file (indicated by its extension)
     or it matches one of the -x regular expressions, return True.
@@ -308,7 +292,6 @@ def IgnoreThisFile(file, d):
         if ext in d["picture_extensions"]:
             return True
     return False
-
 def FmtTimeDiff(td):
     '''Return s, minutes, hours, days, weeks, months, years for
     a time difference td in seconds.
@@ -333,7 +316,6 @@ def FmtTimeDiff(td):
         return fmt.format(s*5, td, "mo")
     td /= 12
     return fmt.format(s*6, td, "yr")
-
 def IgnoreDirectory(components, d):
     '''Return True if one of the elements of the list components is a
     directory to ignore.
@@ -346,7 +328,6 @@ def IgnoreDirectory(components, d):
             if i in d["directories_to_ignore"]:
                 return True
     return False
-
 def Dbg(*s, **kw):
     if d["dbg"]:
         fg = kw.setdefault("fg", C.lblue)
@@ -355,7 +336,6 @@ def Dbg(*s, **kw):
         C.fg(fg)
         print(*s, **kw)
         C.normal()
-
 def ProcessFiles(dir, files, d):
     '''For each file in dir, determine if it has changed in the
     indicated age interval.
@@ -389,7 +369,6 @@ def ProcessFiles(dir, files, d):
             Dbg("  Exception on file '{}'".format(file))
             pass
     return filelist
-
 def ProcessDirectory(dir, d):
     '''Find all files at and below dir.
     '''
@@ -403,7 +382,6 @@ def ProcessDirectory(dir, d):
         if d["-r"]:
             break
     return filelist
-
 def PrintReport(results, d):
     '''results = (
         (age, file),
@@ -418,7 +396,6 @@ def PrintReport(results, d):
         age_str = FmtTimeDiff(age_s) if d["-l"] else ""
         n = maxlen - len(file)
         print(file, " "*n, age_str)
-
 if __name__ == "__main__":
     nl, inf = "\n", 1e20   # inf is infinite time into the past
     d = {}  # Options dictionary

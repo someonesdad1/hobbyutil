@@ -1,111 +1,85 @@
-# Copyright (C) 2014 Don Peterson
-# Contact:  gmail.com@someonesdad1
- 
-#
-# Licensed under the Open Software License version 3.0.
-# See http://opensource.org/licenses/OSL-3.0.
-#
-import sys
-import os
-import glob
-import getopt
-
+'''
+Replace spaces in filenames with underscores
+'''
+if 1:  # Copyright, license
+    # These "trigger strings" can be managed with trigger.py
+    #∞copyright∞# Copyright (C) 2014 Don Peterson #∞copyright∞#
+    #∞contact∞# gmail.com@someonesdad1 #∞contact∞#
+    #∞license∞#
+    #   Licensed under the Open Software License version 3.0.
+    #   See http://opensource.org/licenses/OSL-3.0.
+    #∞license∞#
+    #∞what∞#
+    # Replace spaces in filenames with underscores
+    #∞what∞#
+    #∞test∞# #∞test∞#
+    pass
+if 1:   # Imports
+    import sys
+    import os
+    import getopt
+    import pathlib
+    from pdb import set_trace as xx 
+if 1:   # Custom imports
+    from wrap import dedent
+if 1:   # Global variables
+    P = pathlib.Path
 def Usage():
-    name = sys.argv[0]
-    print('''Usage:  {name} [options] dir1 [dir2...]
-  Replace spaces in filenames with underscores.  Note this tool operates on
-  whole directories.  Run the script to see what will happen, then use the
-  -x option to actually perform the renaming.
-
-Options
-    -e      Process directory names too.
-    -r      Act recursively.
-    -u      Change underscores to spaces.
-    -x      Perform the renaming.
-'''[:-1].format(**locals()))
-    exit(2)
-
-def ParseCommandLine(d):
-    d["-d"] = False     # Process directory names too
-    d["-r"] = False     # Act recursively
+    print(dedent(f'''
+    Usage:  {sys.argv[0]} [options] item1 [item2...]
+      Replace spaces in filenames with underscores.  The items can be file
+      names or directories.  Run the script to show what will happen, then
+      use the -x option to actually perform the renaming.
+    Options
+      -u      Change underscores to spaces
+      -x      Perform the renaming
+    '''))
+    exit(1)
+def ParseCommandLine():
     d["-u"] = False     # Change underscores to spaces
     d["-x"] = False     # Execute
-    if len(sys.argv) < 2:
-        Usage()
     try:
-        optlist, args = getopt.getopt(sys.argv[1:], "drux")
+        optlist, args = getopt.getopt(sys.argv[1:], "ux")
     except getopt.error as str:
         print(str)
-        sys.exit(1)
-    for opt in optlist:
-        if opt[0] == "-d":
-            d["-d"] = True
-        elif opt[0] == "-r":
-            d["-r"] = True
-        elif opt[0] == "-u":
-            d["-u"] = True
-        elif opt[0] == "-x":
-            d["-x"] = True
-    if len(args) < 1:
+        exit(1)
+    for o, a in optlist:
+        if o[1] in "ux":
+            d[o] = not d[o]
+    if not args:
         Usage()
     return args
-
-def ProcessFile(root, file, d):
-    if root is ".":
-        root = ""
-    oldfile = os.path.join(root, file)
+def ProcessFile(file):
+    '''file is a Path object.  If d[-u] is True, change underscores to
+    spaces; otherwise change spaces to underscores.  The action is to
+    print what will be done to stdout unless -x is True, in which case 
+    the file renaming is done.
+    '''
+    filename = str(file)
     if d["-u"]:
-        if us not in file:
+        if "_" not in filename:
             return
-        newfile = os.path.join(root, file.replace(us, sp))
+        new_name = filename.replace("_", " ")
     else:
-        if sp not in file:
+        if " " not in filename:
             return
-        newfile = os.path.join(root, file.replace(sp, us))
-        assert sp not in newfile
+        new_name = filename.replace(" ", "_")
     if d["-x"]:
-        try:
-            os.rename(oldfile, newfile)
-        except Exception:
-            print("Couldn't rename '%s' to '%s'; continuing" %
-                  (oldfile, newfile))
+        file.rename(new_name)
     else:
-        print(oldfile.replace("\\", "/"), "-->", newfile.replace("\\", "/"))
-
-def ProcessDirectory(dir, d):
-    if dir is not ".":
-        head, tail = os.path.split(dir)
-        if not tail:
-            if sp in head:
-                head = head.replace(" ", "_")
-        else:
-            if sp in tail:
-                tail = tail.replace(" ", "_")
-        newdir = os.path.join(head, tail)
-        if d["-x"]:
-            try:
-                os.rename(dir, newdir)
-            except Exception:
-                print("Couldn't rename '%s' to '%s'; continuing" %
-                      (dir, newdir))
-        else:
-            print(dir.replace("\\", "/"), "-->", newdir.replace("\\", "/"))
-    if d["-r"]:
-        for root, dirs, files in os.walk(dir):
-            if root not in d["visited_directories"]:
-                d["visited_directories"].add(root)
-                ProcessDirectory(root, d)
-            for file in files:
-                ProcessFile(root, file, d)
+        print(filename, "-->", new_name)
+def ProcessItem(item):
+    p = P(item)
+    if p.is_dir():
+        for file in p.glob("*"):
+            if file.is_file():
+                ProcessFile(file)
+    elif p.is_file():
+        ProcessFile(p)
     else:
-        dirglob = os.path.join(dir, "*")
-        for file in glob.glob(dirglob):
-            if os.path.isfile(file):
-                ProcessFile(dir, file, d)
-
+        print(f"Item '{item}' not recognized", file=sys.stderr)
 if __name__ == "__main__":
-    show = 0   # Show what will be done
     sp, us = " ", "_"
     d = {"visited_directories" : set()}
-    for dir in ParseCommandLine(d):
-        ProcessDirectory(dir, d)
+    for item in ParseCommandLine():
+        ProcessItem(item)

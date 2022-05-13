@@ -11,61 +11,48 @@ If you run it as a script and want to see a list of all files >=
 a specified size in MB, add a second integer or float parameter to
 the command line.
 '''
- 
-# Copyright (C) 2005 Don Peterson
-# Contact:  gmail.com@someonesdad1
- 
-#
-# Licensed under the Open Software License version 3.0.
-# See http://opensource.org/licenses/OSL-3.0.
-#
- 
-from __future__ import print_function, division
-import os
-import getopt
-import sys
-from pdb import set_trace as xx
-
-nl = "\n"
-
-# Contains directory name and total size
-DirSizes = []
-
-# Data for finding biggest files
-NumBigFiles = 10    # How many to track
-BigFiles = []       # List of (size, filename)
-Threshold = 0       # MB threshold
-
-# If true, list the sizes of each directory under given directory
-directories_only = 0
-
-
-def Usage(d, status=1):
-    '''d is the options dictionary.
-    '''
-    numbigfiles = NumBigFiles
-    name = sys.argv[0]
-    threshold = d["-p"]
-    manual = '''
-Usage:  {name} [options] directory
-  Prints a recursive listing of the largest files in and under the given
-  directory.  If the directory is large, it can take a significant
-  amount of time.
-
-Options
-  -d
-      Change behavior to print the size of the files underneath each
-      directory in the given directory.
-  -n num
-      How big to make the list of biggest files.  Default = {numbigfiles}.
-  -p pct
-      Only print directories that are >= pct in percent.  Defaults to
-      {threshold}%.  Here, the percentage is of the total number of
-      bytes in all the directories.
-'''[1:-1]
-    print(manual.format(**locals()))
+if 1:  # Copyright, license
+    # These "trigger strings" can be managed with trigger.py
+    #∞copyright∞# Copyright (C) 2005 Don Peterson #∞copyright∞#
+    #∞contact∞# gmail.com@someonesdad1 #∞contact∞#
+    #∞license∞#
+    #   Licensed under the Open Software License version 3.0.
+    #   See http://opensource.org/licenses/OSL-3.0.
+    #∞license∞#
+    #∞what∞#
+    # Prints sizes of biggest files under a directory
+    #∞what∞#
+    #∞test∞# #∞test∞#
+    pass
+if 1:   # Imports
+    import os
+    import getopt
+    import sys
+    from pdb import set_trace as xx
+if 1:   # Custom imports
+    from wrap import dedent
+if 1:   # Global variables
+    # Contains directory name and total size
+    DirSizes = []
+    # Data for finding biggest files
+    NumBigFiles = 10    # How many to track
+    BigFiles = []       # List of (size, filename)
+    Threshold = 0       # MB threshold
+    # If true, list the sizes of each directory under given directory
+    directories_only = 0
+def Usage(status=1):
+    print(dedent(f'''
+    Usage:  {sys.argv[0]} [options] directory
+      Prints a listing of the largest files in and under the given directory.
+    Options
+      -d    Change behavior to print the size of the files underneath each
+            directory in the given directory.
+      -n n  How big to make the list of biggest files.  Default = {NumBigFiles}.
+      -p p  Only print directories that are >= p in percent.  Defaults to
+            {d["-p"]}%.  Here, the percentage is of the total number of
+            bytes in all the directories.
+    '''))
     exit(status)
-
 def TrimBigFiles():
     '''Trim the container.  If Threshold is nonzero, we keep all
     files larger than the threshold.  Otherwise, just keep the
@@ -77,7 +64,6 @@ def TrimBigFiles():
         BigFiles = [x for x in BigFiles if x[0] > Threshold*1e6]
     else:
         BigFiles = BigFiles[-NumBigFiles:]
-
 def GetTotalFileSize(directory, list_of_files):
     '''Given a list of files and the directory they're in, add the
     total size and directory name to the global list DirSizes.
@@ -104,7 +90,6 @@ def GetTotalFileSize(directory, list_of_files):
     DirSizes.append([total_size, directory])
     TrimBigFiles()
     os.chdir(currdir)
-
 def GetSize(directory, d):
     '''Returns a list of the form [ [a, b], [c, d], ... ] where
     a, c, ... are the number of total bytes in the directory and
@@ -119,42 +104,45 @@ def GetSize(directory, d):
     DirSizes.sort()
     DirSizes.reverse()
     return DirSizes
-
 def ParseCommandLine(d):
-    d["-d"] = False     # Directories only
-    d["-n"] = 20        # Length of big files list
-    d["-p"] = 1         # Percent threshold
+    global NumBigFiles
+    d["-d"] = False         # Directories only
+    d["-n"] = NumBigFiles   # Length of big files list
+    d["-p"] = 1             # Percent threshold
     if len(sys.argv) < 2:
-        Usage(d)
+        Usage()
     try:
         optlist, args = getopt.getopt(sys.argv[1:], "dhn:p:")
     except getopt.error as s:
         print(str(s))
         exit(1)
-    for opt in optlist:
-        if opt[0] == "-d":
+    for o, a in optlist:
+        if o == "-d":
             d["-d"] = True
-        elif opt[0] == "-h":
-            Usage(d)
-        elif opt[0] == "-n":
-            global NumBigFiles
-            NumBigFiles = int(opt[1])
-        elif opt[0] == "-p":
+        elif o == "-h":
+            Usage()
+        elif o == "-n":
             try:
-                d["-p"] = float(opt[1])
+                NumBigFiles = int(a)
+                if NumBigFiles <= 0:
+                    raise ValueError()
             except ValueError:
-                msg = "'{0}' is not a valid percentage".format(opt[1])
-                print(msg, file=sys.stderr)
+                print(f"'{a}' is not a valid integer", file=sys.stderr)
+                exit(1)
+        elif o == "-p":
+            try:
+                d["-p"] = float(a)
+            except ValueError:
+                print(f"'{a}' is not a valid percentage", file=sys.stderr)
                 exit(1)
     if not args:
-        Usage(d)
+        Usage()
     return args
-
 def DirectoriesOnly(dir, d):
     # Get list of directories under dir
     from glob import glob
-    dirs = filter(os.path.isdir, glob(os.path.join(dir, "*")))
-    dirs += filter(os.path.isdir, glob(os.path.join(dir, ".*")))
+    dirs = list(filter(os.path.isdir, glob(os.path.join(dir, "*"))))
+    dirs += list(filter(os.path.isdir, glob(os.path.join(dir, ".*"))))
     Normalize(dirs)
     results = []
     for dir in dirs:
@@ -168,23 +156,20 @@ def DirectoriesOnly(dir, d):
     total_size_in_MB = 0
     for size, dir in results:
         s = dir.replace("\\", "/")
-        print("{0:8.1f}   {1}".format((size, s)))
+        print(f"{size:8.1f}   {s}")
         total_size_in_MB += size
-    print("Total size = {0:.1f} MB".format(total_size_in_MB))
-
+    print(f"Total size = {total_size_in_MB:.1f} MB")
 def Normalize(dirs):
     '''Replace backslashes with forward slashes.
     '''
     for i in range(len(dirs)):
         dirs[i] = dirs[i].replace("\\", "/")
-
 def NormalizeDecorated(dirs):
     '''Replace backslashes with forward slashes.  The list dirs contains
     tuples whose second element is the directory name.
     '''
     for i in range(len(dirs)):
         dirs[i][1] = dirs[i][1].replace("\\", "/")
-
 def ShowBiggestDirectories(directory, d):
     GetSize(directory, d)
     # Get total number of bytes
@@ -210,7 +195,6 @@ def ShowBiggestDirectories(directory, d):
             msg = "  [{0} {1} not shown]"
             di = "directories" if not_shown_count > 1 else "directory"
             print(msg.format(not_shown_count, di))
-
 if __name__ == "__main__":
     d = {}
     args = ParseCommandLine(d)

@@ -74,18 +74,10 @@ significant figures of the value.
 [math/frange.zip](math/frange.zip) | A python module that provides a floating point analog to
 range().  Doesn't suffer from the typical floating point problems
 seen in naive implementations.
-[math/fseq.zip](math/fseq.zip) | Contains a python script fseq.py that provides general-purpose
-sequence generation (arithmetic, geometric, logarithmically-spaced,
-etc.).  The script also provides useful random number generation
-facilities for doing Monte Carlo calculations at the command
-line, along with CDFs and PDFs of some distributions.  Requires
-numpy.
 [math/gpaper.zip](math/gpaper.zip) | Provides some common graph papers in PDF files that print
 on ANSI A paper.
 [math/oo_math.zip](math/oo_math.zip) | Introduces the equation-writing capabilities of Open Office
 2.0.  Includes a cheatsheet that you can modify.
-[math/primes.zip](math/primes.zip) | Some python scripts that deal with primes, factoring, and
-integer properties.
 [math/QuickMultDiv.pdf](math/QuickMultDiv.pdf) | Discussion of how to do multiplications and divisions
 by hand when you only need a specified number of significant
 figures in the answer.
@@ -101,7 +93,7 @@ calculations.
 to stdout.  Handles integers, floating point, and fractions.
 [math/shorttbl.zip](math/shorttbl.zip) | A set of tables of elementary math functions intended to
 print on half of an ANSI-A sized piece of paper.
-[math/spiral.zip](math/spiral.zip) | Python scripts that deal with spirals.
+[math/spiral.py](math/spiral.py) | Python script that deals with Archimedean spirals.
 [math/TrigDegrees.pdf](math/TrigDegrees.pdf) | Gives some algebraic expressions for a few special values
 of trigonometric functions in degrees.
 [math/triguc.zip](math/triguc.zip) | Contains a vector drawing of the trig functions on the unit
@@ -148,18 +140,12 @@ doesn't let you use the python debugger to examine your code.
 [prog/manufy.py](prog/manufy.py) | Python script to convert text lines to have double quotes and
 a newline at the end. This is useful to allow you to quickly write
 text manpages for C or C++ code.
-[prog/odict.zip](prog/odict.zip) | A bare-bones ordered dictionary for python. You won't need
-this if you are on python 2.7 or later because there's a built-in
-ordered  dictionary.
 [prog/PythonFromCalc.pdf](prog/PythonFromCalc.pdf) | How to call python functions from Open Office Calc spreadsheets.
 [prog/python.zip](prog/python.zip) | Discusses why learning the python programming language might be a
 good thing for technical folks.
 [prog/shuffle.c](prog/shuffle.c) | C program to randomly shuffle the bytes of a file.  It
 reads all the bytes of a file into memory, so it cannot be used
 on arbitrarily large files.
-[prog/sig.zip](prog/sig.zip) | A python module to format floating point numbers
-to a specified number of significant figures or round to a
-specified template.
 [prog/stack.zip](prog/stack.zip) | A python module that implements a thread-safe and
 process-safe basic stack.  Works on python 2.7 and 3
 (copy() only works on python 3.5 or later).
@@ -169,7 +155,7 @@ turn  the output on/off, and include a file) and the ability
 to include blocks of python code in the text file.  Though
 it's relatively simple to use, it can provide a fair bit
 of power.
-[prog/util.zip](prog/util.zip) | Contains a number of miscellaneous python functions I've
+[prog/util.py](prog/util.py) | Contains a number of miscellaneous python functions I've
 written and collected from the web.
 [prog/xref.zip](prog/xref.zip) | A program that will cross reference the tokens in a set of
 files -- each token will be listed in alphabetical order with
@@ -226,7 +212,6 @@ marks on nearly any bucket.  Includes a python script that will do
 the calculations for you.
 [shop/Calipers.pdf](shop/Calipers.pdf) | Discussion and use of old-style machinist calipers.
 [shop/CartPlatform.pdf](shop/CartPlatform.pdf) | Simple platform for Harbor Freight garden cart.
-[shop/chain.zip](shop/chain.zip) | Python script to help with chain drilling holes and disks.
 [shop/circ3.zip](shop/circ3.zip) | Python script that calculates the radius/diameter of a circle
 that passes through three points.
 [shop/MachinistClamp.pdf](shop/MachinistClamp.pdf) | Discusses machinist's parallel clamps, why they're useful,
@@ -257,8 +242,6 @@ script that solves the same problem.
 [shop/GlendaGuard.pdf](shop/GlendaGuard.pdf) | Describes a simple concrete sprinkler guard that my wife
 designed and built.
 [shop/hammer.pdf](shop/hammer.pdf) | Discusses the common hammer types and making a new handle for one.
-[shop/holes.zip](shop/holes.zip) | Contains a python script that will help you lay out holes
-that are equally-spaced around a circle.
 [shop/HoseFitting.pdf](shop/HoseFitting.pdf) | Here's an effective way to secure a hose to a hose fitting.
 It's better than anything I've found in a store.
 [shop/hsm.zip](shop/hsm.zip) | This python script searches metalworking titles for regular
@@ -266,8 +249,6 @@ expressions.  Contains the indexes from Village Press and Joe
 Landau's index from 2000.
 [shop/LittleVise.pdf](shop/LittleVise.pdf) | Describes a small vise made from 1 inch square bar stock.  It slips
 into a pocket and is handy for small tasks around the shop and home.
-[shop/mass.zip](shop/mass.zip) | Python script to calculate the volume and mass of a project
-constructed from various primitive geometrical objects.
 [shop/nozzle.pdf](shop/nozzle.pdf) | Nice hose nozzle you can make if you have a lathe.
 [shop/oring.zip](shop/oring.zip) | Utility to find/show o-ring sizes on-hand.
 [shop/pipes.pdf](shop/pipes.pdf) | Derivation of a formula that can be used to make a template for cutting
@@ -302,13 +283,11 @@ encoding.
 are printed in hex dump format.
 [util/bgrep.py](util/bgrep.py) | Python script to search for regular expressions and strings
 in binary files.
-[util/bidict.zip](util/bidict.zip) | Creates a dictionary object in python that lets you treat
+[util/bidict.py](util/bidict.py) | Creates a dictionary object in python that lets you treat
 it in both directions as a mapping.
 [util/cnt.zip](util/cnt.zip) | cnt.py is a command line utility to count the number of bytes in
 the file arguments and present a histogram of the results.  Processes
-files on the order of 10 MB/s.  cnt.c is a C program that is
-roughly 10% faster on large files, but less flexible in the
-output reporting.
+files on the order of 10 MB/s.
 [util/color.py](util/color.py) | Python module to provide color printing to a console window.
 Should work on both Windows and Linux.  Includes functions to show
 regular expression matches in text printed to the console; these
@@ -328,10 +307,7 @@ finds the ones I want amongst thousands of files.
 [util/ext.py](util/ext.py) | Python script to make a list of the extensions used
 in file names and their counts in the directories given on the
 command line.
-[util/fdiff.zip](util/fdiff.zip) | Contains python scripts that can identify differences in
-two directory trees and perform updates as needed to synchronize
-these two trees.
-[util/goto.zip](util/goto.zip) | Used a python script and shell functions to launch project files
+[util/goto.zip](util/goto.zip) | Uses a python script and shell functions to launch project files
 and navigate to various directories from a command line.  A number
 of UNIX users have told me they couldn't live without this tool once
 they started using it.
@@ -387,5 +363,5 @@ size in MBytes and highlight a regular expression in color.
 [util/spc_to_underscore.py](util/spc_to_underscore.py) | Python script to replace all space characters in file names
 with underscores.
 
-Updated 12 May 2022 9:56:42 pm
+Updated 13 May 2022 1:03:12 pm
 

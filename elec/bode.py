@@ -1,22 +1,20 @@
-'''
-Script to make a Bode plot of a transfer function.
-'''
-
-# Copyright (C) 2011 Don Peterson
-# Contact:  gmail.com@someonesdad1
-
-#
-# Licensed under the Open Software License version 3.0.
-# See http://opensource.org/licenses/OSL-3.0.
-#
-
-from __future__ import division
-import sys
-import getopt
-from pylab import *
-
-py3 = (sys.version_info[0] == 3)
-
+if 1:  # Copyright, license
+    # These "trigger strings" can be managed with trigger.py
+    #∞copyright∞# Copyright (C) 2011 Don Peterson #∞copyright∞#
+    #∞contact∞# gmail.com@someonesdad1 #∞contact∞#
+    #∞license∞#
+    #   Licensed under the Open Software License version 3.0.
+    #   See http://opensource.org/licenses/OSL-3.0.
+    #∞license∞#
+    #∞what∞#
+    # Make a Bode plot of a transfer function
+    #∞what∞#
+    #∞test∞# #∞test∞#
+    pass
+if 1:   # Imports
+    import sys
+    import getopt
+    from pylab import *
 def Usage(d, status=1):
     name = sys.argv[0]
     lower = d["-l"]
@@ -48,9 +46,8 @@ Options:
     -t title
         String to use for the plot's title
 '''
-    sys.stdout.write(s.format(**locals()))
-    sys.exit(status)
-
+    print(s.format(**locals()))
+    exit(status)
 def ParseCommandLine(d):
     d["-l"] = 0
     d["-L"] = False
@@ -76,18 +73,14 @@ def ParseCommandLine(d):
     if len(args) != 1:
         Usage(d)
     return args
-
 def Plot(file, d):
     n, R = 1000, d["-u"] - d["-l"]
     f = 10**arange(d["-l"], d["-u"], R/n)
     w = 2*pi*f
     s = w*1j
     # Read in the function
-    if py3:
-        with open(file) as source_file:
-            exec(source_file.read(), globals(), globals())
-    else:
-        execfile(file, globals(), globals())
+    with open(file) as source_file:
+        exec(source_file.read(), globals(), globals())
     # Make the plot
     response = H(s)
     subplot(211)
@@ -112,7 +105,6 @@ def Plot(file, d):
     xlabel("Frequency, Hz")
     ylabel("Phase, degrees")
     show()
-
 if __name__ == "__main__": 
     d = {}   # Options dictionary
     args = ParseCommandLine(d)

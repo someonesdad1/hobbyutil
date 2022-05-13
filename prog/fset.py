@@ -1,63 +1,61 @@
 '''
-Treat lines of a file like a set.
-
-Run with no command line arguments to see a usage statement.
+Treat lines of a file like a set
 '''
-
-# Copyright (C) 2005, 2009 Don Peterson
-# Contact:  gmail.com@someonesdad1
-
-#
-# Licensed under the Open Software License version 3.0.
-# See http://opensource.org/licenses/OSL-3.0.
-#
-
-from __future__ import print_function, division
-import sys
-import getopt
-import re
-from pdb import set_trace as xx
-
-element_string = None
-nl = "\n"
-
+if 1:  # Copyright, license
+    # These "trigger strings" can be managed with trigger.py
+    #∞copyright∞# Copyright (C) 2005, 2009 Don Peterson #∞copyright∞#
+    #∞contact∞# gmail.com@someonesdad1 #∞contact∞#
+    #∞license∞#
+    #   Licensed under the Open Software License version 3.0.
+    #   See http://opensource.org/licenses/OSL-3.0.
+    #∞license∞#
+    #∞what∞#
+    # Treat lines of a file like a set
+    #∞what∞#
+    #∞test∞# #∞test∞#
+    pass
+if 1:   # Imports
+    import sys
+    import getopt
+    import re
+    from pdb import set_trace as xx
+if 1:   # Custom imports
+    from wrap import dedent
+if 1:   # Global variables
+    element_string = None   # For el operation
 def Usage(status):
-    print('''Usage:  fset.py [options] op file1 file2 [file3 ...]
-  where op is the operation:
-    ne               Lines in file1 are != to the lines in following files
-    eq[ual]          Lines in file1 are == to the lines in following files
-    el[ement]        file1 contains the string given as file2 as an element
-    di[fference]     Lines in file1 that are not in the following files
-    sd[ifference]  * Lines that are in file1 or the remaining files, but
-                        not both (symmetric difference)
-    in[tersection]   Lines that are common to all files
-    is[subset]     * Determine whether file1 is a proper subset of
-                        remaining files
-    un[ion]          Lines that are in any of the files
-  Performs operations on the lines of a file as if they were members of
-  a set.  In the operations marked with '*', file2 and subsequent files
-  will be collapsed into one set of lines.
-
-  ne, eq, el, and is return Boolean values and also indicate the state by
-  returning 0 for true and 1 for false (i.e., their exit codes).  The other
-  operations return the resulting lines.  They will be stripped of leading
-  and trailing whitespace if you use the -w option.
-
-  Output is sent to stdout and is sorted; use the -s option if you don't
-  want the lines sorted (they will be in an indeterminate order, however,
-  as a set has no notion of ordering).
-
-Options
-    -i regexp
-        Ignore lines that contain the regexp.  More than one of these
-        options may be given.
-    -s
-        Do not sort the output lines.
-    -w
-        Ignore leading and trailing whitespace.
-''')
-    sys.exit(status)
-
+    print(dedent(f'''
+    Usage:  {sys.argv[0]} [options] op file1 file2 [file3 ...]
+      where op is the operation:
+        ne               Lines in file1 are != to the lines in following files
+        eq[ual]          Lines in file1 are == to the lines in following files
+        el[ement]        file1 contains the string given as file2 as an element
+        di[fference]     Lines in file1 that are not in the following files
+        sd[ifference]  * Lines that are in file1 or the remaining files, but
+                            not both (symmetric difference)
+        in[tersection]   Lines that are common to all files
+        is[subset]     * Determine whether file1 is a proper subset of
+                            remaining files
+        un[ion]          Lines that are in any of the files
+      Performs operations on the lines of a file as if they were members of
+      a set.  In the operations marked with '*', file2 and subsequent files
+      will be collapsed into one set of lines.
+    
+      ne, eq, el, and is return Boolean values and also indicate the state by
+      returning 0 for true and 1 for false (i.e., their exit codes).  The other
+      operations return the resulting lines.  They will be stripped of leading
+      and trailing whitespace if you use the -w option.
+    
+      Output is sent to stdout and is sorted; use the -s option if you don't
+      want the lines sorted (they will be in an indeterminate order, however,
+      as a set has no notion of ordering).
+    Options
+      -i regexp     Ignore lines that contain the regexp.  More than one of
+                    these options may be given.
+      -s            Do not sort the output lines
+      -w            Ignore leading and trailing whitespace
+    '''))
+    exit(status)
 def CheckArgs(args):
     if len(args) < 3:
         Usage(1)
@@ -74,7 +72,6 @@ def CheckArgs(args):
         if len(args) != 3:
             Usage(1)
     return args
-
 def ParseCommandLine(d):
     d["-i"] = []        # Regexps of lines to ignore
     d["-s"] = True      # Sort output
@@ -98,8 +95,8 @@ def ParseCommandLine(d):
     if len(args) < 2:
         Usage()
     return CheckArgs(args)
-
 def GetLines(op, files, d):
+    'Note the returned lines include the newline'
     def do_not_ignore(line, r):
         return not r.search(line)
     lines1 = open(files[0]).readlines()
@@ -107,7 +104,7 @@ def GetLines(op, files, d):
     if op == "el":
         lines2 = []
         global element_string
-        element_string = files[1] + nl
+        element_string = files[1] + "\n"
     else:
         for file in files[1:]:
             lines2 += open(file).readlines()
@@ -119,7 +116,6 @@ def GetLines(op, files, d):
             lines1 = [line.strip() for line in lines1]
             lines2 = [line.strip() for line in lines2]
     return frozenset(lines1), frozenset(lines2)
-
 if __name__ == "__main__":
     d = {}
     args = ParseCommandLine(d)

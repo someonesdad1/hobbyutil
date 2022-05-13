@@ -24,125 +24,117 @@ were passed by reference, I had to use a python list as the variable,
 since that would be the only way a change in the parameter would get
 back to the calling context.  Thus, if you want to use these routines,
 you'll have to look at the C code and find where the addresses are
-passed; where they are, make sure you pass in a list.  '''
- 
-# Copyright (C) 2003 Don Peterson
-# Contact:  gmail.com@someonesdad1
- 
-#
-# Licensed under the Open Software License version 3.0.
-# See http://opensource.org/licenses/OSL-3.0.
-#
- 
-from __future__ import division
-from math import pi, fabs, fmod, sin, cos, atan2, asin, sqrt
+passed; where they are, make sure you pass in a list.
+'''
+if 1:  # Copyright, license
+    # These "trigger strings" can be managed with trigger.py
+    #∞copyright∞# Copyright (C) 2003 Don Peterson #∞copyright∞#
+    #∞contact∞# gmail.com@someonesdad1 #∞contact∞#
+    #∞license∞#
+    #   Licensed under the Open Software License version 3.0.
+    #   See http://opensource.org/licenses/OSL-3.0.
+    #∞license∞#
+    #∞what∞#
+    # <science> Python translation of NOVAS software from USNO
+    #∞what∞#
+    #∞test∞# run #∞test∞#
+    pass
+if 1:   # Imports
+    from math import pi, fabs, fmod, sin, cos, atan2, asin, sqrt
+if 1:   # Global variables
+    ii = isinstance
+    PSI_COR = 0.0
+    EPS_COR = 0.0
+    # Constants from novascon.c
+    FN1 = 1
+    FN0 = 0
+    T0 = 2451545.00000000
+    KMAU = 1.49597870e+8
+    MAU = 1.49597870e+11
+    C = 173.14463348
+    GS = 1.32712438e+20
+    EARTHRAD = 6378.140
+    F = 0.00335281
+    OMEGA = 7.292115e-5
+    TWOPI = 2*pi
+    RAD2SEC = 3600*180/pi
+    DEG2RAD = pi/180
+    RAD2DEG = 180/pi
+    # The following three dictionaries are used to represent the structures
+    # that were in novas.h.
+    #
+    #   body: designates a celestial object.
+    #
+    #   type              = type of body
+    #                     = 0 ... major planet, Sun, or Moon
+    #                     = 1 ... minor planet
+    #   number            = body number
+    #                       For 'type' = 0: Mercury = 1, ..., Pluto = 9,
+    #                                       Sun = 10, Moon = 11
+    #                       For 'type' = 1: minor planet number
+    #   name              = name of the body (limited to 99 characters)
+    body = {
+        "type"   : 0,
+        "number" : 0,
+        "name"   : "",
+    }
+    #   site_info: data for the observer's location.  The atmospheric
+    #                     parameters are used only by the refraction
+    #                     function called from function 'equ_to_hor'.
+    #                     Additional parameters can be added to this
+    #                     structure if a more sophisticated refraction model
+    #                     is employed.
+    #
+    #   latitude           = geodetic latitude in degrees; north positive.
+    #   longitude          = geodetic longitude in degrees; east positive.
+    #   height             = height of the observer in meters.
+    #   temperature        = temperature (degrees Celsius).
+    #   pressure           = atmospheric pressure (millibars)
+    site_info = {
+        "latitude"    : 0.0,
+        "longitude"   : 0.0,
+        "height"      : 0.0,
+        "temperature" : 0.0,
+        "pressure"    : 0.0,
+    }
+    #
+    #   cat_entry: the astrometric catalog data for a star; equator
+    #                     and equinox and units will depend on the catalog.
+    #                     While this structure can be used as a generic
+    #                     container for catalog data, all high-level
+    #                     NOVAS-C functions require J2000.0 catalog data
+    #                     with FK5-type units (shown in square brackets
+    #                     below).
+    #
+    #   catalog[4]         = 3-character catalog designator.
+    #   starname[51]       = name of star.
+    #   starnumber         = integer identifier assigned to star.
+    #   ra                 = mean right ascension [hours].
+    #   dec                = mean declination [degrees].
+    #   promora            = proper motion in RA [seconds of time per
+    #                        century].
+    #   promodec           = proper motion in declination [arcseconds per
+    #                        century].
+    #   parallax           = parallax [arcseconds].
+    #   radialvelocity     = radial velocity [kilometers per second].
+    cat_entry = {
+        "catalog"        : "",
+        "starname"       : "",
+        "starnumber"     : 0,
+        "ra"             : 0.0,
+        "dec"            : 0.0,
+        "promora"        : 0.0,
+        "promodec"       : 0.0,
+        "parallax"       : 0.0,
+        "radialvelocity" : 0.0,
+    }
 
-ii = isinstance
-
-PSI_COR = 0.0
-EPS_COR = 0.0
-
-# Constants from novascon.c
-FN1 = 1
-FN0 = 0
-T0 = 2451545.00000000
-KMAU = 1.49597870e+8
-MAU = 1.49597870e+11
-C = 173.14463348
-GS = 1.32712438e+20
-EARTHRAD = 6378.140
-F = 0.00335281
-OMEGA = 7.292115e-5
-TWOPI = 2*pi
-RAD2SEC = 3600*180/pi
-DEG2RAD = pi/180
-RAD2DEG = 180/pi
-
-
-# The following three dictionaries are used to represent the structures
-# that were in novas.h.
-
-#   body: designates a celestial object.
-#
-#   type              = type of body
-#                     = 0 ... major planet, Sun, or Moon
-#                     = 1 ... minor planet
-#   number            = body number
-#                       For 'type' = 0: Mercury = 1, ..., Pluto = 9,
-#                                       Sun = 10, Moon = 11
-#                       For 'type' = 1: minor planet number
-#   name              = name of the body (limited to 99 characters)
-
-body = {
-    "type"   : 0,
-    "number" : 0,
-    "name"   : "",
-}
-
-
-#   site_info: data for the observer's location.  The atmospheric
-#                     parameters are used only by the refraction
-#                     function called from function 'equ_to_hor'.
-#                     Additional parameters can be added to this
-#                     structure if a more sophisticated refraction model
-#                     is employed.
-#
-#   latitude           = geodetic latitude in degrees; north positive.
-#   longitude          = geodetic longitude in degrees; east positive.
-#   height             = height of the observer in meters.
-#   temperature        = temperature (degrees Celsius).
-#   pressure           = atmospheric pressure (millibars)
-
-site_info = {
-    "latitude"    : 0.0,
-    "longitude"   : 0.0,
-    "height"      : 0.0,
-    "temperature" : 0.0,
-    "pressure"    : 0.0,
-}
-
-#
-#   cat_entry: the astrometric catalog data for a star; equator
-#                     and equinox and units will depend on the catalog.
-#                     While this structure can be used as a generic
-#                     container for catalog data, all high-level
-#                     NOVAS-C functions require J2000.0 catalog data
-#                     with FK5-type units (shown in square brackets
-#                     below).
-#
-#   catalog[4]         = 3-character catalog designator.
-#   starname[51]       = name of star.
-#   starnumber         = integer identifier assigned to star.
-#   ra                 = mean right ascension [hours].
-#   dec                = mean declination [degrees].
-#   promora            = proper motion in RA [seconds of time per
-#                        century].
-#   promodec           = proper motion in declination [arcseconds per
-#                        century].
-#   parallax           = parallax [arcseconds].
-#   radialvelocity     = radial velocity [kilometers per second].
-
-cat_entry = {
-    "catalog"        : "",
-    "starname"       : "",
-    "starnumber"     : 0,
-    "ra"             : 0.0,
-    "dec"            : 0.0,
-    "promora"        : 0.0,
-    "promodec"       : 0.0,
-    "parallax"       : 0.0,
-    "radialvelocity" : 0.0,
-}
-
-BARYC = 0
-HELIOC = 1
-
+    BARYC = 0
+    HELIOC = 1
 #----------------------------------------------------------------------
 # Added utility functions
-
 def mag3vec(x):
     return x[0]*x[0] + x[1]*x[1] + x[2]*x[2]
-
 def DumpLocals(msg, vars, names=[]):
     '''Print the message in msg, then the alphabetized list of variables
     in the vars dictionary.
@@ -158,18 +150,15 @@ def DumpLocals(msg, vars, names=[]):
         except:
             print("   ", var, "=", g[var])
     print()
-
 #----------------------------------------------------------------------
 # The following two functions were translated from the solsys3.c file.
-
-# These were static double variables in solarsystem()
-tlast_ss = 0.0
-sine_ss = 0.0
-cose_ss = 0.0
-tmass_ss = 0.0
-pbary_ss = [0.0, 0.0, 0.0]
-vbary_ss = [0.0, 0.0, 0.0]
-
+if 1:   # "Static" variables for solarsystem()
+    tlast_ss = 0.0
+    sine_ss = 0.0
+    cose_ss = 0.0
+    tmass_ss = 0.0
+    pbary_ss = [0.0, 0.0, 0.0]
+    vbary_ss = [0.0, 0.0, 0.0]
 def solarsystem(tjd, body, origin, pos, vel):
     global tlast_ss
     global sine_ss
@@ -253,70 +242,68 @@ def solarsystem(tjd, body, origin, pos, vel):
             pos[i] -= pbary_ss[i]
             vel[i] -= vbary_ss[i]
     return 0
-
-sun_con_data = [
-    (403406.0, 0.0, 4.721964, 1.621043),
-    (195207.0, -97597.0, 5.937458, 62830.348067),
-    (119433.0, -59715.0, 1.115589, 62830.821524),
-    (112392.0, -56188.0, 5.781616, 62829.634302),
-    (3891.0, -1556.0, 5.5474, 125660.5691),
-    (2819.0, -1126.0, 1.5120, 125660.9845),
-    (1721.0, -861.0, 4.1897, 62832.4766),
-    (0.0, 941.0, 1.163, 0.813),
-    (660.0, -264.0, 5.415, 125659.310),
-    (350.0, -163.0, 4.315, 57533.850),
-    (334.0, 0.0, 4.553, -33.931),
-    (314.0, 309.0, 5.198, 777137.715),
-    (268.0, -158.0, 5.989, 78604.191),
-    (242.0, 0.0, 2.911, 5.412),
-    (234.0, -54.0, 1.423, 39302.098),
-    (158.0, 0.0, 0.061, -34.861),
-    (132.0, -93.0, 2.317, 115067.698),
-    (129.0, -20.0, 3.193, 15774.337),
-    (114.0, 0.0, 2.828, 5296.670),
-    (99.0, -47.0, 0.52, 58849.27),
-    (93.0, 0.0, 4.65, 5296.11),
-    (86.0, 0.0, 4.35, -3980.70),
-    (78.0, -33.0, 2.75, 52237.69),
-    (72.0, -32.0, 4.50, 55076.47),
-    (68.0, 0.0, 3.23, 261.08),
-    (64.0, -10.0, 1.22, 15773.85),
-    (46.0, -16.0, 0.14, 188491.03),
-    (38.0, 0.0, 3.44, -7756.55),
-    (37.0, 0.0, 4.37, 264.89),
-    (32.0, -24.0, 1.14, 117906.27),
-    (29.0, -13.0, 2.84, 55075.75),
-    (28.0, 0.0, 5.96, -7961.39),
-    (27.0, -9.0, 5.09, 188489.81),
-    (27.0, 0.0, 1.72, 2132.19),
-    (25.0, -17.0, 2.56, 109771.03),
-    (24.0, -11.0, 1.92, 54868.56),
-    (21.0, 0.0, 0.09, 25443.93),
-    (21.0, 31.0, 5.98, -55731.43),
-    (20.0, -10.0, 4.03, 60697.74),
-    (18.0, 0.0, 4.27, 2132.79),
-    (17.0, -12.0, 0.79, 109771.63),
-    (14.0, 0.0, 4.24, -7752.82),
-    (13.0, -5.0, 2.01, 188491.91),
-    (13.0, 0.0, 2.65, 207.81),
-    (13.0, 0.0, 4.98, 29424.63),
-    (12.0, 0.0, 0.93, -7.99),
-    (10.0, 0.0, 2.21, 46941.14),
-    (10.0, 0.0, 3.59, -68.29),
-    (10.0, 0.0, 1.50, 21463.25),
-    (10.0, -9.0, 2.55, 157208.40)
-]
-
-# Make an array of dictionaries to simulate an array of structs
-sun_con = []
-for item in sun_con_data:
-    d = {}
-    d["l"] = item[0]
-    d["r"] = item[1]
-    d["alpha"] = item[2]
-    d["nu"] = item[3]
-    sun_con.append(d)
-
+if 1:   # Sun constant data
+    sun_con_data = [
+        (403406.0, 0.0, 4.721964, 1.621043),
+        (195207.0, -97597.0, 5.937458, 62830.348067),
+        (119433.0, -59715.0, 1.115589, 62830.821524),
+        (112392.0, -56188.0, 5.781616, 62829.634302),
+        (3891.0, -1556.0, 5.5474, 125660.5691),
+        (2819.0, -1126.0, 1.5120, 125660.9845),
+        (1721.0, -861.0, 4.1897, 62832.4766),
+        (0.0, 941.0, 1.163, 0.813),
+        (660.0, -264.0, 5.415, 125659.310),
+        (350.0, -163.0, 4.315, 57533.850),
+        (334.0, 0.0, 4.553, -33.931),
+        (314.0, 309.0, 5.198, 777137.715),
+        (268.0, -158.0, 5.989, 78604.191),
+        (242.0, 0.0, 2.911, 5.412),
+        (234.0, -54.0, 1.423, 39302.098),
+        (158.0, 0.0, 0.061, -34.861),
+        (132.0, -93.0, 2.317, 115067.698),
+        (129.0, -20.0, 3.193, 15774.337),
+        (114.0, 0.0, 2.828, 5296.670),
+        (99.0, -47.0, 0.52, 58849.27),
+        (93.0, 0.0, 4.65, 5296.11),
+        (86.0, 0.0, 4.35, -3980.70),
+        (78.0, -33.0, 2.75, 52237.69),
+        (72.0, -32.0, 4.50, 55076.47),
+        (68.0, 0.0, 3.23, 261.08),
+        (64.0, -10.0, 1.22, 15773.85),
+        (46.0, -16.0, 0.14, 188491.03),
+        (38.0, 0.0, 3.44, -7756.55),
+        (37.0, 0.0, 4.37, 264.89),
+        (32.0, -24.0, 1.14, 117906.27),
+        (29.0, -13.0, 2.84, 55075.75),
+        (28.0, 0.0, 5.96, -7961.39),
+        (27.0, -9.0, 5.09, 188489.81),
+        (27.0, 0.0, 1.72, 2132.19),
+        (25.0, -17.0, 2.56, 109771.03),
+        (24.0, -11.0, 1.92, 54868.56),
+        (21.0, 0.0, 0.09, 25443.93),
+        (21.0, 31.0, 5.98, -55731.43),
+        (20.0, -10.0, 4.03, 60697.74),
+        (18.0, 0.0, 4.27, 2132.79),
+        (17.0, -12.0, 0.79, 109771.63),
+        (14.0, 0.0, 4.24, -7752.82),
+        (13.0, -5.0, 2.01, 188491.91),
+        (13.0, 0.0, 2.65, 207.81),
+        (13.0, 0.0, 4.98, 29424.63),
+        (12.0, 0.0, 0.93, -7.99),
+        (10.0, 0.0, 2.21, 46941.14),
+        (10.0, 0.0, 3.59, -68.29),
+        (10.0, 0.0, 1.50, 21463.25),
+        (10.0, -9.0, 2.55, 157208.40)
+    ]
+    # Make an array of dictionaries to simulate an array of structs
+    sun_con = []
+    for item in sun_con_data:
+        d = {}
+        d["l"] = item[0]
+        d["r"] = item[1]
+        d["alpha"] = item[2]
+        d["nu"] = item[3]
+        sun_con.append(d)
 def sun_eph(jd, ra, dec, dis):
     sum_lon = 0.0
     sum_r = 0.0
@@ -353,10 +340,8 @@ def sun_eph(jd, ra, dec, dis):
     ra[0] = ra[0]/15.0
     dec[0] = asin(sin(emean)*sin_lon)*RAD2DEG
     return
-
 #----------------------------------------------------------------------
 # The remainder of the file came from the novas.c file translation.
-
 def app_star(tjd, earth, star, ra, dec):
     error = 0
     tdb = [0.0]
@@ -387,7 +372,6 @@ def app_star(tjd, earth, star, ra, dec):
     nutate(tdb, FN0, pos6, pos7)
     vector2radec(pos7, ra, dec)
     return 0
-
 def app_planet(tjd, ss_object, earth, ra, dec, dis):
     error = 0
     tdb = [0.0]
@@ -446,7 +430,6 @@ def app_planet(tjd, ss_object, earth, ra, dec, dis):
     nutate(tdb, FN0, pos5, pos6)
     vector2radec(pos6, ra, dec)
     return 0
-
 def topo_star(tjd, earth, deltat, star, location, ra, dec):
     error = 0
     lighttime = [0.0]
@@ -502,7 +485,6 @@ def topo_star(tjd, earth, deltat, star, location, ra, dec):
     nutate(tdb, FN0, pos6, pos7)
     vector2radec(pos7, ra, dec)
     return 0
-
 def topo_planet(tjd, ss_object, earth, deltat, location, ra, dec, dis):
     error = 0
     ujd = [0.0]
@@ -587,7 +569,6 @@ def topo_planet(tjd, ss_object, earth, deltat, location, ra, dec, dis):
     nutate(tdb, FN0, pos6, pos7)
     vector2radec(pos7, ra, dec)
     return error
-
 def virtual_star(tjd, earth, star, ra, dec):
     error = 0
     pos1 = [0.0, 0.0, 0.0, ]
@@ -614,7 +595,6 @@ def virtual_star(tjd, earth, star, ra, dec):
     aberration(pos4, veb, lighttime, pos5)
     vector2radec(pos5, ra, dec)
     return 0
-
 def virtual_planet(tjd, ss_object, earth, ra, dec, dis):
     error = 0
     t2 = 0.0
@@ -672,7 +652,6 @@ def virtual_planet(tjd, ss_object, earth, ra, dec, dis):
     aberration(pos3, veb, lighttime, pos4)
     vector2radec(pos4, ra, dec)
     return 0
-
 def local_star(tjd, earth, deltat, star, location, ra, dec):
     error = 0
     gast = [0.0]
@@ -726,7 +705,6 @@ def local_star(tjd, earth, deltat, star, location, ra, dec):
     aberration(pos4, vb, lighttime, pos5)
     vector2radec(pos5, ra, dec)
     return 0
-
 def local_planet(tjd, ss_object, earth, deltat, location, ra, dec, dis):
     error = 0
     t2 = 0.0
@@ -806,7 +784,6 @@ def local_planet(tjd, ss_object, earth, deltat, location, ra, dec, dis):
     aberration(pos3, vb, lighttime, pos4)
     vector2radec(pos4, ra, dec)
     return 0
-
 def astro_star(tjd, earth, star, ra, dec):
     error = 0
     lighttime = [0.0]
@@ -829,7 +806,6 @@ def astro_star(tjd, earth, star, ra, dec):
     bary_to_geo(pos2, peb, pos3, lighttime)
     vector2radec(pos3, ra, dec)
     return 0
-
 def astro_planet(tjd, ss_object, earth, ra, dec, dis):
     error = 0
     t2 = 0.0
@@ -880,7 +856,6 @@ def astro_planet(tjd, ss_object, earth, ra, dec, dis):
     # End do-while
     vector2radec(pos2, ra, dec)
     return 0
-
 def mean_star(tjd, earth, ra, dec, mra, mdec):
     iter = 0
     newmra = [0.0]
@@ -963,7 +938,6 @@ def mean_star(tjd, earth, ra, dec, mra, mdec):
     if mra[0] >= 24.0:
         mra[0] -= 24.0
     return 0
-
 def sidereal_time(jd_high, jd_low, ee, gst):
     t_hi = 0.0
     t_lo = 0.0
@@ -983,7 +957,6 @@ def sidereal_time(jd_high, jd_low, ee, gst):
     if gst[0] < 0.0:
         gst[0] += 24.0
     return
-
 def pnsw(tjd, gast, x, y, vece, vecs):
     dummy = [0.0]
     secdiff = [0.0]
@@ -1011,7 +984,6 @@ def pnsw(tjd, gast, x, y, vece, vecs):
         nutate(tdb, FN1, v2, v3)
         precession(tdb, v3, T0, vecs)
     return
-
 def spin(st, pos1, pos2):
     str = [0.0]
     cosst = [0.0]
@@ -1031,7 +1003,6 @@ def spin(st, pos1, pos2):
     pos2[1] = xy*pos1[0] + YY*pos1[1]
     pos2[2] = pos1[2]
     return
-
 def wobble(x, y, pos1, pos2):
     xpole = [0.0]
     ypole = [0.0]
@@ -1049,7 +1020,6 @@ def wobble(x, y, pos1, pos2):
     pos2[1] = pos1[1] + zy*pos1[2]
     pos2[2] = xz*pos1[0] + yz*pos1[1] + pos1[2]
     return
-
 def terra(locale, st, pos, vel):
     df2 = [0.0]
     sinphi = [0.0]
@@ -1082,13 +1052,11 @@ def terra(locale, st, pos, vel):
         vel[j] /= KMAU
         vel[j] *= 86400.0
     return
-
-# These variables were static doubles in earthtilt()
-tjd_last_earthtilt = 0.0
-t_earthtilt = 0.0
-dp_earthtilt = [0.0]
-de_earthtilt = [0.0]
-
+if 1:  # These variables were static doubles in earthtilt()
+    tjd_last_earthtilt = 0.0
+    t_earthtilt = 0.0
+    dp_earthtilt = [0.0]
+    de_earthtilt = [0.0]
 def earthtilt(tjd, mobl, tobl, eq, dpsi, deps):
     global tjd_last_earthtilt
     global t_earthtilt
@@ -1125,20 +1093,17 @@ def earthtilt(tjd, mobl, tobl, eq, dpsi, deps):
     mobl[0] = mean_obliq
     tobl[0] = true_obliq
     return
-
 def cel_pole(del_dpsi, del_deps):
     PSI_COR = del_dpsi
     EPS_COR = del_deps
     return
-
-# These variables were static doubles in get_earth()
-tjd_last_get_earth = 0.0
-time1_get_earth = 0.0
-peb_get_earth = [0.0, 0.0, 0.0]
-veb_get_earth = [0.0, 0.0, 0.0]
-pes_get_earth = [0.0, 0.0, 0.0]
-ves_get_earth = [0.0, 0.0, 0.0]
-
+if 1:  # These variables were static doubles in get_earth()
+    tjd_last_get_earth = 0.0
+    time1_get_earth = 0.0
+    peb_get_earth = [0.0, 0.0, 0.0]
+    veb_get_earth = [0.0, 0.0, 0.0]
+    pes_get_earth = [0.0, 0.0, 0.0]
+    ves_get_earth = [0.0, 0.0, 0.0]
 def get_earth(tjd, earth, tdb, bary_earthp, bary_earthv,
               helio_earthp, helio_earthv):
     global tjd_last_get_earth
@@ -1173,7 +1138,6 @@ def get_earth(tjd, earth, tdb, bary_earthp, bary_earthv,
         helio_earthp[i] = pes_get_earth[i]
         helio_earthv[i] = ves_get_earth[i]
     return error
-
 def proper_motion(tjd1, pos, vel, tjd2, pos2):
     if ii(tjd1, list):
         TJD1 = tjd1[0]
@@ -1186,7 +1150,6 @@ def proper_motion(tjd1, pos, vel, tjd2, pos2):
     for j in range(3):
         pos2[j] = pos[j] + (vel[j]*(TJD2 - TJD1))
     return
-
 def bary_to_geo(pos, earthvector, pos2, lighttime):
     sum_of_squares = [0.0]
     for j in range(3):
@@ -1194,7 +1157,6 @@ def bary_to_geo(pos, earthvector, pos2, lighttime):
     sum_of_squares = pos2[0]*pos2[0] + pos2[1]*pos2[1] + pos2[2]*pos2[2]
     lighttime[0] = sqrt(sum_of_squares)/C
     return
-
 def sun_field(pos, earthvector, pos2):
     f = 0.0
     p1mag = [0.0]
@@ -1242,7 +1204,6 @@ def sun_field(pos, earthvector, pos2):
             delp = f*(cosd*p1hat[j] + pehat[j])
             pos2[j] = pos[j] + delp
     return 0
-
 def aberration(pos, ve, lighttime, pos2):
     p1mag = [0.0]
     vemag = [0.0]
@@ -1269,7 +1230,6 @@ def aberration(pos, ve, lighttime, pos2):
     for j in range(3):
         pos2[j] = (gammai*pos[j] + q*ve[j])/r
     return 0
-
 def precession(tjd1, pos, tjd2, pos2):
     XX = 0.0
     yx = 0.0
@@ -1335,7 +1295,6 @@ def precession(tjd1, pos, tjd2, pos2):
     pos2[1] = xy*pos[0] + YY*pos[1] + zy*pos[2]
     pos2[2] = xz*pos[0] + yz*pos[1] + zz*pos[2]
     return
-
 def nutate(tjd, fn, pos, pos2):
     cobm = 0.0
     sobm = 0.0
@@ -1382,7 +1341,6 @@ def nutate(tjd, fn, pos, pos2):
         pos2[1] = yx*pos[0] + YY*pos[1] + yz*pos[2]
         pos2[2] = zx*pos[0] + zy*pos[1] + zz*pos[2]
     return 0
-
 def nutation_angles(t, longnutation, obliqnutation):
     clng = [1.0, 1.0, -1.0, -1.0, 1.0, -1.0, -1.0, -1.0, -1.0, -1.0,
             -1.0, 1.0, -1.0, 1.0, -1.0, 1.0, 1.0, -1.0, -1.0, 1.0, 1.0,
@@ -1515,7 +1473,6 @@ def nutation_angles(t, longnutation, obliqnutation):
     longnutation[0] = (lng + t*lngx)/10000.0
     obliqnutation[0] = (obl + t*oblx)/10000.0
     return 0
-
 def fund_args(t, a):
     a[0] = (2.3555483935439407 + t*(8328.691422883896 + t *
             (1.517951635553957e-4 + 3.1028075591010306e-7*t)))
@@ -1532,7 +1489,6 @@ def fund_args(t, a):
         if a[i] < 0.0:
             a[i] += TWOPI
     return
-
 def vector2radec(pos, ra, dec):
     xyproj = [0.0]
     xyproj = sqrt(pos[0]*pos[0] + pos[1]*pos[1])
@@ -1553,13 +1509,11 @@ def vector2radec(pos, ra, dec):
         if ra[0] < 0.0:
             ra[0] += 24.0
     return 0
-
 def radec2vector(ra, dec, dist, vector):
     vector[0] = dist[0]*cos(DEG2RAD*dec[0])*cos(DEG2RAD*15.0*ra[0])
     vector[1] = dist[0]*cos(DEG2RAD*dec[0])*sin(DEG2RAD*15.0*ra[0])
     vector[2] = dist[0]*sin(DEG2RAD*dec[0])
     return
-
 def starvectors(star, pos, vel):
     paralx = [0.0]
     dist = [0.0]
@@ -1592,7 +1546,6 @@ def starvectors(star, pos, vel):
     vel[1] = pmr*cra - pmd*sdc*sra + rvl*cdc*sra
     vel[2] = pmd*cdc + rvl*sdc
     return
-
 def tdb2tdt(tdb, tdtjd, secdiff):
     ecc = 0.01671022
     rev = 1296000.0
@@ -1612,7 +1565,6 @@ def tdb2tdt(tdb, tdtjd, secdiff):
     secdiff[0] = 1.658e-3*sin(e) + 20.73e-6*sin(l - lj)
     tdtjd[0] = tdb - secdiff[0]/86400.0
     return
-
 def set_body(Type, number, name, cel_obj):
     error = 0
     cel_obj["type"] = 0
@@ -1630,7 +1582,6 @@ def set_body(Type, number, name, cel_obj):
     cel_obj["number"] = number
     cel_obj["name"] = name
     return error
-
 def ephemeris(tjd, cel_obj, origin, pos, vel):
     mp_name = ""
     err = [0]
@@ -1668,7 +1619,6 @@ def ephemeris(tjd, cel_obj, origin, pos, vel):
     else:
         error = 2
     return error
-
 def make_cat_entry(catalog, star_name, star_num, ra, dec, pm_ra,
                    pm_dec, parallax, rad_vel, star):
     for i in range(4):
@@ -1689,7 +1639,6 @@ def make_cat_entry(catalog, star_name, star_num, ra, dec, pm_ra,
     star["parallax"] = parallax
     star["radialvelocity"] = rad_vel
     return
-
 def transform_hip(hipparcos, fk5):
     epoch_hip = 2448349.0625
     epoch_fk5 = 2451545.0000
@@ -1716,7 +1665,6 @@ def transform_hip(hipparcos, fk5):
     scratch["parallax"] = hipparcos["parallax"]/1000.0
     transform_cat(1, epoch_hip, scratch, epoch_fk5, "FK5", fk5)
     return
-
 def transform_cat(option, date_incat, incat, date_newcat, newcat_id, newcat):
     jd_incat = [0.0]
     jd_newcat = [0.0]
@@ -1806,7 +1754,6 @@ def transform_cat(option, date_incat, incat, date_newcat, newcat_id, newcat):
     strcpy(newcat["starname"], incat["starname"])
     newcat["starnumber"] = incat["starnumber"]
     return
-
 def equ2hor(tjd, deltat, x, y, location, ra, dec, ref_option,
             zd, az, rar, decr):
     ujd = [0.0]
@@ -1912,7 +1859,6 @@ def equ2hor(tjd, deltat, x, y, location, ra, dec, ref_option,
                 rar[0] -= 24.0
             decr[0] = atan2(pr[2], proj)*RAD2DEG
     return
-
 def refract(location, ref_option, zd_obs):
     s = 9.1e3
     refr = [0.0]
@@ -1933,13 +1879,11 @@ def refract(location, ref_option, zd_obs):
         r = 0.016667/tan((h + 7.31/(h + 4.4))*DEG2RAD)
         refr = r*(0.28*p/(t + 273.0))
     return refr
-
 def julian_date(year, month, day, hour):
     jd12h = (day - 32075 + 1461*(year + 4800 + (month - 14)/12)/4 +
              367*(month - 2 - (month - 14)/12*12)/12 -
              3*((year + 4900 + (month - 14)/12)/100)/4)
     return jd12h - 0.5 + hour/24.0
-
 def cal_date(tjd, year, month, day, hour):
     djd = [0.0]
     djd = tjd + 0.5
@@ -1956,3 +1900,125 @@ def cal_date(tjd, year, month, day, hour):
     month[0] = month[0] + 2 - 12*k
     year[0] = (100*(n - 49) + m + k)
     return
+if __name__ == "__main__": 
+    import sys
+    from lwtest import run, assert_equal
+    def Test():
+        '''This is the file checkout-st.c file from the original NOVAS-C
+        package translated to a python script.
+        '''
+        N_STARS = 3
+        N_TIMES = 4
+        error = 0
+        deltat = 60.0
+        tjd = [2450203.5, 2450203.5, 2450417.5, 2450300.5]
+        ra = [0.0]
+        dec = [0.0]
+        stars = [
+            {
+                "catalog"        : "FK5",
+                "starname"       : "POLARIS",
+                "starnumber"     : 0,
+                "ra"             : 2.5301955556,
+                "dec"            : 89.2640888889,
+                "promora"        : 19.8770,
+                "promodec"       : -1.520,
+                "parallax"       : 0.0070,
+                "radialvelocity" : -17.0,
+            },
+            {
+                "catalog"        : "FK5",
+                "starname"       : "Delta ORI",
+                "starnumber"     : 1,
+                "ra"             : 5.5334438889,
+                "dec"            : -0.2991333333,
+                "promora"        : 0.0100,
+                "promodec"       : -0.220,
+                "parallax"       : 0.0140,
+                "radialvelocity" : 16.0,
+            },
+            {
+                "catalog"        : "FK5",
+                "starname"       : "Theta CAR",
+                "starnumber"     : 2,
+                "ra"             : 10.7159355556,
+                "dec"            : -64.3944666667,
+                "promora"        : -0.3480,
+                "promodec"       : 1.000,
+                "parallax"       : 0.0000,
+                "radialvelocity" : 24.0,
+            },
+        ]
+        geo_loc = {
+            "latitude"    : 45.0,
+            "longitude"   : -75.0,
+            "height"      : 0.0,
+            "temperature" : 10.0,
+            "pressure"    : 1010.0,
+        }
+        earth = {
+            "type"   : 0,
+            "number" : 0,
+            "name"   : "",
+        }
+        error = set_body(0, 3, "Earth", earth)
+        if error:
+            raise ValueError("Error '{}' from set_body".format(error))
+        out = []
+        log = out.append
+        for i in range(N_TIMES):
+            for j in range(N_STARS):
+                error = topo_star(tjd[i], earth, deltat,
+                                stars[j], geo_loc, ra, dec)
+                if error:
+                    m = "Error %d from topo_star. Star %d  Time %d"
+                    raise ValueError(m.format(error, j, i))
+                else:
+                    log("JD = {:f}  Star = {}".format(tjd[i], stars[j]["starname"]))
+                    log("RA = {:12.9f}  Dec = {:12.8f}".format(ra[0], dec[0]))
+                    log("")
+            log("")
+        expected = [
+            'JD = 2450203.500000  Star = POLARIS',
+            'RA =  2.446916265  Dec =  89.24633852',
+            '',
+            'JD = 2450203.500000  Star = Delta ORI',
+            'RA =  5.530109345  Dec =  -0.30575219',
+            '',
+            'JD = 2450203.500000  Star = Theta CAR',
+            'RA = 10.714516141  Dec = -64.38132162',
+            '',
+            '',
+            'JD = 2450203.500000  Star = POLARIS',
+            'RA =  2.446916265  Dec =  89.24633852',
+            '',
+            'JD = 2450203.500000  Star = Delta ORI',
+            'RA =  5.530109345  Dec =  -0.30575219',
+            '',
+            'JD = 2450203.500000  Star = Theta CAR',
+            'RA = 10.714516141  Dec = -64.38132162',
+            '',
+            '',
+            'JD = 2450417.500000  Star = POLARIS',
+            'RA =  2.509407657  Dec =  89.25195435',
+            '',
+            'JD = 2450417.500000  Star = Delta ORI',
+            'RA =  5.531194826  Dec =  -0.30305771',
+            '',
+            'JD = 2450417.500000  Star = Theta CAR',
+            'RA = 10.714434953  Dec = -64.37368326',
+            '',
+            '',
+            'JD = 2450300.500000  Star = POLARIS',
+            'RA =  2.481107884  Dec =  89.24253162',
+            '',
+            'JD = 2450300.500000  Star = Delta ORI',
+            'RA =  5.530371408  Dec =  -0.30235140',
+            '',
+            'JD = 2450300.500000  Star = Theta CAR',
+            'RA = 10.713566017  Dec = -64.37969000',
+            '',
+            '',
+        ]
+        assert(out == expected)
+    exit(run(globals(), halt=1)[0])

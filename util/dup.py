@@ -1,99 +1,91 @@
 '''
-Finds duplicate files in directory trees.  The algorithm used is to
-walk the directory tree(s) using os.walk().  The files found then have
-their (hash, size) saved in a dictionary whose elements are lists.
-The default hash size is 4 kbytes, which is a typical block size for a
-filesystem.  Files that have the same dictionary (hash, size) keys are
-likely to be identical files and are so reported.  Use the '-b 0'
-option to calculate the hash for all the bytes in the file to be more
-sure of identity -- the tradeoff is that this can increase the time
-the program runs by about an order of magnitude.
+Finds duplicate files in directory trees
+    The algorithm used is to walk the directory tree(s) using os.walk().
+    The files found then have their (hash, size) saved in a dictionary
+    whose elements are lists.  The default hash size is 4 kbytes, which
+    is a typical block size for a filesystem.  Files that have the same
+    dictionary (hash, size) keys are likely to be identical files and
+    are so reported.  Use the '-b 0' option to calculate the hash for
+    all the bytes in the file to be more sure of identity -- the
+    tradeoff is that this can increase the time the program runs by
+    about an order of magnitude.
 '''
-
-# Copyright (C) 2011, 2014 Don Peterson
-# Contact:  gmail.com@someonesdad1
-
-#
-# Licensed under the Open Software License version 3.0.
-# See http://opensource.org/licenses/OSL-3.0.
-#
-
-from __future__ import print_function
-import sys
-import os
-import getopt
-import hashlib
-import stat
-import re
-from collections import defaultdict
-
-try:
-    import color as c
-    have_color = True
-except ImportError:
-    have_color = False
-
-nl = "\n"
-_debug = False
-
-# Hashing method to use on files
-hash = hashlib.sha1
-
+if 1:  # Copyright, license
+    # These "trigger strings" can be managed with trigger.py
+    #∞copyright∞# Copyright (C) 2011 Don Peterson #∞copyright∞#
+    #∞contact∞# gmail.com@someonesdad1 #∞contact∞#
+    #∞license∞#
+    #   Licensed under the Open Software License version 3.0.
+    #   See http://opensource.org/licenses/OSL-3.0.
+    #∞license∞#
+    #∞what∞#
+    # Program description string
+    #∞what∞#
+    #∞test∞# #∞test∞#
+    pass
+if 1:   # Imports
+    import sys
+    import os
+    import getopt
+    import hashlib
+    import stat
+    import re
+    from collections import defaultdict
+    from pdb import set_trace as xx 
+if 1:   # Custom imports
+    from wrap import dedent
+    try:
+        import color as C
+        have_color = True
+    except ImportError:
+        have_color = False
+if 1:   # Global variables
+    _debug = False
+    # Hashing method to use on files
+    hash = hashlib.sha1
 class IgnoreThisFile(Exception):
     pass
-
-def Usage(d, status=None):
+def Usage(d, status=1):
     name = sys.argv[0]
     dashb = d["-b"]
-    print('''
-Usage:  {name} dir1 [dir2...]
-  Display duplicate files in directories.  In the output, 1: means
-  dir1, 2: means dir2, etc.  Mercurial, git, and hidden
-  directories/files and zero-length files are ignored by default.
-  Color can be used to show larger file sizes in bytes (via ANSI escape
-  codes) to alert you to opportunities to get back some disk space.
-
-  Hard links are reported (turn off with -L); use -l to have soft
-  links reported also.
-
-  For speed, only the first {dashb} bytes of a file are read to
-  calculate the hash.  Thus, two files that are reported to be the
-  same are probably the same, but it's not guaranteed.  Use '-b 0' to
-  hash all of the files' bytes; however, '-b 0' is roughly an order of
-  magnitude slower.
-
-Options
-  -b s    Read s bytes to compute hash.  0 = compare all bytes
-  -c      Use color in output.
-  -d      Debug output to stderr.
-  -f      Find duplicate file names.
-  -F      Same as -F, but print full path to file.
-  -g      Include git directories in the search.
-  -h      Include hidden directories (implies -g and -m).
-  -L      Don't report hard links.
-  -l      Follow symbolic links.
-  -m      Include Mercurial directories.
-  -r      Do not act recursively.
-  -t th   Ignore files <= th bytes (OK to append k, M, G, T).
-  -x re   Ignore specified file regexp.  Can have multiple -x's.
-  -X re   Ignore specified directory regexp.  Can have multiple -X's.
-  -z      Do not ignore zero-length files.
-'''[1:-1].format(**locals()))
-    if status is not None:
-        exit(status)
-
+    print(dedent(f'''
+    Usage:  {name} dir1 [dir2...]
+      Display duplicate files in directories.  In the output, 1: means
+      dir1, 2: means dir2, etc.  Hard links are reported (turn off with
+      -L); use -l to have soft links reported also.
+    
+      For speed, only the first {dashb} bytes of a file are read to
+      calculate the hash.  Thus, two files that are reported to be the
+      same are probably the same, but it's not guaranteed.  Use '-b 0' to
+      hash all of the files' bytes (takes longer to process).
+    Options
+      -b s    Read s bytes to compute hash.  0 = compare all bytes
+      -c      Use color in output
+      -d      Debug output to stderr
+      -F      Same as -f, but print full path to file
+      -f      Find duplicate file names
+      -g      Include git directories in the search
+      -h      Include hidden directories (implies -g and -m)
+      -L      Don't report hard links
+      -l      Follow symbolic links
+      -m      Include Mercurial directories
+      -r      Do not act recursively.
+      -t n    Ignore files <= n bytes (OK to append k, M, G, T)
+      -x re   Ignore specified file regexp.  Can have multiple -x's.
+      -X re   Ignore specified directory regexp.  Can have multiple -X's.
+      -z      Do not ignore zero-length files
+    '''))
+    exit(status)
 def Debug(*s, **kw):
     stream = kw.setdefault("file", sys.stderr)
     ends = kw.setdefault("end", "\n")
     if _debug:
-        print(*s, file=stream, end=ends)
-
+        print(*s, **kw)
 def Error(*s, **kw):
     stream = kw.setdefault("file", sys.stderr)
     ends = kw.setdefault("end", "\n")
     print(*s, file=stream, end=ends)
     exit(1)
-
 def ParseCommandLine(d):
     d["-b"] = 4096      # Bytes to read to compute hash
     d["-c"] = False     # Use color if True
@@ -110,61 +102,50 @@ def ParseCommandLine(d):
     d["-x"] = set()     # File regexps to ignore
     d["-X"] = set()     # Directory regexps to ignore
     d["-z"] = False     # Do not ignore zero-length files
+    # Ignore some common files I use
+    d["-x"].add(re.compile(r"\.vi"))
+    d["-x"].add(re.compile(r"\.z"))
+    d["-x"].add(re.compile(r"\.todo"))
+    d["-x"].add(re.compile(r"z"))
+    d["-x"].add(re.compile(r"a"))
     try:
         optlist, dirs = getopt.getopt(sys.argv[1:], "b:cdFfghLlmrt:x:X:z")
     except getopt.GetoptError as str:
         msg, option = str
         sys.stderr.write(msg + nl)
         sys.exit(1)
-    for opt in optlist:
-        if opt[0] == "-b":
+    for o, a in optlist:
+        if o[1] in "cdfgLlmrz":
+            d[o] = not d[o]
+        elif o == "-b":
             try:
                 d["-b"] = int(opt[1])
             except Exception:
                 Error("'%s' is a bad integer" % opt[1])
             if d["-b"] < 0:
                 Error("-b option's argument must be >= 0" % opt[1])
-        elif opt[0] == "-c":
-            d["-c"] = not d["-c"]
-            if not have_color:
-                d["-c"] = False
-        elif opt[0] == "-d":
-            d["-d"] = True
-            global _debug
-            _debug = True
-        elif opt[0] == "-F":
+        elif o == "-F":
             d["-F"] = True
             d["-f"] = True
-        elif opt[0] == "-f":
-            d["-f"] = True
-        elif opt[0] == "-g":
-            d["-g"] = True
-        elif opt[0] == "-h":
+        elif o == "-h":
             d["-h"] = d["-g"] = d["-m"] = True
-        elif opt[0] == "-L":
-            d["-L"] = True
-        elif opt[0] == "-l":
-            d["-l"] = True
-        elif opt[0] == "-m":
-            d["-m"] = True
-        elif opt[0] == "-r":
-            d["-r"] = True
-        elif opt[0] == "-s":
-            d["-s"] = True
-        elif opt[0] == "-t":
+        elif o == "-t":
             d["-t"] = GetSize(opt[1])
-        elif opt[0] == "-x":
+        elif o == "-x":
             try:
                 d["-x"].add(re.compile(opt[1]))
             except Exception:
                 Error("'%s' is a bad regular expression" % opt[1])
-        elif opt[0] == "-X":
+        elif o == "-X":
             try:
                 d["-X"].add(re.compile(opt[1]))
             except Exception:
                 Error("'%s' is a bad regular expression" % opt[1])
-        elif opt[0] == "-z":
-            d["-z"] = True
+    if d["-d"]:
+        global _debug
+        _debug = True
+    if not have_color:
+        d["-c"] = False
     if not dirs:
         Usage(d, 1)
     Debug("Options set from command line:")
@@ -173,7 +154,6 @@ def ParseCommandLine(d):
     for k in keys:
         Debug("%4s%-4s %s" % (" ", k, d[k]))
     return dirs
-
 def GetSize(s):
     '''Return the size in bytes from the string s.  Note s can have k,
     M, G, or T appended (interpret as decimal SI prefixes).
@@ -189,13 +169,12 @@ def GetSize(s):
     except Exception:
         Error(msg)
     return int(factor*i)
-
 def ProcessDir(dirnum, dir, d):
     '''Return a dictionary containing the information on the files in
     the directory dir.  dirnum is an integer indicating the order on
     the command line.  dir is a single directory.  d is the settings
     dictionary.
-
+ 
     The returned dictionary has the form (s=string, i=integer, b=bool):
     {
         (hash1, size1) : [
@@ -305,24 +284,21 @@ def ProcessDir(dirnum, dir, d):
                     # It's below the size threshold in d["-t"]
                     Debug("Ignoring file below threshold:  ", filename)
         return hashdict
-
 def GetColor(size):
     '''Return a color indicating file size.
     '''
     if size < 10**5:
-        return c.white
+        return C.white
     elif size < 10**6:
-        return c.yellow
+        return C.yellow
     else:
-        return c.lred
-
+        return C.lred
 def PrintSize(size, stream, d):
     if d["-c"]:
-        c.fg(GetColor(size))
+        C.fg(GetColor(size))
     print("%d" % size, file=stream, end="")
     if d["-c"]:
-        c.normal()
-
+        C.normal()
 def ReportDuplicate(item, d, stream):
     '''item is a list of tuples (length > 1) that contain duplicated
     information.  Print this information to the indicated stream and
@@ -339,12 +315,14 @@ def ReportDuplicate(item, d, stream):
     if not d["-L"]:
         # Get a list of hard links (soft links also look like hard
         # links if the -l option was used).
-        hl = defaultdict(list)
+        links = defaultdict(list)
         for filename, inode, dirnumber, islink in item:
-            hl[inode].append((filename, dirnumber, islink))
-        for inode in hl:
-            if len(hl[inode]) > 1:
-                size = os.stat(hl[inode][0][0]).st_size
+            links[inode].append((filename, dirnumber, islink))
+        for inode in links:
+            if len(links[inode]) > 1:
+                size = os.stat(links[inode][0][0]).st_size
+                if d["-c"]:
+                    C.fg(C.yellow)
                 if d["-l"]:
                     print("Hard-linked [inode] or soft-linked <inode> files "
                           "(-l option used) (", file=stream, end="")
@@ -353,7 +331,9 @@ def ReportDuplicate(item, d, stream):
                           file=stream, end="")
                 PrintSize(size, stream, d)
                 print("):")
-                for filename, dirnumber, islink in hl[inode]:
+                if d["-c"]:
+                    C.normal()
+                for filename, dirnumber, islink in links[inode]:
                     t = (dirnumber, inode, filename)
                     if islink:
                         print("  %d:<%d>:  %s" % t, file=stream)
@@ -362,7 +342,12 @@ def ReportDuplicate(item, d, stream):
                 print(file=stream)
     # Print out the true duplicates
     size = os.stat(item[0][0]).st_size
-    print("Duplicate files (", file=stream, end="")
+    if d["-c"]:
+        C.fg(C.lcyan)
+    print("Duplicate files ", file=stream, end="")
+    if d["-c"]:
+        C.normal()
+    print("(", file=stream, end="")
     # Set color of size number based on size
     PrintSize(size, stream, d)
     print(" bytes):", file=stream)
@@ -370,7 +355,6 @@ def ReportDuplicate(item, d, stream):
         print("  %d:  %s" % (dirnumber, filename), file=stream)
     # Make sure there's a blank line to separate duplicate information
     print("", file=stream)
-
 def ReportDuplicates(fileinfo, d, stream=sys.stdout):
     '''fileinfo is a dictionary with keys (hash, size) and values that
     are a list of tuples(filename, lstat_info, dirnumber).  d is the
@@ -383,7 +367,6 @@ def ReportDuplicates(fileinfo, d, stream=sys.stdout):
     for i in fileinfo:
         if len(fileinfo[i]) > 1:
             ReportDuplicate(fileinfo[i], d, stream)
-
 def ReportDuplicateFilenames(fileinfo, d, stream=sys.stdout):
     duplicates = []
     for key, value in fileinfo.items():
@@ -403,22 +386,15 @@ def ReportDuplicateFilenames(fileinfo, d, stream=sys.stdout):
                     i = "."
                 print("    %s" % i, file=stream)
         print(file=stream)
-
 if __name__ == "__main__":
     d = {}  # Options dictionary
     dirs = ParseCommandLine(d)
-    if d["-f"]:
-        fileinfo = defaultdict(list)
-    else:
-        fileinfo = {}
+    fileinfo = defaultdict(list)
     for dirnum, dir in enumerate(dirs):
         t = ProcessDir(dirnum + 1, dir, d)
         if t:
-            if d["-f"]:
-                for key, value in t.items():
-                    fileinfo[key] += value
-            else:
-                fileinfo.update(t)
+            for key, value in t.items():
+                fileinfo[key] += value
     if d["-f"]:
         ReportDuplicateFilenames(fileinfo, d)
     else:

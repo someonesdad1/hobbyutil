@@ -1,76 +1,80 @@
 '''
-Script to monitor file times and execute a set of commands in a makefile
-when the file time relationships change.
+Execute a makefile when a file changes
 '''
-# Copyright (C) 2014 Don Peterson
-# Contact:  gmail.com@someonesdad1
- 
-#
-# Licensed under the Open Software License version 3.0.
-# See http://opensource.org/licenses/OSL-3.0.
-#
- 
-from __future__ import print_function, division
-import sys
-import os
-import getopt
-import time
-
-try:
-    import color as c
-except ImportError:
-    # Dummy object that will swallow calls to the color module
-    class C:
-        def __setattr__(self, attr, x):
-            pass
-        def __getattr__(self, attr):
-            return None
-        def fg(self, *p):
-            pass
-        def normal(self):
-            pass
-    c = C()
-
-def Error(msg, status=1):
-    print(msg, file=sys.stderr)
+if 1:  # Copyright, license
+    # These "trigger strings" can be managed with trigger.py
+    #∞copyright∞# Copyright (C) 2014 Don Peterson #∞copyright∞#
+    #∞contact∞# gmail.com@someonesdad1 #∞contact∞#
+    #∞license∞#
+    #   Licensed under the Open Software License version 3.0.
+    #   See http://opensource.org/licenses/OSL-3.0.
+    #∞license∞#
+    #∞what∞#
+    # Execute a makefile when a file changes
+    #∞what∞#
+    #∞test∞# #∞test∞#
+    pass
+if 1:   # Imports
+    import sys
+    import os
+    import getopt
+    import time
+if 1:   # Custom imports
+    from wrap import dedent
+    try:
+        import color as c
+    except ImportError:
+        # Dummy object that will swallow calls to the color module
+        class C:
+            def __setattr__(self, attr, x):
+                pass
+            def __getattr__(self, attr):
+                return None
+            def fg(self, *p):
+                pass
+            def normal(self):
+                pass
+        c = C()
+def Error(*msg, status=1):
+    print(*msg, file=sys.stderr)
     exit(status)
-
 def Usage(d, status=1):
-    name = sys.argv[0]
     st = d["-s"]
-    s = '''
-Usage:  {name} [options] [mkfile]
-  Monitors the files given on the separate lines of the text file
-  mkfile and when the source file is newer than the destination file,
-  a command is invoked with the indicated target.  The lines of mkfile
-  must be of the forms (blank lines ignored)
-      # This is a comment
-      src, dest, cmd
-  where src is the name of the source file, dest is the name of the
-  destination file, and cmd is a command list to execute when src is
-  newer than dest.  cmd can be a list of commands separated by ';'
-  characters.
-
-  If no mkfile is given on the command line, the script's name has
-  '.py' removed and '.mk' substituted; this file is looked for in the
-  current directory and used if it is found.
-Example
-    # Example mkfile to construct an HTML file when a restructured
-    # text file or CSS file change.
-    project.rst, project.html, make project.html
-    project.css, project.html, make project.html
-  will cause make to be called if either project.rst or project.css
-  are newer than project.html.
-Options
-  -h    Print this message
-  -n    Echo the commands that would be executed but don't call
-        them.
-  -s t  Sleep time t in s between checking file times.  t can be a
-        floating point number.  Default is {st} seconds.
-'''[1:-1]
-    print(s.format(**locals()))
-    sys.exit(status)
-
+    print(dedent(f'''
+    Usage:  {sys.argv[0]} [options] [kfile]
+      Monitors the files given on the separate lines of the text file
+      kfile and when the source file is newer than the destination file,
+      a command is invoked with the indicated target.  The lines of kfile
+      must be of the forms (blank lines ignored)
+          # This is a comment
+          src, dest, cmd
+      where src is the name of the source file, dest is the name of the
+      destination file, and cmd is a command list to execute when src is
+      newer than dest.  cmd can be a list of commands separated by ';'
+      characters.
+    
+      If no kfile is given on the command line, the script's name has
+      '.py' removed and '.mk' substituted; this file is looked for in the
+      current directory and used if it is found.
+    Use case
+      I use this script when working on documentation that uses restructured
+      text that gets converted to an HTML file.  It works well when you can set
+      your browser up to automatically reload a file when it changes.
+    Example
+        # Example kfile to construct an HTML file when a restructured
+        # text file or CSS file change their contents.
+        project.rst, project.html, make project.html
+        project.css, project.html, make project.html
+      will cause make to be called if either project.rst or project.css
+      are newer than project.html.
+    Options
+      -h    Print this message
+      -n    Echo the commands that would be executed but don't call
+            them.
+      -s t  Sleep time t in s between checking file times.  t can be a
+            floating point number.  Default is {st} seconds.
+    '''))
+    exit(status)
 def ParseCommandLine(d):
     d["-n"] = False     # Dry run
     d["-s"] = 1.0       # Default sleep time in s
@@ -102,7 +106,6 @@ def ParseCommandLine(d):
         if not os.path.isfile(filename):
             Usage(d)
     return filename
-
 def GetLines(filename, d):
     '''Read in the lines from filename, strip out comments, and build
     the d["lines"] list for periodic checking.
@@ -114,13 +117,11 @@ def GetLines(filename, d):
             continue
         fields = [i.strip() for i in s.split(",", 2)]
         if len(fields) != 3:
-            msg = """Improper number of fields on line %d:
-  '%s'""" % (linenum + 1, line)
+            msg = "Improper number of fields on line {linenum+1}:\n  {line}"
             Error(msg)
         # Parse the commands
         fields[2] = tuple([i.strip() for i in fields[2].split(";")])
         D.append(tuple(fields))
-
 def GetTime(d):
     t, s = time.time() - d["start"], "s"
     # Change to minutes or hours as needed
@@ -131,7 +132,6 @@ def GetTime(d):
         t /= 60
         s = "min"
     return "%.1f %s" % (t, s)
-
 def Execute(cmd, d):
     '''cmd is of the form (src, dest, cmdlist) where src is the source
     file, dest is the destination file, and cmdlist is the set of
@@ -161,7 +161,6 @@ def Execute(cmd, d):
                 c.fg(lred)
                 print("'%s' returned nonzero status" % cmd)
                 c.normal()
-
 if __name__ == "__main__":
     d = {}  # Options dictionary
     d["start"] = time.time()

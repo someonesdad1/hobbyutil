@@ -3,16 +3,94 @@
 Shuffle the bytes of a file in a reversible fashion.  See Usage() for
 how to use.
 
-If you have a source of truly random bytes (e.g., a large file bytes
-produced by a properly vetted physical process), then this file used as
-a seed file will scramble a file in a cryptographically secure way.
+Warning:  this program needs to read all the bytes of a file into memory
+at once, so it will not work on large files.  On my Windows 10 machine
+running cygwin, it fails for files of 430 MB in size.
 
-Note that there's no way a 32 bit linear congruential random number
-generator is capable of providing all the permutations of a file of
-reasonable size.  The period of the generator is at best 2**32 and it is
-capable of only providing on the order of 1e9 different permutations.  A
-file of one million bytes will have about 1e5565709 possible
-permutations.
+If you have a source of random bytes (e.g., a large file of bytes
+produced by a properly-vetted physical process), then this file used as
+a seed file with this program can scramble a file in a cryptographically
+secure way.  One source might be https://www.random.org/bytes/, which
+generates random numbers from atmospheric noise.  Understandably, they
+limit the number of bits you can download unless you're willing to pay
+money.  Years ago Silicon Graphics had a web page that generated random
+numbers from the chaotic behavior of a Lava Lamp.  
+
+You can download a text file of The Rand Corporation's famous 1955
+publication "A Million Random Digits" from
+https://www.rand.org/pubs/monograph_reports/MR1418.html.  Here's a
+python script that will convert the digits to a binary file of 415241
+bytes (it works by converting the million digits to a single large
+integer, converting this integer to a hex string, then using a library
+function to convert it to a bytes string):
+
+    from binascii import unhexlify
+    lines = <get lines of million digits text file>
+    s = []
+    remove_line_number = lambda x: x.split()[1:]
+    for line in lines:
+        t = remove_line_number(line)
+        s.append(''.join(t))
+    n = int(''.join(s))
+    ofp = open(outfile, "wb").write(unhexlify(hex(n)[2:]))
+
+Once you have the 415241 byte binary file, you could derive larger files
+from it in a variety of ways using this program.  For example,
+compressed files (using e.g. zip, gzip, or bzip2) might look like files
+of random bytes (after removing known fixed information in the file like
+the leading 'PK' of a zip file) and a compressed file shuffled by the
+million digit file's bytes might be a usable source of random bytes as a
+seed file for this program.
+
+You can do a web search for something like "build a physical random
+number generator" or "hardware random number generator" and find sites
+that instruct you on how to build some hardware.  These may be suitable
+for your needs.  One common design uses a reverse-biased PN junction and
+an Arduino to get a random bit data rate of about 1 kbit/s (see
+http://iank.org/trng.html and
+https://en.wikipedia.org/wiki/Hardware_random_number_generator).
+Letting such a generator run for a day would yield a file of about 10
+MBytes.  Documentation on the web from experienced folks show that it's
+much harder than you think to generate random bytes because there are so
+many sources of non-randomness and biases; it can take exhaustive
+attention to detail and sophisticated testing to generate a useful
+generator..
+
+You may want to consider purchasing a hardware random number generator.
+Here's one that's about $50:  http://ubld.it/truerng_v3.  You can spend
+hundreds or thousands of dollars for one too.
+
+Internally, this program uses a linear congruential generator to
+generate a random number stream if you don't use the -f option.  There's
+no way a 32 bit linear congruential random number generator is capable
+of generating all the permutations of a file of reasonable size.  The
+period of the generator is at best 2**32 and it is capable of only
+providing on the order of 1e9 different permutations.  A file of one
+million bytes will have about 1e5565709 possible permutations.
+Therefore, you can't consider this program's shuffling to be
+cryptographically secure unless you use a seed file of
+cryptographically-secure bytes.
+
+At https://someonesdad1.github.io/hobbyutil/project_list.html I provide
+some tools that might be helpful:
+    
+    util/mkfile.py
+        Makes files of random bytes (use -u and -t).
+    util/cnt.py
+        Prints histograms of byte counts.
+    util/bd.c
+        Compares binary files.
+
+You can use the allegedly cryptographically-secure services of your OS
+(see
+https://en.wikipedia.org/wiki/Cryptographically_secure_pseudorandom_number_generator).
+For example, in python, the os.urandom() function is labeled as
+providing cryptographically secure random bytes (see also python's
+secrets module); you'll have to decide whether you trust such
+generators.  If you do trust such things, you can use the above
+util/mkfile.py python script at to make files of random bytes (use the
+-u and -t options).  On my older computer, mkfile (-u or -t) takes a few
+seconds to create a 1 GByte file with random bytes.
 
 If you wish to perform some simple testing, test on small files with
 known contents.  For example, I create a file named 'a' that contains

@@ -1,129 +1,103 @@
 '''
-Calculates the mass and area of a given amount of paper.
- 
-Also does conversions between grammage and the screwball US system.
- 
-Note that fpformat is NOT the deprecated python library; it is a separate
-library I wrote for formatting floating point numbers.
+Calculates the mass and area of a given amount of paper
+    Also does conversions between grammage and the screwball US system.
 '''
-
-# Copyright (C) 2011 Don Peterson
-# Contact:  gmail.com@someonesdad1
-
-#
-# Licensed under the Open Software License version 3.0.
-# See http://opensource.org/licenses/OSL-3.0.
-#
-
-from __future__ import print_function, division
-import sys
-import os
-import getopt
-import functools
-import time
-import fpformat
-
-# Conversion factors
-in2mm = 25.4
-mm2in = 1/in2mm
-in2_to_m2 = 6.4516e-4
-g2oz = 0.035274
-kg2lbm = 2.20462
-g2lbm = kg2lbm/1000
-
-fp = fpformat.FPFormat(num_digits=4)
-fp.trailing_decimal_point(False)
-
-# The following character is used for an exponent of 2.  For arbitrary
-# ASCII terminals, use "2".  For the bash shell under cygwin, the character
-# \xfd is an exponent of 2.
-ec = "2"
-if 0:
-    ec = "\xfd"
-dpbin = "DPBIN"  # Name of environment variable associated with -e option
-
-us = (  # Used to convert screwball US units to grammage
-    # Name, width inches, height inches, number of sheets
-    ("Cover (500 count)", 20, 26, 500),
-    ("Bond, writing, ledger", 17, 22, 500),
-    ("Book, text, offset", 25, 38, 500),
-    ("Box cover", 20, 24, 500),
-    ("Paperboard (all types)", 12, 12, 1000),
-    ("Bristol and tag", 22.5, 28.5, 500),
-    ("Blotting", 19, 24, 500),
-    ("Hanging, waxing, bag, etc.", 24, 36, 500),
-    ("Index bristol", 25.5, 30.5, 500),
-    ("Manuscript cover", 18, 31, 500),
-    ("Newsprint", 24, 36, 500),
-    ("Tissue", 24, 36, 480),
-)
-
+if 1:  # Copyright, license
+    # These "trigger strings" can be managed with trigger.py
+    #∞copyright∞# Copyright (C) 2011 Don Peterson #∞copyright∞#
+    #∞contact∞# gmail.com@someonesdad1 #∞contact∞#
+    #∞license∞#
+    #   Licensed under the Open Software License version 3.0.
+    #   See http://opensource.org/licenses/OSL-3.0.
+    #∞license∞#
+    #∞what∞#
+    # Calculates the mass and area of a given amount of paper
+    #∞what∞#
+    #∞test∞# #∞test∞#
+    pass
+if 1:   # Imports
+    import sys
+    import os
+    import getopt
+    import functools
+    import time
+if 1:   # Custom imports
+    from wrap import dedent
+    import fpformat
+if 1:   # Global variables
+    # Conversion factors
+    in2mm = 25.4
+    mm2in = 1/in2mm
+    in2_to_m2 = 6.4516e-4
+    g2oz = 0.035274
+    kg2lbm = 2.20462
+    g2lbm = kg2lbm/1000
+    #
+    fp = fpformat.FPFormat(num_digits=4)
+    fp.trailing_decimal_point(False)
+    # The following character is used for an exponent of 2
+    ec = "²"
+    #
+    us = (  # Used to convert screwball US units to grammage
+        # Name, width inches, height inches, number of sheets
+        ("Cover (500 count)", 20, 26, 500),
+        ("Bond, writing, ledger", 17, 22, 500),
+        ("Book, text, offset", 25, 38, 500),
+        ("Box cover", 20, 24, 500),
+        ("Paperboard (all types)", 12, 12, 1000),
+        ("Bristol and tag", 22.5, 28.5, 500),
+        ("Blotting", 19, 24, 500),
+        ("Hanging, waxing, bag, etc.", 24, 36, 500),
+        ("Index bristol", 25.5, 30.5, 500),
+        ("Manuscript cover", 18, 31, 500),
+        ("Newsprint", 24, 36, 500),
+        ("Tissue", 24, 36, 480),
+    )
 def Usage(status=1):
-    manual = '''
-Usage:  %s [options] gsm size [count [cost]]
-  Prints the mass of a given amount of paper stock.  gsm is grams per
-  square meter, size is WxH where W is the width and H is the height; units
-  are inches unless -m is given; then they are mm.  You can also use
-  case-insensitive names like "a", "letter", "b", "ledger", "A4", etc.
-  count defaults to 1 if not given and represents the number of sheets.
-  You can use "r" or "R" to represent a ream; the string can also be an
-  expression that will be evaluated.  Thus, r/2 means half a ream, 10*r
-  means ten reams.  If you include cost, it's interpreted as the cost of
-  the indicated number of sheets in dollars; this is used to calculate a
-  cost per unit area and cost per unit mass.
-
-Options
-  -e
-    Print the ASCII character 253 for the exponent of 2 (works e.g. under
-    the bash shell in cygwin).  The sense of this option reverses if the
-    DPBIN environment variable is defined.
-  -g gsm
-    Print out the US paper mass equivalents for the indicated grammage.
-  -m
-    Interpret the WxH sizes in mm instead of inches.
-  -p lb
-    Print out the gsm equivalents for the indicated pound mass.
-'''[1:-1]
-    print(manual % sys.argv[0])
+    print(dedent(f'''
+    Usage:  {sys.argv[0]} [options] gsm size [count [cost]]
+      Prints the mass of a given amount of paper stock.  gsm is grams per
+      square meter, size is WxH where W is the width and H is the height; units
+      are inches unless -m is given; then they are mm.  You can also use
+      case-insensitive names like "a", "letter", "b", "ledger", "A4", etc.
+      count defaults to 1 if not given and represents the number of sheets.
+      You can use "r" or "R" to represent a ream; the string can also be an
+      expression that will be evaluated.  Thus, r/2 means half a ream, 10*r
+      means ten reams.  If you include cost, it's interpreted as the cost of
+      the indicated number of sheets in dollars; this is used to calculate a
+      cost per unit area and cost per unit mass.
+    Options
+      -g g  Print out the US paper mass equivalents for the grammage g
+      -m    Interpret the WxH sizes in mm instead of inches
+      -p lb Print out the gsm equivalents for the indicated pound mass
+    '''))
     exit(status)
-
 def ParseCommandLine(d):
-    global ec
     d["-m"] = False
     d["-g"] = False
     d["-p"] = False
-    # Turn on the -e option if DPBIN is present in the environment.
-    if dpbin in os.environ:
-        ec = "\xfd"
     if len(sys.argv) < 2:
         Usage()
     try:
-        optlist, args = getopt.getopt(sys.argv[1:], "egphmt")
+        optlist, args = getopt.getopt(sys.argv[1:], "gphmt")
     except getopt.GetoptError as str:
         msg, option = str
         print(msg)
         sys.exit(1)
-    for opt in optlist:
-        if opt[0] == "-e":
-            if dpbin in os.environ:
-                ec = "2"
-            else:
-                ec = "\xfd"
-        if opt[0] == "-m":
+    for o, a in optlist:
+        if o == "-m":
             d["-m"] = True
-        if opt[0] == "-g":
+        elif o == "-g":
             Grammage(args)
-        if opt[0] == "-p":
+        elif o == "-p":
             Poundage(args)
-        if opt[0] == "-h":
+        elif o == "-h":
             Usage(0)
     if len(args) < 2:
         Usage()
     return args
-
 def ParseSize(size, d):
-    '''Return paper size in mm as (length, width).
-    '''
+    'Return paper size in mm as (length, width)'
     in2mm = 25.4
     sz, conv = size.lower(), in2mm
     if d["-m"]:
@@ -184,7 +158,6 @@ def ParseSize(size, d):
         except KeyError:
             err("'%s' is not a recognized paper size" % size)
             Usage()
-
 def GetNumSheets(s):
     '''s is either a string for an integer or it contains "r", which
     represents a ream.  The "r" form can be a valid python expression.
@@ -194,7 +167,6 @@ def GetNumSheets(s):
     except ValueError:
         e = s.lower().replace("r", "500")
         return eval(e)
-
 def GetSize(s):
     '''Return a "nice" form of the size spec.
     '''
@@ -208,7 +180,6 @@ def GetSize(s):
             return s.replace("X", "x")
         else:
             return s
-
 def Grammage(args):
     '''args[0] is the grammage.  Print equivalent US paper masses.
     '''
@@ -220,7 +191,6 @@ def Grammage(args):
         mass_lb = gsm*area_m2*g2lbm
         print("%-30s %.1f pound" % (name, mass_lb))
     exit(0)
-
 def Poundage(args):
     '''args[0] is the pounds.  For the different US paper masses, print
     the grammage.
@@ -233,7 +203,6 @@ def Poundage(args):
         gsm = mass_g/area_m2
         print("%-30s %.0f gsm" % (name, gsm))
     exit(0)
-
 if __name__ == "__main__":
     d = {}  # Options dictionary
     have_cost = False

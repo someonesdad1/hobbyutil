@@ -1,32 +1,30 @@
 '''
-Search for a pattern in a binary file.  If located, the offset(s)
-will be printed out.
-
+Search for a pattern in a binary file
 '''
-
-# Copyright (C) 2009 Don Peterson
-# Contact:  gmail.com@someonesdad1
-
-#
-# Licensed under the Open Software License version 3.0.
-# See http://opensource.org/licenses/OSL-3.0.
-#
-
-from __future__ import print_function, division
-import sys
-import getopt
-import re
-
-nl = "\n"
-
-# Command line option settings
-plain_text = False                  # -f
-ignore_case = False                 # -i
-just_show_file_matches = False      # -l
-hex_to_binary = False               # -o
-show_match = False                  # -s
-
-manual = r'''%s [options] pattern [file1...]
+if 1:  # Copyright, license
+    # These "trigger strings" can be managed with trigger.py
+    #∞copyright∞# Copyright (C) 2009 Don Peterson #∞copyright∞#
+    #∞contact∞# gmail.com@someonesdad1 #∞contact∞#
+    #∞license∞#
+    #   Licensed under the Open Software License version 3.0.
+    #   See http://opensource.org/licenses/OSL-3.0.
+    #∞license∞#
+    #∞what∞#
+    # Search for a pattern in a binary file
+    #∞what∞#
+    #∞test∞# #∞test∞#
+    pass
+if 1:   # Imports
+    import sys
+    import getopt
+    import re
+if 1:   # Global variables
+    plain_text = False                  # -f
+    ignore_case = False                 # -i
+    just_show_file_matches = False      # -l
+    hex_to_binary = False               # -o
+    show_match = False                  # -s
+    manual = r'''{0} [options] pattern [file1...]
   Do a pattern search in binary files and print the zero-based offset of
   the located pattern.  Offsets will be printed in decimal, hex, and
   percentage.  If no files are given, stdin is searched.  Python regular
@@ -61,21 +59,17 @@ Examples (assumes bash-like command line and program aliased to bgrep):
         Show all hexadecimal numbers and their offsets in the file.
     bgrep "\\r\\n" file
         Show the offsets of the carriage return/linefeed pairs.
-    bgrep -s "\\d{1,2}/\\d{1,2}/\\d\\d" file
+    bgrep -s "\\d{{1,2}}/\\d{{1,2}}/\\d\\d" file
         Show the offsets of all dates in the file of the form
         n1/n1/n2 where n1's are one or two digits numbers and n2
         is a two digit number.
-''' % sys.argv[0]
-
+'''.format(sys.argv[0])
 def Usage():
-    name = sys.argv[0]
     print(manual)
-    sys.exit(0)
-
+    exit(0)
 def Error(msg):
-    sys.stderr.write(msg + nl)
+    print(msg, file=sys.stderr)
     exit(1)
-
 def ParseCommandLine():
     if len(sys.argv) < 2:
         Usage()
@@ -107,7 +101,6 @@ def ParseCommandLine():
     if len(args) < 1:
         Usage()
     return args
-
 def PrintOffsets(string, file, offsets, match_objects):
     if not offsets:
         return
@@ -135,7 +128,6 @@ def PrintOffsets(string, file, offsets, match_objects):
             if show_match and match_objects:
                 print(string[mo.start():mo.end()], end="")
             print()
-
 def ProcessString(pattern, string):
     '''If there are matches, return the offsets (as decimal numbers)
     in a list.  An empty list means no matches.
@@ -171,7 +163,6 @@ def ProcessString(pattern, string):
             else:
                 start = L
     return offsets, match_objects
-
 def ConvertToBinary(pattern):
     d = {
         "0": 0, "1": 1, "2":  2, "3": 3, "4": 4, "5": 5, "6": 6 , "7":
@@ -186,13 +177,12 @@ def ConvertToBinary(pattern):
     pattern = pattern.replace(" ", "")
     s = ""
     L = len(pattern)
-    for i in xrange(L):
+    for i in range(L):
         if pattern[i] not in d:
             Error("'%s' is not a valid hex digit" % pattern[i])
-    for i in xrange(0, L, 2):
+    for i in range(0, L, 2):
         s += chr(d[pattern[i]]*16 + d[pattern[i+1]])
     return s
-
 if __name__ == "__main__":
     args = ParseCommandLine()
     pattern = args[0]

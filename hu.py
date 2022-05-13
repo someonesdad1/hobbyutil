@@ -89,7 +89,7 @@ if 1:   # Header
         # Escape sequences for colors
         t.fz = t("royl")    # Frozen
         t.st = t("purl")    # Stale
-        t.ig = t("mag")     # Ignored
+        t.ig = t("pnkl")    # Ignored
         t.td = t("yell")    # To do
         t.de = t("sky")     # Description
         # Text wrapper
@@ -265,25 +265,26 @@ if 1:   # Utility
         Usage:  {sys.argv[0]} [options] command [args]
           Utility to build the hobbyutil repository's contents.
         Commands:
-          build       Copy the relevant files to their directories and construct the zip
-                      files.  Also make the markdown file containing the descriptions.
-                      You can specify which projects in args or use '.' to build everything.
-          list        List active and inactive projects.  You can specify particular projects
-                      on the command line and the projects' details will be printed.  The
-                      argument 'PDF' will create a listing of all the source PDFs in all the
-                      projects, even the inactive ones.
+          build       Copy the relevant files to their directories and construct the
+                      zip files.  Also make the markdown file containing the 
+                      descriptions.  You can specify which projects in args or use 
+                      '.' to build everything.
+          list        List active and inactive projects.  You can specify particular
+                      projects on the command line and the projects' details will be
+                      printed.  The argument 'PDF' will create a listing of all the
+                      source PDFs in all the projects, even the inactive ones.
           show        If the package has one PDF, launch this file.
         Options:
-          -i      Ignore the ignore flag in the projects file.  This can be used to find
-                  missing project files.
-          -f      Build frozen files.  These are the large packages in the repository that
-                  shouldn't change very often.  Only those packages given on the command 
-                  line will be built.
-          -t      Show python test scripts (*_test.py) that are in the projects (used to
-                  identify tests that must be run).
-          -z      Package the indicated project(s) in args into separate zip containers.
-                  These will be located in the directory indicated by the global variable
-                  package_dir.
+          -i      Ignore the ignore flag in the projects file.  This can be used to
+                  find missing project files.
+          -f      Build frozen files.  These are the large packages in the repository
+                  that shouldn't change very often.  Only those packages given on the
+                  command line will be built.
+          -t      Show python test scripts (*_test.py) that are in the projects (used
+                  to identify tests that must be run).
+          -z      Package the indicated project(s) in args into separate zip
+                  containers.  These will be located in the directory indicated by
+                  the global variable package_dir.
         '''))
         exit(status)
     def ParseCommandLine():
@@ -410,7 +411,7 @@ if 1:   # Core functionality
             print(project)
             BuildProject(project_object)
         print()
-        BuildProjectPage(d)
+        BuildProjectPage()
     def GetLinkName(project_object):
         '''Return the name of the file to link to for this project.  It will be
         a zip file if the project contains more than one file.
@@ -611,8 +612,10 @@ if 1:   # Core functionality
             t.print(f"{y}{len(active)} active projects:")
             for i in Columnize(active, esc=True, indent=" "*4):
                 print(i)
-            print(f"\nColor key:  {t.fz}frozen{t.n} ", end="")
-            print(f"{t.st}stale{t.n}")
+            print(f"\nColor key:  {t.fz}frozen{t.n} "
+                  f"{t.st}stale{t.n} "
+                  f"{t.ig}ignored{t.n} "
+                  )
 if __name__ == "__main__":
     d = {} # Options dictionary
     projects = ParseCommandLine()

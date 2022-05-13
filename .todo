@@ -1,10 +1,7 @@
 hobbyutil ToDo list
 
 - Current task
-    - Convert projects to projects.py
     - Add a -n option for a dry run
-    - When the projects.py data are read in, everything in the structure
-      should be validated and converted to P paths.
 
 - Must
     - Clearly describe exactly how all the dependent files are produced.  
