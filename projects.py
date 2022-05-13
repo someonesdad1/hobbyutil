@@ -1595,17 +1595,19 @@ projects = {
 #                ],
 #        'srcdir': plib,
 #        },
-    'pdf': {
-        'subdir': 'util',
-        'descr': dedent('''
-            This is a python script that can manipulate PDF files. It can
-            concatenate a number of PDF files, select certain pages and write
-            them to another PDF file, rotating pages, watermarking. etc. You'll
-            also need to download the pyPdf library to use this script.
-            '''),
-        'files': ['- [pdf_.py, pdf.py]'],
-        'srcdir': plib,
-        },
+#    'pdf': {
+#        'subdir': 'util',
+#        'descr': dedent('''
+#            This is a python script that can manipulate PDF files. It can
+#            concatenate a number of PDF files, select certain pages and write
+#            them to another PDF file, rotating pages, watermarking. etc. You'll
+#            also need to download the pyPdf library to use this script.
+#            '''),
+#        'files': [
+#                ['pdf_.py', 'pdf.py']
+#                ],
+#        'srcdir': plib,
+#        },
     'pfind': {
         'subdir': 'util',
         'descr': dedent('''
@@ -1617,14 +1619,14 @@ projects = {
                 ],
         'srcdir': pgm,
         },
-    'pills': {
-        'subdir': 'misc',
-        'descr': "Calculate the dates you'll run out of prescription pills.",
-        'files': [
-                'pills.py',
-                ],
-        'srcdir': pgm,
-        },
+#    'pills': {
+#        'subdir': 'misc',
+#        'descr': "Calculate the dates you'll run out of prescription pills.",
+#        'files': [
+#                'pills.py',
+#                ],
+#        'srcdir': pgm,
+#        },
     'pipes': {
         'subdir': 'shop',
         'descr': dedent('''
@@ -1832,8 +1834,10 @@ projects = {
     'rms': {
         'subdir': 'elec',
         'descr': 'An article for hobbyists about making RMS electrical measurements.',
-        'files': ['- RMS.pdf'],
-        'srcdir': '/elec/Articles',
+        'files': [
+                'RMS.pdf',
+                ],
+        'srcdir': '/elec/Articles/RMS',
         },
     'root': {
         'subdir': 'math',
@@ -1848,23 +1852,23 @@ projects = {
                 ],
         'srcdir': plib,
         },
-    'rpath': {
-        'subdir': 'math',
-        'descr': dedent('''
-            A python module for modeling rectilinear path object in
-            n-dimensional spaces.  You supply it with a set of points and
-            then you can interpolate to points on the path via a parameter.
-            You can do things like calculate line integrals and complex path
-            integrals.
-            '''),
-        'files': [
-                'path.py',
-                'path.odt*',
-                'path.pdf',
-                ['test/path_test.py', 'path_test.py'],
-                ],
-        'srcdir': plib,
-        },
+#    'rpath': {
+#        'subdir': 'math',
+#        'descr': dedent('''
+#            A python module for modeling rectilinear path object in
+#            n-dimensional spaces.  You supply it with a set of points and
+#            then you can interpolate to points on the path via a parameter.
+#            You can do things like calculate line integrals and complex path
+#            integrals.
+#            '''),
+#        'files': [
+#                'path.py',
+#                'path.odt*',
+#                'path.pdf',
+#                ['test/path_test.py', 'path_test.py'],
+#                ],
+#        'srcdir': plib,
+#        },
     'ruler': {
         'subdir': 'util',
         'descr': dedent('''
@@ -1874,7 +1878,7 @@ projects = {
         'files': [
                 'ruler.py',
                 ],
-        'srcdir': pgm,
+        'srcdir': plib,
         },
     'sawbuck': {
         'subdir': 'shop',
@@ -2079,18 +2083,18 @@ projects = {
                 ],
         'srcdir': plib,
         },
-    'sumbytes': {
-        'subdir': 'prog',
-        'descr': dedent('''
-            A short C++ program that will read all the bytes from the
-            files given on the command line and compute various statistics
-            from them.
-            '''),
-        'files': [
-                'sumbytes.cpp',
-                ],
-        'srcdir': '/tools',
-        },
+#    'sumbytes': {
+#        'subdir': 'prog',
+#        'descr': dedent('''
+#            A short C++ program that will read all the bytes from the
+#            files given on the command line and compute various statistics
+#            from them.
+#            '''),
+#        'files': [
+#                'sumbytes.cpp',
+#                ],
+#        'srcdir': '/tools',
+#        },
     'sz': {
         'subdir': 'util',
         'descr': dedent('''
@@ -2117,36 +2121,36 @@ projects = {
                 ],
         'srcdir': pgm,
         },
-    'tips1': {
-        'subdir': 'misc',
-        'descr': 'DIY/shop tips.',
-        'files': [
-                'tips1.pdf',
-                'tips1.odt*',
-                ],
-        'srcdir': '/doc',
-        'frozen': True,
-        },
-    'tips2': {
-        'subdir': 'misc',
-        'descr': 'DIY/shop tips.',
-        'files': [
-                'tips2.pdf',
-                'tips2.odt*',
-                ],
-        'srcdir': '/doc',
-        'frozen': True,
-        },
-    'tips3': {
-        'subdir': 'misc',
-        'descr': 'DIY/shop tips.',
-        'files': [
-                'tips3.pdf',
-                'tips3.odt*',
-                ],
-        'srcdir': '/doc',
-        'frozen': True,
-        },
+#    'tips1': {
+#        'subdir': 'misc',
+#        'descr': 'DIY/shop tips.',
+#        'files': [
+#                'tips1.pdf',
+#                'tips1.odt*',
+#                ],
+#        'srcdir': '/doc',
+#        'frozen': True,
+#        },
+#    'tips2': {
+#        'subdir': 'misc',
+#        'descr': 'DIY/shop tips.',
+#        'files': [
+#                'tips2.pdf',
+#                'tips2.odt*',
+#                ],
+#        'srcdir': '/doc',
+#        'frozen': True,
+#        },
+#    'tips3': {
+#        'subdir': 'misc',
+#        'descr': 'DIY/shop tips.',
+#        'files': [
+#                'tips3.pdf',
+#                'tips3.odt*',
+#                ],
+#        'srcdir': '/doc',
+#        'frozen': True,
+#        },
     'tlc': {
         'subdir': 'util',
         'descr': dedent('''
@@ -2182,17 +2186,17 @@ projects = {
                 ],
         'srcdir': pgm,
         },
-    'tri': {
-        'subdir': 'math',
-        'descr': 'Python script to solve triangles.',
-        'files': [
-                'tri.py',
-                'tri.odt*',
-                'tri.pdf',
-                ['../sig.py', 'sig.py'],
-                ],
-        'srcdir': pgm,
-        },
+#    'tri': {
+#        'subdir': 'math',
+#        'descr': 'Python script to solve triangles.',
+#        'files': [
+#                'tri.py',
+#                'tri.odt*',
+#                'tri.pdf',
+#                ['../sig.py', 'sig.py'],
+#                ],
+#        'srcdir': pgm,
+#        },
     'trigd': {
         'subdir': 'math',
         'descr': dedent('''
@@ -2258,21 +2262,21 @@ projects = {
                 ],
         'srcdir': plib,
         },
-    'uni': {
-        'subdir': 'util',
-        'descr': dedent('''
-            Python script to find Unicode characters.  You'll need to download
-            the relevant files from the Unicode website.  This script was
-            written in 2014 and I based it on the information from The
-            Unicode 7 standard; version 12 is current in 2019 and it's on my
-            todo list to upgrade this script.  Yet I still use this script
-            every day when working on my computer.
-            '''),
-        'files': [
-                'unicode.py',
-                ],
-        'srcdir': pgm,
-        },
+#    'uni': {
+#        'subdir': 'util',
+#        'descr': dedent('''
+#            Python script to find Unicode characters.  You'll need to download
+#            the relevant files from the Unicode website.  This script was
+#            written in 2014 and I based it on the information from The
+#            Unicode 7 standard; version 12 is current in 2019 and it's on my
+#            todo list to upgrade this script.  Yet I still use this script
+#            every day when working on my computer.
+#            '''),
+#        'files': [
+#                'unicode.py',
+#                ],
+#        'srcdir': pgm,
+#        },
     'units': {
         'subdir': 'science',
         'descr': dedent('''
@@ -2285,30 +2289,30 @@ projects = {
                 ],
         'srcdir': '/doc',
         },
-    'unx': {
-        'subdir': 'util',
-        'descr': dedent('''
-            Produces a list of files that are candidates for turning
-            their execute bit permission off.  This is useful on Windows machines
-            running cygwin to avoid a "sea of green" in an ls listing with
-            colorizing on.
-            '''),
-        'files': [
-                'unx.py',
-                ],
-        'srcdir': pgm,
-        },
-    'url': {
-        'subdir': 'util',
-        'descr': dedent('''
-            Python script that will interpret a URL from a Google search
-            page.
-            '''),
-        'files': [
-                'url.py',
-                ],
-        'srcdir': pgm,
-        },
+#    'unx': {
+#        'subdir': 'util',
+#        'descr': dedent('''
+#            Produces a list of files that are candidates for turning
+#            their execute bit permission off.  This is useful on Windows machines
+#            running cygwin to avoid a "sea of green" in an ls listing with
+#            colorizing on.
+#            '''),
+#        'files': [
+#                'unx.py',
+#                ],
+#        'srcdir': pgm,
+#        },
+#    'url': {
+#        'subdir': 'util',
+#        'descr': dedent('''
+#            Python script that will interpret a URL from a Google search
+#            page.
+#            '''),
+#        'files': [
+#                'url.py',
+#                ],
+#        'srcdir': pgm,
+#        },
     'us': {
         'subdir': 'util',
         'descr': dedent('''
@@ -2345,28 +2349,28 @@ projects = {
                 ],
         'srcdir': '/elec/Articles',
         },
-    'wave': {
-        'subdir': 'elec',
-        'descr': dedent('''
-            Provides a python script (uses numpy and scipy) that lets
-            you construct various waveforms used in engineering and science
-            tasks.
-            '''),
-        'files': [
-                'waveform.py',
-                'waveform.odt*',
-                'waveform.pdf',
-                'pictures/waveform_sine.png*',
-                'pictures/waveform_gated.png*',
-                'pictures/waveform_clipping.png*',
-                'pictures/waveform_scr.png*',
-                'pictures/waveform_trapezoid.png*',
-                'pictures/waveform_staircase.png*',
-                'pictures/waveform_modulation.png*',
-                'pictures/waveform_mw.png*',
-                ],
-        'srcdir': pgm,
-        },
+#    'wave': {
+#        'subdir': 'elec',
+#        'descr': dedent('''
+#            Provides a python script (uses numpy and scipy) that lets
+#            you construct various waveforms used in engineering and science
+#            tasks.
+#            '''),
+#        'files': [
+#                'waveform.py',
+#                'waveform.odt*',
+#                'waveform.pdf',
+#                'pictures/waveform_sine.png*',
+#                'pictures/waveform_gated.png*',
+#                'pictures/waveform_clipping.png*',
+#                'pictures/waveform_scr.png*',
+#                'pictures/waveform_trapezoid.png*',
+#                'pictures/waveform_staircase.png*',
+#                'pictures/waveform_modulation.png*',
+#                'pictures/waveform_mw.png*',
+#                ],
+#        'srcdir': pgm,
+#        },
     'weigh': {
         'subdir': 'shop',
         'descr': dedent('''
@@ -2381,31 +2385,31 @@ projects = {
                 ],
         'srcdir': '/doc/trailer/weighing_trailer',
         },
-    'wordnum': {
-        'subdir': 'prog',
-        'descr': dedent('''
-            A python script that can convert back and forth between
-            numbers and their word forms.  Handles short and long scales,
-            ordinals, integers, floats (normal and exponential notation),
-            and fractions.  Easy interface through an object's function
-            call; wordnum(36) gives 'thirty six'; wordnum('thirty six')
-            returns the integer 36.  Tested on python 2.7.6 and 3.4.0.
-            '''),
-        'files': [
-                'wordnum.py',
-                ['test/wordnum_test.py', 'wordnum_test.py'],
-                ],
-        'srcdir': plib,
-        },
-    'wrap': {
-        'subdir': 'prog',
-        'descr': 'Two python scripts to wrap and unwrap text files.',
-        'files': [
-                'wrap.py',
-                'unwrap.py',
-                ],
-        'srcdir': pgm,
-        },
+#    'wordnum': {
+#        'subdir': 'prog',
+#        'descr': dedent('''
+#            A python script that can convert back and forth between
+#            numbers and their word forms.  Handles short and long scales,
+#            ordinals, integers, floats (normal and exponential notation),
+#            and fractions.  Easy interface through an object's function
+#            call; wordnum(36) gives 'thirty six'; wordnum('thirty six')
+#            returns the integer 36.  Tested on python 2.7.6 and 3.4.0.
+#            '''),
+#        'files': [
+#                'wordnum.py',
+#                ['test/wordnum_test.py', 'wordnum_test.py'],
+#                ],
+#        'srcdir': plib,
+#        },
+#    'wrap': {
+#        'subdir': 'prog',
+#        'descr': 'Two python scripts to wrap and unwrap text files.',
+#        'files': [
+#                'wrap.py',
+#                'unwrap.py',
+#                ],
+#        'srcdir': pgm,
+#        },
     'xmastom': {
         'subdir': 'misc',
         'descr': dedent('''
@@ -2418,23 +2422,23 @@ projects = {
                 ],
         'srcdir': '/doc',
         },
-    'xor': {
-        'subdir': 'prog',
-        'descr': dedent('''
-            C++ program to XOR a data file and key file together to
-            encrypt a file.
-            '''),
-        'files': [
-                'xor.cpp',
-                'xor.odt*',
-                'xor.pdf',
-                'otp.py',
-                'mkfile.py',
-                'md5.c',
-                'md5.h',
-                ],
-        'srcdir': '/tools/xor',
-        },
+#    'xor': {
+#        'subdir': 'prog',
+#        'descr': dedent('''
+#            C++ program to XOR a data file and key file together to
+#            encrypt a file.
+#            '''),
+#        'files': [
+#                'xor.cpp',
+#                'xor.odt*',
+#                'xor.pdf',
+#                'otp.py',
+#                'mkfile.py',
+#                'md5.c',
+#                'md5.h',
+#                ],
+#        'srcdir': '/tools/xor',
+#        },
     'xref': {
         'subdir': 'prog',
         'descr': dedent('''
@@ -2452,32 +2456,47 @@ projects = {
                 ],
         'srcdir': '/tools/xref',
         },
-    'xyz': {
-        'subdir': 'math',
-        'descr': dedent('''
-            Python script that provides a mini-language to perform analytical
-            geometry calculations in 2 and 3 dimensions.
-            '''),
-        'files': [
-                'xyz.py',
-                ['../geom_prim.py', 'geom_prim.py'],
-                ['../test/geom_prim_test.py', 'geom_prim_test.py'],
-                ['../sig.py', 'sig.py'],
-                'xyz.odt*',
-                'xyz.pdf',
-                'xyz.area',
-                'xyz.iss',
-                'xyz.shop',
-                'xyz.sphere',
-                'xyz.splice',
-                ],
-        'srcdir': pgm,
-        },
+#    'xyz': {
+#        'subdir': 'math',
+#        'descr': dedent('''
+#            Python script that provides a mini-language to perform analytical
+#            geometry calculations in 2 and 3 dimensions.
+#            '''),
+#        'files': [
+#                'xyz.py',
+#                ['../geom_prim.py', 'geom_prim.py'],
+#                ['../test/geom_prim_test.py', 'geom_prim_test.py'],
+#                ['../sig.py', 'sig.py'],
+#                'xyz.odt*',
+#                'xyz.pdf',
+#                'xyz.area',
+#                'xyz.iss',
+#                'xyz.shop',
+#                'xyz.sphere',
+#                'xyz.splice',
+#                ],
+#        'srcdir': pgm,
+#        },
     'yankee': {
         'subdir': 'shop',
         'descr': dedent('''
             Discusses the Yankee screwdriver, a useful tool that has
             been in production for more than 100 years.
             '''),
-        },
+        'files': [
+                'YankeePushDrill.odt*',
+                'YankeePushDrill.pdf',
+                'pictures/yankee_screwdriver_1.png*',
+                'pictures/yankee_screwdriver_2.png*',
+                'pictures/yankee_screwdriver_3.png*',
+                'pictures/yankee_screwdriver_4.png*',
+                'pictures/yankee_screwdriver_5.png*',
+                'pictures/yankee_screwdriver_6.png*',
+                'pictures/yankee_screwdriver_7.png*',
+                'pictures/yankee_screwdriver_8.png*',
+                'pictures/yankee_screwdriver_9.png*',
+                'pictures/yankee_screwdriver_dims.png*',
+                ],
+        'srcdir': '/shop/projects'
+    },
 }
