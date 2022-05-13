@@ -4,6 +4,7 @@
     - Interface
         - Change to commands on command line
             - v     Validate projects.py data
+            - t     Show todo items
             - l     List projects and state
             - b     Build (need args or '.')
             - d     Dry run (show what will be done)
@@ -18,9 +19,6 @@
           direct comparison.  At least make this an option, as it would
           ensure that the repository doesn't get changed unless something
           really is changed.
-    - This newer architecture might make it unnecessary to switch to
-      makefile construction
-    - Once running again, update the web page
     - Color:  this could be used to advantage for
         - Listings
         - Verbose display of processing like ts.py
@@ -34,6 +32,10 @@ Tasks of code:
     - Verify all source code files exist and are readable
     - Identify missing or out-of-date destination files
     - Reconstruct any destination files that are out-of-date
+
+Documentation production
+    - Build() writes project_list_markdown = 'project_list.md'
+    - Build() writes project_list.rst (a reStructuredText file)
 
 '''
 if 1:   # Header
@@ -87,6 +89,7 @@ if 1:   # Header
         # the packages will reside (it's separate from the repository).
         package_dir = cygwin + "/home/Don/hobbyutil_packages"
         # Escape sequences for colors
+        t.err = t("redl")   # Error
         t.fz = t("royl")    # Frozen
         t.st = t("purl")    # Stale
         t.ig = t("pnkl")    # Ignored
@@ -102,9 +105,9 @@ if 1:   # Header
         output_directories = set()
         # Name of the project list markdown file
         pl = "project_list"
-        project_list_markdown = "{}.md".format(pl)
-        project_list_rst = "{}.rst".format(pl)
-        project_list_css = "{}.css".format(pl)
+        project_list_markdown = f"{pl}.md"
+        project_list_rst = f"{pl}.rst"
+        project_list_css = f"{pl}.css"
         del pl
         # Map output directories to more meaningful names
         output_directories_map = OrderedDict((
@@ -249,9 +252,7 @@ if 1:   # Classes
             return files
 if 1:   # Utility
     def Error(msg, status=1):
-        c.fg(c.lred)
-        print(msg)
-        c.normal()
+        t.print(f"{t.err}{msg}")
         exit(status)
     def Info(back=3):
         '''Return file name and line number of where caller called us.
@@ -280,17 +281,13 @@ if 1:   # Utility
           -f      Build frozen files.  These are the large packages in the repository
                   that shouldn't change very often.  Only those packages given on the
                   command line will be built.
-          -t      Show python test scripts (*_test.py) that are in the projects (used
-                  to identify tests that must be run).
-          -z      Package the indicated project(s) in args into separate zip
-                  containers.  These will be located in the directory indicated by
-                  the global variable package_dir.
+          -z      Package all of the indicated projects' files in args into separate
+                  zip containers in {package_dir}.
         '''))
         exit(status)
     def ParseCommandLine():
         d["-i"]     = False     # If True, zip even if ignored
         d["-f"]     = False     # If True, build frozen files
-        d["-t"]     = False     # If True, print out python test scripts
         d["-z"]     = False     # If True, zip indicated packages
         try:
             optlist, args = getopt.getopt(sys.argv[1:], "fitz")
@@ -301,7 +298,7 @@ if 1:   # Utility
         for opt in optlist:
             if opt[0][1] in "fitz":
                 d[opt[0]] = not d[opt[0]]
-        if not args and not d["-t"]:
+        if not args:
             Usage()
         return args
 if 1:   # Core functionality
@@ -369,20 +366,6 @@ if 1:   # Core functionality
         # Update the Project.projects class variable
         entry = (dest, project_object.descr)
         Project.projects[project_object.subdir].append(entry)
-    def ShowTestScripts():
-        '''Print out project names that contain a python script named
-        *_test.py.
-        '''
-        print("Projects with *_test.py test scripts:")
-        for project in data:
-            po = data[project]
-            for src, dest in po.files:
-                if dest.endswith(".py"):
-                    base = dest[:-3]
-                    if base.endswith("_test"):
-                        print("  {:20s}  {:30s}  {}".format(project, src, po.srcdir))
-                        continue
-        exit(0)
     def BuildProjectZip(project_object):
         # Make a list of all the files without an ending asterisk in name
         files = []
@@ -502,14 +485,11 @@ if 1:   # Core functionality
             # Table of contents
             hu.write(".. contents:: Table of Contents" + nl*2)
             hu.write(dedent(
-            '''Integer after link is file size in units of 1000 bytes.
- 
-            Unless otherwise noted, the python scripts are written to run with
-            python 3.6 or later.  If the script contains a line like ``from
-            __future__ ...``, then it is possible that it will also run under python
-            2.7.
- 
+            '''
+            Integer after link is file size in units of kBytes.  The python
+            scripts are written to run with python 3.6 or later.
             '''))
+            hu.write(nl*2)
             for category in project_container:
                 # Write heading for category
                 heading = output_directories_map[category]
@@ -524,7 +504,11 @@ if 1:   # Core functionality
                     else:
                         print(lnk, sz) #xx
                         hu.write("| `{} <{}>`_\n".format(lnk, lnk))
-                    hu.write("|   {}\n".format(descr))
+                    #hu.write("|   {}\n".format(descr))
+                    #hu.write("|   {}\n".format(descr))
+                    u = ["|   " + i for i in descr.split(nl)]
+                    s = nl.join(u)
+                    hu.write(s + nl)
                 hu.write(nl*2)
             hu.write(nl + "Updated {}".format(Time()) + nl*2)
             hu.close()
@@ -620,8 +604,6 @@ if __name__ == "__main__":
     d = {} # Options dictionary
     projects = ParseCommandLine()
     ValidateProjectData()
-    if d["-t"]:
-        ShowTestScripts()
     MakeDirectories()
     cmd = projects[0]
     del projects[0]
