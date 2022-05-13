@@ -1,13 +1,16 @@
 '''
  
 - ToDo
-    - Eliminate dependency on yaml
-        - Convert projects to projects.py.  Then hu.py just reads in an
-          already constructed dictionary and validates the data.
-            - All paths will be pathlib.Path objects
-        - This allows the use of variables, easing problems like changing
-          /pylib to /plib.
-            - This also obviates the need for e.g. ts.py support
+    - List colors need updating.  Add color for ignored and change the
+      stale color to something less obnoxious than red.
+    - Note the Calipers.pdf document has no bookmarks.  This is a real pain
+      in large files.  It's probably a "feature" of PDF/1A.
+    - Project.IsStale
+        - This is naive because it uses date/times.
+        - See if it can be done with hashes instead; if not, then use
+          direct comparison.  At least make this an option, as it would
+          ensure that the repository doesn't get changed unless something
+          really is changed.
     - This newer architecture might make it unnecessary to switch to
       makefile construction
     - Once running again, update the web page

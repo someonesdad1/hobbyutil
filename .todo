@@ -2,6 +2,9 @@ hobbyutil ToDo list
 
 - Current task
     - Convert projects to projects.py
+    - Add a -n option for a dry run
+    - When the projects.py data are read in, everything in the structure
+      should be validated and converted to P paths.
 
 - Must
     - Many of the scripts are things in /plib/pgm

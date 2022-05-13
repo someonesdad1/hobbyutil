@@ -1,38 +1,40 @@
 '''
-Prints out ASCII characters; Unicode character codepoints can be printed
-out by giving suitable command line arguments.
+Prints out ASCII characters
 '''
-
-# Copyright (C) 2009, 2014 Don Peterson
-# Contact:  gmail.com@someonesdad1
-
-#
-# Licensed under the Open Software License version 3.0.
-# See http://opensource.org/licenses/OSL-3.0.
-#
-
-from __future__ import print_function
-import sys
-import getopt
-from columnize import Columnize
-from textwrap import dedent
-from os import environ
-from pdb import set_trace as xx 
-
-class Global: pass
-g = Global()
-g.decimal = False
-g.octal = False
-g.binary = False
-g.Binary = False
-g.offset = 0
-g.column_width = 9
-g.number_of_columns = 8
-
+if 1:  # Copyright, license
+    # These "trigger strings" can be managed with trigger.py
+    #∞copyright∞# Copyright (C) 2009, 2014 Don Peterson #∞copyright∞#
+    #∞contact∞# gmail.com@someonesdad1 #∞contact∞#
+    #∞license∞#
+    #   Licensed under the Open Software License version 3.0.
+    #   See http://opensource.org/licenses/OSL-3.0.
+    #∞license∞#
+    #∞what∞#
+    # Prints out ASCII characters
+    #∞what∞#
+    #∞test∞# #∞test∞#
+    pass
+if 1:   # Imports
+    import sys
+    import getopt
+    from textwrap import dedent
+    from os import environ
+    from pdb import set_trace as xx 
+if 1:   # Custom imports
+    from columnize import Columnize
+if 1:   # Global variables
+    class Global: pass
+    g = Global()
+    g.decimal = False
+    g.octal = False
+    g.binary = False
+    g.Binary = False
+    g.offset = 0
+    g.column_width = 9
+    g.number_of_columns = 8
 def Error(msg, status=1):
     print(msg, file=sys.stderr)
     exit(status)
-
 def Usage():
     name = sys.argv[0]
     print(dedent(f'''
@@ -56,7 +58,6 @@ def Usage():
       fractions symbols such as 1/7, 1/9, 1/10, etc. and a variety of arrows
       and math symbols.'''[1:]))
     exit(1)
-
 def Integer(s):
     '''Convert the string s to an integer.  Allow prefixes such as 0x,
     0b, 0o.
@@ -69,7 +70,6 @@ def Integer(s):
     elif s.startswith("0x"):
         base = 16
     return int(s, base)
-
 def ParseCommandLine():
     #global Binary, binary, decimal, octal, offset
     try:
@@ -111,18 +111,15 @@ def ParseCommandLine():
             except Exception:
                 Error("'{}' is not a valid integer for numchars".format(args[1]))
     return lower, upper
-
 def PrintBinary():
     for i in range(lower, upper):
         c = i + g.offset
         print(f"{c:3d} 0x{c:02x} 0o{c:03o} 0b{c:08b} {chr(c)}")
-
 def PrintBinaryListing():
     for i in range(0x100):
         c = i + g.offset
         print(chr(c))
     print()
-
 def PrintTable(fmt, lower, upper):
     ctrl = ("nul", "soh", "stx", "etx", "eot", "enq", "ack", "bel", "bs",
             "ht", "nl", "vt", "ff", "cr", "so", "si", "dle", "dc1", "dc2",
@@ -138,7 +135,6 @@ def PrintTable(fmt, lower, upper):
         s.append(t)
     for i in Columnize(s, col_width=g.column_width, columns=g.number_of_columns):
         print(i)
-
 if __name__ == "__main__": 
     lower, upper = ParseCommandLine()
     if g.decimal:

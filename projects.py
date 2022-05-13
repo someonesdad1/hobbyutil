@@ -20,6 +20,7 @@ projects = {
                 'seg.py'
                 ],
         'srcdir': pgm,
+        'ignore': "Need to vet first",
         },
     'ag': {
         'subdir': 'math',
