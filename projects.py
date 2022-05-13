@@ -1,27 +1,22 @@
-# This file was constructed by the mkprojects.py python script on
-# 12 May 2022 Thu 6:10:00 pm.  It has since been edited and is now being
-# used for the project, so the mkprojects.py script should not be used
-# anymore.
-
+'''
+ 
+This dictionary describes the hobbyutil projects.  The keys are the
+project's name and the values describe the project's files and locations.
+The code following the dictionary's definition validates the contents.
+ 
+'''
 from wrap import dedent
 from pathlib import Path as P
-
+from pdb import set_trace as xx 
+import sys
+from lwtest import Assert
+from color import TRM as t
+t.always = True
+ii = isinstance
 plib = "/plib"
 pgm = f"{plib}/pgm"
-
-projects = {
-    'seg': {
-        'subdir': 'math',
-        'descr': dedent('''
-            Python script to calculate parameters of a circular segment.
-            Translated from a program written by Marv Klotz.
-            '''),
-        'files': [
-                'seg.py'
-                ],
-        'srcdir': pgm,
-        'ignore': "Need to vet first",
-        },
+ 
+HU_Projects = {
     'ag': {
         'subdir': 'math',
         'descr': dedent('''
@@ -67,9 +62,11 @@ projects = {
             line. Given one or more files, it will cause them to be opened
             with their registered application.
             '''),
-        'files': ['- app.cpp'],
-        'ignore': " Typical OS's have equivalent commands",
-        'srcdir': '/tools',
+        'files': [
+                'app.cpp',
+                ],
+        'srcdir': '/projects/tools/0keep',
+        'ignore': "Typical OS's have equivalent commands",
         },
     'asc': {
         'subdir': 'util',
@@ -93,9 +90,6 @@ projects = {
                 'meeus.py',
                 'julian.py',
                 'kepler.py',
-                ['test/meeus_test.py', 'meeus_test.py'],
-                ['test/julian_test.py', 'julian_test.py'],
-                ['test/kepler_test.py', 'kepler_test.py'],
                 ['pgm/moon.py', 'moon.py'],
                 ],
         'srcdir': plib,
@@ -113,11 +107,11 @@ projects = {
         'descr': 'Python script to print out a table of the masses of bar stock.',
         'files': [
                 'bar.py',
-                'bar.readme',
                 ['../sig.py', 'sig.py'],
                 ['../columnize.py', 'columnize.py'],
                 ],
         'srcdir': pgm,
+        'todo': "Remove need for sig",
         },
     'bc': {
         'subdir': 'shop',
@@ -176,7 +170,6 @@ projects = {
             '''),
         'files': [
                 'bidict.py',
-                ['test/bidict_test.py', 'bidict_test.py'],
                 ],
         'srcdir': plib,
         },
@@ -247,6 +240,7 @@ projects = {
                 ],
         'srcdir': '/shop/LengthMeasurement/calipers',
         'frozen': True,
+        'todo': 'Need to fix relative pictures',
         },
     'cart': {
         'subdir': 'shop',
@@ -268,11 +262,12 @@ projects = {
                 'chain.odt*',
                 'chain.pdf',
                 'chain.py',
-                'chain.readme',
-                ['../getnumber.py', 'getnumber.py'],
+                ['../get.py', 'get.py'],
                 ['../sig.py', 'sig.py'],
                 ],
         'srcdir': pgm,
+        'ignore': 'Raises an exception',
+        'todo': 'Eliminate sig, fix errors',
         },
     'cheat': {
         'subdir': 'shop',
@@ -338,6 +333,7 @@ projects = {
                 ['../sig.py', 'sig.py'],
                 ],
         'srcdir': pgm,
+        'todo': "Remove need for sig",
         },
     'clamps': {
         'subdir': 'shop',
@@ -374,18 +370,16 @@ projects = {
         'descr': dedent('''
             cnt.py is a command line utility to count the number of bytes in
             the file arguments and present a histogram of the results.  Processes
-            files on the order of 10 MB/s.  cnt.c is a C program that is
-            roughly 10% faster on large files, but less flexible in the
-            output reporting.
+            files on the order of 10 MB/s.
             '''),
         'files': [
                 'cnt.py',
-                ['/tools/misc/cnt_new.c', 'cnt.c'],
-                'cnt.readme',
+                #['/tools/misc/cnt_new.c', 'cnt.c'],
                 ['../fpformat.py', 'fpformat.py'],
                 ['../columnize.py', 'columnize.py'],
                 ],
         'srcdir': pgm,
+        'todo': "Remove need for fpformat; put C file back in",
         },
     'color': {
         'subdir': 'util',
@@ -475,6 +469,7 @@ projects = {
                 'pictures/current_source_schematic.png*',
                 ],
         'srcdir': '/elec/projects',
+        'todo': 'Pictures not correct per loo',
         },
     'cut': {
         'subdir': 'shop',
@@ -488,10 +483,10 @@ projects = {
                 'cut.odt*',
                 'cut.pdf',
                 'cut.py',
-                ['../odict.py', 'odict.py'],
                 ['../sig.py', 'sig.py'],
                 ],
         'srcdir': pgm,
+        'todo': "Remove need for sig, fix color",
         },
     'dbm': {
         'subdir': 'elec',
@@ -503,7 +498,6 @@ projects = {
                 'dbm.odt*',
                 'dbm.ods*',
                 'dbm.pdf',
-                'dbm_details.pdf',
                 ],
         'ignore': 'Limited interest',
         'srcdir': '/elec/spreadsheets',
@@ -684,8 +678,7 @@ projects = {
                 'ds.odt*',
                 'ds.pdf',
                 'abspath.py',
-                '_goto.py',
-                ['../../tools/app.cpp', 'app.cpp'],
+                'goto.py',
                 ['../color.py', 'color.py'],
                 ],
         'srcdir': pgm,
@@ -754,10 +747,11 @@ projects = {
                 'sorted_properties.py*',
                 'vapor_pressure.py*',
                 'pictures/elastic_constants.jpg*',
-                ['/pylib/fpformat.py*', 'fpformat.py*'],
+                ['/plib/fpformat.py*', 'fpformat.py*'],
                 ],
         'srcdir': '/science/elements',
         'frozen': True,
+        'todo': "Remove need for fpformat",
         },
     'esr': {
         'subdir': 'elec',
@@ -795,10 +789,10 @@ projects = {
         'files': [
                 'ddiff.py',
                 'ddiffcp.py',
-                ['../pgm/dirset.py', 'dirset.py'],
                 'ddiff.readme',
                 ],
         'srcdir': '/pylib/other',
+        'ignore': "pp/ddiff.py exists and should be fixed and used if it's OK",
         },
     'fits': {
         'subdir': 'shop',
@@ -877,19 +871,7 @@ projects = {
                 ],
         'srcdir': '/doc/pens',
         'frozen': True,
-        },
-    'frac': {
-        'subdir': 'math',
-        'descr': dedent('''
-            A python script that will calculate a rational approximation
-            to a  real number.  If you download the mpmath library, you can
-            calculate to arbitrary precision.
-            '''),
-        'files': [
-                'frac.py',
-                ],
-        'ignore': 'Limited interest since Fractions module introduced',
-        'srcdir': pgm,
+        'todo': "Doesn't match loo list of pictures",
         },
     'frange': {
         'subdir': 'math',
@@ -935,6 +917,7 @@ projects = {
                 'pictures/sampling_wor.png*',
                 ],
         'srcdir': pgm,
+        'ignore': "Needs numpy, see if could remove numpy dep",
         },
     'fset': {
         'subdir': 'prog',
@@ -988,15 +971,15 @@ projects = {
     'goto': {
         'subdir': 'util',
         'descr': dedent('''
-            Used a python script and shell functions to launch project files
+            Uses a python script and shell functions to launch project files
             and navigate to various directories from a command line.  A number
             of UNIX users have told me they couldn't live without this tool once
             they started using it.
             '''),
         'files': [
-                ['_goto.py', 'goto.py'],
-                '_goto.odt*',
-                ['_goto.pdf', 'goto.pdf'],
+                'goto.py',
+                'goto.odt*',
+                'goto.pdf',
                 ],
         'srcdir': pgm,
         },
@@ -1043,66 +1026,9 @@ projects = {
             the 1980's).
             '''),
         'files': [
-                'misc/makefile',
-                'misc/mort',
-                'prog/makefile',
-                'prog/awk',
-                'prog/bash',
-                'prog/basic',
-                'prog/c',
-                'prog/constants',
-                'prog/cpp',
-                'prog/darcs',
-                'prog/find',
-                'prog/fld',
-                'prog/flex',
-                'prog/g',
-                'prog/gdb',
-                'prog/hg',
-                'prog/hp3488',
-                'prog/html',
-                'prog/java',
-                'prog/korn',
-                'prog/make_',
-                'prog/mpmath',
-                'prog/pcl5',
-                'prog/perl4',
-                'prog/perl5',
-                'prog/ps',
-                'prog/python2',
-                'prog/sed',
-                'prog/snippets',
-                'prog/sql',
-                'prog/stl',
-                'prog/subversion',
-                'prog/svn',
-                'prog/sympy',
-                'prog/utilities',
-                'prog/vcs',
-                'science/makefile',
-                'science/astronomical',
-                'science/biology',
-                'science/chemistry',
-                'science/electrical',
-                'science/materials',
-                'science/math',
-                'science/mathematica',
-                'science/matplotlib',
-                'science/numpy',
-                'science/physics',
-                'science/scipy',
-                'science/shop',
-                'science/sizes',
-                'science/units',
-                'hld/index.hld',
-                'h',
-                'doctags.c',
-                'mk',
-                'readme.odt*',
-                'readme.pdf',
                 ],
-        'ignore': 'Low interest',
-        'srcdir': '/help',
+        'ignore': 'Should be updated to newhelp stuff',
+        'srcdir': '/newhelp/help',
         },
     'holes': {
         'subdir': 'shop',
@@ -1119,6 +1045,7 @@ projects = {
                 ['../sig.py', 'sig.py'],
                 ],
         'srcdir': pgm,
+        'ignore': 'Get working',
         },
     'hose': {
         'subdir': 'shop',
@@ -1296,7 +1223,7 @@ projects = {
                 'LittleVise.pdf',
                 'pictures/LittleVise_1.png*',
                 'pictures/LittleVise_2.png*',
-                'pictures/Starrett_160_clamp.png*',
+                'pictures/starrett/starrett_160_clamp.png*',
                 ],
         'srcdir': '/shop/projects',
         },
@@ -1326,6 +1253,7 @@ projects = {
                 'manufy.py',
                 ],
         'srcdir': pgm,
+        'todo': 'Has a bug when used to process its manpage output',
         },
     'markup': {
         'subdir': 'misc',
@@ -1359,11 +1287,12 @@ projects = {
                 ['../asme.py', 'asme.py'],
                 ['../cmddecode.py', 'cmddecode.py'],
                 ['../columnize.py', 'columnize.py'],
-                ['../getnumber.py', 'getnumber.py'],
+                ['../get.py', 'get.py'],
                 ['../sig.py', 'sig.py'],
                 ['../u.py', 'u.py'],
                 ],
         'srcdir': pgm,
+        'ignore': "Need to get working with get.py, rm sig",
         },
     'mixture': {
         'subdir': 'science',
@@ -1488,19 +1417,19 @@ projects = {
         'srcdir': '/elec/projects/octopus',
         'frozen': True,
         },
-    'odict': {
-        'subdir': 'prog',
-        'descr': dedent('''
-            A bare-bones ordered dictionary for python. You won't need
-            this if you are on python 2.7 or later because there's a built-in
-            ordered  dictionary.
-            '''),
-        'files': [
-                'odict.py',
-                ['test/odict_test.py', 'odict_test.py'],
-                ],
-        'srcdir': plib,
-        },
+#    'odict': {
+#        'subdir': 'prog',
+#        'descr': dedent('''
+#            A bare-bones ordered dictionary for python. You won't need
+#            this if you are on python 2.7 or later because there's a built-in
+#            ordered  dictionary.
+#            '''),
+#        'files': [
+#                'odict.py',
+#                ['test/odict_test.py', 'odict_test.py'],
+#                ],
+#        'srcdir': plib,
+#        },
     'oo_math': {
         'subdir': 'math',
         'descr': dedent('''
@@ -1529,10 +1458,10 @@ projects = {
         'descr': 'Utility to find/show o-ring sizes on-hand.',
         'files': [
                 'oring.py',
-                ['../getnumber.py', 'getnumber.py'],
-                ['../sig.py', 'sig.py'],
+                ['../get.py', 'get.py'],
+                ['../f.py', 'f.py'],
                 ],
-        'srcdir': '/pgm/py',
+        'srcdir': pgm,
         },
 #    'out': {
 #        'subdir': 'prog',
@@ -1676,9 +1605,10 @@ projects = {
                 'pictures/apparent_good.png',
                 'pictures/bad_meas_as_good.png',
                 'pictures/good_meas_as_good.png',
-                ['/pylib/sig.py', 'sig.py'],
+                ['/plib/sig.py', 'sig.py'],
                 ],
         'srcdir': '/math/ProcessAnalyzer',
+        'todo': "Remove need for sig",
         },
     'primes': {
         'subdir': 'math',
@@ -1689,9 +1619,10 @@ projects = {
         'files': [
                 'primes.py',
                 ['pgm/int.py', 'int.py'],
-                ['/tools/primes_fast.cpp', 'primes_fast.cpp'],
+                ['/projects/tools/_math/primes_fast.cpp', 'primes_fast.cpp'],
                 ],
         'srcdir': plib,
+        'ignore': "Find C++ file",
         },
     'python': {
         'subdir': 'prog',
@@ -1922,6 +1853,18 @@ projects = {
                 ],
         'srcdir': pgm,
         },
+    'seg': {
+        'subdir': 'math',
+        'descr': dedent('''
+            Python script to calculate parameters of a circular segment.
+            Translated from a program written by Marv Klotz.
+            '''),
+        'files': [
+                'seg.py'
+                ],
+        'srcdir': pgm,
+        'ignore': 'Need to vet first',
+        },
     'seq': {
         'subdir': 'math',
         'descr': dedent('''
@@ -1978,11 +1921,12 @@ projects = {
             '''),
         'files': [
                 'sig.py',
-                'sig.odt*',
-                'sig.pdf',
-                ['test/sig_test.py', 'sig_test.py'],
+               #'sig.odt*',
+               #'sig.pdf',
+               #['test/sig_test.py', 'sig_test.py'],
                 ],
         'srcdir': plib,
+        'ignore': "It's time to retire this",
         },
     'sinesticks': {
         'subdir': 'shop',
@@ -2038,13 +1982,11 @@ projects = {
         },
     'spiral': {
         'subdir': 'math',
-        'descr': 'Python scripts that deal with spirals.',
+        'descr': 'Python script that deals with Archimedean spirals.',
         'files': [
-                ['pgm/spiral.py', 'spiral.py'],
-                'archimedean.py',
-                ['test/archimedean_test.py', 'archimedean_test.py'],
+                'spiral.py',
                 ],
-        'srcdir': plib,
+        'srcdir': pgm,
         },
     'split_cat': {
         'subdir': 'util',
@@ -2259,7 +2201,6 @@ projects = {
                 'u.odt*',
                 'u.pdf',
                 'u.py',
-                ['test/u_test.py', 'u_test.py'],
                 ],
         'srcdir': plib,
         },
@@ -2333,7 +2274,6 @@ projects = {
             '''),
         'files': [
                 'util.py',
-                ['test/util_test.py', 'util_test.py'],
                 ],
         'srcdir': plib,
         },
@@ -2501,3 +2441,72 @@ projects = {
         'srcdir': '/shop/projects'
     },
 }
+
+t.wrn = t("brnl")
+t.err = t("wht")
+def Warn(msg):
+    if show_warnings:
+        t.print(f"{t.wrn}Warning:  {msg}")
+def Error(msg):
+    t.print(f"{t.err}Error:  {msg}")
+def CheckFiles(di, pr):
+    '''pr is the string naming the project.
+       di is HU_Projects dictionary for this project.
+ 
+    Each files entry is either a string or a list of two strings.  The
+    strings may contain a trailing '*' character, indicating that this file
+    shouldn't be part of the project's output.  Rather, it means the file
+    is needed to define all of the project's files.
+    '''
+    def TrimAsterisk(s):
+        Assert(s)
+        return s[:-1] if s[-1] == "*" else s
+    files = di["files"]
+    if not ii(files, (list, tuple)):
+        Error(f"files is not a sequence for {project}")
+    for item in files:
+        srcdir = P(di["srcdir"])
+        # Make sure the source file exists
+        if ii(item, str):
+            # This must be an existing file
+            p = srcdir/P(TrimAsterisk(item))
+        else:
+            # It must be a sequence of two strings.  The first is the
+            # actual source file and the second is the name it will have in
+            # the resulting project's zip file.
+            if len(item) != 2 or not all(ii(i, str) for i in item):
+                Error(f"{item!r} is an improper sequence")
+            first, second = item
+            p = srcdir/P(TrimAsterisk(first))
+        ignore = bool(di.get("ignore", ""))
+        if not p.exists() or not p.is_file():
+            if ignore:
+                Warn(f"{item!r} can't be found for project {pr}")
+            else:
+                Error(f"{item!r} can't be found for project {pr}")
+                CheckFiles.error = True
+def Validate(warn=False):
+    global show_warnings
+    show_warnings = bool(warn)
+    # Validate the dictionary's contents
+    CheckFiles.error = False
+    for project in HU_Projects:
+        di = HU_Projects[project]
+        pr = f"{project!r}"
+        # Verify mandatory keys are present
+        for k in "subdir descr files srcdir".split():
+            if k not in di:
+                Error(f"Key {k!r} not in dict for project {pr}")
+        # If optional keys are present, verify their type
+        if "todo" in di and not ii(di["todo"], str):
+            Error(f"'todo' in project {pr} must be a string")
+        if "ignore" in di and not ii(di["ignore"], str):
+            Error(f"'ignore' in project {pr} must be a string")
+        if "files" not in di:
+            Error("'files' not in {pr}")
+        CheckFiles(di, pr)
+    if CheckFiles.error:
+        raise ValueError("projects.py:  Validate() failed")
+if __name__ == "__main__": 
+    show_warnings = False
+    Validate()

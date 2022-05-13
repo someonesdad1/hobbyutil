@@ -1,8 +1,15 @@
 '''
  
 - ToDo
-    - List colors need updating.  Add color for ignored and change the
-      stale color to something less obnoxious than red.
+    - Interface
+        - Change to commands on command line
+            - v     Validate projects.py data
+            - l     List projects and state
+            - b     Build (need args or '.')
+            - d     Dry run (show what will be done)
+            - s     If one PDF, launch
+            - p     Show projects with one PDF
+            - z     Show projects in zip files
     - Note the Calipers.pdf document has no bookmarks.  This is a real pain
       in large files.  It's probably a "feature" of PDF/1A.
     - Project.IsStale
@@ -60,28 +67,10 @@ if 1:   # Header
         from color import Color, TRM as t
         from columnize import Columnize
         from wrap import wrap, dedent
-        import projects
-        if 0:
-            import debug
-            debug.SetDebugger()
-        # Try to import the color.py module; if not available, the script
-        # should still work (you'll just get uncolored output).
-        try:
-            import color as c
-            _have_color = True
-        except ImportError:
-            # Make a dummy color object to swallow function calls
-            class Dummy:
-                def fg(self, *p, **kw): return ""
-                def normal(self, *p, **kw): return ""
-                def __getattr__(self, name): pass
-                def set(self): pass
-            c = Dummy()
-            _have_color = False
+        from projects import HU_Projects, Validate
     # Global variables
         ii = isinstance
-        W = int(os.environ.get("COLUMNS", "80")) - 1
-        L = int(os.environ.get("LINES", "50"))
+        w = int(os.environ.get("COLUMNS", "80")) - 1
         nl = "\n"
         email_address = "someonesdad1@gmail.com"
         Join = os.path.join
@@ -98,12 +87,14 @@ if 1:   # Header
         # the packages will reside (it's separate from the repository).
         package_dir = cygwin + "/home/Don/hobbyutil_packages"
         # Escape sequences for colors
-        fz = c.fg(c.lblue, s=True)  # Frozen
-        st = c.fg(c.lred, s=True)   # Stale
-        no = c.normal(s=True)       # Normal color
+        t.fz = t("royl")    # Frozen
+        t.st = t("purl")    # Stale
+        t.ig = t("mag")     # Ignored
+        t.td = t("yell")    # To do
+        t.de = t("sky")     # Description
         # Text wrapper
         tw = textwrap.TextWrapper()
-        tw.width = int(os.environ.get("COLUMNS", 80)) - 5
+        tw.width = w
         tw.replace_whitespace = True
         tw.fix_sentence_endings = True
         tw.initial_indent = tw.subsequent_indent = " "*4
@@ -126,41 +117,9 @@ if 1:   # Header
             ("shop", "Shop"),
             ("util", "Utilities"),
         ))
-        # data will be the repository for project information.  It is a dictionary
-        # keyed on the project's name.
-        '''
-
-        This is the key data structure of the script; it's an ordered
-        dictionary so that the entry order can be preserved.
-
-        A key must be a string with at least one letter on either side of a
-        '/' character:  cat/proj.  cat is the top-level subdir of the hu web
-        page (e.g., elec, math, etc.) and proj is the package name.  The
-        current implementation only uses the cat/proj form, but cat/proj/other
-        and deeper structures can be used if desired.
-
-        Each value in the dictionary is another dictionary, such as:
-
-        {
-            "proj" : {
-                "subdir" : "cat",             # 'elec', 'math', etc.
-                "ignore" : None,                # If not None, ignore this project
-                "descr"  : description_string,  # Defaults to None
-                "todo"   : todo_string,         # Defaults to None
-                "srcdir" : srcdir,              # Source directory
-                "files"  : [                    # Files in package
-                    (filename1_src, filename1_dest),
-                    (filename2_src, filename2_dest),
-                    ...
-                ],
-            },
-            ... etc.
-        }
-
-        For the files, if there's only one filename, then the source and
-        destination filenames are the same.
-        '''
-        data = projects.projects
+        # This will be our project data dictionary after vetting.  keys
+        # will be project name and values will be Project instances.
+        data = {}
 if 1:   # Classes
     class Project(object):
         '''Contain the project's information and provide the requisite
@@ -174,6 +133,7 @@ if 1:   # Classes
         ignore      If not None, the reason this file isn't built
         frozen      If true, it's a big file, so only build when -f option used
         stale       One or more source files is newer than the repository files
+        todo        String describing something that needs to be done
  
         The class variable projects is a dictionary keyed by each subdir name
         (such as 'math', 'shop', etc.); each key's value is a list of the
@@ -184,7 +144,7 @@ if 1:   # Classes
             self.name = name
             self.data = project_data_dict
             if "ignore" not in self.data:
-                self.data["ignore"] = None
+                self.data["ignore"] = ""
             if "frozen" not in self.data:
                 self.data["frozen"] = False
             self.validate_data()
@@ -200,6 +160,7 @@ if 1:   # Classes
             self.ignore = self.data["ignore"]
             self.frozen = bool(self.data["frozen"])
             self.stale = self.IsStale()
+            self.todo = self.data.get("todo", "")
         def IsStale(self):
             # To see if this is a stale project, the destination will either be
             # a single file or a zip file.  Get the destination's time and the
@@ -258,22 +219,22 @@ if 1:   # Classes
             return files
         def __str__(self):
             me = self
-            f = fz if self.frozen else ""
-            nf = no if self.frozen else ""
-            t = st if self.stale else ""
-            nt = no if self.stale else ""
-            s = dedent('''
+            fz = t.fz if self.frozen else ""
+            st = t.st if self.stale else ""
+            ig = t.ig if self.ignore else ""
+            td = t.td if self.todo else ""
+            s = dedent(f'''
                 {me.name}
-                subdir = {me.subdir}
-                descr  = {me.descr}
-                srcdir = {me.srcdir}
-                ignore = {me.ignore}
-                {f}frozen = {me.frozen}{nf}
-                {t}stale  = {me.stale}{nt}
-                files (source, destination):
+                    subdir = {me.subdir}
+                    descr  = {t.de}{me.descr!r}{t.n}
+                    srcdir = {me.srcdir}
+                    {ig}ignore = {me.ignore}{t.n}
+                    {fz}frozen = {me.frozen}{t.n}
+                    {st}stale  = {me.stale}{t.n}
+                    files (src, dest):\n
             '''.format(**locals()))
             for src, dest in self.files:
-                s += "      {}, {}\n".format(src, dest)
+                s += "        {}, {}\n".format(src, dest)
             return s
         def PDFs(self):
             '''Return a list of the PDF files in this project; the entries will
@@ -281,9 +242,9 @@ if 1:   # Classes
             '''
             files = []
             for src, dest in self.files:
-                t = RemoveAsterisk(src)
-                if t.lower().endswith(".pdf"):
-                    s = Join(self.srcdir, t)
+                u = RemoveAsterisk(src)
+                if u.lower().endswith(".pdf"):
+                    s = Join(self.srcdir, u)
                     files.append(s)
             return files
 if 1:   # Utility
@@ -299,7 +260,7 @@ if 1:   # Utility
         '''
         stack = TB.extract_stack()[-back:][0]
         return stack[:2]
-    def Usage(d, status=1):
+    def Usage(status=1):
         print(dedent(f'''
         Usage:  {sys.argv[0]} [options] command [args]
           Utility to build the hobbyutil repository's contents.
@@ -325,7 +286,7 @@ if 1:   # Utility
                   package_dir.
         '''))
         exit(status)
-    def ParseCommandLine(d):
+    def ParseCommandLine():
         d["-i"]     = False     # If True, zip even if ignored
         d["-f"]     = False     # If True, build frozen files
         d["-t"]     = False     # If True, print out python test scripts
@@ -340,27 +301,22 @@ if 1:   # Utility
             if opt[0][1] in "fitz":
                 d[opt[0]] = not d[opt[0]]
         if not args and not d["-t"]:
-            Usage(d)
+            Usage()
         return args
-    def Message(s, fg, bg=c.black):
-        c.fg(fg, bg)
-        print(s)
-        c.normal()
 if 1:   # Core functionality
-    def ReadProjectData(d):
+    def ValidateProjectData():
         '''The global variable data contains a dictionary keyed by project
         name.  This function reads that data in and validates it.
         '''
+        Validate(warn=True)
         global data, output_directories
         # Check each project's entries
-        for project in data:
-            project_data = data[project]
-            if "files" not in project_data:
-                Error("'files' record not in {}".format(project))
+        for project in HU_Projects:
+            di = HU_Projects[project]
             # Change one file items to two (allowing the one file form
             # is easier to read, takes less space, and indicates the
             # file won't be renamed).
-            files = project_data["files"]
+            files = di["files"]
             for i, f in enumerate(files):
                 if isinstance(f, str):
                     files[i] = [f, f]
@@ -368,17 +324,16 @@ if 1:   # Core functionality
                     assert len(f) == 2
                 else:
                     Error("'{}' unexpected in project '{}'" % (f, proj))
-            project_data["files"] = files
-            output_directories.add(project_data["subdir"])
-            data[project] = Project(project, project_data)
-        "Got to here in new rewrite"
+            di["files"] = files
+            output_directories.add(di["subdir"])
+            data[project] = Project(project, di)
     def RemoveAsterisk(s):
         '''Remove a trailing * from a string.
         '''
         if s.endswith("*"):
             return s[:-1]
         return s
-    def MakeDirectories(d):
+    def MakeDirectories():
         '''If any directory in output_directories is not present, construct it.
         '''
         for dir in output_directories:
@@ -413,7 +368,7 @@ if 1:   # Core functionality
         # Update the Project.projects class variable
         entry = (dest, project_object.descr)
         Project.projects[project_object.subdir].append(entry)
-    def ShowTestScripts(d):
+    def ShowTestScripts():
         '''Print out project names that contain a python script named
         *_test.py.
         '''
@@ -427,60 +382,6 @@ if 1:   # Core functionality
                         print("  {:20s}  {:30s}  {}".format(project, src, po.srcdir))
                         continue
         exit(0)
-    def List(projects, d):
-        '''projects will be a list of project names; list the project details.
-        If projects is empty, show active and inactive projects.
-        '''
-        if projects:
-            if projects[0] == "PDF":
-                # List PDFs in all projects
-                for project in data:
-                    po = data[project]
-                    pdfs = po.PDFs()
-                    if pdfs:
-                        print(project)
-                        for i in po.PDFs():
-                            print("    {}".format(i))
-            elif projects[0].lower() == "all":
-                # List all projects
-                for project in data:
-                    po = data[project]
-                    print(po)
-            else:
-                # List details on given projects
-                for project in projects:
-                    po = data[project]
-                    print(po)
-        else:
-            # List active and inactive projects
-            active, inactive, f = [], [], "*"
-            for project in data:
-                p = data[project]
-                if p.ignore or p.frozen:
-                    if p.frozen:
-                        inactive.append(fz + project + no)
-                    else:
-                        inactive.append(project)
-                else:
-                    if p.stale:
-                        active.append(st + project + no)
-                    else:    
-                        active.append(project)
-            w = 80
-            s = "{} Inactive or frozen projects".format(len(inactive))
-            print("{:^{}s}".format(s, w))
-            print("{:^{}s}".format("-"*len(s), w))
-            for i in Columnize(inactive):
-                print(i)
-            print()
-            s = "{} Active projects".format(len(active))
-            print("{:^{}s}".format(s, w))
-            print("{:^{}s}".format("-"*len(s), w))
-            for i in Columnize(active):
-                print(i)
-            if _have_color:
-                print("\n{}Blue{} means frozen".format(fz, no))
-                print("{}Red{} means stale".format(st, no))
     def BuildProjectZip(project_object):
         # Make a list of all the files without an ending asterisk in name
         files = []
@@ -495,7 +396,7 @@ if 1:   # Core functionality
             src = Join(cygwin + project_object.srcdir, SRC)
             zf.write(src, DEST)
         zf.close()
-    def Build(projects, d):
+    def Build(projects):
         print("Building projects:")
         if projects[0] == ".":
             projects = data.keys()
@@ -529,7 +430,7 @@ if 1:   # Core functionality
         ampm = strftime("%p").lower()
         s = strftime("{} %b %Y {}:%M:%S {}")
         return s.format(RemoveLeading0(day), RemoveLeading0(hour), ampm)
-    def BuildProjectPage(d):
+    def BuildProjectPage():
         '''This builds the project_list.md file.  Note it has to include all
         the projects that are not ignored.  To do this, we build an OrderedDict
         that has the category names as keys (e.g., Electrical, etc.) and a list
@@ -626,7 +527,7 @@ if 1:   # Core functionality
                 hu.write(nl*2)
             hu.write(nl + "Updated {}".format(Time()) + nl*2)
             hu.close()
-    def BuildZips(projects, d):
+    def BuildZips(projects):
         '''Construct zipfiles of the indicated projects.
         '''
         print("Building project zipfiles:")
@@ -639,7 +540,7 @@ if 1:   # Core functionality
                 continue
             print(project)
             BuildProjectZip(project_object)
-    def Show(projects, d):
+    def Show(projects):
         '''If the indicated projects have one PDF, launch this file.
         '''
         for project in projects:
@@ -648,23 +549,87 @@ if 1:   # Core functionality
                 os.system(start + " " + Join(cygwin, pdfs[0]))
             else:
                 print("More than one PDF")
+    def List(projects):
+        '''projects will be a list of project names; list the project details.
+        If projects is empty, show active and inactive projects.
+        '''
+        if projects:
+            if projects[0] == "PDF":
+                # List PDFs in all projects
+                for project in data:
+                    po = data[project]
+                    pdfs = po.PDFs()
+                    if pdfs:
+                        print(project)
+                        for i in po.PDFs():
+                            print("    {}".format(i))
+            elif projects[0].lower() == "all":
+                # List all projects
+                for project in data:
+                    po = data[project]
+                    print(po)
+            else:
+                # List details on given projects
+                for project in projects:
+                    po = data[project]
+                    print(po)
+        else:
+            y = t("yell")
+            # List ignored
+            count, out = 0, []
+            for project in data:
+                p = data[project]
+                if p.ignore:
+                    count += 1
+                    out.append(project)
+            if count:
+                out = [f"{t.ig}{i}{t.n}" for i in sorted(out)]
+                t.print(f"{y}{count} ignored projects:")
+                for i in Columnize(out, esc=True, indent=" "*4):
+                    print(i)
+            # List frozen
+            count, out = 0, []
+            for project in data:
+                p = data[project]
+                if p.frozen:
+                    count += 1
+                    out.append(project)
+            if count:
+                out = [f"{t.fz}{i}{t.n}" for i in sorted(out)]
+                t.print(f"{y}{count} frozen projects:")
+                for i in Columnize(out, esc=True, indent=" "*4):
+                    print(i)
+            # List active
+            active, inactive, f = [], [], "*"
+            for project in data:
+                p = data[project]
+                if not (p.ignore or p.frozen):
+                    if p.stale:
+                        active.append(t.st + project + t.n)
+                    else:    
+                        active.append(project)
+            t.print(f"{y}{len(active)} active projects:")
+            for i in Columnize(active, esc=True, indent=" "*4):
+                print(i)
+            print(f"\nColor key:  {t.fz}frozen{t.n} ", end="")
+            print(f"{t.st}stale{t.n}")
 if __name__ == "__main__":
     d = {} # Options dictionary
-    projects = ParseCommandLine(d)
-    ReadProjectData(d)
+    projects = ParseCommandLine()
+    ValidateProjectData()
     if d["-t"]:
-        ShowTestScripts(d)
-    MakeDirectories(d)
+        ShowTestScripts()
+    MakeDirectories()
     cmd = projects[0]
     del projects[0]
     if cmd in "b bu bui buil build".split():
         if not projects:
-            Usage(d)
+            Usage()
         else:
-            BuildZips(projects, d) if d["-z"] else Build(projects, d)
+            BuildZips(projects) if d["-z"] else Build(projects)
     elif cmd in "l li lis list".split():
-        List(projects, d)
+        List(projects)
     elif cmd == "s sh sho show".split():
-        Show(projects, d)
+        Show(projects)
     else:
         Error("'%s' is an unrecognized command" % cmd)

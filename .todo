@@ -7,6 +7,14 @@ hobbyutil ToDo list
       should be validated and converted to P paths.
 
 - Must
+    - Clearly describe exactly how all the dependent files are produced.  
+    - Add to the project_list.html file that all python scripts in zipfiles
+      are to be installed by putting them in a separate directory and that
+      other included python files are modules that script depends on.  It
+      is suggested you create a separate directory, unzip the zipfile
+      there, and run it.  Once you're convinced you want to keep the stuff,
+      you'll want to put the needed modules somewhere in your PYTHONPATH so
+      they can be found when the script runs.
     - Many of the scripts are things in /plib/pgm
         - Eliminate the overlap.
         - Produce a similar page as https://someonesdad1.github.io/ for
