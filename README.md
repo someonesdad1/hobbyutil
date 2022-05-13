@@ -25,25 +25,29 @@ Archival
 This is the third website that I have hosted this stuff on over the last
 few decades (the first two went defunct).  My wish is that I could just
 leave it in one place and be confident that it would remain available to
-interested folks for a decade or so, even after I'm dead.  But that's
-just not going to happen because a few years is a long time on the web.
-Who can foresee what will happen to Github a few years down the road?  I
-don't have a good solution to this problem.  About the most pragmatic
-thing that could happen is that lots of people copy this repository's
-contents to other places and share it with other folks.  Feel free to
-mirror this site if you wish.
+interested folks for a decade or so, even after I'm dead.  But that's not
+going to happen because a few years is a long time on the web.  Who can
+foresee what will happen to Github a few years down the road?  I don't have
+a good solution to this problem.  About the most pragmatic thing that could
+happen is that lots of people copy this repository's contents to other
+places and share it with other folks.  Feel free to mirror this site if you
+wish.
 
 If you're interested in archiving your own data on Github, you might want
 to read a [tutorial](./tutorial.html).
 
+As I am chronologically-gifted, this website will disappear after I am no
+longer able to maintain it myself.  I'll ask a friend to administer it for
+a period time and to add a message that there will be no more changes to
+the contents.  I'll ask him to delete the github repository after a
+suitable time (it's up to him about what amount of time is suitable).
+
 License
 =======
 
-Currently, most of the scripts are under the Open Software License
-version 3.0.  This is a copyleft license; I am contemplating putting
-everything under the Academic Free License 3.0, which is not a copyleft
-license.  Regardless, my basic intent is that this stuff should be free
-to whomever wants it as long as they keep the copyright message and
-clearly mark it as modified if they change the content.  I don't bother
-with a copyright message in the documents, but they are morally under
-the same license as the software stuff.
+Most of the scripts should under the Open Software License version 3.0.  My
+basic intent is that this stuff should be free to whomever wants it as long
+as they keep the copyright message and clearly mark it as modified if they
+change the content.  I don't bother with a copyright message in the
+documents, but they are under the same license as the software stuff by
+virtue of this sentence.

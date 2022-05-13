@@ -36,15 +36,19 @@ go into a zipfile.
 - Does it make sense to change this to files: and srcfiles:
 
 '''
-from get import GetLines
-from collections import deque
-import re
-import enum
-from pdb import set_trace as xx 
-from lwtest import run, raises, assert_equal, Assert
-
-dbg = False
-
+if 1:   # Header
+    # Standard imports
+        from collections import deque
+        import re
+        import time
+        import enum
+        from pathlib import Path as P
+        from pdb import set_trace as xx 
+    # Custom imports
+        from iso import ISO
+        from get import GetLines
+        from lwtest import Assert 
+        from wrap import dedent 
 def Error(*msg, status=1):
     print(*msg, file=sys.stderr)
     exit(status)
@@ -106,6 +110,18 @@ def PrintFiles(name, item):
                 i = i[2:]
                 print(f"{u}{i!r},")
             print(f"{u}],") if not item else nop(0)
+def PrintBeginningOfFile():
+    i = ISO()
+    print(dedent(f'''
+    # This file was constructed by the mkprojects.py python script on
+    # {i.dt}.
+
+    from wrap import dedent
+
+    projects = {{
+    '''))
+def PrintEndOfFile():
+    pass
 def MakeDict():
     'Build the output dict for the current project'
     global state
@@ -114,7 +130,7 @@ def MakeDict():
         rpn = re.compile(r"^([a-z0-9_]*): *$")
         line = lines.popleft()
         mo = rpn.match(line)
-        assert(mo)
+        Assert(mo)
         name = mo.groups()[0]
     Assert(state == State.header)
     # Output the dict key
@@ -204,6 +220,7 @@ if __name__ == "__main__":
         done = enum.auto()
     state = State.header
     lines = deque(GetLines("projects", script=True, nonl=True))
-    print("projects = {")
+    PrintBeginningOfFile()
     while lines:
         MakeDict()
+    PrintEndOfFile()
