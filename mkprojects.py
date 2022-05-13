@@ -70,7 +70,8 @@ def GetState(line):
     else:
         return state
 def PrintItem(name, item):
-    '''Print the dict item with key name and sequence item's strings.
+    '''Print the dict item with key name and sequence item's strings.  Use
+    a dedented multiline string if appropriate.
     '''
     s = " "*8
     u = s + " "*4
@@ -78,15 +79,11 @@ def PrintItem(name, item):
     if len(item) == 1:
         print(f"{item[0]!r},")
     else:
-        print()
+        print("dedent('''")
         while item:
             i = item.pop(0)
-            # Note we add a space character to the end of each string.
-            # This ensures they won't be run together words in the output.
-            # Since the ultimate output will be html, the extra whitespace
-            # isn't significant.
-            print(f"{u}{i + ' '!r}", end="")
-            print(",") if not item else print()
+            print(f"{u}{i}")
+        print(f"{u}'''),")
 def PrintFiles(name, item):
     '''Print the dict item with key name and a tuple of item's elements.
     Each line can be either a string representing a file name or a list of

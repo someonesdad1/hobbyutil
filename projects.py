@@ -1,17 +1,24 @@
+# This file was constructed by the mkprojects.py python script on
+# 12 May 2022 Thu 6:10:00 pm.
+
+from wrap import dedent
+
 projects = {
     'seg': {
         'subdir': 'math',
-        'descr': 
-            'Python script to calculate parameters of a circular segment. '
-            'Translated from a program written by Marv Klotz. ',
+        'descr': dedent('''
+            Python script to calculate parameters of a circular segment.
+            Translated from a program written by Marv Klotz.
+            '''),
         'files': ['- seg.py'],
         'srcdir': '/pylib/pgm',
         },
     'ag': {
         'subdir': 'math',
-        'descr': 
-            'Contains formulas relating to analytic geometry and other '
-            'math stuff I need to look up on a regular basis. ',
+        'descr': dedent('''
+            Contains formulas relating to analytic geometry and other
+            math stuff I need to look up on a regular basis.
+            '''),
         'files': [
                 'AnalyticGeometry.odt*',
                 'AnalyticGeometry.pdf',
@@ -23,10 +30,11 @@ projects = {
         },
     'antif': {
         'subdir': 'eng',
-        'descr': 
-            'How to calculate how much antifreeze to add to an existing '
-            'partially-filled radiator to get a desired concentration.  Also '
-            'looks at the refractometer. ',
+        'descr': dedent('''
+            How to calculate how much antifreeze to add to an existing
+            partially-filled radiator to get a desired concentration.  Also
+            looks at the refractometer.
+            '''),
         'files': [
                 'antifreeze.odt*',
                 'antifreeze.pdf',
@@ -45,28 +53,31 @@ projects = {
         },
     'app': {
         'subdir': 'util',
-        'descr': 
-            'Handy application if you like to work at a cygwin command '
-            'line. Given one or more files, it will cause them to be opened '
-            'with their registered application. ',
+        'descr': dedent('''
+            Handy application if you like to work at a cygwin command
+            line. Given one or more files, it will cause them to be opened
+            with their registered application.
+            '''),
         'files': ['- app.cpp'],
         'ignore': " Typical OS's have equivalent commands",
         'srcdir': '/tools',
         },
     'asc': {
         'subdir': 'util',
-        'descr': 
-            'Python script to print out an ASCII character table in decimal, '
-            "hex, or octal.  Useful at a command line to see your terminal's "
-            'encoding. ',
+        'descr': dedent('''
+            Python script to print out an ASCII character table in decimal,
+            hex, or octal.  Useful at a command line to see your terminal's
+            encoding.
+            '''),
         'files': ['- asc.py'],
         'srcdir': '/pylib/pgm',
         },
     'astro': {
         'subdir': 'science',
-        'descr': 
-            'Collection of a few astronomical utilities, mostly derived '
-            "from Meeus' books. ",
+        'descr': dedent('''
+            Collection of a few astronomical utilities, mostly derived
+            from Meeus' books.
+            '''),
         'files': [
                 'meeus.py',
                 'julian.py',
@@ -97,9 +108,10 @@ projects = {
         },
     'bc': {
         'subdir': 'shop',
-        'descr': 
-            'Contains a python script that will calculate the Cartesian '
-            'coordinates of holes on a bolt circle. ',
+        'descr': dedent('''
+            Contains a python script that will calculate the Cartesian
+            coordinates of holes on a bolt circle.
+            '''),
         'files': [
                 'bc.py',
                 ['../sig.py', 'sig.py'],
@@ -108,9 +120,10 @@ projects = {
         },
     'bcmt': {
         'subdir': 'math',
-        'descr': 
-            'A document containing small math tables that will print '
-            'out to be about the size of a business card. ',
+        'descr': dedent('''
+            A document containing small math tables that will print
+            out to be about the size of a business card.
+            '''),
         'files': [
                 'BusinessCardMathTables.odt*',
                 'BusinessCardMathTables.pdf',
@@ -122,25 +135,28 @@ projects = {
         },
     'bd': {
         'subdir': 'util',
-        'descr': 
-            'Performs a comparison between binary files; differences '
-            'are printed in hex dump format. ',
+        'descr': dedent('''
+            Performs a comparison between binary files; differences
+            are printed in hex dump format.
+            '''),
         'files': ['- bd.c'],
         'srcdir': '/tools/misc',
         },
     'bgrep': {
         'subdir': 'util',
-        'descr': 
-            'Python script to search for regular expressions and strings '
-            'in binary files. ',
+        'descr': dedent('''
+            Python script to search for regular expressions and strings
+            in binary files.
+            '''),
         'files': ['- bgrep.py'],
         'srcdir': '/pylib/pgm',
         },
     'bidict': {
         'subdir': 'util',
-        'descr': 
-            'Creates a dictionary object in python that lets you treat '
-            'it in both directions as a mapping. ',
+        'descr': dedent('''
+            Creates a dictionary object in python that lets you treat
+            it in both directions as a mapping.
+            '''),
         'files': [
                 'bidict.py',
                 ['test/bidict_test.py', 'bidict_test.py'],
@@ -149,9 +165,10 @@ projects = {
         },
     'bnc': {
         'subdir': 'elec',
-        'descr': 
-            'Gives some experimental data about using RF coax cables '
-            'with BNC connectors for DC and low-frequency power. ',
+        'descr': dedent('''
+            Gives some experimental data about using RF coax cables
+            with BNC connectors for DC and low-frequency power.
+            '''),
         'files': [
                 'BNC_connector_power.odt*',
                 'BNC_connector_power.pdf',
@@ -168,19 +185,21 @@ projects = {
         },
     'bode': {
         'subdir': 'elec',
-        'descr': 
-            'Generate a Bode plot with a python script (needs numpy and '
-            'matplotlib).  You define the transfer function in a file '
-            'passed on the command line. ',
+        'descr': dedent('''
+            Generate a Bode plot with a python script (needs numpy and
+            matplotlib).  You define the transfer function in a file
+            passed on the command line.
+            '''),
         'files': ['- bode.py'],
         'srcdir': '/pylib/pgm',
         },
     'bucket': {
         'subdir': 'shop',
-        'descr': 
-            'Shows how to calculate bucket volumes and mark volume calibration '
-            'marks on nearly any bucket.  Includes a python script that will do '
-            'the calculations for you. ',
+        'descr': dedent('''
+            Shows how to calculate bucket volumes and mark volume calibration
+            marks on nearly any bucket.  Includes a python script that will do
+            the calculations for you.
+            '''),
         'files': [
                 'bucket.py',
                 'bucket.odt*',
@@ -238,9 +257,10 @@ projects = {
         },
     'cheat': {
         'subdir': 'shop',
-        'descr': 
-            'Contains various spreadsheets in Open Office format and '
-            'PDFs of tables that I find handy to have in the shop. ',
+        'descr': dedent('''
+            Contains various spreadsheets in Open Office format and
+            PDFs of tables that I find handy to have in the shop.
+            '''),
         'files': [
                 '0readme.odt',
                 'common_threads.ods',
@@ -276,9 +296,10 @@ projects = {
         },
     'chemname': {
         'subdir': 'science',
-        'descr': 
-            'A list of archaic chemical names with their modern equivalents '
-            'and chemical formulas. ',
+        'descr': dedent('''
+            A list of archaic chemical names with their modern equivalents
+            and chemical formulas.
+            '''),
         'files': [
                 'chemical_names.ods*',
                 'chemical_names.pdf',
@@ -287,9 +308,10 @@ projects = {
         },
     'circ3': {
         'subdir': 'shop',
-        'descr': 
-            'Python script that calculates the radius/diameter of a circle '
-            'that passes through three points. ',
+        'descr': dedent('''
+            Python script that calculates the radius/diameter of a circle
+            that passes through three points.
+            '''),
         'files': [
                 'circ3.py',
                 'circ3.odt*',
@@ -300,9 +322,10 @@ projects = {
         },
     'clamps': {
         'subdir': 'shop',
-        'descr': 
-            "Discusses machinist's parallel clamps, why they're useful, "
-            'and how to make your own. ',
+        'descr': dedent('''
+            Discusses machinist's parallel clamps, why they're useful,
+            and how to make your own.
+            '''),
         'files': [
                 'MachinistClamp.odt*',
                 'MachinistClamp.pdf',
@@ -329,12 +352,13 @@ projects = {
         },
     'cnt': {
         'subdir': 'util',
-        'descr': 
-            'cnt.py is a command line utility to count the number of bytes in '
-            'the file arguments and present a histogram of the results.  Processes '
-            'files on the order of 10 MB/s.  cnt.c is a C program that is '
-            'roughly 10% faster on large files, but less flexible in the '
-            'output reporting. ',
+        'descr': dedent('''
+            cnt.py is a command line utility to count the number of bytes in
+            the file arguments and present a histogram of the results.  Processes
+            files on the order of 10 MB/s.  cnt.c is a C program that is
+            roughly 10% faster on large files, but less flexible in the
+            output reporting.
+            '''),
         'files': [
                 'cnt.py',
                 ['/tools/misc/cnt_new.c', 'cnt.c'],
@@ -346,36 +370,40 @@ projects = {
         },
     'color': {
         'subdir': 'util',
-        'descr': 
-            'Python module to provide color printing to a console window. '
-            'Should work on both Windows and Linux.  Includes functions to show '
-            'regular expression matches in text printed to the console; these '
-            'functions are helpful when you are developing complicated regular '
-            'expressions. ',
+        'descr': dedent('''
+            Python module to provide color printing to a console window.
+            Should work on both Windows and Linux.  Includes functions to show
+            regular expression matches in text printed to the console; these
+            functions are helpful when you are developing complicated regular
+            expressions.
+            '''),
         'files': ['- color.py'],
         'srcdir': '/pylib',
         },
     'columnize': {
         'subdir': 'prog',
-        'descr': 
-            'Python function to print a sequence in columns.  The order can be '
-            'down (default) or across. ',
+        'descr': dedent('''
+            Python function to print a sequence in columns.  The order can be
+            down (default) or across.
+            '''),
         'files': ['- columnize.py'],
         'srcdir': '/pylib',
         },
     'comb': {
         'subdir': 'prog',
-        'descr': 
-            'A python script that will produce permutations and combinations '
-            'of the lines in a file. Can be useful for generating test cases. ',
+        'descr': dedent('''
+            A python script that will produce permutations and combinations
+            of the lines in a file. Can be useful for generating test cases.
+            '''),
         'files': ['- comb.py'],
         'srcdir': '/pylib/pgm',
         },
     'concise': {
         'subdir': 'math',
-        'descr': 
-            'Discusses the Concise 300, a circular slide rule still in '
-            'production in Japan. ',
+        'descr': dedent('''
+            Discusses the Concise 300, a circular slide rule still in
+            production in Japan.
+            '''),
         'files': [
                 'Concise300.odt*',
                 'Concise300.pdf',
@@ -385,10 +413,11 @@ projects = {
         },
     'cove': {
         'subdir': 'shop',
-        'descr': 
-            'Python script shows you how to cut a cove with your table saw. '
-            'Use this formula and method when it just has to be done correctly '
-            "on a workpiece you can't mess up on. ",
+        'descr': dedent('''
+            Python script shows you how to cut a cove with your table saw.
+            Use this formula and method when it just has to be done correctly
+            on a workpiece you can't mess up on.
+            '''),
         'files': [
                 'cove.odt*',
                 'cove.pdf',
@@ -398,9 +427,10 @@ projects = {
         },
     'cs': {
         'subdir': 'elec',
-        'descr': 
-            'How to make a battery-operated 1 ampere current source used to '
-            'make low resistance measurements. ',
+        'descr': dedent('''
+            How to make a battery-operated 1 ampere current source used to
+            make low resistance measurements.
+            '''),
         'files': [
                 ['CurrentSource_pub.odt*', 'CurrentSource.odt*'],
                 'CurrentSource.pdf',
@@ -411,11 +441,12 @@ projects = {
         },
     'cut': {
         'subdir': 'shop',
-        'descr': 
-            'Python script that will calculate a solution to the one-dimensional '
-            'cutting problem.  This problem appears when you have a set of raw '
-            'materials and need to cut a stated set of workpieces from the '
-            'stock. ',
+        'descr': dedent('''
+            Python script that will calculate a solution to the one-dimensional
+            cutting problem.  This problem appears when you have a set of raw
+            materials and need to cut a stated set of workpieces from the
+            stock.
+            '''),
         'files': [
                 'cut.odt*',
                 'cut.pdf',
@@ -427,9 +458,10 @@ projects = {
         },
     'dbm': {
         'subdir': 'elec',
-        'descr': 
-            'Table of dBm to voltage conversions for 50, 600, and 75 '
-            'ohm impedances. ',
+        'descr': dedent('''
+            Table of dBm to voltage conversions for 50, 600, and 75
+            ohm impedances.
+            '''),
         'files': [
                 'dbm.odt*',
                 'dbm.ods*',
@@ -441,10 +473,11 @@ projects = {
         },
     'dedent': {
         'subdir': 'util',
-        'descr': 
-            'Python function that will remove the common space characters '
-            'from a set of text lines from files given on the command line '
-            'or stdin. ',
+        'descr': dedent('''
+            Python function that will remove the common space characters
+            from a set of text lines from files given on the command line
+            or stdin.
+            '''),
         'files': ['- dedent.py'],
         'srcdir': '/pylib/pgm',
         },
@@ -477,30 +510,33 @@ projects = {
         },
     'dep': {
         'subdir': 'util',
-        'descr': 
-            "Script to display a python program's module dependencies. "
-            'The modules are classified by type (standard library modules and '
-            "user modules).  It won't find .pyc/.pyo files nor modules the "
-            'imports depend on.  It uses regular expressions to find import '
-            "lines in the script, so it may show lines that aren't true imports "
-            "(e.g., an import line inside a conditional that's always false). ",
+        'descr': dedent('''
+            Script to display a python program's module dependencies.
+            The modules are classified by type (standard library modules and
+            user modules).  It won't find .pyc/.pyo files nor modules the
+            imports depend on.  It uses regular expressions to find import
+            lines in the script, so it may show lines that aren't true imports
+            (e.g., an import line inside a conditional that's always false).
+            '''),
         'files': ['- dep.py'],
         'srcdir': '/pylib/pgm',
         },
     'diam': {
         'subdir': 'science',
-        'descr': 
-            'Plots of circles showing the relative mean diameters of '
-            'planets and moons in the solar system. ',
+        'descr': dedent('''
+            Plots of circles showing the relative mean diameters of
+            planets and moons in the solar system.
+            '''),
         'files': ['- diameters.pdf'],
         'srcdir': '/science/astronomy/diameters',
         },
     'dino': {
         'subdir': 'math',
-        'descr': 
-            'This document discusses doing calculations without using an '
-            "electronic calculator.  It's useful for a technical person to know "
-            "how to reason quantitatively when a calculator isn't handy. ",
+        'descr': dedent('''
+            This document discusses doing calculations without using an
+            electronic calculator.  It's useful for a technical person to know
+            how to reason quantitatively when a calculator isn't handy.
+            '''),
         'files': [
                 'DinosaurArithmeticSmall.odt*',
                 'DinosaurArithmeticSmall.pdf',
@@ -530,10 +566,11 @@ projects = {
         },
     'diurnal': {
         'subdir': 'science',
-        'descr': 
-            'Shows a plot of the light from the sky measured with a cheap '
-            'photodiode.  This is a simple experiment that would be fun do to '
-            'with a child. ',
+        'descr': dedent('''
+            Shows a plot of the light from the sky measured with a cheap
+            photodiode.  This is a simple experiment that would be fun do to
+            with a child.
+            '''),
         'files': [
                 'diurnal_variations.odt*',
                 'diurnal_variations.pdf',
@@ -555,11 +592,12 @@ projects = {
         },
     'dmath': {
         'subdir': 'math',
-        'descr': 
-            'Contains a python module dmath.py that is a drop-in replacement '
-            "(nearly) for the python math module when calculating with python's "
-            'Decimal numbers.  Using this library, you can calculate elementary '
-            'functions to any desired accuracy. ',
+        'descr': dedent('''
+            Contains a python module dmath.py that is a drop-in replacement
+            (nearly) for the python math module when calculating with python's
+            Decimal numbers.  Using this library, you can calculate elementary
+            functions to any desired accuracy.
+            '''),
         'files': [
                 'dmath.py',
                 'dmath_test.py',
@@ -579,9 +617,10 @@ projects = {
         },
     'drtri': {
         'subdir': 'shop',
-        'descr': 
-            'This is a simple modification to a 30-60-90 drafting triangle '
-            'that lets you draw 45 degree angles. ',
+        'descr': dedent('''
+            This is a simple modification to a 30-60-90 drafting triangle
+            that lets you draw 45 degree angles.
+            '''),
         'files': [
                 ['drafting_triangle_tip.odt*', 'DraftingTriangleTip.odt*'],
                 ['drafting_triangle_tip.pdf', 'DraftingTriangleTip.pdf'],
@@ -591,20 +630,22 @@ projects = {
         },
     'drules': {
         'subdir': 'shop',
-        'descr': 
-            "PDFs containing some drafting rules that I've always wanted. "
-            'You can print them at full scale and glue them to a chunk of '
-            'wood to make some handy scales. ',
+        'descr': dedent('''
+            PDFs containing some drafting rules that I've always wanted.
+            You can print them at full scale and glue them to a chunk of
+            wood to make some handy scales.
+            '''),
         'files': ['- drules.pdf'],
         'srcdir': '/shop/drafting_rules',
         },
     'ds': {
         'subdir': 'util',
-        'descr': 
-            'Contains python scripts to help you launch datasheets, manuals, '
-            'and other documentation files from a command line prompt.  I '
-            'use this script to launch manuals and ebooks and it quickly '
-            'finds the ones I want amongst thousands of files. ',
+        'descr': dedent('''
+            Contains python scripts to help you launch datasheets, manuals,
+            and other documentation files from a command line prompt.  I
+            use this script to launch manuals and ebooks and it quickly
+            finds the ones I want amongst thousands of files.
+            '''),
         'files': [
                 'ds.py',
                 'ds.odt*',
@@ -624,10 +665,11 @@ projects = {
         },
     'ef': {
         'subdir': 'math',
-        'descr': 
-            'Graphs of a variety of elementary math functions, useful '
-            'for a quick picture of how they behave or to grab one or two '
-            'significant figures of the value. ',
+        'descr': dedent('''
+            Graphs of a variety of elementary math functions, useful
+            for a quick picture of how they behave or to grab one or two
+            significant figures of the value.
+            '''),
         'files': [
                 'ElementaryFunctions.odt*',
                 'ElementaryFunctions.pdf',
@@ -656,12 +698,13 @@ projects = {
         },
     'elements': {
         'subdir': 'science',
-        'descr': 
-            'Contains elements.pdf, a document that contains a periodic '
-            'table of the elements, a plot of the vapor pressures of the '
-            'elements, values of physical parameters sorted by value, and '
-            'various physical parameters of the elements plotted as a function '
-            'of atomic number. ',
+        'descr': dedent('''
+            Contains elements.pdf, a document that contains a periodic
+            table of the elements, a plot of the vapor pressures of the
+            elements, values of physical parameters sorted by value, and
+            various physical parameters of the elements plotted as a function
+            of atomic number.
+            '''),
         'files': [
                 '0readme*',
                 'elements.ods*',
@@ -683,9 +726,10 @@ projects = {
         },
     'esr': {
         'subdir': 'elec',
-        'descr': 
-            "Describes a technique of estimating a capacitor's ESR (equivalent "
-            'series resistance) without having to buy a special meter. ',
+        'descr': dedent('''
+            Describes a technique of estimating a capacitor's ESR (equivalent
+            series resistance) without having to buy a special meter.
+            '''),
         'files': [
                 'MeasuringESR.odt*',
                 'MeasuringESR.pdf',
@@ -696,19 +740,21 @@ projects = {
         },
     'ext': {
         'subdir': 'util',
-        'descr': 
-            'Python script to make a list of the extensions used '
-            'in file names and their counts in the directories given on the '
-            'command line. ',
+        'descr': dedent('''
+            Python script to make a list of the extensions used
+            in file names and their counts in the directories given on the
+            command line.
+            '''),
         'files': ['- ext.py'],
         'srcdir': '/pylib/pgm',
         },
     'fdiff': {
         'subdir': 'util',
-        'descr': 
-            'Contains python scripts that can identify differences in '
-            'two directory trees and perform updates as needed to synchronize '
-            'these two trees. ',
+        'descr': dedent('''
+            Contains python scripts that can identify differences in
+            two directory trees and perform updates as needed to synchronize
+            these two trees.
+            '''),
         'files': [
                 'ddiff.py',
                 'ddiffcp.py',
@@ -719,17 +765,19 @@ projects = {
         },
     'fit': {
         'subdir': 'util',
-        'descr': 
-            'Provides a python function to fit a string of words into '
-            'a given number of columns. ',
+        'descr': dedent('''
+            Provides a python function to fit a string of words into
+            a given number of columns.
+            '''),
         'files': ['- fit.py'],
         'srcdir': '/pylib/pgm',
         },
     'fits': {
         'subdir': 'shop',
-        'descr': 
-            'Python script to calculate the required shaft or hole size '
-            'given a basic dimension of a shaft or hole. ',
+        'descr': dedent('''
+            Python script to calculate the required shaft or hole size
+            given a basic dimension of a shaft or hole.
+            '''),
         'files': ['- fits.py'],
         'srcdir': '/pylib/pgm',
         },
@@ -741,9 +789,10 @@ projects = {
         },
     'fpen': {
         'subdir': 'misc',
-        'descr': 
-            'Discusses the care and feeding of fountain pens as writing '
-            'tools. ',
+        'descr': dedent('''
+            Discusses the care and feeding of fountain pens as writing
+            tools.
+            '''),
         'files': [
                 'fountain_pen_primer.odt*',
                 'fountain_pen_primer.pdf',
@@ -799,20 +848,22 @@ projects = {
         },
     'frac': {
         'subdir': 'math',
-        'descr': 
-            'A python script that will calculate a rational approximation '
-            'to a  real number.  If you download the mpmath library, you can '
-            'calculate to arbitrary precision. ',
+        'descr': dedent('''
+            A python script that will calculate a rational approximation
+            to a  real number.  If you download the mpmath library, you can
+            calculate to arbitrary precision.
+            '''),
         'files': ['- frac.py'],
         'ignore': 'Limited interest since Fractions module introduced',
         'srcdir': '/pylib/pgm',
         },
     'frange': {
         'subdir': 'math',
-        'descr': 
-            'A python module that provides a floating point analog to '
-            "range().  Doesn't suffer from the typical floating point problems "
-            'seen in naive implementations. ',
+        'descr': dedent('''
+            A python module that provides a floating point analog to
+            range().  Doesn't suffer from the typical floating point problems
+            seen in naive implementations.
+            '''),
         'files': [
                 ['../frange.py', 'frange.py'],
                 ['../test/frange_test.py', 'frange_test.py'],
@@ -821,9 +872,10 @@ projects = {
         },
     'frustum': {
         'subdir': 'shop',
-        'descr': 
-            'Shows how to lay out the frustum of a cone with dividers '
-            'in your shop. ',
+        'descr': dedent('''
+            Shows how to lay out the frustum of a cone with dividers
+            in your shop.
+            '''),
         'files': [
                 'LayingOutFrustumWithDividers.odt*',
                 'LayingOutFrustumWithDividers.pdf',
@@ -833,13 +885,14 @@ projects = {
         },
     'fseq': {
         'subdir': 'math',
-        'descr': 
-            'Contains a python script fseq.py that provides general-purpose '
-            'sequence generation (arithmetic, geometric, logarithmically-spaced, '
-            'etc.).  The script also provides useful random number generation '
-            'facilities for doing Monte Carlo calculations at the command '
-            'line, along with CDFs and PDFs of some distributions.  Requires '
-            'numpy. ',
+        'descr': dedent('''
+            Contains a python script fseq.py that provides general-purpose
+            sequence generation (arithmetic, geometric, logarithmically-spaced,
+            etc.).  The script also provides useful random number generation
+            facilities for doing Monte Carlo calculations at the command
+            line, along with CDFs and PDFs of some distributions.  Requires
+            numpy.
+            '''),
         'files': [
                 'fseq.py',
                 'fseq.odt*',
@@ -851,18 +904,20 @@ projects = {
         },
     'fset': {
         'subdir': 'prog',
-        'descr': 
-            'Treat lines of files as a set. Allows you to look at the '
-            'union, intersection, difference, etc. between the lines of '
-            'various files. ',
+        'descr': dedent('''
+            Treat lines of files as a set. Allows you to look at the
+            union, intersection, difference, etc. between the lines of
+            various files.
+            '''),
         'files': ['- fset.py'],
         'srcdir': '/pylib/pgm',
         },
     'func': {
         'subdir': 'util',
-        'descr': 
-            'Python script to list the functions and classes used in the '
-            'files given on the command line. ',
+        'descr': dedent('''
+            Python script to list the functions and classes used in the
+            files given on the command line.
+            '''),
         'files': ['- func.py'],
         'srcdir': '/pylib/pgm',
         },
@@ -877,11 +932,12 @@ projects = {
         },
     'gblock': {
         'subdir': 'shop',
-        'descr': 
-            'A C++ program to print out combinations of gauge blocks '
-            'that yield a desired composite length (the subset sum problem). '
-            'Uses brute-force searching to find solutions.  Includes a python '
-            'script that solves the same problem. ',
+        'descr': dedent('''
+            A C++ program to print out combinations of gauge blocks
+            that yield a desired composite length (the subset sum problem).
+            Uses brute-force searching to find solutions.  Includes a python
+            script that solves the same problem.
+            '''),
         'files': [
                 'gauge.cpp',
                 ['/pylib/pgm/gb.py', 'gb.py'],
@@ -890,12 +946,13 @@ projects = {
         },
     'getinput': {
         'subdir': 'util',
-        'descr': 
-            'A python module that gets input data in a variety of ways.  Gets '
-            'lines or tokens from a set of files or prompts the user for numbers '
-            '(the numbers can be restricted to an interval and can include '
-            'uncertainty or physical units).  The lines and token getters are '
-            'generators and can use functional programming tools. ',
+        'descr': dedent('''
+            A python module that gets input data in a variety of ways.  Gets
+            lines or tokens from a set of files or prompts the user for numbers
+            (the numbers can be restricted to an interval and can include
+            uncertainty or physical units).  The lines and token getters are
+            generators and can use functional programming tools.
+            '''),
         'files': [
                 'getinput.py',
                 'u.py',
@@ -905,9 +962,10 @@ projects = {
         },
     'glendag': {
         'subdir': 'shop',
-        'descr': 
-            'Describes a simple concrete sprinkler guard that my wife '
-            'designed and built. ',
+        'descr': dedent('''
+            Describes a simple concrete sprinkler guard that my wife
+            designed and built.
+            '''),
         'files': [
                 'GlendaGuard.odt*',
                 'GlendaGuard.pdf',
@@ -918,11 +976,12 @@ projects = {
         },
     'goto': {
         'subdir': 'util',
-        'descr': 
-            'Used a python script and shell functions to launch project files '
-            'and navigate to various directories from a command line.  A number '
-            "of UNIX users have told me they couldn't live without this tool once "
-            'they started using it. ',
+        'descr': dedent('''
+            Used a python script and shell functions to launch project files
+            and navigate to various directories from a command line.  A number
+            of UNIX users have told me they couldn't live without this tool once
+            they started using it.
+            '''),
         'files': [
                 ['_goto.py', 'goto.py'],
                 '_goto.odt*',
@@ -932,9 +991,10 @@ projects = {
         },
     'gpaper': {
         'subdir': 'math',
-        'descr': 
-            'Provides some common graph papers in PDF files that print '
-            'on ANSI A paper. ',
+        'descr': dedent('''
+            Provides some common graph papers in PDF files that print
+            on ANSI A paper.
+            '''),
         'files': [
                 'graph_paper.py',
                 '5mm_A.pdf',
@@ -948,9 +1008,10 @@ projects = {
         },
     'grid': {
         'subdir': 'eng',
-        'descr': 
-            'This python script will generate most any linear isotropic '
-            'graph paper by creating a PostScript file. ',
+        'descr': dedent('''
+            This python script will generate most any linear isotropic
+            graph paper by creating a PostScript file.
+            '''),
         'files': ['- eng_grid.py'],
         'srcdir': '/pylib/pgm',
         },
@@ -972,12 +1033,13 @@ projects = {
         },
     'help': {
         'subdir': 'prog',
-        'descr': 
-            'If you use the vim editor, you have a convenient tool for '
-            'accessing textual information. This package contains the tools '
-            "I use to build a help system I've used for the past couple "
-            'of decades (I started building this textual information in '
-            "the 1980's). ",
+        'descr': dedent('''
+            If you use the vim editor, you have a convenient tool for
+            accessing textual information. This package contains the tools
+            I use to build a help system I've used for the past couple
+            of decades (I started building this textual information in
+            the 1980's).
+            '''),
         'files': [
                 'misc/makefile',
                 'misc/mort',
@@ -1042,9 +1104,10 @@ projects = {
         },
     'hg': {
         'subdir': 'prog',
-        'descr': 
-            'Some python scripts that make it easier to work with Mercurial '
-            'repositories. ',
+        'descr': dedent('''
+            Some python scripts that make it easier to work with Mercurial
+            repositories.
+            '''),
         'files': [
                 'delta.py',
                 'fhg.py',
@@ -1056,9 +1119,10 @@ projects = {
         },
     'holes': {
         'subdir': 'shop',
-        'descr': 
-            'Contains a python script that will help you lay out holes '
-            'that are equally-spaced around a circle. ',
+        'descr': dedent('''
+            Contains a python script that will help you lay out holes
+            that are equally-spaced around a circle.
+            '''),
         'files': [
                 'holes.py',
                 'holes.drills',
@@ -1071,9 +1135,10 @@ projects = {
         },
     'hose': {
         'subdir': 'shop',
-        'descr': 
-            "Here's an effective way to secure a hose to a hose fitting. "
-            "It's better than anything I've found in a store. ",
+        'descr': dedent('''
+            Here's an effective way to secure a hose to a hose fitting.
+            It's better than anything I've found in a store.
+            '''),
         'files': [
                 'HoseFitting.odt*',
                 'HoseFitting.pdf',
@@ -1083,11 +1148,12 @@ projects = {
         },
     'hppn': {
         'subdir': 'elec',
-        'descr': 
-            'This is a compilation of various 8-digit HP part numbers '
-            'translated into conventional industry part numbers.  This list may '
-            'be of use to those with old HP instruments that need to find a '
-            'replacement part. ',
+        'descr': dedent('''
+            This is a compilation of various 8-digit HP part numbers
+            translated into conventional industry part numbers.  This list may
+            be of use to those with old HP instruments that need to find a
+            replacement part.
+            '''),
         'files': [
                 '0readme',
                 'hp.py',
@@ -1097,18 +1163,20 @@ projects = {
         },
     'hsm': {
         'subdir': 'shop',
-        'descr': 
-            'This python script searches metalworking titles for regular '
-            'expressions.  Contains the indexes from Village Press and Joe '
-            "Landau's index from 2000. ",
+        'descr': dedent('''
+            This python script searches metalworking titles for regular
+            expressions.  Contains the indexes from Village Press and Joe
+            Landau's index from 2000.
+            '''),
         'files': ['- hsm.zip'],
         'srcdir': '/pylib/pgm',
         },
     'iapws': {
         'subdir': 'eng',
-        'descr': 
-            'Contains C++ and python code that implements the IAPWS95 '
-            'equations for the thermodynamic properties of water. ',
+        'descr': dedent('''
+            Contains C++ and python code that implements the IAPWS95
+            equations for the thermodynamic properties of water.
+            '''),
         'files': [
                 'iapws95.cpp',
                 'iapws95.h',
@@ -1119,20 +1187,22 @@ projects = {
         },
     'imp': {
         'subdir': 'elec',
-        'descr': 
-            'This python script will take a complex impedance in polar '
-            "coordinates and print out the series and parallel models' values, "
-            'reactance, dissipation factor, and quality factor. ',
+        'descr': dedent('''
+            This python script will take a complex impedance in polar
+            coordinates and print out the series and parallel models' values,
+            reactance, dissipation factor, and quality factor.
+            '''),
         'files': ['- impedance.py'],
         'srcdir': '/pylib/pgm',
         },
     'ind': {
         'subdir': 'elec',
-        'descr': 
-            'Provides an Open Office spreadsheet that can calculate the '
-            'inductance of common electrical structures.  Includes a PDF '
-            'document describing the use and which gives references for '
-            'the formulas used. ',
+        'descr': dedent('''
+            Provides an Open Office spreadsheet that can calculate the
+            inductance of common electrical structures.  Includes a PDF
+            document describing the use and which gives references for
+            the formulas used.
+            '''),
         'files': [
                 'inductance.ods',
                 'inductance.odt*',
@@ -1145,26 +1215,29 @@ projects = {
         },
     'inflation': {
         'subdir': 'misc',
-        'descr': 
-            'Calculate the effects of inflation on prices for the years '
-            '1914 to the present.  For example, $1 to purchase food in 1960 '
-            'is equivalent to about $8.5 in 2018. ',
+        'descr': dedent('''
+            Calculate the effects of inflation on prices for the years
+            1914 to the present.  For example, $1 to purchase food in 1960
+            is equivalent to about $8.5 in 2018.
+            '''),
         'files': ['- inflation.py'],
         'srcdir': '/pylib/pgm',
         },
     'irr': {
         'subdir': 'science',
-        'descr': 
-            'Calculate irradiance over a wavelength band from a spectral '
-            'irradiance data file. ',
+        'descr': dedent('''
+            Calculate irradiance over a wavelength band from a spectral
+            irradiance data file.
+            '''),
         'files': ['- irr.py'],
         'srcdir': '/pylib/pgm',
         },
     'lib': {
         'subdir': 'util',
-        'descr': 
-            'Python script command line tool to provide a facility for '
-            'keeping snippets of code handy. ',
+        'descr': dedent('''
+            Python script command line tool to provide a facility for
+            keeping snippets of code handy.
+            '''),
         'files': [
                 'lib.py',
                 ['lib.dat.sample', 'lib.dat'],
@@ -1173,9 +1246,10 @@ projects = {
         },
     'license': {
         'subdir': 'prog',
-        'descr': 
-            'This is a python script that will allow you to change the '
-            'license you use in your source code files. ',
+        'descr': dedent('''
+            This is a python script that will allow you to change the
+            license you use in your source code files.
+            '''),
         'files': [
                 'license.py',
                 'color.py',
@@ -1184,10 +1258,11 @@ projects = {
         },
     'lnk': {
         'subdir': 'util',
-        'descr': 
-            'Python script to list the files in two directory trees that are '
-            'hard-linked together.  If you have GNU find, the -samefile option '
-            'can be used to do this too. ',
+        'descr': dedent('''
+            Python script to list the files in two directory trees that are
+            hard-linked together.  If you have GNU find, the -samefile option
+            can be used to do this too.
+            '''),
         'files': ['- lnk.py'],
         'srcdir': '/pylib/pgm',
         },
@@ -1202,12 +1277,13 @@ projects = {
         },
     'loo': {
         'subdir': 'util',
-        'descr': 
-            'Python script that will print out the image files in Open '
-            'Office documents.  Image files that are not at or below the same '
-            "directory as the document file will be marked '[not relative]'. "
-            "Missing files will be marked '[missing]'.  It is useful if you link "
-            'image files into OO files. ',
+        'descr': dedent('''
+            Python script that will print out the image files in Open
+            Office documents.  Image files that are not at or below the same
+            directory as the document file will be marked '[not relative]'.
+            Missing files will be marked '[missing]'.  It is useful if you link
+            image files into OO files.
+            '''),
         'files': [
                 'loo.py',
                 'color.py',
@@ -1216,11 +1292,12 @@ projects = {
         },
     'lookup': {
         'subdir': 'util',
-        'descr': 
-            'Package that contains a python script that can help you '
-            'look up words in a word dictionary and use the information '
-            'from WordNet to show synonyms, definitions, and types of words '
-            '(e.g., adjectives, adverbs, nouns, and verbs). ',
+        'descr': dedent('''
+            Package that contains a python script that can help you
+            look up words in a word dictionary and use the information
+            from WordNet to show synonyms, definitions, and types of words
+            (e.g., adjectives, adverbs, nouns, and verbs).
+            '''),
         'files': [
                 'lookup.py',
                 'mkwords.py',
@@ -1236,9 +1313,10 @@ projects = {
         },
     'lvise': {
         'subdir': 'shop',
-        'descr': 
-            'Describes a small vise made from 1 inch square bar stock.  It slips '
-            'into a pocket and is handy for small tasks around the shop and home. ',
+        'descr': dedent('''
+            Describes a small vise made from 1 inch square bar stock.  It slips
+            into a pocket and is handy for small tasks around the shop and home.
+            '''),
         'files': [
                 'LittleVise.odt*',
                 'LittleVise.pdf',
@@ -1250,11 +1328,12 @@ projects = {
         },
     'lwtest': {
         'subdir': 'prog',
-        'descr': 
-            'Lightweight python script testing framework based on some work by '
-            "Raymond Hettinger.  Python's unittest module is unfriendly to the "
-            'test/debug process because it intercepts the standard streams, which '
-            "doesn't let you use the python debugger to examine your code. ",
+        'descr': dedent('''
+            Lightweight python script testing framework based on some work by
+            Raymond Hettinger.  Python's unittest module is unfriendly to the
+            test/debug process because it intercepts the standard streams, which
+            doesn't let you use the python debugger to examine your code.
+            '''),
         'files': [
                 'lwtest.odt*',
                 'lwtest.pdf',
@@ -1264,10 +1343,11 @@ projects = {
         },
     'manufy': {
         'subdir': 'prog',
-        'descr': 
-            'Python script to convert text lines to have double quotes and '
-            'a newline at the end. This is useful to allow you to quickly write '
-            'text manpages for C or C++ code. ',
+        'descr': dedent('''
+            Python script to convert text lines to have double quotes and
+            a newline at the end. This is useful to allow you to quickly write
+            text manpages for C or C++ code.
+            '''),
         'files': ['- manufy.py'],
         'srcdir': '/pylib/pgm',
         },
@@ -1284,9 +1364,10 @@ projects = {
         },
     'mass': {
         'subdir': 'shop',
-        'descr': 
-            'Python script to calculate the volume and mass of a project '
-            'constructed from various primitive geometrical objects. ',
+        'descr': dedent('''
+            Python script to calculate the volume and mass of a project
+            constructed from various primitive geometrical objects.
+            '''),
         'files': [
                 'mass.bolt',
                 'mass.bucket',
@@ -1310,44 +1391,49 @@ projects = {
         },
     'mixture': {
         'subdir': 'science',
-        'descr': 
-            'A python script to aid in mixture calculations. Adapted '
-            'from a C program at http://www.myvirtualnetwork.com/mklotz/files/mixture.zip. ',
+        'descr': dedent('''
+            A python script to aid in mixture calculations. Adapted
+            from a C program at http://www.myvirtualnetwork.com/mklotz/files/mixture.zip.
+            '''),
         'files': ['- mixture.py'],
         'srcdir': '/pylib/pgm',
         },
     'mk': {
         'subdir': 'util',
-        'descr': 
-            'Python script that is invoked with a file that '
-            'contains lines of file pairs and a recipe.  When the first '
-            'file is newer than the second, the recipe is executed. ',
+        'descr': dedent('''
+            Python script that is invoked with a file that
+            contains lines of file pairs and a recipe.  When the first
+            file is newer than the second, the recipe is executed.
+            '''),
         'files': ['- mk.py'],
         'srcdir': '/pylib/pgm',
         },
     'mkfile': {
         'subdir': 'util',
-        'descr': 
-            'Python script to make files of a given size.  The -u and -t '
-            'options construct allegedly cryptographically-secure random '
-            'bytes.  On my older computer, it takes a few seconds to '
-            'construct a 1 GB file of random bytes. ',
+        'descr': dedent('''
+            Python script to make files of a given size.  The -u and -t
+            options construct allegedly cryptographically-secure random
+            bytes.  On my older computer, it takes a few seconds to
+            construct a 1 GB file of random bytes.
+            '''),
         'files': ['- mkfile.py'],
         'srcdir': '/pylib/pgm',
         },
     'mod': {
         'subdir': 'util',
-        'descr': 
-            'Python script to recursively find files that have changed '
-            'within a specified time period. ',
+        'descr': dedent('''
+            Python script to recursively find files that have changed
+            within a specified time period.
+            '''),
         'files': ['- mod.py'],
         'srcdir': '/pylib/pgm',
         },
     'mortgage': {
         'subdir': 'misc',
-        'descr': 
-            "Gives a table that lets you estimate your mortgage's monthly "
-            "payment.  Doesn't include taxes or insurance. ",
+        'descr': dedent('''
+            Gives a table that lets you estimate your mortgage's monthly
+            payment.  Doesn't include taxes or insurance.
+            '''),
         'files': [
                 'Mortgage.odt*',
                 'Mortgage.pdf',
@@ -1356,18 +1442,20 @@ projects = {
         },
     'mp': {
         'subdir': 'util',
-        'descr': 
-            'This is a macro processor that is a string substitution '
-            'tool. You can also include arbitrary python code in your text '
-            'files. Use mp.py -h to read the man page. ',
+        'descr': dedent('''
+            This is a macro processor that is a string substitution
+            tool. You can also include arbitrary python code in your text
+            files. Use mp.py -h to read the man page.
+            '''),
         'files': ['- mp.py'],
         'srcdir': '/pylib/pgm',
         },
     'novas': {
         'subdir': 'science',
-        'descr': 
-            'Translation into python of some C code from the US Naval '
-            'Observatory (http://aa.usno.navy.mil/software/novas/novas_c/novasc_info.html). ',
+        'descr': dedent('''
+            Translation into python of some C code from the US Naval
+            Observatory (http://aa.usno.navy.mil/software/novas/novas_c/novasc_info.html).
+            '''),
         'files': ['- novas.py'],
         'srcdir': '/pylib',
         },
@@ -1384,9 +1472,10 @@ projects = {
         },
     'oct': {
         'subdir': 'elec',
-        'descr': 
-            'Build an Octopus, a handy electrical troubleshooting tool (you need '
-            'an oscilloscope). ',
+        'descr': dedent('''
+            Build an Octopus, a handy electrical troubleshooting tool (you need
+            an oscilloscope).
+            '''),
         'files': [
                 'Octopus_new.odt*',
                 ['Octopus_new.pdf', 'octopus.pdf'],
@@ -1413,10 +1502,11 @@ projects = {
         },
     'odict': {
         'subdir': 'prog',
-        'descr': 
-            "A bare-bones ordered dictionary for python. You won't need "
-            "this if you are on python 2.7 or later because there's a built-in "
-            'ordered  dictionary. ',
+        'descr': dedent('''
+            A bare-bones ordered dictionary for python. You won't need
+            this if you are on python 2.7 or later because there's a built-in
+            ordered  dictionary.
+            '''),
         'files': [
                 'odict.py',
                 ['test/odict_test.py', 'odict_test.py'],
@@ -1425,9 +1515,10 @@ projects = {
         },
     'oo_math': {
         'subdir': 'math',
-        'descr': 
-            'Introduces the equation-writing capabilities of Open Office '
-            '2.0.  Includes a cheatsheet that you can modify. ',
+        'descr': dedent('''
+            Introduces the equation-writing capabilities of Open Office
+            2.0.  Includes a cheatsheet that you can modify.
+            '''),
         'files': [
                 'OO_math.odt*',
                 'OO_math.pdf',
@@ -1457,13 +1548,14 @@ projects = {
         },
     'out': {
         'subdir': 'prog',
-        'descr': 
-            'Contains a python module that provides a utility object '
-            "for printing string representations of objects to a stream.  I've "
-            "used something like this for years and it's a good tool to "
-            'replace the print command/function, which causes a bit of friction '
-            'between python 2 and 3 code.  This module has been tested with '
-            'both python 2 and 3. ',
+        'descr': dedent('''
+            Contains a python module that provides a utility object
+            for printing string representations of objects to a stream.  I've
+            used something like this for years and it's a good tool to
+            replace the print command/function, which causes a bit of friction
+            between python 2 and 3 code.  This module has been tested with
+            both python 2 and 3.
+            '''),
         'files': [
                 'out.odt*',
                 'out.pdf',
@@ -1474,9 +1566,10 @@ projects = {
         },
     'paper': {
         'subdir': 'misc',
-        'descr': 
-            'Contains a python script to calculate various things about '
-            'paper to compare paper purchases. ',
+        'descr': dedent('''
+            Contains a python script to calculate various things about
+            paper to compare paper purchases.
+            '''),
         'files': ['- paper.py'],
         'srcdir': '/pylib/pgm',
         },
@@ -1491,9 +1584,10 @@ projects = {
         },
     'parts': {
         'subdir': 'elec',
-        'descr': 
-            'Describes one way of storing lots of little electronic parts '
-            'and how to find them quickly. ',
+        'descr': dedent('''
+            Describes one way of storing lots of little electronic parts
+            and how to find them quickly.
+            '''),
         'files': [
                 'PartsStorageMethods.odt*',
                 'PartsStorageMethods.pdf',
@@ -1502,28 +1596,31 @@ projects = {
         },
     'pcmplx': {
         'subdir': 'math',
-        'descr': 
-            'Parse complex numbers when they are written in the ways humans '
-            'like to write them.  The floating point type can be specified, which '
-            'allows you to keep the full precision of the problem. ',
+        'descr': dedent('''
+            Parse complex numbers when they are written in the ways humans
+            like to write them.  The floating point type can be specified, which
+            allows you to keep the full precision of the problem.
+            '''),
         'files': ['- parse_complex.py'],
         'srcdir': '/pylib',
         },
     'pdf': {
         'subdir': 'util',
-        'descr': 
-            'This is a python script that can manipulate PDF files. It can '
-            'concatenate a number of PDF files, select certain pages and write '
-            "them to another PDF file, rotating pages, watermarking. etc. You'll "
-            'also need to download the pyPdf library to use this script. ',
+        'descr': dedent('''
+            This is a python script that can manipulate PDF files. It can
+            concatenate a number of PDF files, select certain pages and write
+            them to another PDF file, rotating pages, watermarking. etc. You'll
+            also need to download the pyPdf library to use this script.
+            '''),
         'files': ['- [pdf_.py, pdf.py]'],
         'srcdir': '/pylib',
         },
     'pfind': {
         'subdir': 'util',
-        'descr': 
-            'Python script to find files and directories. Similar to '
-            'the UNIX find (but not as powerful), but with a simpler syntax. ',
+        'descr': dedent('''
+            Python script to find files and directories. Similar to
+            the UNIX find (but not as powerful), but with a simpler syntax.
+            '''),
         'files': ['- pfind.py'],
         'srcdir': '/pylib/pgm',
         },
@@ -1535,9 +1632,10 @@ projects = {
         },
     'pipes': {
         'subdir': 'shop',
-        'descr': 
-            'Derivation of a formula that can be used to make a template for cutting '
-            'the end of a pipe so that it can be welded to another pipe. ',
+        'descr': dedent('''
+            Derivation of a formula that can be used to make a template for cutting
+            the end of a pipe so that it can be welded to another pipe.
+            '''),
         'files': [
                 'pipes.odt*',
                 'pipes.pdf',
@@ -1546,9 +1644,10 @@ projects = {
         },
     'posts': {
         'subdir': 'shop',
-        'descr': 
-            'Using a class 2 lever can be a surprisingly effective way '
-            'to pull fence posts out of the ground. ',
+        'descr': dedent('''
+            Using a class 2 lever can be a surprisingly effective way
+            to pull fence posts out of the ground.
+            '''),
         'files': [
                 'PullingFencePosts.odt*',
                 'PullingFencePosts.pdf',
@@ -1561,9 +1660,10 @@ projects = {
         },
     'pqs': {
         'subdir': 'eng',
-        'descr': 
-            'Python scripts to simulate a production process that is inspected '
-            'by a measurement process with a significant measurement uncertainty. ',
+        'descr': dedent('''
+            Python scripts to simulate a production process that is inspected
+            by a measurement process with a significant measurement uncertainty.
+            '''),
         'files': [
                 'ProcessSimulator.odt*',
                 'ProcessSimulator.pdf',
@@ -1584,9 +1684,10 @@ projects = {
         },
     'primes': {
         'subdir': 'math',
-        'descr': 
-            'Some python scripts that deal with primes, factoring, and '
-            'integer properties. ',
+        'descr': dedent('''
+            Some python scripts that deal with primes, factoring, and
+            integer properties.
+            '''),
         'files': [
                 'primes.py',
                 ['pgm/int.py', 'int.py'],
@@ -1596,9 +1697,10 @@ projects = {
         },
     'python': {
         'subdir': 'prog',
-        'descr': 
-            'Discusses why learning the python programming language might be a '
-            'good thing for technical folks. ',
+        'descr': dedent('''
+            Discusses why learning the python programming language might be a
+            good thing for technical folks.
+            '''),
         'files': [
                 ['/doc/Python.odt*', 'Python.odt*'],
                 ['/doc/Python.pdf', 'Python.pdf'],
@@ -1610,10 +1712,11 @@ projects = {
         },
     'qmd': {
         'subdir': 'math',
-        'descr': 
-            'Discussion of how to do multiplications and divisions '
-            'by hand when you only need a specified number of significant '
-            'figures in the answer. ',
+        'descr': dedent('''
+            Discussion of how to do multiplications and divisions
+            by hand when you only need a specified number of significant
+            figures in the answer.
+            '''),
         'files': [
                 'QuickMultDiv.odt*',
                 'QuickMultDiv.pdf',
@@ -1622,9 +1725,10 @@ projects = {
         },
     'rand': {
         'subdir': 'math',
-        'descr': 
-            'A pure python script for generating random numbers from various '
-            'distributions to stdout. ',
+        'descr': dedent('''
+            A pure python script for generating random numbers from various
+            distributions to stdout.
+            '''),
         'files': [
                 'rand.py',
                 ['../sig.py', 'sig.py'],
@@ -1634,17 +1738,19 @@ projects = {
         },
     'random_phrase': {
         'subdir': 'util',
-        'descr': 
-            'A python script for generating random phrases of words.  Useful '
-            'for generating pass phrases. ',
+        'descr': dedent('''
+            A python script for generating random phrases of words.  Useful
+            for generating pass phrases.
+            '''),
         'files': ['- random_phrase.py'],
         'srcdir': '/pylib/pgm',
         },
     'react': {
         'subdir': 'elec',
-        'descr': 
-            'Contains two reactance charts in PDF form along with a short '
-            'file describing their use. ',
+        'descr': dedent('''
+            Contains two reactance charts in PDF form along with a short
+            file describing their use.
+            '''),
         'files': [
                 'reactance_notes.pdf',
                 ['out/reactance.pdf', 'reactance.pdf'],
@@ -1656,10 +1762,11 @@ projects = {
         },
     'readability': {
         'subdir': 'util',
-        'descr': 
-            'Will calculate various readability indexes for text files, '
-            'such as the Gunning Fog Index, the Flesch-Kinkaid Grade Level, '
-            'etc. ',
+        'descr': dedent('''
+            Will calculate various readability indexes for text files,
+            such as the Gunning Fog Index, the Flesch-Kinkaid Grade Level,
+            etc.
+            '''),
         'files': [
                 'readability.py',
                 'readability.readme',
@@ -1670,10 +1777,11 @@ projects = {
         },
     'refcards': {
         'subdir': 'shop',
-        'descr': 
-            'Contains some reference cards that will print out on 4 by '
-            '6 inch cards. I find these handy to keep in my drafting materials '
-            "box when I'm doing design work at a drafting board. ",
+        'descr': dedent('''
+            Contains some reference cards that will print out on 4 by
+            6 inch cards. I find these handy to keep in my drafting materials
+            box when I'm doing design work at a drafting board.
+            '''),
         'files': [
                 ['pdf/cards.pdf', 'reference_cards.pdf'],
                 'decimal_equiv.ods',
@@ -1732,10 +1840,11 @@ projects = {
         },
     'root': {
         'subdir': 'math',
-        'descr': 
-            "Pure-python root-finding methods such as bisection, Brent's "
-            "method, Ridder's method, Newton-Raphson, and a general-purpose "
-            'method by Jack Crenshaw that uses inverse parabolic interpolation. ',
+        'descr': dedent('''
+            Pure-python root-finding methods such as bisection, Brent's
+            method, Ridder's method, Newton-Raphson, and a general-purpose
+            method by Jack Crenshaw that uses inverse parabolic interpolation.
+            '''),
         'files': [
                 'root.py',
                 ['test/root_test.py', 'root_test.py'],
@@ -1744,12 +1853,13 @@ projects = {
         },
     'rpath': {
         'subdir': 'math',
-        'descr': 
-            'A python module for modeling rectilinear path object in '
-            'n-dimensional spaces.  You supply it with a set of points and '
-            'then you can interpolate to points on the path via a parameter. '
-            'You can do things like calculate line integrals and complex path '
-            'integrals. ',
+        'descr': dedent('''
+            A python module for modeling rectilinear path object in
+            n-dimensional spaces.  You supply it with a set of points and
+            then you can interpolate to points on the path via a parameter.
+            You can do things like calculate line integrals and complex path
+            integrals.
+            '''),
         'files': [
                 'path.py',
                 'path.odt*',
@@ -1760,17 +1870,19 @@ projects = {
         },
     'ruler': {
         'subdir': 'util',
-        'descr': 
-            'For console windows; prints a variety of rulers to stdout. '
-            "It's easy to modify to get different ruler types. ",
+        'descr': dedent('''
+            For console windows; prints a variety of rulers to stdout.
+            It's easy to modify to get different ruler types.
+            '''),
         'files': ['- ruler.py'],
         'srcdir': '/pylib/pgm',
         },
     'sawbuck': {
         'subdir': 'shop',
-        'descr': 
-            "A simple and easy to make sawbuck that's made from eight identical "
-            'pieces of 2x4. ',
+        'descr': dedent('''
+            A simple and easy to make sawbuck that's made from eight identical
+            pieces of 2x4.
+            '''),
         'files': [
                 'SawBuck.odt*',
                 'SawBuck.pdf',
@@ -1781,10 +1893,11 @@ projects = {
         },
     'scale': {
         'subdir': 'math',
-        'descr': 
-            'The scale.pdf file contains two sheets of paper with slide rule '
-            'type scales on them. You may find it useful for simple technical '
-            'calculations. ',
+        'descr': dedent('''
+            The scale.pdf file contains two sheets of paper with slide rule
+            type scales on them. You may find it useful for simple technical
+            calculations.
+            '''),
         'files': [
                 'scale.pdf',
                 'OnePageCalculator.odt*',
@@ -1795,9 +1908,10 @@ projects = {
         },
     'scramble': {
         'subdir': 'util',
-        'descr': 
-            'Contains a python script to scramble letters in words, leaving '
-            'the first and last characters alone. ',
+        'descr': dedent('''
+            Contains a python script to scramble letters in words, leaving
+            the first and last characters alone.
+            '''),
         'files': [
                 'scramble.py',
                 'scramble.html',
@@ -1806,9 +1920,10 @@ projects = {
         },
     'seq': {
         'subdir': 'math',
-        'descr': 
-            'Python script to send various arithmetical progressions '
-            'to stdout.  Handles integers, floating point, and fractions. ',
+        'descr': dedent('''
+            Python script to send various arithmetical progressions
+            to stdout.  Handles integers, floating point, and fractions.
+            '''),
         'files': [
                 ['pgm/seq.py', 'seq.py'],
                 'frange.py',
@@ -1826,9 +1941,10 @@ projects = {
         },
     'shorttbl': {
         'subdir': 'math',
-        'descr': 
-            'A set of tables of elementary math functions intended to '
-            'print on half of an ANSI-A sized piece of paper. ',
+        'descr': dedent('''
+            A set of tables of elementary math functions intended to
+            print on half of an ANSI-A sized piece of paper.
+            '''),
         'files': [
                 'ShortTables.ods*',
                 'ShortTables.odt*',
@@ -1839,19 +1955,21 @@ projects = {
         },
     'shuffle': {
         'subdir': 'prog',
-        'descr': 
-            'C program to randomly shuffle the bytes of a file.  It '
-            'reads all the bytes of a file into memory, so it cannot be used '
-            'on arbitrarily large files. ',
+        'descr': dedent('''
+            C program to randomly shuffle the bytes of a file.  It
+            reads all the bytes of a file into memory, so it cannot be used
+            on arbitrarily large files.
+            '''),
         'files': ['- shuffle.c'],
         'srcdir': '/tools/shuffle',
         },
     'sig': {
         'subdir': 'prog',
-        'descr': 
-            'A python module to format floating point numbers '
-            'to a specified number of significant figures or round to a '
-            'specified template. ',
+        'descr': dedent('''
+            A python module to format floating point numbers
+            to a specified number of significant figures or round to a
+            specified template.
+            '''),
         'files': [
                 'sig.py',
                 'sig.odt*',
@@ -1862,9 +1980,10 @@ projects = {
         },
     'sinesticks': {
         'subdir': 'shop',
-        'descr': 
-            'How to build a simple device from scrap that will measure '
-            'angles in the shop. ',
+        'descr': dedent('''
+            How to build a simple device from scrap that will measure
+            angles in the shop.
+            '''),
         'files': [
                 'sine_sticks.odt*',
                 'sine_sticks.pdf',
@@ -1873,10 +1992,11 @@ projects = {
         },
     'solar': {
         'subdir': 'science',
-        'descr': 
-            'Python script that prints out the dimensions of a scaled solar '
-            'system.  You can use it to make a scale solar system in your yard '
-            'or on your street. ',
+        'descr': dedent('''
+            Python script that prints out the dimensions of a scaled solar
+            system.  You can use it to make a scale solar system in your yard
+            or on your street.
+            '''),
         'files': [
                 'SolarSystemScaleModel.odt*',
                 'SolarSystemScaleModel.pdf',
@@ -1887,19 +2007,21 @@ projects = {
         },
     'space': {
         'subdir': 'util',
-        'descr': 
-            'See where the space is being consumed in a directory tree and where the '
-            'biggest files are. ',
+        'descr': dedent('''
+            See where the space is being consumed in a directory tree and where the
+            biggest files are.
+            '''),
         'files': ['- space.py'],
         'srcdir': '/pylib/pgm',
         },
     'sphshell': {
         'subdir': 'science',
-        'descr': 
-            'Discusses gravitation and electrostatics inside a uniform '
-            'spherical shell and why there is no force on a particle. Also '
-            "looks at Henry Cavendish's elegant experiment in the 1700's showing "
-            "that the exponent in Coulomb's Law is 2. ",
+        'descr': dedent('''
+            Discusses gravitation and electrostatics inside a uniform
+            spherical shell and why there is no force on a particle. Also
+            looks at Henry Cavendish's elegant experiment in the 1700's showing
+            that the exponent in Coulomb's Law is 2.
+            '''),
         'files': [
                 'SphericalShell.odt*',
                 'SphericalShell.pdf',
@@ -1918,10 +2040,11 @@ projects = {
         },
     'split_cat': {
         'subdir': 'util',
-        'descr': 
-            'Python scripts to split a file into chunks, print out SHA1 '
-            'hashes of each chunk, and allow you to recombine the chunks '
-            'later back into the original file. ',
+        'descr': dedent('''
+            Python scripts to split a file into chunks, print out SHA1
+            hashes of each chunk, and allow you to recombine the chunks
+            later back into the original file.
+            '''),
         'files': [
                 'split.py',
                 'cat.py',
@@ -1930,9 +2053,10 @@ projects = {
         },
     'square': {
         'subdir': 'shop',
-        'descr': 
-            "How to use a carpenter's square to lay out angles from 1 "
-            'degree to 44 degrees. ',
+        'descr': dedent('''
+            How to use a carpenter's square to lay out angles from 1
+            degree to 44 degrees.
+            '''),
         'files': [
                 ['angles_and_carpenters_square.odt*', 'square.odt*'],
                 ['pdf/angles_and_carpenters_square.pdf', 'square.pdf'],
@@ -1941,10 +2065,11 @@ projects = {
         },
     'stack': {
         'subdir': 'prog',
-        'descr': 
-            'A python module that implements a thread-safe and '
-            'process-safe basic stack.  Works on python 2.7 and 3 '
-            '(copy() only works on python 3.5 or later). ',
+        'descr': dedent('''
+            A python module that implements a thread-safe and
+            process-safe basic stack.  Works on python 2.7 and 3
+            (copy() only works on python 3.5 or later).
+            '''),
         'files': [
                 'stack.py',
                 ['test/stack_test.py', 'stack_test.py'],
@@ -1953,19 +2078,21 @@ projects = {
         },
     'sumbytes': {
         'subdir': 'prog',
-        'descr': 
-            'A short C++ program that will read all the bytes from the '
-            'files given on the command line and compute various statistics '
-            'from them. ',
+        'descr': dedent('''
+            A short C++ program that will read all the bytes from the
+            files given on the command line and compute various statistics
+            from them.
+            '''),
         'files': ['- sumbytes.cpp'],
         'srcdir': '/tools',
         },
     'sz': {
         'subdir': 'util',
-        'descr': 
-            'Python script to print out sizes of subdirectories.  The output '
-            'is to one significant figure and is color-coded for quickly seeing '
-            'where most of the storage space is being taken. ',
+        'descr': dedent('''
+            Python script to print out sizes of subdirectories.  The output
+            is to one significant figure and is color-coded for quickly seeing
+            where most of the storage space is being taken.
+            '''),
         'files': [
                 'sz.py',
                 ['../color.py', 'color.py'],
@@ -1974,10 +2101,11 @@ projects = {
         },
     'thd': {
         'subdir': 'shop',
-        'descr': 
-            'Prints out various dimensions associated with threads per ASME '
-            'B1.1-1989.  If you machine threads on a lathe, you may find this '
-            'program handy. ',
+        'descr': dedent('''
+            Prints out various dimensions associated with threads per ASME
+            B1.1-1989.  If you machine threads on a lathe, you may find this
+            program handy.
+            '''),
         'files': [
                 'thd.py',
                 ['../asme.py', 'asme.py'],
@@ -2016,27 +2144,30 @@ projects = {
         },
     'tlc': {
         'subdir': 'util',
-        'descr': 
-            'Python script to rename all files in a directory to lower '
-            'or upper case. ',
+        'descr': dedent('''
+            Python script to rename all files in a directory to lower
+            or upper case.
+            '''),
         'files': ['- tlc.py'],
         'srcdir': '/pylib/pgm',
         },
     'tokens': {
         'subdir': 'util',
-        'descr': 
-            'Will produce a list of readable words from an HTML file, '
-            'all in lower case, one per line. You could then run the list '
-            'of words through a spell checker. ',
+        'descr': dedent('''
+            Will produce a list of readable words from an HTML file,
+            all in lower case, one per line. You could then run the list
+            of words through a spell checker.
+            '''),
         'files': ['- html_tokens.py'],
         'srcdir': '/pylib/pgm',
         },
     'tree': {
         'subdir': 'util',
-        'descr': 
-            'Python script to print an ASCII representation of a directory '
-            "tree.  It can optionally decorate the tree with each directory's "
-            'size in MBytes and highlight a regular expression in color. ',
+        'descr': dedent('''
+            Python script to print an ASCII representation of a directory
+            tree.  It can optionally decorate the tree with each directory's
+            size in MBytes and highlight a regular expression in color.
+            '''),
         'files': ['- tree.py'],
         'srcdir': '/pylib/pgm',
         },
@@ -2053,9 +2184,10 @@ projects = {
         },
     'trigd': {
         'subdir': 'math',
-        'descr': 
-            'Gives some algebraic expressions for a few special values '
-            'of trigonometric functions in degrees. ',
+        'descr': dedent('''
+            Gives some algebraic expressions for a few special values
+            of trigonometric functions in degrees.
+            '''),
         'files': [
                 'TrigDegrees.odt*',
                 'TrigDegrees.pdf',
@@ -2064,10 +2196,11 @@ projects = {
         },
     'triguc': {
         'subdir': 'math',
-        'descr': 
-            'Contains a vector drawing of the trig functions on the unit '
-            'circle.  The python script used to generate the graphics is '
-            'included, so you can tweak it to your tastes. ',
+        'descr': dedent('''
+            Contains a vector drawing of the trig functions on the unit
+            circle.  The python script used to generate the graphics is
+            included, so you can tweak it to your tastes.
+            '''),
         'files': [
                 'trig_functions.py',
                 ['images/trig_functions.pdf', 'trig_functions.pdf'],
@@ -2079,13 +2212,14 @@ projects = {
         },
     'ts': {
         'subdir': 'prog',
-        'descr': 
-            'The ts.py script provides facilities for text substitution '
-            'in text files.  It has only 3 basic commands (define a substitution, '
-            'turn  the output on/off, and include a file) and the ability '
-            'to include blocks of python code in the text file.  Though '
-            "it's relatively simple to use, it can provide a fair bit "
-            'of power. ',
+        'descr': dedent('''
+            The ts.py script provides facilities for text substitution
+            in text files.  It has only 3 basic commands (define a substitution,
+            turn  the output on/off, and include a file) and the ability
+            to include blocks of python code in the text file.  Though
+            it's relatively simple to use, it can provide a fair bit
+            of power.
+            '''),
         'files': [
                 'ts.py',
                 'ts.ts',
@@ -2100,10 +2234,11 @@ projects = {
         },
     'u': {
         'subdir': 'science',
-        'descr': 
-            'A lightweight python library module that provides conversion '
-            'factors for various physical units.  An experienced scientist or '
-            'engineer will be using it in a few minutes after seeing an example. ',
+        'descr': dedent('''
+            A lightweight python library module that provides conversion
+            factors for various physical units.  An experienced scientist or
+            engineer will be using it in a few minutes after seeing an example.
+            '''),
         'files': [
                 'u.odt*',
                 'u.pdf',
@@ -2114,21 +2249,23 @@ projects = {
         },
     'uni': {
         'subdir': 'util',
-        'descr': 
-            "Python script to find Unicode characters.  You'll need to download "
-            'the relevant files from the Unicode website.  This script was '
-            'written in 2014 and I based it on the information from The '
-            "Unicode 7 standard; version 12 is current in 2019 and it's on my "
-            'todo list to upgrade this script.  Yet I still use this script '
-            'every day when working on my computer. ',
+        'descr': dedent('''
+            Python script to find Unicode characters.  You'll need to download
+            the relevant files from the Unicode website.  This script was
+            written in 2014 and I based it on the information from The
+            Unicode 7 standard; version 12 is current in 2019 and it's on my
+            todo list to upgrade this script.  Yet I still use this script
+            every day when working on my computer.
+            '''),
         'files': ['- unicode.py'],
         'srcdir': '/pylib/pgm',
         },
     'units': {
         'subdir': 'science',
-        'descr': 
-            'A short blurb on the capabilities of the useful GNU units '
-            'program. ',
+        'descr': dedent('''
+            A short blurb on the capabilities of the useful GNU units
+            program.
+            '''),
         'files': [
                 'GNU_units.odt*',
                 'GNU_units.pdf',
@@ -2137,35 +2274,39 @@ projects = {
         },
     'unx': {
         'subdir': 'util',
-        'descr': 
-            'Produces a list of files that are candidates for turning '
-            'their execute bit permission off.  This is useful on Windows machines '
-            'running cygwin to avoid a "sea of green" in an ls listing with '
-            'colorizing on. ',
+        'descr': dedent('''
+            Produces a list of files that are candidates for turning
+            their execute bit permission off.  This is useful on Windows machines
+            running cygwin to avoid a "sea of green" in an ls listing with
+            colorizing on.
+            '''),
         'files': ['- unx.py'],
         'srcdir': '/pylib/pgm',
         },
     'url': {
         'subdir': 'util',
-        'descr': 
-            'Python script that will interpret a URL from a Google search '
-            'page. ',
+        'descr': dedent('''
+            Python script that will interpret a URL from a Google search
+            page.
+            '''),
         'files': ['- url.py'],
         'srcdir': '/pylib/pgm',
         },
     'us': {
         'subdir': 'util',
-        'descr': 
-            'Python script to replace all space characters in file names '
-            'with underscores. ',
+        'descr': dedent('''
+            Python script to replace all space characters in file names
+            with underscores.
+            '''),
         'files': ['- spc_to_underscore.py'],
         'srcdir': '/pylib/pgm',
         },
     'util': {
         'subdir': 'prog',
-        'descr': 
-            "Contains a number of miscellaneous python functions I've "
-            'written and collected from the web. ',
+        'descr': dedent('''
+            Contains a number of miscellaneous python functions I've
+            written and collected from the web.
+            '''),
         'files': [
                 'util.py',
                 ['test/util_test.py', 'util_test.py'],
@@ -2174,9 +2315,10 @@ projects = {
         },
     'vs': {
         'subdir': 'elec',
-        'descr': 
-            'Simple voltage standard you can make with one resistor, an IC '
-            'that costs about a buck, and three AA batteries. ',
+        'descr': dedent('''
+            Simple voltage standard you can make with one resistor, an IC
+            that costs about a buck, and three AA batteries.
+            '''),
         'files': [
                 'PortableVoltageStandard.odt*',
                 'PortableVoltageStandard.pdf',
@@ -2186,10 +2328,11 @@ projects = {
         },
     'wave': {
         'subdir': 'elec',
-        'descr': 
-            'Provides a python script (uses numpy and scipy) that lets '
-            'you construct various waveforms used in engineering and science '
-            'tasks. ',
+        'descr': dedent('''
+            Provides a python script (uses numpy and scipy) that lets
+            you construct various waveforms used in engineering and science
+            tasks.
+            '''),
         'files': [
                 'waveform.py',
                 'waveform.odt*',
@@ -2207,9 +2350,10 @@ projects = {
         },
     'weigh': {
         'subdir': 'shop',
-        'descr': 
-            'Demonstrates how I weighed our trailer with a lever. With '
-            'a 12 foot long 4x4, I was able to measure 2500 pounds. ',
+        'descr': dedent('''
+            Demonstrates how I weighed our trailer with a lever. With
+            a 12 foot long 4x4, I was able to measure 2500 pounds.
+            '''),
         'files': [
                 ['weighing_a_trailer.odt*', 'weigh.odt*'],
                 ['weighing_a_trailer.pdf', 'weigh.pdf'],
@@ -2220,13 +2364,14 @@ projects = {
         },
     'wordnum': {
         'subdir': 'prog',
-        'descr': 
-            'A python script that can convert back and forth between '
-            'numbers and their word forms.  Handles short and long scales, '
-            'ordinals, integers, floats (normal and exponential notation), '
-            "and fractions.  Easy interface through an object's function "
-            "call; wordnum(36) gives 'thirty six'; wordnum('thirty six') "
-            'returns the integer 36.  Tested on python 2.7.6 and 3.4.0. ',
+        'descr': dedent('''
+            A python script that can convert back and forth between
+            numbers and their word forms.  Handles short and long scales,
+            ordinals, integers, floats (normal and exponential notation),
+            and fractions.  Easy interface through an object's function
+            call; wordnum(36) gives 'thirty six'; wordnum('thirty six')
+            returns the integer 36.  Tested on python 2.7.6 and 3.4.0.
+            '''),
         'files': [
                 'wordnum.py',
                 ['test/wordnum_test.py', 'wordnum_test.py'],
@@ -2244,9 +2389,10 @@ projects = {
         },
     'xmastom': {
         'subdir': 'misc',
-        'descr': 
-            'Using Christmas tree lights to keep tomato plants from freezing '
-            'at night. ',
+        'descr': dedent('''
+            Using Christmas tree lights to keep tomato plants from freezing
+            at night.
+            '''),
         'files': [
                 'XmasTomatoes.odt*',
                 'XmasTomatoes.pdf',
@@ -2255,9 +2401,10 @@ projects = {
         },
     'xor': {
         'subdir': 'prog',
-        'descr': 
-            'C++ program to XOR a data file and key file together to '
-            'encrypt a file. ',
+        'descr': dedent('''
+            C++ program to XOR a data file and key file together to
+            encrypt a file.
+            '''),
         'files': [
                 'xor.cpp',
                 'xor.odt*',
@@ -2271,13 +2418,14 @@ projects = {
         },
     'xref': {
         'subdir': 'prog',
-        'descr': 
-            'A program that will cross reference the tokens in a set of '
-            'files -- each token will be listed in alphabetical order with '
-            "the file it occurs in along with the line numbers it's found on. "
-            "A C++ program and a python script (you'll need version 3.7, but "
-            'you can hack on it a bit to get it to run with earlier python 3 '
-            'versions) are included that do the same things. ',
+        'descr': dedent('''
+            A program that will cross reference the tokens in a set of
+            files -- each token will be listed in alphabetical order with
+            the file it occurs in along with the line numbers it's found on.
+            A C++ program and a python script (you'll need version 3.7, but
+            you can hack on it a bit to get it to run with earlier python 3
+            versions) are included that do the same things.
+            '''),
         'files': [
                 'xref.cpp',
                 ['/pylib/pgm/xref.py', 'xref.py'],
@@ -2287,9 +2435,10 @@ projects = {
         },
     'xyz': {
         'subdir': 'math',
-        'descr': 
-            'Python script that provides a mini-language to perform analytical '
-            'geometry calculations in 2 and 3 dimensions. ',
+        'descr': dedent('''
+            Python script that provides a mini-language to perform analytical
+            geometry calculations in 2 and 3 dimensions.
+            '''),
         'files': [
                 'xyz.py',
                 ['../geom_prim.py', 'geom_prim.py'],
@@ -2307,8 +2456,9 @@ projects = {
         },
     'yankee': {
         'subdir': 'shop',
-        'descr': 
-            'Discusses the Yankee screwdriver, a useful tool that has '
-            'been in production for more than 100 years. ',
+        'descr': dedent('''
+            Discusses the Yankee screwdriver, a useful tool that has
+            been in production for more than 100 years.
+            '''),
         },
 }
