@@ -165,6 +165,11 @@ Miscellaneous
 |   Shows a scale drawing of various ISO and US paper sizes.
 | `misc/shaving.pdf <misc/shaving.pdf>`_ (92)
 |   Some thoughts on shaving your beard.
+| `misc/shoulder_surgery.html <misc/shoulder_surgery.html>`_ (96)
+|   A document describing my experiences with shoulder surgeries
+|   to help others understand some of the things one goes through.
+|   A shoulder injury is one of the more inconvenient injuries
+|   because it gets in the way of so many of life's activities.
 | `misc/XmasTomatoes.pdf <misc/XmasTomatoes.pdf>`_ (370)
 |   Using Christmas tree lights to keep tomato plants from freezing
 |   at night.
@@ -183,7 +188,7 @@ Programming
 |   Treat lines of files as a set. Allows you to look at the
 |   union, intersection, difference, etc. between the lines of
 |   various files.
-| `prog/license.zip <prog/license.zip>`_ (111)
+| `prog/license.zip <prog/license.zip>`_ (112)
 |   This is a python script that will allow you to change the
 |   license you use in your source code files.
 | `prog/lwtest.zip <prog/lwtest.zip>`_ (171)
@@ -368,7 +373,7 @@ Shop
 | `shop/square.pdf <shop/square.pdf>`_ (36)
 |   How to use a carpenter's square to lay out angles from 1
 |   degree to 44 degrees.
-| `shop/thd.zip <shop/thd.zip>`_ (86)
+| `shop/thd.zip <shop/thd.zip>`_ (89)
 |   Prints out various dimensions associated with threads per ASME
 |   B1.1-1989.  If you machine threads on a lathe, you may find this
 |   program handy.
@@ -502,5 +507,5 @@ Utilities
 
 
 
-Updated 13 May 2022 3:36:50 pm
+Updated 17 May 2022 7:20:23 am
 

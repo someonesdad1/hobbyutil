@@ -70,6 +70,7 @@ if 1:   # Header
         from columnize import Columnize
         from wrap import wrap, dedent
         from projects import HU_Projects, Validate
+        from cmddecode import CommandDecode
     # Global variables
         ii = isinstance
         w = int(os.environ.get("COLUMNS", "80")) - 1
@@ -600,21 +601,32 @@ if 1:   # Core functionality
                   f"{t.st}stale{t.n} "
                   f"{t.ig}ignored{t.n} "
                   )
+    def DryRun(projects):
+        xx()
 if __name__ == "__main__":
+    s = set("build list show dryrun".split())
+    Cmd = CommandDecode(s)
     d = {} # Options dictionary
     projects = ParseCommandLine()
     ValidateProjectData()
     MakeDirectories()
-    cmd = projects[0]
+    input = projects[0]
     del projects[0]
-    if cmd in "b bu bui buil build".split():
+    # Find what command user wanted
+    cmd = Cmd(input)
+    if len(cmd) != 1:
+        Usage()
+    cmd = cmd[0]
+    if cmd == "build":
         if not projects:
             Usage()
         else:
             BuildZips(projects) if d["-z"] else Build(projects)
-    elif cmd in "l li lis list".split():
+    elif cmd == "list":
         List(projects)
-    elif cmd == "s sh sho show".split():
+    elif cmd == "show":
         Show(projects)
+    elif cmd == "dryrun":
+        DryRun(projects)
     else:
         Error("'%s' is an unrecognized command" % cmd)

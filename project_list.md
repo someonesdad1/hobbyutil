@@ -117,6 +117,10 @@ payment.  Doesn't include taxes or insurance.
 paper to compare paper purchases.
 [misc/paper_sizes.pdf](misc/paper_sizes.pdf) | Shows a scale drawing of various ISO and US paper sizes.
 [misc/shaving.pdf](misc/shaving.pdf) | Some thoughts on shaving your beard.
+[misc/shoulder_surgery.html](misc/shoulder_surgery.html) | A document describing my experiences with shoulder surgeries
+to help others understand some of the things one goes through.
+A shoulder injury is one of the more inconvenient injuries
+because it gets in the way of so many of life's activities.
 [misc/XmasTomatoes.pdf](misc/XmasTomatoes.pdf) | Using Christmas tree lights to keep tomato plants from freezing
 at night.
 
@@ -363,5 +367,5 @@ size in MBytes and highlight a regular expression in color.
 [util/spc_to_underscore.py](util/spc_to_underscore.py) | Python script to replace all space characters in file names
 with underscores.
 
-Updated 13 May 2022 3:36:50 pm
+Updated 17 May 2022 7:20:23 am
 

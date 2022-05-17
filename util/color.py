@@ -1257,7 +1257,8 @@ class Trm:
         self._fg, self._bg = Trm.default_color
         # Turn on output unless not to terminal
         self._on = False
-        if sys.stdout.isatty() or self.always:
+        so = sys.stdout
+        if (hasattr(so, "isatty") and so.isatty()) or self.always:
             self._on = True
     def print(self, *p, **kw):
         '''Print arguments with newline, reverting to normal color

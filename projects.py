@@ -1886,6 +1886,19 @@ HU_Projects = {
                 ],
         'srcdir': '/doc',
         },
+    'shoulder': {
+        'subdir': 'misc',
+        'descr': dedent('''
+            A document describing my experiences with shoulder surgeries
+            to help others understand some of the things one goes through.
+            A shoulder injury is one of the more inconvenient injuries
+            because it gets in the way of so many of life's activities.
+            '''),
+        'files': [
+                'shoulder_surgery.html',
+                ],
+        'srcdir': '/doc/medical/shoulderJun2018',
+        },
     'shorttbl': {
         'subdir': 'math',
         'descr': dedent('''
