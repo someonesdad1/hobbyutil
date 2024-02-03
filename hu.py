@@ -71,6 +71,7 @@ if 1:   # Header
         from wrap import wrap, dedent
         from projects import HU_Projects, Validate
         from cmddecode import CommandDecode
+        from wsl import wsl
     # Global variables
         ii = isinstance
         w = int(os.environ.get("COLUMNS", "80")) - 1
