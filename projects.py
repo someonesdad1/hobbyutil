@@ -2462,6 +2462,9 @@ def Warn(msg):
         t.print(f"{t.wrn}Warning:  {msg}")
 def Error(msg):
     t.print(f"{t.err}Error:  {msg}")
+def Fatal(msg):
+    t.print(f"{t('trq')}Fatal error:  {msg}")
+    exit(1)
 def CheckFiles(di, pr):
     '''pr is the string naming the project.
        di is HU_Projects dictionary for this project.
@@ -2519,7 +2522,7 @@ def Validate(warn=False):
             Error("'files' not in {pr}")
         CheckFiles(di, pr)
     if CheckFiles.error:
-        raise ValueError("projects.py:  Validate() failed")
+        Fatal("projects.py:  Validate() failed")
 if __name__ == "__main__": 
     show_warnings = False
     Validate()

@@ -11,6 +11,7 @@ tags
 a
 z
 0readme
+__pycache__
 
 # Ignore any Open Office, Word, or bitmap files.  This is done to avoid
 # populating the repository with source stuff.
