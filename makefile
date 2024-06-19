@@ -10,7 +10,7 @@ all: build html
 
 html:  project_list.html tutorial.html
 build: hu.py projects.py
-	${PYTHON} hu.py build .
+	python hu.py build .
 
 project_list.html: project_list.rst
 tutorial.html:  tutorial.rst

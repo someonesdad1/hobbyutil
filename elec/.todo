@@ -1,0 +1,6 @@
+- Logic probe
+    - The logic probe for a 12 V car or RV is enhanced quite a bit by using a 9 V zener diode.
+      This ensures it only turns on when the voltage at the tip is around 11 V or a bit above.
+      The "correct" design would be to only come on if the voltage was greater than 11.7 V, as
+      this is the voltage for a 2% charged lead-acid battery at freezing temperatures.
+
