@@ -6,7 +6,14 @@
 # 	- Runs 'python hu.py build .' to build everything
 # 	- Runs the mk script 
 
-all: build html 
+#all: build html 
+all: readme.html
+
+readme.html: README.md
+	pandoc --from gfm --to html README.md >readme.html
+	
+clean:
+	rm elec/* eng/* math/* misc/* science/* shop/*
 
 html:  project_list.html tutorial.html
 build: hu.py projects.py

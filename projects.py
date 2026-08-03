@@ -15,6 +15,7 @@ if 1:   # Header
     from pathlib import Path
     import shutil
     import sys
+    import zipfile
     # My python modules in /plib
     from wrap import dedent
     from lwtest import Assert
@@ -26,10 +27,12 @@ if 1:   # Global variables
     t.wrn = t.brn
     t.err = t.wht
     t.dbg = Color("@9140c0")
+    t.exists = t.grnl
     plib = "/plib"
     pgm = f"{plib}/pgm"
     Dbg = Debug(color=t.dbg, header="", show_linenum=False)
-    Dbg.on = True
+    Dbg.on = 0
+    ignore = {"cove",}
 if 1:   # Utility
     def Warn(msg):
         if show_warnings:
@@ -495,7 +498,7 @@ if 1:   # Project data
                     #'chemical_names.ods*',
                     'chemical_names.pdf',
                     ],
-            'srcdir': '/help/science',
+            'srcdir': '/science/chemical_names',
             },
         'diurnal': {
             'subdir': 'science',
@@ -677,16 +680,16 @@ if 1:   # Project data
         'cove': {
             'subdir': 'shop',
             'descr': dedent('''
-                Python script shows you how to cut a cove with your table saw.
-                Use this formula and method when it just has to be done correctly
-                on a workpiece you can't mess up on.
+                How to cut a cove with your table saw.  The method is to feed the work
+                at an angle to the blade; this actually cuts an ellipse, but it's
+                approximately a circle for short cove depths.
                 '''),
             'files': [
                     #'cove.odt*',
                     'cove.pdf',
                     #'cove.py',
                     ],
-            'srcdir': pgm,
+            'srcdir': '/plib/pgm',
             },
         'demag': {
             'subdir': 'shop',
@@ -2487,7 +2490,7 @@ if 1:   # Inactive project data
         #        'srcdir': pgm,
         #        },
     }
-if 1:   # Core functionality
+if 1:   # Old core functionality
     def CheckFiles(di, pr):
         '''pr is the string naming the project.
         di is Projects dictionary for this project.
@@ -2546,12 +2549,13 @@ if 1:   # Core functionality
             CheckFiles(di, pr)
         if CheckFiles.error:
             Fatal("projects.py:  Validate() failed")
+if 1:   # Core functionality
     def GetHash(file):
         m = hashlib.sha1()
         with open(file, "rb") as f:
             bytes = f.read()
         m.update(bytes)
-        hash = m.hexdigest
+        hash = m.hexdigest()
         Dbg(f"{str(file)!r} hash is {hash}")
         return hash
     def UpdateFile(real_name, path):
@@ -2566,8 +2570,32 @@ if 1:   # Core functionality
             hash_real = GetHash(real_name)
             hash_path = GetHash(path)
             if hash_real != hash_path:
-                Dbg(f"  Hashes don't match; copied")
+                Dbg(f"  {t.orn}Hashes don't match; copied")
                 shutil.copy(real_name, path)
+            else:
+                Dbg(f"  {t.exists}Hashes match")
+    def MakeZipfile(zipfilename, files):
+        with zipfile.ZipFile(zipfilename, "w") as zf:
+            for file in files:
+                zf.write(file)
+        Dbg(f"{str(zipfilename)!r} written")
+    def GetMissingFiles():
+        '''Currently, most of the projects are PDF or zip files.  Check if they exist in
+        their relevant directory; if not, flag it as missing along with the directory
+        the original file should be.
+        '''
+        if 0:
+            # Test out the build process for the three types of files
+            ProcessProject('bnc')
+            print("")
+            ProcessProject('triguc')
+            print("")
+            ProcessProject('elements')
+            exit()
+        else:
+            for name in Projects:
+                ProcessProject(name)
+            print("Files are up to date")
     def ProcessProject(name):
         '''For the given project name, there are three possibilities:  Projects[name]
         is a dict that has 
@@ -2578,11 +2606,17 @@ if 1:   # Core functionality
             - Multiple files (example 'elements')
                 - These will wind up as a zip file
         '''
+        if name in ignore:
+            t.print(f"{t.trq}{name} ignored")
+            return 
         entry = Projects[name]
         subdir = entry["subdir"]
         descr = entry["descr"]
         files = entry["files"]
         srcdir = entry["srcdir"]
+        global subdirs, srcdirs
+        subdirs.add(subdir)
+        srcdirs.add(srcdir)
         Dbg(f"Project:  {name}")
         Dbg(f"  subdir {subdir!r}")
         Dbg(f"  descr {descr!r}")
@@ -2591,7 +2625,6 @@ if 1:   # Core functionality
         # 
         if len(files) == 1: # A PDF or a list
             if isinstance(files[0], list):
-                Dbg("  It's a list")
                 assert len(files[0]) == 2
                 real_name, hu_name = files[0]
                 dest = Path(subdir)/hu_name
@@ -2600,30 +2633,24 @@ if 1:   # Core functionality
                 Dbg(f"  Destination is {str(dest)!r}")
                 UpdateFile(real_name, dest)
             else:
-                print("  It's a PDF")
                 src = Path(srcdir)/files[0]
                 dest = Path(subdir)/files[0]
                 Dbg(f"  Source of file is {str(src)!r}")
                 Dbg(f"  Destination is {str(dest)!r}")
                 UpdateFile(Path(srcdir)/files[0], Path(subdir)/files[0])
         else:   # Make a zip file
-            print("  It's a zipfile")
-            
-    def FindMissingFiles():
-        '''Currently, most of the projects are PDF or zip files.  Check if they exist in
-        their relevant directory; if not, flag it as missing along with the directory
-        the original file should be.
-        '''
-        ProcessProject('bnc')
-        print("")
-        ProcessProject('triguc')
-        print("")
-        ProcessProject('elements')
-        exit()
-        for name in Projects:
-            ProcessProject(name)
+            zipfilename = Path(subdir)/(name + ".zip")
+            srcdir = Path(srcdir)
+            files = [srcdir/i for i in files]
+            if 1 or not zipfilename.exists():
+                MakeZipfile(zipfilename, files)
+            else:
+                Dbg(f"  {t.exists}{str(zipfilename)!r} exists")
 
 if __name__ == "__main__": 
     show_warnings = False
+    subdirs = set()
+    srcdirs = set()
     #Validate()
-    FindMissingFiles()
+    GetMissingFiles()
+    print(f"subdirs = {' '.join(sorted(subdirs))}")
