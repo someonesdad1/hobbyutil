@@ -128,10 +128,10 @@ if 1:   # Project data
                 the formulas used.
                 '''),
             'files': [
-                    #'inductance.ods',
+                    'inductance.ods',
                     #'inductance.odt*',
                     'inductance.pdf',
-                    #'inductance_spreadsheet.pdf',
+                    'inductance_spreadsheet.pdf',
                     #'pictures/screenshot.jpg*',
                     ],
             'srcdir': '/elec/software/coil_inductance',
