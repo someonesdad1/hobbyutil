@@ -1,41 +1,19 @@
-hobbyutil ToDo list
+hobbyutil ToDo list Aug 2026
 
-- Current task
-    - Add a -n option for a dry run
+- projects.py contains HU_Projects, a dict that apparently has what projects has in it.
+  See if it's relevant, as it should be straightforward to turn into a validation tool 
+  for each of the items in README.md.
 
-- Must
-    - Clearly describe exactly how all the dependent files are produced.  
-    - Add to the project_list.html file that all python scripts in zipfiles
-      are to be installed by putting them in a separate directory and that
-      other included python files are modules that script depends on.  It
-      is suggested you create a separate directory, unzip the zipfile
-      there, and run it.  Once you're convinced you want to keep the stuff,
-      you'll want to put the needed modules somewhere in your PYTHONPATH so
-      they can be found when the script runs.
-    - Many of the scripts are things in /plib/pgm
-        - Eliminate the overlap.
-        - Produce a similar page as https://someonesdad1.github.io/ for
-          /plib.  This will make it easier for people to find what they
-          want.  Have two separate pages, one for /plib and one for
-          /plib/pgm.
-        - Consider moving much of this stuff to plib, as this helps to
-          centralize all my stuff over time.
-- Want
-    - The git repository is 100 MB
-        - Look at eliminating much of the stuff
-    - The generated web page for the project should contain a date to let
-      the viewer see the last time the project was updated.  This could be
-      done by giving the key file in the list a '+' character to flag that
-      its timestamp should be gotten.
-    - manufy.py doesn't work correctly when it's -h output is manufy'd: the
-      newlines in the quoted lines should be changed to double backslashes.
-    - seg.py isn't working yet.
-    - refcards:  Need to generate all new PDFs in PDF/A form.
-    - mass.py should allow a # character in a string.
-    - cheat:  Need to generate all new PDFs in PDF/A form.
-    - elements:  get working under python 3.  Current problem is crappiness
-      of GSview, not python.
-    - /science/phasors/phasors.odt needs writing & inclusion
-- Documentation
-    - For each description of a project, add a sentence why someone might
-      want to use the item.
+- Vision:  
+    - README.md is primary file
+    - check.py finds each link in README.md and validates the required file is present
+        - Can use the projects file (in yaml) to list the needed files
+    - Once check.py is written and everything is working, check everything in and use it 
+      for a few months.
+        - If all ok, then delete:
+            - _config.yml
+            - hu.py
+            - makefile
+            - mkprojects.py
+            - project_list.*
+- Get MIT license
