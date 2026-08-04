@@ -1,19 +1,8 @@
 hobbyutil ToDo list Aug 2026
 
-- projects.py contains HU_Projects, a dict that apparently has what projects has in it.
-  See if it's relevant, as it should be straightforward to turn into a validation tool 
-  for each of the items in README.md.
-
-- Vision:  
-    - README.md is primary file
-    - check.py finds each link in README.md and validates the required file is present
-        - Can use the projects file (in yaml) to list the needed files
-    - Once check.py is written and everything is working, check everything in and use it 
-      for a few months.
-        - If all ok, then delete:
-            - _config.yml
-            - hu.py
-            - makefile
-            - mkprojects.py
-            - project_list.*
-- Get MIT license
+- cove:  use $pp/cove.* stuff.  Must have a solid derivation of the formula and also 
+  some kind of practical demonstration that it produces the correct results.
+  Also delete or sequester old versions in /shop.
+- Fix ind.zip:  It doesn't have grover.py and I'd suggest simply reverting to the
+  simpler spreadsheet, as this stuff just doesn't get used very often and isn't worth
+  more work.
