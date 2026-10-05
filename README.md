@@ -145,7 +145,12 @@ Use this formula and method when it just has to be done correctly on a workpiece
 can't mess up on.
 
 [Demagnetizer.pdf](shop/Demagnetizer.pdf) A simple demagnetizing tool made from scrap
-materials.
+materials.  Update Oct 2026:  this design recently spectacularly failed after nearly 40
+years of use by the pushbutton switch shorting directly across the AC line.  I no longer
+recommend the simple design used in this document; I will be rebuilding a better
+demganetizer that uses an AGC fuse and solid state relay to take the long-term current
+load off the pushbutton switch.  I also recommend a 3-wire power cord with its ground
+tied to the metal of the steel laminations.
 
 [DitchPump_pub.pdf](shop/DitchPump_pub.pdf) Comments and tips on using a ditch pump to
 water your lawn.

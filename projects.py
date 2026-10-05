@@ -22,6 +22,7 @@ if 1:   # Header
     from dbg import Debug
     import trm
     from color import Color
+    from dptime import dpdate, dptime
 if 1:   # Global variables
     t = trm.TrmDP()     # For color printing to terminal
     t.wrn = t.brn
@@ -31,8 +32,8 @@ if 1:   # Global variables
     plib = "/plib"
     pgm = f"{plib}/pgm"
     Dbg = Debug(color=t.dbg, header="", show_linenum=False)
-    Dbg.on = 0
-    ignore = {"cove",}
+    Dbg.on = 1
+    ignore = set('''cove rms'''.split())
 if 1:   # Utility
     def Warn(msg):
         if show_warnings:
@@ -48,8 +49,8 @@ if 1:   # Project data
         'bnc': {
             'subdir': 'elec',
             'descr': dedent('''
-                Gives some experimental data about using RF coax cables
-                with BNC connectors for DC and low-frequency power.
+                Experimental data about using RF coax cables with BNC connectors for DC
+                and low-frequency power.
                 '''),
             'files': [
                     #'BNC_connector_power.odt*',
@@ -68,8 +69,8 @@ if 1:   # Project data
         'cs': {
             'subdir': 'elec',
             'descr': dedent('''
-                How to make a battery-operated 1 ampere current source used to
-                make low resistance measurements.
+                Make a battery-operated 1 ampere current source used to make low
+                resistance measurements.
                 '''),
             'files': [
                     #['CurrentSource_pub.odt*', 'CurrentSource.odt*'],
@@ -316,7 +317,7 @@ if 1:   # Project data
             },
         # Miscellaneous
         'antif': {
-            'subdir': 'eng',
+            'subdir': 'misc',
             'descr': dedent('''
                 How to calculate how much antifreeze to add to an existing
                 partially-filled radiator to get a desired concentration.  Also
@@ -347,6 +348,15 @@ if 1:   # Project data
                     #'pictures/organ_donation_2.png*',
                     ],
             'srcdir': '/doc',
+            },
+        'fence': {
+            'subdir': 'misc',
+            'descr': 'Discussion of how my wife and I built some low-cost fences for our yard.',
+            'files': [
+                    'BuildingAFence.pdf',
+                    #'BuildingAFence.odt',
+                    ],
+            'srcdir': '/shop/projects',
             },
         'fpen': {
             'subdir': 'misc',
@@ -408,6 +418,18 @@ if 1:   # Project data
             'frozen': True,
             'todo': "Doesn't match loo list of pictures",
             },
+        'mailbox': {
+            'subdir': 'misc',
+            'descr': dedent('''
+                Describes a simple, safe mailbox mounting that will be easy to fix if/when
+                a vehicle hits it.
+                '''),
+            'files': [
+                    #'mailbox.odt',
+                    'mailbox.pdf',
+                    ],
+            'srcdir': '/shop/projects',
+            },
         'markup': {
             'subdir': 'misc',
             'descr': 'Derives the equations for markup and profit used in business.',
@@ -429,7 +451,7 @@ if 1:   # Project data
             'srcdir': pgm,
             },
         'pqs': {
-            'subdir': 'eng',
+            'subdir': 'misc',
             'descr': dedent('''
                 Python scripts to simulate a production process that is inspected
                 by a measurement process with a significant measurement uncertainty.
@@ -495,10 +517,10 @@ if 1:   # Project data
                 and chemical formulas.
                 '''),
             'files': [
-                    #'chemical_names.ods*',
+                    #'chemical_names.odt*',
                     'chemical_names.pdf',
                     ],
-            'srcdir': '/science/chemical_names',
+            'srcdir': '/shop/projects',
             },
         'diurnal': {
             'subdir': 'science',
@@ -797,6 +819,15 @@ if 1:   # Project data
                     ],
             'srcdir': '/shop/projects',
             },
+        'manifold': {
+            'subdir': 'shop',
+            'descr': 'Machining an intake manifold for a 1969 Shelby Mustang.',
+            'files': [
+                    ['Joe_Manifold_11May2013.pdf', 'manifold.pdf'],
+                    #['Joe_Manifold_11May2013.odt*', 'manifold.odt'],
+                    ],
+            'srcdir': '/shop/projects',
+            },
         'nozzle': {
             'subdir': 'shop',
             'descr': 'Nice hose nozzle you can make if you have a lathe.',
@@ -865,8 +896,9 @@ if 1:   # Project data
         'weigh': {
             'subdir': 'shop',
             'descr': dedent('''
-                Demonstrates how I weighed our trailer with a lever. With
-                a 12 foot long 4x4, I was able to measure 2500 pounds.
+                Demonstrates how I weighed our trailer with a lever. With a bathroom scale
+                and a 12 foot long 4x4, I was able to measure 2560 pounds on one axle
+                with an estimated standard uncertainty of 150 lb.  
                 '''),
             'files': [
                     #['weighing_a_trailer.odt*', 'weigh.odt*'],
@@ -2646,11 +2678,58 @@ if 1:   # Core functionality
                 MakeZipfile(zipfilename, files)
             else:
                 Dbg(f"  {t.exists}{str(zipfilename)!r} exists")
+    def BuildReadme():
+        'Construct the README.md file'
+        # Header
+        lines = [
+            "hobbyutil\n",
+            "=========\n",
+            "\n",
+            "This is a collection of a few files I've written over the years, usually about some\n",
+            "topic that has interested me or resulted in an experiment.  The python scripts that used\n",
+            "to be here are at [plib](https://github.com/someonesdad1/plib).  All these files are now\n",
+            "under the MIT license.\n"
+        ]
+        # Build a dict containing the lines of each section
+        sections = {
+            "elec": [],
+            "math": [],
+            "misc": [],
+            "science": [],
+            "shop": [],
+        }
+        for name in Projects:
+            p = Projects[name]
+            section = p["subdir"]
+            descr = p["descr"]
+            file = p["files"]
+            # Link to file
+            file = f"{name}.pdf" if len(file) == 1 else f"{name}.zip"
+            item = sections[section]
+            item.append(f"[{file}]({section}/{file}) ")
+            item.append(descr)
+            item.append("\n"*2)
+        titles = {
+            "elec": "Electrical",
+            "math": "Math",
+            "misc": "Miscellaneous",
+            "science": "Science",
+            "shop": "Shop",
+        }
+        for title in titles:
+            print(f"{titles[title]}")
+            print(f"{'='*len(titles[title])}")
+            print(''.join(sections[title]))
+        print(f"File modified {dpdate()} {dptime()}")
+        #with open("README.md", "w") as out:
+        #    pass
 
 if __name__ == "__main__": 
     show_warnings = False
     subdirs = set()
     srcdirs = set()
-    #Validate()
-    GetMissingFiles()
-    print(f"subdirs = {' '.join(sorted(subdirs))}")
+    if 0:
+        GetMissingFiles()
+        print(f"subdirs = {' '.join(sorted(subdirs))}")
+    else:
+        BuildReadme()

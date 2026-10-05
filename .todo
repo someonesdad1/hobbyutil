@@ -6,3 +6,19 @@ hobbyutil ToDo list Aug 2026
 - Fix ind.zip:  It doesn't have grover.py and I'd suggest simply reverting to the
   simpler spreadsheet, as this stuff just doesn't get used very often and isn't worth
   more work.
+
+- Vision
+    - projects.py is used to 1) copy/build the PDF or zip file and 2) construct
+      README.md.  The basics are working.
+    - Focus on only supplying PDFs or zip files.
+    - New topics:  shop and tips (both become directories)
+        - shop:  make a separate file for each topic
+            - shop.py script will populate the files and construct the markdown file
+            - Look at a simpler text file for the data
+
+---------------------------------------------------------------------------
+- Data file for building things
+    - Make it an executable python script
+
+
+
